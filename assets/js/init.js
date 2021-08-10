@@ -232,51 +232,52 @@ getConnection({
                   if (!isValid(pack.recomendations))
                     $(".is-cluuf-pack-recomendations").hide();
 
-                  $(".cluuf-pack-avatar")
-                    .attr("src", pack.avatar)
-                    .attr("data-zoom-image", pack.avatar);
+                  $(".images-tab-content")
+                    .append(`<div role="tabpanel" class="tab-pane fade active show" id="related0">
+                  <a href="#">
+                      <img class="img-fluid" alt="single" src=${pack.avatar}>
+                  </a>
+              </div>`);
 
-                  if (pack.images[0] !== undefined) {
-                    $(".cluuf-pack-gallery1")
-                      .attr(
-                        "src",
-                        `https://cluuf.s3.amazonaws.com/${pack.images[0]}`
-                      )
-                      .attr(
-                        "data-zoom-image",
-                        `https://cluuf.s3.amazonaws.com/${pack.images[0]}`
-                      );
-                  } else {
-                    $(".gallery1").hide();
-                  }
+                  $(".images-tab-list").append(`<li class="nav-item">
+                                <a  href="#related0" data-toggle="tab" aria-expanded="false">
+                                    <img alt="related0" src="${pack.avatar}" class="img-fluid" />
+                                </a>
+                            </li>`);
 
-                  if (pack.images[1] !== undefined) {
-                    $(".cluuf-pack-gallery2")
-                      .attr(
-                        "src",
-                        `https://cluuf.s3.amazonaws.com/${pack.images[1]}`
-                      )
-                      .attr(
-                        "data-zoom-image",
-                        `https://cluuf.s3.amazonaws.com/${pack.images[1]}`
-                      );
-                  } else {
-                    $(".gallery2").hide();
-                  }
+                  $(".btn-all-photos").attr("href", pack.avatar);
 
-                  if (pack.images[2] !== undefined) {
-                    $(".cluuf-pack-gallery3")
-                      .attr(
-                        "src",
-                        `https://cluuf.s3.amazonaws.com/${pack.images[2]}`
-                      )
-                      .attr(
-                        "data-zoom-image",
-                        `https://cluuf.s3.amazonaws.com/${pack.images[2]}`
-                      );
-                  } else {
-                    $(".gallery3").hide();
-                  }
+                  pack.images.forEach((item, index) => {
+                    $(".container-gallery")
+                      .append(`<div class="col-lg-3 col-md-4 col-6">
+                                        <div class="user-group-photo">
+                                            <a href="https://cluuf.s3.amazonaws.com/${item}" class="popup-zoom">
+                                                <img src="https://cluuf.s3.amazonaws.com/${item}" alt="Gallery" class="img-fluid">
+                                            </a>
+                                        </div>
+                                    </div>`);
+
+                    if (index < 3) {
+                      $(".images-tab-content")
+                        .append(`<div role="tabpanel" class="tab-pane fade" id="related${
+                        index + 1
+                      }">
+                      <a href="#">
+                          <img class="img-fluid" alt="single" src="https://cluuf.s3.amazonaws.com/${item}">
+                      </a>
+                  </div>`);
+
+                      $(".images-tab-list").append(`<li class="nav-item">
+                                    <a  href="#related${
+                                      index + 1
+                                    }" data-toggle="tab" aria-expanded="false">
+                                        <img alt="related${
+                                          index + 1
+                                        }" src="https://cluuf.s3.amazonaws.com/${item}" class="img-fluid" />
+                                    </a>
+                                </li>`);
+                    }
+                  });
 
                   let days = "";
                   if (pack.availableDays) {
