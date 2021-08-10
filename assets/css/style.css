@@ -173,3 +173,25 @@ img.logo-who-we-are{
         color: #fff;
         background: #615dfa;
     }
+
+
+    .btn-global-dark{
+        background-color: #615dfa;
+        border-radius: 4px;
+        padding: 9px 30px;
+        display: block;
+        color: #fff;
+        font-weight: 700;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        text-align: center;
+        border: 1px solid #615dfa;
+        max-width: 400px;
+        margin: auto;
+    }
+
+
+    .btn-global-dark:hover {
+        color: #615dfa;
+        background: #fff;
+    }

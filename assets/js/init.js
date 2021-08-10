@@ -126,6 +126,8 @@ getConnection({
             } else {
               $(".cluuf-instance-video").hide();
             }
+
+            $(".cluuf-pack-video-iframe").attr("src", result.video);
           }
 
           if (result.whatsapp) {
