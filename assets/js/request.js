@@ -163,9 +163,7 @@ const loadCluufPackContent = ({
 
                 if (index < 3) {
                   $(".images-tab-content")
-                    .append(`<div role="tabpanel" class="tab-pane fade" id="related${
-                    index + 1
-                  }">
+                    .append(`<div role="tabpanel" class="tab-pane fade" id="related${index}">
             <a href="#">
                 <img class="img-fluid" alt="single" src="https://cluuf.s3.amazonaws.com/${item}">
             </a>
