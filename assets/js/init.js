@@ -93,7 +93,7 @@ const availablesDayFormat = (dayNumber, idioma = "en") => {
 
 getConnection({
   onSuccess: (instance) => {
-    sessionStorage.removeItem("packname", "");
+    sessionStorage.removeItem("packname");
     getInstance(
       { instanceId: instance.result._id },
       {
@@ -390,19 +390,21 @@ getConnection({
 
           /* Load Content  */
 
-          loadCluufContent({
-            method: "GET",
-            url: `https://cluuf.s3.sa-east-1.amazonaws.com/${localStorage.getItem(
-              "keypublic"
-            )}.json`,
-          });
+          if (sessionStorage.getItem("packname")) {
+            loadCluufContent({
+              method: "GET",
+              url: `https://cluuf.s3.sa-east-1.amazonaws.com/${localStorage.getItem(
+                "keypublic"
+              )}.json`,
+            });
 
-          loadCluufPackContent({
-            method: "GET",
-            url: `https://cluuf.s3.sa-east-1.amazonaws.com/${localStorage.getItem(
-              "keypublic"
-            )}.json`,
-          });
+            loadCluufPackContent({
+              method: "GET",
+              url: `https://cluuf.s3.sa-east-1.amazonaws.com/${localStorage.getItem(
+                "keypublic"
+              )}.json`,
+            });
+          }
         },
         onError: (result) => console.log(result),
       }
