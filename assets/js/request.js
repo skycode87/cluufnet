@@ -140,7 +140,7 @@ const loadCluufPackContent = ({
                 $(".images-tab-content")
                   .append(`<div role="tabpanel" class="tab-pane fade active show" id="related0"><a href="#">
                   <img class="img-fluid" alt="single" src=${result[key].content}></a></div>`);
-              } else if (result[key].tag === "gallery") {
+              } else if (String(result[key].tag).indexOf("gallery") > -1) {
                 $(".images-tab-list").append(`<li class="nav-item">
                 <a  href="#related0" data-toggle="tab" aria-expanded="false">
                     <img alt="related0" src="${result[key].content}" class="img-fluid" />
