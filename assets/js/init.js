@@ -240,9 +240,7 @@ getConnection({
                   if (!isValid(pack.recomendations))
                     $(".is-cluuf-pack-recomendations").hide();
 
-                  */
-
-                  $(".images-tab-content")
+                       $(".images-tab-content")
                     .append(`<div role="tabpanel" class="tab-pane fade active show" id="related0">
                   <a href="#">
                       <img class="img-fluid" alt="single" src=${pack.avatar}>
@@ -254,6 +252,8 @@ getConnection({
                                     <img alt="related0" src="${pack.avatar}" class="img-fluid" />
                                 </a>
                             </li>`);
+
+                  */
 
                   $(".btn-all-photos").attr("href", pack.avatar);
 
@@ -317,6 +317,7 @@ getConnection({
                     });
                   }
 
+                  /*
                   if (isValid(pack.include)) {
                     pack.include.forEach((element) => {
                       $(".cluuf-pack-include").append(`<li>${element}</li>`);
@@ -330,6 +331,7 @@ getConnection({
                       );
                     });
                   }
+                  
 
                   if (isValid(pack.exclude)) {
                     pack.exclude.forEach((element) => {
@@ -343,7 +345,7 @@ getConnection({
                         `<li>${element}</li>`
                       );
                     });
-                  }
+                  }*/
 
                   $(".overlay-loading").hide();
                 },

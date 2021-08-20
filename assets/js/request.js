@@ -125,7 +125,6 @@ const loadCluufPackContent = ({
                   );
                 });
               } else {
-                console.log(`.is-cluuf-pack-${result[key].tag}`);
                 $(`.is-cluuf-pack-${result[key].tag}`).hide();
               }
             }
@@ -137,10 +136,22 @@ const loadCluufPackContent = ({
             }
 
             if (result[key].type === "IMAGE") {
-              $(`.clf-src-pack_${result[key].tag}`).attr(
-                "src",
-                result[key].content
-              );
+              if (result[key].tag === "avatar") {
+                $(".images-tab-content")
+                  .append(`<div role="tabpanel" class="tab-pane fade active show" id="related0"><a href="#">
+                  <img class="img-fluid" alt="single" src=${result[key].content}></a></div>`);
+              } else if (result[key].tag === "gallery") {
+                $(".images-tab-list").append(`<li class="nav-item">
+                <a  href="#related0" data-toggle="tab" aria-expanded="false">
+                    <img alt="related0" src="${result[key].content}" class="img-fluid" />
+                </a>
+            </li>`);
+              } else {
+                $(`.clf-src-pack_${result[key].tag}`).attr(
+                  "src",
+                  result[key].content
+                );
+              }
             }
           });
         } else {
