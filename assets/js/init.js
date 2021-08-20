@@ -188,6 +188,8 @@ getConnection({
                 onSuccess: (result) => {
                   const pack = result.pack[0];
                   sessionStorage.setItem("cluuf-pack", JSON.stringify(pack));
+                  localStorage.setItem("cluuf-pack-tag", pack.tag);
+
                   $(".cluuf-pack-name").text(pack.name);
                   $(".cluuf-pack-category").text(pack.category);
                   $(".cluuf-pack-price").text(priceFormat(pack.price));
