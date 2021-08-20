@@ -237,6 +237,13 @@ const loadCluufContent = ({
               );
             }
 
+            if (result[key].tag === "coverImage") {
+              $(".product-breadcrumb.image-cover").css(
+                "background-image",
+                `url(${result[key].content})`
+              );
+            }
+
             if (result[key].type === "LIST") {
               let listado = result[key].content.split(",");
               listado.forEach((key2, index) => {
