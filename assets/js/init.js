@@ -257,6 +257,7 @@ getConnection({
 
                   $(".btn-all-photos").attr("href", pack.avatar);
 
+                  /*
                   pack.images.forEach((item, index) => {
                     $(".container-gallery")
                       .append(`<div class="col-lg-3 col-md-4 col-6">
@@ -287,7 +288,7 @@ getConnection({
                                     </a>
                                 </li>`);
                     }
-                  });
+                  });*/
 
                   let days = "";
                   if (pack.availableDays) {
