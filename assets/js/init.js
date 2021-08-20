@@ -319,6 +319,13 @@ getConnection({
                     });
                   }
 
+                  loadCluufPackContent({
+                    method: "GET",
+                    url: `https://cluuf.s3.sa-east-1.amazonaws.com/${localStorage.getItem(
+                      "keypublic"
+                    )}.json`,
+                  });
+
                   /*
                   if (isValid(pack.include)) {
                     pack.include.forEach((element) => {
@@ -349,6 +356,13 @@ getConnection({
                     });
                   }*/
 
+                  loadCluufContent({
+                    method: "GET",
+                    url: `https://cluuf.s3.sa-east-1.amazonaws.com/${localStorage.getItem(
+                      "keypublic"
+                    )}.json`,
+                  });
+
                   $(".overlay-loading").hide();
                 },
                 onError: (err) => {},
@@ -359,6 +373,13 @@ getConnection({
               { instanceId: instance.result._id },
               {
                 onSuccess: (result2) => {
+                  loadCluufContent({
+                    method: "GET",
+                    url: `https://cluuf.s3.sa-east-1.amazonaws.com/${localStorage.getItem(
+                      "keypublic"
+                    )}.json`,
+                  });
+
                   $(".overlay-loading").hide();
                   $.each(result2.packs, function (i, n) {
                     $(".packs-list").append(` 
@@ -389,22 +410,6 @@ getConnection({
           }
 
           /* Load Content  */
-
-          if (sessionStorage.getItem("packname")) {
-            loadCluufContent({
-              method: "GET",
-              url: `https://cluuf.s3.sa-east-1.amazonaws.com/${localStorage.getItem(
-                "keypublic"
-              )}.json`,
-            });
-
-            loadCluufPackContent({
-              method: "GET",
-              url: `https://cluuf.s3.sa-east-1.amazonaws.com/${localStorage.getItem(
-                "keypublic"
-              )}.json`,
-            });
-          }
         },
         onError: (result) => console.log(result),
       }
