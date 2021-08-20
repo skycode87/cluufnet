@@ -88,3 +88,57 @@ const getConnection = ({ onSuccess = {}, onError = {} }) => {
     xhttp.send();
   } catch {}
 };
+
+const loadCluufContent = ({
+  method = "GET",
+  params = "",
+  url = "",
+  body = null,
+  contentType = "application/x-www-form-urlencoded",
+}) => {
+  try {
+    const xhttp = new XMLHttpRequest();
+    var searchParams = new URLSearchParams(params);
+    xhttp.open(method, url, true);
+    xhttp.setRequestHeader("Content-type", contentType);
+    xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+
+    xhttp.onreadystatechange = function () {
+      if (xhttp.readyState === XMLHttpRequest.DONE) {
+        var status = xhttp.status;
+        if (status === 0 || (status >= 200 && status < 400)) {
+          const result = JSON.parse(xhttp.responseText);
+          Object.keys(result).forEach((key) => {
+            if (result[key].type === "TEXT") {
+              $(`.clf-content-pack_${result[key].tag}`).html(
+                result[key].content
+              );
+            }
+
+            if (result[key].type === "LIST") {
+              let listado = result[key].content.split(",");
+              listado.forEach((key2, index) => {
+                $(`.clf-list-pack_${result[key].tag}-${index}`).text(key2);
+              });
+            }
+
+            if (result[key].type === "HTML") {
+              $(`.clf-content-pack_${result[key].tag}`).html(
+                result[key].content
+              );
+            }
+
+            if (result[key].type === "IMAGE") {
+              $(`.clf-src-pack_${result[key].tag}`).attr(
+                "src",
+                result[key].content
+              );
+            }
+          });
+        } else {
+        }
+      }
+    };
+    xhttp.send();
+  } catch (error) {}
+};

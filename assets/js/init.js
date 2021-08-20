@@ -521,6 +521,13 @@ const formSubmit = () => {
 
 const priceFormat = (text) => `$ ${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
+loadCluufContent({
+  method: "GET",
+  url: `https://cluuf.s3.sa-east-1.amazonaws.com/${localStorage.getItem(
+    "keypublic"
+  )}.json`,
+});
+
 /*
 if (getParameterByName_pack("q") && getParameterByName_pack("agency")) {
   getConnection({
