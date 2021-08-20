@@ -109,7 +109,7 @@ const loadCluufPackContent = ({
         if (status === 0 || (status >= 200 && status < 400)) {
           const result = JSON.parse(xhttp.responseText);
           sessionStorage.setItem("galleryPackCount", 0);
-          let index = sessionStorage.getItem("galleryPackCount");
+          let index = parseInt(sessionStorage.getItem("galleryPackCount"));
 
           Object.keys(result).forEach((key) => {
             index = sessionStorage.getItem("galleryPackCount");
@@ -150,7 +150,7 @@ const loadCluufPackContent = ({
 
                 $(".images-tab-list").append(`<li class="nav-item">
                   <a  href="#related${index}" data-toggle="tab" aria-expanded="false">
-                      <img alt="related0" src="${result[key].content}" class="img-fluid" />
+                      <img alt="related" src="${result[key].content}" class="img-fluid" />
                   </a>
               </li>`);
               } else if (String(result[key].tag).indexOf("gallery") > -1) {
@@ -158,7 +158,7 @@ const loadCluufPackContent = ({
 
                 $(".images-tab-list").append(`<li class="nav-item">
                 <a  href="#related${index}" data-toggle="tab" aria-expanded="false">
-                    <img alt="related0" src="${result[key].content}" class="img-fluid" />
+                    <img alt="related" src="${result[key].content}" class="img-fluid" />
                 </a>
             </li>`);
 
