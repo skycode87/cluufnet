@@ -171,7 +171,7 @@ const loadCluufPackContent = ({
 
                   $(".images-tab-list").append(`<li class="nav-item">
                           <a  href="#related${index}" data-toggle="tab" aria-expanded="false">
-                              <img alt="related${index}" src="https://cluuf.s3.amazonaws.com/${result[key].content}" class="img-fluid" />
+                              <img alt="related${index}" src="${result[key].content}" class="img-fluid" />
                           </a>
                       </li>`);
                 }
