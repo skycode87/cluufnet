@@ -117,6 +117,7 @@ const loadCluufPackContent = ({
 
             if (result[key].type === "LIST") {
               let listado = result[key].content.split(",");
+              console.log(listado.length, result[key].tag);
               if (listado.length > 0) {
                 $(`.clf-list-pack_${result[key].tag} li`).remove();
                 listado.forEach((key2, index) => {
@@ -125,7 +126,8 @@ const loadCluufPackContent = ({
                   );
                 });
               } else {
-                $(`.is-cluuf-list-pack-${result[key].tag}`).hide();
+                console.log(`.is-cluuf-pack-${result[key].tag}`);
+                $(`.is-cluuf-pack-${result[key].tag}`).hide();
               }
             }
 
