@@ -109,8 +109,11 @@ const loadCluufPackContent = ({
         if (status === 0 || (status >= 200 && status < 400)) {
           const result = JSON.parse(xhttp.responseText);
           sessionStorage.setItem("galleryPackCount", 0);
+          let index = sessionStorage.getItem("galleryPackCount");
 
           Object.keys(result).forEach((key) => {
+            index = sessionStorage.getItem("galleryPackCount");
+
             if (result[key].type === "TEXT") {
               $(`.clf-content-pack_${result[key].tag}`).html(
                 result[key].content
@@ -139,11 +142,18 @@ const loadCluufPackContent = ({
 
             if (result[key].type === "IMAGE") {
               if (result[key].tag === "avatar") {
+                sessionStorage.setItem("galleryPackCount", index + 1);
+
                 $(".images-tab-content")
                   .append(`<div role="tabpanel" class="tab-pane fade active show" id="related0"><a href="#">
                   <img class="img-fluid" alt="single" src=${result[key].content}></a></div>`);
+
+                $(".images-tab-list").append(`<li class="nav-item">
+                  <a  href="#related${index}" data-toggle="tab" aria-expanded="false">
+                      <img alt="related0" src="${result[key].content}" class="img-fluid" />
+                  </a>
+              </li>`);
               } else if (String(result[key].tag).indexOf("gallery") > -1) {
-                var index = sessionStorage.getItem("galleryPackCount");
                 sessionStorage.setItem("galleryPackCount", index + 1);
 
                 $(".images-tab-list").append(`<li class="nav-item">
