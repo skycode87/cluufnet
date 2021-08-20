@@ -528,6 +528,13 @@ loadCluufContent({
   )}.json`,
 });
 
+loadCluufPackContent({
+  method: "GET",
+  url: `https://cluuf.s3.sa-east-1.amazonaws.com/${localStorage.getItem(
+    "keypublic"
+  )}.json`,
+});
+
 /*
 if (getParameterByName_pack("q") && getParameterByName_pack("agency")) {
   getConnection({

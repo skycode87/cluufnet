@@ -89,7 +89,7 @@ const getConnection = ({ onSuccess = {}, onError = {} }) => {
   } catch {}
 };
 
-const loadCluufContent = ({
+const loadCluufPackContent = ({
   method = "GET",
   params = "",
   url = "",
@@ -130,6 +130,57 @@ const loadCluufContent = ({
 
             if (result[key].type === "IMAGE") {
               $(`.clf-src-pack_${result[key].tag}`).attr(
+                "src",
+                result[key].content
+              );
+            }
+          });
+        } else {
+        }
+      }
+    };
+    xhttp.send();
+  } catch (error) {}
+};
+
+const loadCluufContent = ({
+  method = "GET",
+  params = "",
+  url = "",
+  body = null,
+  contentType = "application/x-www-form-urlencoded",
+}) => {
+  try {
+    const xhttp = new XMLHttpRequest();
+    var searchParams = new URLSearchParams(params);
+    xhttp.open(method, url, true);
+    xhttp.setRequestHeader("Content-type", contentType);
+    xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+
+    xhttp.onreadystatechange = function () {
+      if (xhttp.readyState === XMLHttpRequest.DONE) {
+        var status = xhttp.status;
+        if (status === 0 || (status >= 200 && status < 400)) {
+          const result = JSON.parse(xhttp.responseText);
+          Object.keys(result).forEach((key) => {
+            if (result[key].type === "TEXT") {
+              $(`.clf-content-${result[key].code}`).html(result[key].content);
+            }
+
+            if (result[key].type === "LIST") {
+              let listado = result[key].content.split(",");
+              listado.forEach((key2, index) => {
+                console.log(`.cluuf-list-${result[key].code}-${index}`, key2);
+                $(`.clf-list-${result[key].code}-${index}`).text(key2);
+              });
+            }
+
+            if (result[key].type === "HTML") {
+              $(`.clf-content-${result[key].code}`).html(result[key].content);
+            }
+
+            if (result[key].type === "IMAGE") {
+              $(`.clf-src-${result[key].code}`).attr(
                 "src",
                 result[key].content
               );
