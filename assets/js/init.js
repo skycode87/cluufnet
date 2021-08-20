@@ -93,6 +93,7 @@ const availablesDayFormat = (dayNumber, idioma = "en") => {
 
 getConnection({
   onSuccess: (instance) => {
+    sessionStorage.removeItem("packname");
     getInstance(
       { instanceId: instance.result._id },
       {
