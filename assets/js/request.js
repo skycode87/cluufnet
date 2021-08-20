@@ -108,6 +108,8 @@ const loadCluufPackContent = ({
         var status = xhttp.status;
         if (status === 0 || (status >= 200 && status < 400)) {
           const result = JSON.parse(xhttp.responseText);
+          sessionStorage.setItem("galleryPackCount", 0);
+
           Object.keys(result).forEach((key) => {
             if (result[key].type === "TEXT") {
               $(`.clf-content-pack_${result[key].tag}`).html(
@@ -141,11 +143,44 @@ const loadCluufPackContent = ({
                   .append(`<div role="tabpanel" class="tab-pane fade active show" id="related0"><a href="#">
                   <img class="img-fluid" alt="single" src=${result[key].content}></a></div>`);
               } else if (String(result[key].tag).indexOf("gallery") > -1) {
+                var index = sessionStorage.getItem("galleryPackCount");
+                sessionStorage.setItem("galleryPackCount", index + 1);
+
                 $(".images-tab-list").append(`<li class="nav-item">
-                <a  href="#related0" data-toggle="tab" aria-expanded="false">
+                <a  href="#related${index}" data-toggle="tab" aria-expanded="false">
                     <img alt="related0" src="${result[key].content}" class="img-fluid" />
                 </a>
             </li>`);
+
+                $(".container-gallery")
+                  .append(`<div class="col-lg-3 col-md-4 col-6">
+                              <div class="user-group-photo">
+                                  <a href="${result[key].content}" class="popup-zoom">
+                                      <img src="${result[key].content}" alt="Gallery" class="img-fluid">
+                                  </a>
+                              </div>
+                          </div>`);
+
+                if (index < 3) {
+                  $(".images-tab-content")
+                    .append(`<div role="tabpanel" class="tab-pane fade" id="related${
+                    index + 1
+                  }">
+            <a href="#">
+                <img class="img-fluid" alt="single" src="https://cluuf.s3.amazonaws.com/${item}">
+            </a>
+        </div>`);
+
+                  $(".images-tab-list").append(`<li class="nav-item">
+                          <a  href="#related${
+                            index + 1
+                          }" data-toggle="tab" aria-expanded="false">
+                              <img alt="related${
+                                index + 1
+                              }" src="https://cluuf.s3.amazonaws.com/${item}" class="img-fluid" />
+                          </a>
+                      </li>`);
+                }
               } else {
                 $(`.clf-src-pack_${result[key].tag}`).attr(
                   "src",
