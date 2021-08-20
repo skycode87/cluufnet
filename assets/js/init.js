@@ -220,9 +220,12 @@ getConnection({
                       $(".is-cluuf-pack-description").hide();
                   }
 
-                  if (pack.iframeMap)
+                  /*
+
+                   if (pack.iframeMap)
                     if (!isValid(pack.iframeMap))
                       $(".is-cluuf-pack-iframeMap").hide();
+
 
                   if (pack.include)
                     if (!isValid(pack.include))
@@ -236,6 +239,8 @@ getConnection({
 
                   if (!isValid(pack.recomendations))
                     $(".is-cluuf-pack-recomendations").hide();
+
+                  */
 
                   $(".images-tab-content")
                     .append(`<div role="tabpanel" class="tab-pane fade active show" id="related0">

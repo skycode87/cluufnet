@@ -117,12 +117,16 @@ const loadCluufPackContent = ({
 
             if (result[key].type === "LIST") {
               let listado = result[key].content.split(",");
-              $(`.clf-list-pack_${result[key].tag} li`).remove();
-              listado.forEach((key2, index) => {
-                $(`.clf-list-pack_${result[key].tag}`).append(
-                  `<li>${key2}</li>`
-                );
-              });
+              if (listado.length > 0) {
+                $(`.clf-list-pack_${result[key].tag} li`).remove();
+                listado.forEach((key2, index) => {
+                  $(`.clf-list-pack_${result[key].tag}`).append(
+                    `<li>${key2}</li>`
+                  );
+                });
+              } else {
+                $(`.is-cluuf-pack-${result[key].tag}`).hide();
+              }
             }
 
             if (result[key].type === "HTML") {
