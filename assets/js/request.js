@@ -116,9 +116,8 @@ const loadCluufPackContent = ({
             }
 
             if (result[key].type === "LIST") {
-              let listado = result[key].content.split(",");
-              console.log(listado.length, result[key].tag);
-              if (listado.length > 2) {
+              if (String(result[key].content).length > 2) {
+                let listado = result[key].content.split(",");
                 $(`.clf-list-pack_${result[key].tag} li`).remove();
                 listado.forEach((key2, index) => {
                   $(`.clf-list-pack_${result[key].tag}`).append(
