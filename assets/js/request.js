@@ -154,9 +154,10 @@ const loadCluufPackContent = ({
                   if (result[key].tag === "avatar") {
                     sessionStorage.setItem("galleryPackCount", index + 1);
 
+
                     $(".images-tab-content")
                       .append(`<div role="tabpanel" class="tab-pane fade active show" id="related0"><a href="#">
-                      <img class="img-fluid" alt="single" src=${result[key].content}></a></div>`);
+                      <img class="img-fluid clf-src-pack_${result[key].code} tagpack_" alt="single" src=${result[key].content}></a></div>`);
 
                     $(".images-tab-list").append(`<li class="nav-item">
                       <a  href="#related${index}" data-toggle="tab" aria-expanded="false">
@@ -242,6 +243,9 @@ const loadCluufContent = ({
                 "background-image",
                 `url(${result[key].content})`
               );
+
+              $(".product-breadcrumb.image-cover").addClass("clf-src-general_coverImage tag_");
+              
             }
 
             if (result[key].type === "LIST") {
