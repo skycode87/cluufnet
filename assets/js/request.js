@@ -118,7 +118,9 @@ const loadCluufPackContent = ({
             if (result[key].type === "LIST") {
               let listado = result[key].content.split(",");
               listado.forEach((key2, index) => {
-                $(`.clf-list-pack_${result[key].tag}-${index}`).text(key2);
+                $(`.clf-list-pack_${result[key].tag}`).append(
+                  `<li>${key2}</li>`
+                );
               });
             }
 
