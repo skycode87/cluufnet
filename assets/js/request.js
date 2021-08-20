@@ -218,9 +218,10 @@ const loadCluufContent = ({
             }
 
             if (result[key].tag === "primaryColor") {
-              $(" .fixed-header .header-menu").css(
+              console.log(result[key].tag, `${result[key].content} !important`);
+              $(".fixed-header .header-menu").css(
                 "background-color",
-                `${result[key].content} !important`
+                result[key].content
               );
             }
 
