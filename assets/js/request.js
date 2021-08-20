@@ -125,7 +125,7 @@ const loadCluufPackContent = ({
                   );
                 });
               } else {
-                $(`.is-cluuf-pack-${result[key].tag}`).hide();
+                $(`.is-cluuf-list-pack-${result[key].tag}`).hide();
               }
             }
 
