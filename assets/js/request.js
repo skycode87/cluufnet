@@ -161,20 +161,12 @@ const loadCluufPackContent = ({
                               </div>
                           </div>`);
 
-                if (index < 3) {
-                  $(".images-tab-content")
-                    .append(`<div role="tabpanel" class="tab-pane fade" id="related${index}">
+                $(".images-tab-content")
+                  .append(`<div role="tabpanel" class="tab-pane fade" id="related${index}">
             <a href="#">
                 <img class="img-fluid" alt="single" src="${result[key].content}">
             </a>
         </div>`);
-
-                  $(".images-tab-list").append(`<li class="nav-item">
-                          <a  href="#related${index}" data-toggle="tab" aria-expanded="false">
-                              <img alt="related${index}" src="${result[key].content}" class="img-fluid" />
-                          </a>
-                      </li>`);
-                }
               } else {
                 $(`.clf-src-pack_${result[key].tag}`).attr(
                   "src",
