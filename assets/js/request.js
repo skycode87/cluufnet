@@ -217,6 +217,13 @@ const loadCluufContent = ({
               $(`.clf-content-${result[key].code}`).html(result[key].content);
             }
 
+            if (result[key].tag === "primaryColor") {
+              $(" .fixed-header .header-menu").css(
+                "background-color",
+                `${result[key].content} !important`
+              );
+            }
+
             if (result[key].type === "LIST") {
               let listado = result[key].content.split(",");
               listado.forEach((key2, index) => {
