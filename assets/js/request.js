@@ -114,79 +114,85 @@ const loadCluufPackContent = ({
           Object.keys(result).forEach((key) => {
             index = sessionStorage.getItem("galleryPackCount");
 
-            if (result[key].type === "TEXT") {
-              $(`.clf-content-pack_${result[key].tag}`).html(
-                result[key].content
-              );
-            }
-
-            if (result[key].type === "LIST") {
-              if (String(result[key].content).length > 2) {
-                let listado = result[key].content.split(",");
-                $(`.clf-list-pack_${result[key].tag} li`).remove();
-                listado.forEach((key2, index) => {
-                  $(`.clf-list-pack_${result[key].tag}`).append(
-                    `<li>${key2}</li>`
-                  );
-                });
-              } else {
-                $(`.is-cluuf-pack-${result[key].tag}`).hide();
+            if (
+              String(result[key].code).indexOf(
+                sessionStorage.getItem("packname")
+              ) > -1
+            ) {
+              if (result[key].type === "TEXT") {
+                $(`.clf-content-pack_${result[key].tag}`).html(
+                  result[key].content
+                );
               }
-            }
 
-            if (result[key].type === "HTML") {
-              $(`.clf-content-pack_${result[key].tag}`).html(
-                result[key].content
-              );
-            }
+              if (result[key].type === "LIST") {
+                if (String(result[key].content).length > 2) {
+                  let listado = result[key].content.split(",");
+                  $(`.clf-list-pack_${result[key].tag} li`).remove();
+                  listado.forEach((key2, index) => {
+                    $(`.clf-list-pack_${result[key].tag}`).append(
+                      `<li>${key2}</li>`
+                    );
+                  });
+                } else {
+                  $(`.is-cluuf-pack-${result[key].tag}`).hide();
+                }
+              }
 
-            if (result[key].type === "IMAGE") {
-              if (
-                String(result[key].code).indexOf(
-                  sessionStorage.getItem("packname")
-                ) > -1
-              ) {
-                if (result[key].tag === "avatar") {
-                  sessionStorage.setItem("galleryPackCount", index + 1);
+              if (result[key].type === "HTML") {
+                $(`.clf-content-pack_${result[key].tag}`).html(
+                  result[key].content
+                );
+              }
 
-                  $(".images-tab-content")
-                    .append(`<div role="tabpanel" class="tab-pane fade active show" id="related0"><a href="#">
-                    <img class="img-fluid" alt="single" src=${result[key].content}></a></div>`);
+              if (result[key].type === "IMAGE") {
+                if (
+                  String(result[key].code).indexOf(
+                    sessionStorage.getItem("packname")
+                  ) > -1
+                ) {
+                  if (result[key].tag === "avatar") {
+                    sessionStorage.setItem("galleryPackCount", index + 1);
 
-                  $(".images-tab-list").append(`<li class="nav-item">
+                    $(".images-tab-content")
+                      .append(`<div role="tabpanel" class="tab-pane fade active show" id="related0"><a href="#">
+                      <img class="img-fluid" alt="single" src=${result[key].content}></a></div>`);
+
+                    $(".images-tab-list").append(`<li class="nav-item">
+                      <a  href="#related${index}" data-toggle="tab" aria-expanded="false">
+                          <img alt="related" src="${result[key].content}" class="img-fluid" />
+                      </a>
+                  </li>`);
+                  } else if (String(result[key].tag).indexOf("gallery") > -1) {
+                    sessionStorage.setItem("galleryPackCount", index + 1);
+
+                    $(".images-tab-list").append(`<li class="nav-item">
                     <a  href="#related${index}" data-toggle="tab" aria-expanded="false">
                         <img alt="related" src="${result[key].content}" class="img-fluid" />
                     </a>
                 </li>`);
-                } else if (String(result[key].tag).indexOf("gallery") > -1) {
-                  sessionStorage.setItem("galleryPackCount", index + 1);
 
-                  $(".images-tab-list").append(`<li class="nav-item">
-                  <a  href="#related${index}" data-toggle="tab" aria-expanded="false">
-                      <img alt="related" src="${result[key].content}" class="img-fluid" />
-                  </a>
-              </li>`);
+                    $(".container-gallery")
+                      .append(`<div class="col-lg-3 col-md-4 col-6">
+                                  <div class="user-group-photo">
+                                      <a href="${result[key].content}" class="popup-zoom">
+                                          <img src="${result[key].content}" alt="Gallery" class="img-fluid">
+                                      </a>
+                                  </div>
+                              </div>`);
 
-                  $(".container-gallery")
-                    .append(`<div class="col-lg-3 col-md-4 col-6">
-                                <div class="user-group-photo">
-                                    <a href="${result[key].content}" class="popup-zoom">
-                                        <img src="${result[key].content}" alt="Gallery" class="img-fluid">
-                                    </a>
-                                </div>
-                            </div>`);
-
-                  $(".images-tab-content")
-                    .append(`<div role="tabpanel" class="tab-pane fade" id="related${index}">
-              <a href="#">
-                  <img class="img-fluid" alt="single" src="${result[key].content}">
-              </a>
-          </div>`);
-                } else {
-                  $(`.clf-src-pack_${result[key].tag}`).attr(
-                    "src",
-                    result[key].content
-                  );
+                    $(".images-tab-content")
+                      .append(`<div role="tabpanel" class="tab-pane fade" id="related${index}">
+                <a href="#">
+                    <img class="img-fluid" alt="single" src="${result[key].content}">
+                </a>
+            </div>`);
+                  } else {
+                    $(`.clf-src-pack_${result[key].tag}`).attr(
+                      "src",
+                      result[key].content
+                    );
+                  }
                 }
               }
             }
