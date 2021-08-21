@@ -168,12 +168,12 @@ const loadCluufPackContent = ({
                     );
 
                     $(".images-tab-content")
-                      .append(`<div role="tabpanel" class="tab-pane fade active show" id="related0"><a href="#">
+                      .append(`<div role="tabpanel" class="tab-pane fade active show" id="related${index}"><a href="#">
                       <img class="img-fluid" alt="single" src=${result[key].content}></a></div>`);
 
                     $(".images-tab-list").append(`<li class="nav-item">
                       <a  href="#related${index}" data-toggle="tab" aria-expanded="false">
-                          <img alt="related" src="${result[key].content}" class="img-fluid" />
+                          <img alt="related${index}" src="${result[key].content}" class="img-fluid" />
                       </a>
                   </li>`);
                   } else if (String(result[key].tag).indexOf("gallery") > -1) {
@@ -184,7 +184,7 @@ const loadCluufPackContent = ({
 
                     $(".images-tab-list").append(`<li class="nav-item">
                     <a  href="#related${index}" data-toggle="tab" aria-expanded="false">
-                        <img alt="related" src="${result[key].content}" class="img-fluid" />
+                        <img alt="related${index}" src="${result[key].content}" class="img-fluid" />
                     </a>
                 </li>`);
 
