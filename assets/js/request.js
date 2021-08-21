@@ -151,12 +151,17 @@ const loadCluufPackContent = ({
                     sessionStorage.getItem("packname")
                   ) > -1
                 ) {
+                  $(".imageUpdatePack").append(` 
+                  <div class="col-lg-4 col-md-6">
+                  <div class="block-box product-box">
+                      <div class="product-img">
+                      <img class="clf-src-pack_${result[key].tag}  tagpack_ active " alt="related" src="${result[key].content}" class="img-fluid" />
+                      </div>
+                  </div>
+              </div>`);
+
                   if (result[key].tag === "avatar") {
                     sessionStorage.setItem("galleryPackCount", index + 1);
-
-                    $(".imageUpdatePack").append(
-                      `<div><img class="clf-src-pack_${result[key].tag}  tagpack_ active " alt="related" src="${result[key].content}" class="img-fluid" /></div>`
-                    );
 
                     $(".images-tab-content")
                       .append(`<div role="tabpanel" class="tab-pane fade active show" id="related0"><a href="#">
@@ -169,10 +174,6 @@ const loadCluufPackContent = ({
                   </li>`);
                   } else if (String(result[key].tag).indexOf("gallery") > -1) {
                     sessionStorage.setItem("galleryPackCount", index + 1);
-
-                    $(".imageUpdatePack").append(
-                      `<div><img  width="300px" class="clf-src-pack_${result[key].tag}  tagpack_  active " alt="related" src="${result[key].content}" class="img-fluid" /></div>`
-                    );
 
                     $(".images-tab-list").append(`<li class="nav-item">
                     <a  href="#related${index}" data-toggle="tab" aria-expanded="false">
