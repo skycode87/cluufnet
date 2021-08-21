@@ -155,12 +155,12 @@ const loadCluufPackContent = ({
                     sessionStorage.setItem("galleryPackCount", index + 1);
 
                     $(".imageUpdatePack").append(
-                      `<div><img class="clf-src-pack-${result[key].tag}  tagpack_ " alt="related" src="${result[key].content}" class="img-fluid" /></div>`
+                      `<div><img class="clf-src-pack-${result[key].tag}  tagpack_ active " alt="related" src="${result[key].content}" class="img-fluid" /></div>`
                     );
 
                     $(".images-tab-content")
                       .append(`<div role="tabpanel" class="tab-pane fade active show" id="related0"><a href="#">
-                      <img class="img-fluid clf-src-pack_${result[key].tag} tagpack_" alt="single" src=${result[key].content}></a></div>`);
+                      <img  width="300px" class="img-fluid clf-src-pack_${result[key].tag} tagpack_" alt="single" src=${result[key].content}></a></div>`);
 
                     $(".images-tab-list").append(`<li class="nav-item">
                       <a  href="#related${index}" data-toggle="tab" aria-expanded="false">
@@ -169,6 +169,10 @@ const loadCluufPackContent = ({
                   </li>`);
                   } else if (String(result[key].tag).indexOf("gallery") > -1) {
                     sessionStorage.setItem("galleryPackCount", index + 1);
+
+                    $(".imageUpdatePack").append(
+                      `<div><img  width="300px" class="clf-src-pack-${result[key].tag}  tagpack_ active " alt="related" src="${result[key].content}" class="img-fluid" /></div>`
+                    );
 
                     $(".images-tab-list").append(`<li class="nav-item">
                     <a  href="#related${index}" data-toggle="tab" aria-expanded="false">
