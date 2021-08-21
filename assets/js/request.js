@@ -162,7 +162,10 @@ const loadCluufPackContent = ({
               </div>`);
 
                   if (result[key].tag === "avatar") {
-                    sessionStorage.setItem("galleryPackCount", index + 1);
+                    sessionStorage.setItem(
+                      "galleryPackCount",
+                      parseInt(index) + 1
+                    );
 
                     $(".images-tab-content")
                       .append(`<div role="tabpanel" class="tab-pane fade active show" id="related0"><a href="#">
@@ -174,7 +177,10 @@ const loadCluufPackContent = ({
                       </a>
                   </li>`);
                   } else if (String(result[key].tag).indexOf("gallery") > -1) {
-                    sessionStorage.setItem("galleryPackCount", index + 1);
+                    sessionStorage.setItem(
+                      "galleryPackCount",
+                      parseInt(index) + 1
+                    );
 
                     $(".images-tab-list").append(`<li class="nav-item">
                     <a  href="#related${index}" data-toggle="tab" aria-expanded="false">
