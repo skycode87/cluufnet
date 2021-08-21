@@ -151,6 +151,7 @@ const loadCluufPackContent = ({
                     sessionStorage.getItem("packname")
                   ) > -1
                 ) {
+                  // Editar todas las imagenes del pack
                   $(".imageUpdatePack").append(` 
                   <div class="col-lg-4 col-md-6">
                   <div class="block-box">
@@ -165,7 +166,7 @@ const loadCluufPackContent = ({
 
                     $(".images-tab-content")
                       .append(`<div role="tabpanel" class="tab-pane fade active show" id="related0"><a href="#">
-                      <img  width="300px" class="img-fluid clf-src-pack_${result[key].tag} tagpack_" alt="single" src=${result[key].content}></a></div>`);
+                      <img class="img-fluid" alt="single" src=${result[key].content}></a></div>`);
 
                     $(".images-tab-list").append(`<li class="nav-item">
                       <a  href="#related${index}" data-toggle="tab" aria-expanded="false">
