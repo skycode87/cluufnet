@@ -155,7 +155,7 @@ const loadCluufPackContent = ({
                     sessionStorage.setItem("galleryPackCount", index + 1);
 
                     $(".imageUpdatePack").append(
-                      `<div><img class="clf-src-pack-${result[key].tag}  tagpack_ active " alt="related" src="${result[key].content}" class="img-fluid" /></div>`
+                      `<div><img class="clf-src-pack_${result[key].tag}  tagpack_ active " alt="related" src="${result[key].content}" class="img-fluid" /></div>`
                     );
 
                     $(".images-tab-content")
@@ -171,7 +171,7 @@ const loadCluufPackContent = ({
                     sessionStorage.setItem("galleryPackCount", index + 1);
 
                     $(".imageUpdatePack").append(
-                      `<div><img  width="300px" class="clf-src-pack-${result[key].tag}  tagpack_ active " alt="related" src="${result[key].content}" class="img-fluid" /></div>`
+                      `<div><img  width="300px" class="clf-src-pack_${result[key].tag}  tagpack_  active " alt="related" src="${result[key].content}" class="img-fluid" /></div>`
                     );
 
                     $(".images-tab-list").append(`<li class="nav-item">
