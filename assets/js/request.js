@@ -155,7 +155,7 @@ const loadCluufPackContent = ({
                   <div class="col-lg-4 col-md-6">
                   <div class="block-box product-box">
                       <div class="product-img">
-                      <img class="clf-src-pack_${result[key].tag}  tagpack_ active " alt="related" src="${result[key].content}" class="img-fluid" />
+                      <img  class="clf-src-pack_${result[key].tag}  tagpack_ active " alt="related" src="${result[key].content}" class="img-fluid" />
                       </div>
                   </div>
               </div>`);
