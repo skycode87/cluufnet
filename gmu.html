@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+
+    <head>
+        <!-- Meta Data -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Cirkle | User Timeline</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="media/favicon.png">
+        <link rel="stylesheet" href="dependencies/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="dependencies/icofont/icofont.min.css">
+        <link rel="stylesheet" href="dependencies/slick-carousel/css/slick.css">
+        <link rel="stylesheet" href="dependencies/slick-carousel/css/slick-theme.css">
+        <link rel="stylesheet" href="dependencies/magnific-popup/css/magnific-popup.css">
+        <link rel="stylesheet" href="dependencies/sal.js/sal.css">
+        <link rel="stylesheet" href="dependencies/mcustomscrollbar/jquery.mCustomScrollbar.min.css">
+        <link rel="stylesheet" href="dependencies/select2/css/select2.min.css">
+
+        <!-- Site Stylesheet -->
+        <link rel="stylesheet" href="assets/css/app.css">
+        <!-- Google Web Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    </head>
+
+    <body class="bg-link-water">
+        <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+        <a href="#wrapper" data-type="section-switch" class="scrollup">
+            <i class="icofont-bubble-up"></i>
+        </a>
+        <!-- Preloader Start Here -->
+        <div id="preloader"></div>
+        <!-- Preloader End Here -->
+        <div id="wrapper" class="wrapper">
+            <!-- Top Header -->
+            <header class="fixed-header">
+                <div class="header-menu">
+                    <div class="navbar">
+                        <div class="nav-item d-none d-sm-block">
+                            <div class="header-logo">
+                                <a href="index.html"><img src="media/logo.png" alt="Cirkle"></a>
+                            </div>
+                        </div>
+                        <div class="nav-item nav-top-menu">
+                            <nav id="dropdown" class="template-main-menu">
+                                <ul class="menu-content">
+                                    <li class="header-nav-item">
+                                        <a href="index.html" class="menu-link active"></a>
+                                    </li>
+
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="nav-item header-control">
+
+
+                            <div class="inline-item">
+                                <div class="dropdown dropdown-admin">
+                                    <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                        <span class="media">
+                                            <span class="item-img">
+                                                <img src="media/figure/chat_5.jpg" alt="Chat">
+                                                <span class="acc-verified"><i class="icofont-check"></i></span>
+                                            </span>
+                                        </span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <ul class="admin-options">
+                                            <li><a href="#">Profile Settings</a></li>
+                                            <li><a href="login.html">Log Out</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Sidebar Left -->
+            <div class="fixed-sidebar">
+
+                <div class="fixed-sidebar-left large-sidebar">
+                    <div class="sidebar-toggle">
+                        <div class="sidebar-logo">
+                            <a href="index.html"><img src="media/logo2.png" alt="Logo"></a>
+                        </div>
+                        <button class="toggle-btn toggler-close">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Sidebar Right -->
+            <div class="fixed-sidebar right">
+                <div class="fixed-sidebar-right small-sidebar">
+                    <div class="sidebar-toggle" id="chat-head-toggle">
+                        <button class="chat-icon">
+                            <i class="icofont-speech-comments"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar-menu-wrap">
+                        <div class="mCustomScrollbar" data-mcs-theme="dark" data-mcs-axis="y">
+                            <ul class="user-chat-list">
+                                <li class="chat-item chat-open">
+                                    <div class="author-img">
+                                        <img src="media/figure/chat_1.jpg" alt="chat">
+                                        <span class="chat-status offline"></span>
+                                    </div>
+                                </li>
+                                <li class="chat-item chat-open">
+                                    <div class="author-img">
+                                        <img src="media/figure/chat_2.jpg" alt="chat">
+                                        <span class="chat-status offline"></span>
+                                    </div>
+                                </li>
+                                <li class="chat-item chat-open">
+                                    <div class="author-img">
+                                        <img src="media/figure/chat_3.jpg" alt="chat">
+                                        <span class="chat-status offline"></span>
+                                    </div>
+                                </li>
+                                <li class="chat-item chat-open">
+                                    <div class="author-img">
+                                        <img src="media/figure/chat_4.jpg" alt="chat">
+                                        <span class="chat-status online"></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Page Content -->
+            <div class="page-content">
+
+                <!--=====================================-->
+                <!--=        Newsfeed  Area Start       =-->
+                <!--=====================================-->
+                <div class="container">
+                    <!-- Banner Area Start -->
+
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="block-box user-timeline-header">
+                                <ul class="menu-list d-none d-md-block">
+                                    <li><a href="javascript:openTabContent(4)" class="active tab-4">Usuarios</a></li>
+                                    <li><a href="javascript:openTabContent(2)" class="tab-2">Pagos</a></li>
+                                    <li><a href="javascript:openTabContent(3)" class="tab-3">Actualizar perfil</a></li>
+
+
+                                </ul>
+                                <div class="header-dropdown d-md-none">
+                                    <label>Show:</label>
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                            Menu
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#">Blogs</a>
+                                            <a class="dropdown-item" href="#">Pagos</a>
+                                            <a class="dropdown-item" href="#">Actualizar perfil</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <section class="tab-content tab-content-4">
+                                <div class="block-box user-search-bar">
+                                    <div class="box-item search-box">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search Member">
+                                            <div class="input-group-append">
+                                                <button class="search-btn" type="button"><i class="icofont-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-item search-filter">
+                                        <div class="dropdown">
+                                            <label>Order By:</label>
+                                            <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Newest Member</button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">All Member</a>
+                                                <a class="dropdown-item" href="#">Newest Member</a>
+                                                <a class="dropdown-item" href="#">Oldest Member</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-item search-switcher">
+                                        <ul class="user-view-switcher">
+                                            <li class="active">
+                                                <a class="user-view-trigger" href="#" data-type="user-grid-view">
+                                                    <i class="icofont-layout"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="user-view-trigger" href="#" data-type="user-list-view">
+                                                    <i class="icofont-listine-dots"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="user-view" class="user-grid-view">
+                                    <div class="row gutters-20">
+                                        <div class="col-xl-3 col-lg-4 col-md-6">
+                                            <div class="widget-author">
+                                                <div class="author-heading">
+                                                    <div class="cover-img">
+                                                        <img src="media/figure/cover_1.jpg" alt="cover">
+                                                    </div>
+                                                    <div class="profile-img">
+                                                        <a href="#">
+                                                            <img src="media/figure/author_1.jpg" alt="author">
+                                                        </a>
+                                                    </div>
+                                                    <div class="profile-name">
+                                                        <h4 class="author-name"><a href="user-timeline.html">Rebeca Powel</a></h4>
+                                                        <div class="author-location">@ahat akter</div>
+                                                    </div>
+                                                </div>
+                                                <ul class="author-badge">
+                                                    <li><a href="javascript:openModal()" class="bg-salmon-gradient"><i class="icofont-star"></i></a></li>
+                                                    <li><a href="#" class="bg-amethyst-gradient"><i class="icofont-ui-play"></i></a></li>
+                                                    <li><a href="#" class="bg-sun-gradient"><i class="icofont-squirrel"></i></a></li>
+                                                    <li><a href="#" class="bg-jungle-gradient"><i class="icofont-rocket-alt-1"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </section>
+
+                            <section class="tab-content tab-content-2">
+                                <div class="forum-list-table">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">Proximo cobro</th>
+                                                    <th scope="col">Monto</th>
+                                                    <th scope="col">Estatus</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>20 febrero 2021</td>
+                                                    <td class="text-center">40.000</td>
+                                                    <td class="text-center">Completed</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </section>
+
+
+                            <section class="tab-content tab-content-3">
+                                <div class="block-box" style="padding: 30px">
+                                    <form id="contact-form">
+                                        <div class="row gutters-20">
+                                            <div class="col-lg-6 form-group">
+                                                <input type="text" class="form-control" name="fname" placeholder="First Name">
+                                            </div>
+                                            <div class="col-lg-6 form-group">
+                                                <input type="text" class="form-control" name="lname" placeholder="Last Name">
+                                            </div>
+                                            <div class="col-lg-6 form-group">
+                                                <input type="email" class="form-control" name="email" placeholder="E-mail">
+                                            </div>
+                                            <div class="col-lg-6 form-group">
+                                                <input type="text" class="form-control" name="phone" placeholder="Phone">
+                                            </div>
+                                            <div class="col-12 form-group">
+                                                <textarea name="message" id="message" cols="30" rows="3" class="textarea form-control" placeholder="Message"></textarea>
+                                            </div>
+                                            <div class="col-12 form-group">
+                                                <input type="submit" class="submit-btn" value="Send Us Message">
+                                            </div>
+                                        </div>
+                                        <div class="form-response"></div>
+                                    </form>
+
+                                </div>
+                            </section>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+        <!-- [1] -->
+        <div id="asistencia-modal" class="modal" aria-hidden="true">
+
+            <!-- [2] -->
+            <div tabindex="-1" data-micromodal-close>
+
+                <!-- [3] -->
+                <div role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+
+
+                    <header>
+                        <h2 id="modal-1-title">
+                            Modal Title
+                        </h2>
+
+                        <!-- [4] -->
+                        <button aria-label="Close modal" data-micromodal-close></button>
+                    </header>
+
+                    <div id="modal-1-content">
+                        Modal Content
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Jquery Js -->
+        <script src="dependencies/jquery/js/jquery.min.js"></script>
+        <script src="dependencies/popper.js/js/popper.min.js"></script>
+        <script src="dependencies/bootstrap/js/bootstrap.min.js"></script>
+        <script src="dependencies/imagesloaded/js/imagesloaded.pkgd.min.js"></script>
+        <script src="dependencies/isotope-layout/js/isotope.pkgd.min.js"></script>
+        <script src="dependencies/slick-carousel/js/slick.min.js"></script>
+        <script src="dependencies/sal.js/sal.js"></script>
+        <script src="dependencies/magnific-popup/js/jquery.magnific-popup.min.js"></script>
+        <script src="dependencies/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="dependencies/select2/js/select2.min.js"></script>
+        <script src="dependencies/elevate-zoom/jquery.elevatezoom.js"></script>
+        <script src="dependencies/bootstrap-validator/js/validator.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtmXSwv4YmAKtcZyyad9W7D4AC08z0Rb4"></script>
+
+        <!-- Site Scripts -->
+        <script src="assets/js/app.js"></script>
+        <script>
+
+            const openTabContent = (number) => {
+                $("section.tab-content").hide();
+                $(`section.tab-content-${number}`).show("fast");
+                $(`.menu-list li a`).removeClass("active");
+                $(`.menu-list .tab-${number}`).addClass("active");
+            }
+
+            openTabContent(4);
+
+
+        </script>
+
+    </body>
+
+</html>
