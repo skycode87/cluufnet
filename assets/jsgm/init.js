@@ -94,8 +94,9 @@ const availablesDayFormat = (dayNumber, idioma = "en") => {
 getConnection({
   onSuccess: (instance) => {
     sessionStorage.removeItem("packname");
+
     getInstance(
-      { instanceId: instance.result._id },
+      { instanceId: instance.result.instanceId },
       {
         onSuccess: (result) => {
           $(".cluuf-instance-logo").attr("src", result.logo);
@@ -462,14 +463,12 @@ const submitPack = () => {
     },
     {
       onSuccess: (response) => {
+        console.log("estoy aqui");
         $("#name").val("");
         $("#email").val("");
         $("#phone").val("");
         $("#message").val("");
         $("#quantity").val("0");
-        setTimeout(() => {
-          location.reload();
-        }, 3000);
       },
       onError: () => console.log("Error enviando el formulario"),
     }
