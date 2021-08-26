@@ -92,29 +92,74 @@ const availablesDayFormat = (dayNumber, idioma = "en") => {
 };
 
 getConnection({
-  onSuccess: (instance) => {
+  onSuccess: (userdata) => {
     sessionStorage.removeItem("packname");
+    const user = userdata.result;
+    $("img.user-avatar").attr("src", user.avatar);
+    $(".user-fullname").text(`${user.firstname} ${user.lastname}`);
+    $(".user-email").text(user.email);
+    $(".user-phone").text(user.phone);
+    $(".user-address").text(user.address);
+    $(".user-city").text(user.city);
+    $(".user-country").text(user.country);
+    $(".user-startdate").text(user.startdate);
+    $(".user-profession").text(user.profession);
+    $(".user-facebook").attr("href", user.facebook);
+    $(".user-instagram").attr("href", user.instagram);
+    $(".user-youtube").attr("href", user.youtube);
+    $(".user-twitter").attr("href", user.twitter);
+    $(".user-pin").text(user.pin);
+    $(".user-bio").text(user.bio);
+    $(".user-sangretype").text(user.sangretype);
+    $(".user-genre").text(user.genre);
+    $(".user-alergies").text(user.alergies);
+    $(".user-bodylesson").text(user.bodylesson);
+
+    /* user-form */
+    $("form.user #firstname").val(user.firstname);
+    $("form.user #lastname").val(user.lastname);
+    $("form.user #email").val(user.email);
+    $("form.user #phone").val(user.phone);
+    $("form.user #address").val(user.address);
+    $("form.user #city").val(user.city);
+    $("form.user #country").val(user.country);
+    $("form.user #startdate").val(user.startdate);
+    $("form.user #profession").val(user.profession);
+    $("form.user #facebook").val(user.facebook);
+    $("form.user #instagram").val(user.instagram);
+    $("form.user #youtube").val(user.youtube);
+    $("form.user #linkedin").val(user.linkedin);
+    $("form.user #bio").val(user.bio);
+    $("form.user #sangretype").val(user.sangretype);
+    $("form.user #genre").val(user.genre);
+    $("form.user #alergies").val(user.alergies);
+    $("form.user #bodylesson").val(user.bodylesson);
+    $("form.user #secondaryphone").val(user.secondaryphone);
+    $("form.user #birthdate").val(user.birthdate);
+    $("form.user #instanceId").val(user.instanceId);
+    $("form.user #userId").val(user._id);
+    $("form.user #pin").val(user.pin);
 
     getInstance(
-      { instanceId: instance.result.instanceId },
+      { instanceId: userdata.result.instanceId },
       {
         onSuccess: (result) => {
-          $(".cluuf-instance-logo").attr("src", result.logo);
-          $(".cluuf-instance-logowhite").attr("src", result.logowhite);
-
-          if (result.logowhite.length < 5)
-            $(".cluuf-instance-logowhite").attr("src", result.logo);
-
-          $(".cluuf-instance-name").text(result.name);
-          $(".cluuf-instance-phonepublic").text(result.phonepublic);
-          $(".cluuf-instance-emailpublic").text(result.emailpublic);
-          $(".cluuf-instance-website").text(result.website);
-          $(".cluuf-instance-address").text(result.address);
-          $(".cluuf-instance-website-src").attr("href", result.website);
-          $(".cluuf-gotours-href").attr(
-            "href",
-            `tours.html?agency=${result.alias}`
+          $(".fixed-header .header-menu").css("background-color", result.color);
+          $(".instance-background").css(
+            "background-image",
+            `url(${result.background})`
           );
+
+          $(".instance-logo").attr("src", result.logo);
+          $(".instance-logowhite").attr("src", result.logowhite);
+
+          $(".instance-name").text(result.name);
+          $(".instance-phonepublic").text(result.phonepublic);
+          $(".instance-emailpublic").text(result.emailpublic);
+          $(".instance-website").text(result.website);
+          $(".instance-address").text(result.address);
+          $(".instance-website-src").attr("href", result.website);
+          $(".gotours-href").attr("href", `tours.html?agency=${result.alias}`);
 
           localStorage.setItem("hostname", result.hostname);
           localStorage.setItem("instanceId", result._id);
@@ -123,13 +168,13 @@ getConnection({
 
           if (result.video) {
             if (result.video.length > 10) {
-              $(".cluuf-instance-video").attr("href", result.video);
-              $(".cluuf-pack-video").attr("href", result.video);
+              $(".instance-video").attr("href", result.video);
+              $(".pack-video").attr("href", result.video);
             } else {
-              $(".cluuf-instance-video").hide();
+              $(".instance-video").hide();
             }
 
-            $(".cluuf-pack-video-iframe").attr("src", result.video);
+            $(".pack-video-iframe").attr("src", result.video);
           }
 
           if (result.whatsapp) {
@@ -176,14 +221,10 @@ getConnection({
             }
           }
 
-          $(".cluuf-instance-background").css(
-            "background-image",
-            `url(${result.background})`
-          );
           $(".cluuf-instance-avatar").attr("src", result.avatar);
           $(".cluuf-instance-aboutus").html(result.aboutus);
 
-          if (getParameterByName_pack("q")) {
+          if (getParameterByNameURL("q") === "a") {
             getPack(
               { instanceId: result._id },
               {
@@ -370,44 +411,7 @@ getConnection({
               }
             );
           } else {
-            getPacks(
-              { instanceId: instance.result._id },
-              {
-                onSuccess: (result2) => {
-                  loadCluufContent({
-                    method: "GET",
-                    url: `https://cluuf.s3.sa-east-1.amazonaws.com/${localStorage.getItem(
-                      "keypublic"
-                    )}.json`,
-                  });
-
-                  $(".overlay-loading").hide();
-                  $.each(result2.packs, function (i, n) {
-                    $(".packs-list").append(` 
-                          <div class="col-lg-4 col-md-6">
-                          <div class="block-box product-box">
-                              <div class="product-img">
-                                  <a href="tour.html?q=${
-                                    n._id
-                                  }&agency=${instance.result.alias}"><img src="${n.avatar}" alt="${n.name}"></a>
-                              </div>
-                              <div class="product-content">
-                                  <div class="item-category">
-                                      <a href="#">${n.category}</a>
-                                  </div>
-                                  <h3 class="product-title"><a href="tour.html?q=${
-                                    n._id
-                                  }&agency=${instance.result.alias}">${n.name}</a></h3>
-                                  <div class="product-price">${priceFormat(
-                                    n.price
-                                  )}</div>
-                              </div>
-                          </div>
-                      </div>`);
-                  });
-                },
-              }
-            );
+            searchUserbyText({ textValue: "lis" });
           }
 
           /* Load Content  */
@@ -417,6 +421,164 @@ getConnection({
     );
   },
 });
+
+const searchUserbyText = ({ textValue }) => {
+  $(".contacts-list div").remove("");
+  $(".contacts-list").append("<div><h2>Buscando...</h2></div>");
+  getUsers(
+    { instanceId: localStorage.getItem("instanceId"), textValue },
+    {
+      onSuccess: (usersResult) => {
+        if (usersResult.result.length < 1) {
+          $(".current-contact div").remove();
+          $(".contacts-list div").remove();
+          $(".contacts-list").append(
+            `<div><h4><img  src="media/icons/cerrar.svg" width="20px" alt="author"> No se encontraron resultados para [ ${textValue} ]</h4></div>`
+          );
+        } else {
+          $(".contacts-list div").remove("");
+          $(".overlay-loading").hide();
+          $.each(usersResult.result, function (i, n) {
+            var avatar = "media/no-avatar.png";
+
+            if (n.avatar) {
+              avatar = n.avatar;
+            }
+
+            $(".contacts-list").append(`<div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="widget-author">
+                <div class="author-heading">
+                    <div class="cover-img">
+                        <img src="media/figure/cover_1.jpg" alt="cover">
+                    </div>
+                    <div class="profile-img">
+                        <a href="#">
+                            <img width="100px"  src="${avatar}" alt="author">
+                        </a>
+                    </div>
+                    <div class="profile-name">
+                    <h2>${n.pin || ""}</h2>
+                        <h2 class="author-name" style="font-size: 22px; line-height: 26px">${
+                          n.firstname || ""
+                        } <br> ${n.lastname || ""}</h2>
+                        <div class="author-location"> ${n.email || ""}</div>
+                    </div>
+                </div>
+                <ul class="author-badge">
+              
+                <li><a href="javascript:openPanel1({ userId: '${
+                  n._id
+                }',num: 1})"><img width="40px" src="media/icons/navegador-web.svg"></a></li>
+                <li><a href="javascript:openPanel1({ userId: '${
+                  n._id
+                }',num: 2})"><img width="40px" src="media/icons/medios-de-comunicacion-social.svg"></a></li>    
+                </ul>
+
+                <a href="javascript:openPanel1({ userId: '${
+                  n._id
+                }',num: 0})" class="button-slide">
+                <span class="btn-text">Ingresar</span>
+                <span class="btn-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21px" height="10px">
+                        <path fill-rule="evenodd" fill="rgb(255, 255, 255)" d="M16.671,9.998 L12.997,9.998 L16.462,6.000 L5.000,6.000 L5.000,4.000 L16.462,4.000 L12.997,0.002 L16.671,0.002 L21.003,5.000 L16.671,9.998 ZM17.000,5.379 L17.328,5.000 L17.000,4.621 L17.000,5.379 ZM-0.000,4.000 L3.000,4.000 L3.000,6.000 L-0.000,6.000 L-0.000,4.000 Z"></path>
+                    </svg>
+                </span>
+            </a>
+
+            </div>
+        </div>`);
+          });
+        }
+      },
+    }
+  );
+};
+
+const createAsistenciaClient = () => {
+  createAsistencia(
+    { userId: $("#userIdAssistencia").val() },
+    {
+      onSuccess: (usersResult) => {
+        closePanelContent();
+        openPanel1({ userId: $("#userIdAssistencia").val(), num: 1 });
+      },
+    }
+  );
+};
+
+const openPanel1 = ({ userId, num }) => {
+  getUser(
+    userId,
+    {
+      onSuccess: (result) => {
+        const userdata = result.result;
+        const events = result.events;
+        $(".table-asistencia tbody tr").remove();
+
+        $.each(events, function (i, n) {
+          $(".table-asistencia tbody").append(` 
+          <tr>
+            <td> <img width="18px" src="media/icons/entrar.svg"> ${n.title} <small>${n.description}</small></td>
+          </tr>`);
+        });
+
+        sessionStorage.setItem("currentUserId", userId);
+        $(".contacts-container").hide();
+        $(".contact-container").show();
+
+        $("#userIdAssistencia").val(userId);
+        var avatar = "media/no-avatar.png";
+
+        if (userdata.avatar) {
+          avatar = userdata.avatar;
+        }
+        $(".current-contact")
+          .append(`<div class="col-xl-12 col-lg-12 col-md-12">
+        <div class="widget-author" style="background: #fff">
+            <div class="author-heading">
+                <div class="cover-img">
+                    <img src="media/figure/cover_1.jpg" alt="cover">
+                </div>
+                <div class="profile-img">
+                    <a href="#">
+                        <img width="100px"  src="${avatar}" alt="author">
+                    </a>
+                </div>
+                <h4 style="font-size: 28px;">${userdata.pin || ""}</h4> 
+                <div class="profile-name">
+                    <h2 class="author-name" style="font-size: 22px; line-height: 26px">${
+                      userdata.firstname || ""
+                    } <br> ${userdata.lastname || ""}</h2>
+                    <div class="author-location">${userdata.email || ""}</div>
+                </div>
+            </div>
+            <ul class="author-badge">
+            <li><a href="javascript:openPanelContent(1)"><img width="40px" src="media/icons/navegador-web.svg"></a></li>
+            <li><a href="javascript:openPanelContent(2)"><img width="40px" src="media/icons/medios-de-comunicacion-social.svg"></a></li> 
+            <li><a href="javascript:openPanelContent(0)"><img width="40px" src="media/icons/entrar.svg"></a></li>
+   
+            </ul>
+
+            <div class="form-group">
+            <input type="button" onClick="closePanelContent()"  class="submit-btn" value="Volver Atras">
+        </div>
+        
+        </div>
+    </div>`);
+
+        openPanelContent(num);
+      },
+    },
+    {
+      onError: () => {},
+    }
+  );
+};
+
+const searchUsers = () => {
+  const value = $("#search-user-value").val();
+  searchUserbyText({ textValue: value });
+};
 
 const submitPack = () => {
   connectToCluuf_Pack(
@@ -463,13 +625,114 @@ const submitPack = () => {
     },
     {
       onSuccess: (response) => {
-        console.log("estoy aqui");
         $("#name").val("");
         $("#email").val("");
         $("#phone").val("");
         $("#message").val("");
         $("#quantity").val("0");
       },
+      onError: () => console.log("Error enviando el formulario"),
+    }
+  );
+};
+
+const submitUserForm = () => {
+  connectToCluuf_userForm(
+    {
+      userId: {
+        value: $("#userId").val(),
+        required: false,
+      },
+      pin: {
+        value: $("#pin").val(),
+        required: false,
+      },
+      email: {
+        value: $("#email").val(),
+        required: true,
+        message: "Please verify Email and try again.",
+      },
+      firstname: {
+        value: $("#firstname").val(),
+        required: true,
+        message: "Please verify Name and try again.",
+      },
+      lastname: {
+        value: $("#lastname").val(),
+        required: true,
+        message: "Please verify lastname and try again.",
+      },
+      address: {
+        value: $("#address").val(),
+        required: false,
+      },
+      city: {
+        value: $("#city").val(),
+        required: false,
+      },
+      country: {
+        value: $("#country").val(),
+        required: false,
+      },
+      phone: {
+        value: $("#phone").val(),
+        required: true,
+        message: "Please verify phone and try again.",
+      },
+      genre: {
+        value: $("#genre").val(),
+        required: true,
+        message: "Please verify genre and try again.",
+      },
+      sangretype: {
+        value: $("#sangretype").val(),
+        required: false,
+        message: "Please verify Tipo de Sangre and try again.",
+      },
+      birthdate: {
+        required: true,
+        value: $("#birthdate").val(),
+        message: "Please verify date and try again.",
+      },
+      secondaryphone: {
+        value: $("#secondaryphone").val(),
+        required: false,
+      },
+      bodylesson: {
+        value: $("#bodylesson").val(),
+        required: false,
+      },
+      alergies: {
+        value: $("#alergies").val(),
+        required: false,
+      },
+      facebook: {
+        value: $("#facebook").val(),
+        required: false,
+      },
+      youtube: {
+        value: $("#youtube").val(),
+        required: false,
+      },
+      linkedin: {
+        value: $("#linkedin").val(),
+        required: false,
+      },
+      instagram: {
+        value: $("#instagram").val(),
+        required: false,
+      },
+      bio: {
+        value: $("#bio").val(),
+        required: false,
+      },
+      formId: $("#formId").val(), // proporcionado por cluuf-web
+      instanceId: $("#instanceId").val(), // proporcionado por cluuf-web
+      successMessage: "The message has been sent successfully",
+      campaign: "user",
+    },
+    {
+      onSuccess: (response) => {},
       onError: () => console.log("Error enviando el formulario"),
     }
   );
@@ -554,6 +817,18 @@ const formSubmit = () => {
 };
 
 const priceFormat = (text) => `$ ${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+const openPanelContent = (number) => {
+  $(".panel-content").hide();
+  $(`.panel-content-${number}`).show("fast");
+};
+
+const closePanelContent = () => {
+  $(".panel-content").hide();
+  $(".contacts-container").show();
+  $(".contact-container").hide();
+  $(".current-contact div").remove();
+};
 
 /*
 if (getParameterByName_pack("q") && getParameterByName_pack("agency")) {

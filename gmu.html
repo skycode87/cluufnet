@@ -42,7 +42,7 @@
                     <div class="navbar">
                         <div class="nav-item d-none d-sm-block">
                             <div class="header-logo">
-                                <a href="index.html"><img src="media/logo.png" alt="Cirkle"></a>
+                                <a href="index.html"><img src="media/logo.png" alt="cluuf" class="instance-logowhite" width="150px" style="margin-top:20px"> </a>
                             </div>
                         </div>
                         <div class="nav-item nav-top-menu">
@@ -63,7 +63,7 @@
                                     <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                                         <span class="media">
                                             <span class="item-img">
-                                                <img src="media/figure/chat_5.jpg" alt="Chat">
+                                                <img class="user-avatar" width="44px" height="44px" src="media/figure/chat_5.jpg" alt="Chat">
                                                 <span class="acc-verified"><i class="icofont-check"></i></span>
                                             </span>
                                         </span>
@@ -97,46 +97,7 @@
 
                 </div>
             </div>
-            <!-- Sidebar Right -->
-            <div class="fixed-sidebar right">
-                <div class="fixed-sidebar-right small-sidebar">
-                    <div class="sidebar-toggle" id="chat-head-toggle">
-                        <button class="chat-icon">
-                            <i class="icofont-speech-comments"></i>
-                        </button>
-                    </div>
-                    <div class="sidebar-menu-wrap">
-                        <div class="mCustomScrollbar" data-mcs-theme="dark" data-mcs-axis="y">
-                            <ul class="user-chat-list">
-                                <li class="chat-item chat-open">
-                                    <div class="author-img">
-                                        <img src="media/figure/chat_1.jpg" alt="chat">
-                                        <span class="chat-status offline"></span>
-                                    </div>
-                                </li>
-                                <li class="chat-item chat-open">
-                                    <div class="author-img">
-                                        <img src="media/figure/chat_2.jpg" alt="chat">
-                                        <span class="chat-status offline"></span>
-                                    </div>
-                                </li>
-                                <li class="chat-item chat-open">
-                                    <div class="author-img">
-                                        <img src="media/figure/chat_3.jpg" alt="chat">
-                                        <span class="chat-status offline"></span>
-                                    </div>
-                                </li>
-                                <li class="chat-item chat-open">
-                                    <div class="author-img">
-                                        <img src="media/figure/chat_4.jpg" alt="chat">
-                                        <span class="chat-status online"></span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <!-- Page Content -->
             <div class="page-content">
 
@@ -152,8 +113,6 @@
                             <div class="block-box user-timeline-header">
                                 <ul class="menu-list d-none d-md-block">
                                     <li><a href="javascript:openTabContent(4)" class="active tab-4">Usuarios</a></li>
-                                    <li><a href="javascript:openTabContent(2)" class="tab-2">Pagos</a></li>
-                                    <li><a href="javascript:openTabContent(3)" class="tab-3">Actualizar perfil</a></li>
 
 
                                 </ul>
@@ -173,127 +132,148 @@
 
                             </div>
 
-                            <section class="tab-content tab-content-4">
-                                <div class="block-box user-search-bar">
-                                    <div class="box-item search-box">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Search Member">
-                                            <div class="input-group-append">
-                                                <button class="search-btn" type="button"><i class="icofont-search"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="box-item search-filter">
-                                        <div class="dropdown">
-                                            <label>Order By:</label>
-                                            <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Newest Member</button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#">All Member</a>
-                                                <a class="dropdown-item" href="#">Newest Member</a>
-                                                <a class="dropdown-item" href="#">Oldest Member</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="box-item search-switcher">
-                                        <ul class="user-view-switcher">
-                                            <li class="active">
-                                                <a class="user-view-trigger" href="#" data-type="user-grid-view">
-                                                    <i class="icofont-layout"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="user-view-trigger" href="#" data-type="user-list-view">
-                                                    <i class="icofont-listine-dots"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div id="user-view" class="user-grid-view">
-                                    <div class="row gutters-20">
-                                        <div class="col-xl-3 col-lg-4 col-md-6">
-                                            <div class="widget-author">
-                                                <div class="author-heading">
-                                                    <div class="cover-img">
-                                                        <img src="media/figure/cover_1.jpg" alt="cover">
-                                                    </div>
-                                                    <div class="profile-img">
-                                                        <a href="#">
-                                                            <img src="media/figure/author_1.jpg" alt="author">
-                                                        </a>
-                                                    </div>
-                                                    <div class="profile-name">
-                                                        <h4 class="author-name"><a href="user-timeline.html">Rebeca Powel</a></h4>
-                                                        <div class="author-location">@ahat akter</div>
-                                                    </div>
+                            <div class="col-lg-12 contacts-container">
+                                <section class="tab-content tab-content-4">
+                                    <div class="block-box user-search-bar">
+                                        <div class="box-item search-box">
+                                            <div class="input-group">
+                                                <input type="text" id="search-user-value" class="form-control" placeholder="Search Member">
+                                                <div class="input-group-append">
+                                                    <button class="search-btn" onClick="searchUsers()" type="button"><i class="icofont-search"></i></button>
                                                 </div>
-                                                <ul class="author-badge">
-                                                    <li><a href="javascript:openModal()" class="bg-salmon-gradient"><i class="icofont-star"></i></a></li>
-                                                    <li><a href="#" class="bg-amethyst-gradient"><i class="icofont-ui-play"></i></a></li>
-                                                    <li><a href="#" class="bg-sun-gradient"><i class="icofont-squirrel"></i></a></li>
-                                                    <li><a href="#" class="bg-jungle-gradient"><i class="icofont-rocket-alt-1"></i></a></li>
-                                                </ul>
                                             </div>
                                         </div>
+                                        <div class="box-item search-filter">
+                                            <div class="dropdown">
+                                                <label>Order By:</label>
+                                                <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Newest Member</button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="#">All Member</a>
+                                                    <a class="dropdown-item" href="#">Newest Member</a>
+                                                    <a class="dropdown-item" href="#">Oldest Member</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box-item search-switcher">
+                                            <ul class="user-view-switcher">
+                                                <li class="active">
+                                                    <a class="user-view-trigger" href="#" data-type="user-grid-view">
+                                                        <i class="icofont-layout"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="user-view-trigger" href="#" data-type="user-list-view">
+                                                        <i class="icofont-listine-dots"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div id="user-view" class="user-grid-view ">
+                                        <div class="row gutters-20 contacts-list">
+
+
+                                        </div>
+
+                                    </div>
+                                </section>
+                            </div>
+
+                            <div class="col-lg-12 contact-container">
+                                <div class="row">
+
+                                    <div class="col-lg-3">
+
+                                        <div class="row gutters-20 current-contact">
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-9">
+
+                                        <section class="panel-content panel-content-0">
+
+
+                                            <div class="block-box" style="padding: 30px">
+                                                <h4 class="title-panel-content-user">Asistencía</h4>
+                                                <form id="contact-form">
+                                                    <input type="hidden" id="userIdAssistencia">
+                                                    <div class="row gutters-20">
+                                                        <div class="col-12 form-group">
+                                                            <textarea name="message-asistencia" id="message-asistencia" cols="30" rows="3" class="textarea form-control"
+                                                                placeholder="Message"></textarea>
+                                                        </div>
+                                                        <div class="col-12 form-group">
+                                                            <input type="button" class="submit-btn" onclick="createAsistenciaClient()" value="Confirmar Asistencia">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-response"></div>
+                                                </form>
+
+                                            </div>
+                                        </section>
+
+                                        <section class="panel-content panel-content-1">
+
+
+
+                                            <div class="forum-list-table" style="background: #fff; padding: 30px; border-radius: 5px; ">
+                                                <h4 class="title-panel-content-user">Historial de Asistencias</h4>
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-asistencia">
+                                                        <thead class="thead-dark">
+                                                            <tr>
+                                                                <th scope="col">Detalles</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </section>
+
+
+                                        <section class="panel-content panel-content-2">
+                                            <div class="block-box" style="padding: 30px">
+                                                <form id="contact-form">
+                                                    <h4 class="title-panel-content-user">Registrar nuevo pago</h4>
+
+                                                    <div class="row gutters-20">
+                                                        <div class="col-lg-6 form-group">
+                                                            <input type="text" class="form-control" name="fname" placeholder="First Name">
+                                                        </div>
+                                                        <div class="col-lg-6 form-group">
+                                                            <input type="text" class="form-control" name="lname" placeholder="Last Name">
+                                                        </div>
+                                                        <div class="col-lg-6 form-group">
+                                                            <input type="email" class="form-control" name="email" placeholder="E-mail">
+                                                        </div>
+                                                        <div class="col-lg-6 form-group">
+                                                            <input type="text" class="form-control" name="phone" placeholder="Phone">
+                                                        </div>
+                                                        <div class="col-12 form-group">
+                                                            <textarea name="message" id="message" cols="30" rows="3" class="textarea form-control" placeholder="Message"></textarea>
+                                                        </div>
+                                                        <div class="col-12 form-group">
+                                                            <input type="submit" class="submit-btn" value="Send Us Message">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-response"></div>
+                                                </form>
+
+                                            </div>
+                                        </section>
 
                                     </div>
 
                                 </div>
-                            </section>
 
-                            <section class="tab-content tab-content-2">
-                                <div class="forum-list-table">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered">
-                                            <thead class="thead-dark">
-                                                <tr>
-                                                    <th scope="col">Proximo cobro</th>
-                                                    <th scope="col">Monto</th>
-                                                    <th scope="col">Estatus</th>
+                            </div>
 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>20 febrero 2021</td>
-                                                    <td class="text-center">40.000</td>
-                                                    <td class="text-center">Completed</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </section>
-
-
-                            <section class="tab-content tab-content-3">
-                                <div class="block-box" style="padding: 30px">
-                                    <form id="contact-form">
-                                        <div class="row gutters-20">
-                                            <div class="col-lg-6 form-group">
-                                                <input type="text" class="form-control" name="fname" placeholder="First Name">
-                                            </div>
-                                            <div class="col-lg-6 form-group">
-                                                <input type="text" class="form-control" name="lname" placeholder="Last Name">
-                                            </div>
-                                            <div class="col-lg-6 form-group">
-                                                <input type="email" class="form-control" name="email" placeholder="E-mail">
-                                            </div>
-                                            <div class="col-lg-6 form-group">
-                                                <input type="text" class="form-control" name="phone" placeholder="Phone">
-                                            </div>
-                                            <div class="col-12 form-group">
-                                                <textarea name="message" id="message" cols="30" rows="3" class="textarea form-control" placeholder="Message"></textarea>
-                                            </div>
-                                            <div class="col-12 form-group">
-                                                <input type="submit" class="submit-btn" value="Send Us Message">
-                                            </div>
-                                        </div>
-                                        <div class="form-response"></div>
-                                    </form>
-
-                                </div>
-                            </section>
 
 
                         </div>
@@ -307,37 +287,13 @@
 
         </div>
 
-        <!-- [1] -->
-        <div id="asistencia-modal" class="modal" aria-hidden="true">
-
-            <!-- [2] -->
-            <div tabindex="-1" data-micromodal-close>
-
-                <!-- [3] -->
-                <div role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
-
-
-                    <header>
-                        <h2 id="modal-1-title">
-                            Modal Title
-                        </h2>
-
-                        <!-- [4] -->
-                        <button aria-label="Close modal" data-micromodal-close></button>
-                    </header>
-
-                    <div id="modal-1-content">
-                        Modal Content
-                    </div>
-
-                </div>
-            </div>
-        </div>
 
 
 
         <!-- Jquery Js -->
         <script src="dependencies/jquery/js/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/20.3.2/i18next.min.js"></script>
+        <script src="assets/js/moment.min.js"></script>
         <script src="dependencies/popper.js/js/popper.min.js"></script>
         <script src="dependencies/bootstrap/js/bootstrap.min.js"></script>
         <script src="dependencies/imagesloaded/js/imagesloaded.pkgd.min.js"></script>
@@ -356,6 +312,7 @@
         <script src="assets/jsgm/global.js"></script>
         <script src="assets/jsgm/init.js"></script>
         <script src="assets/js/app.js"></script>
+
         <script>
 
             const openTabContent = (number) => {

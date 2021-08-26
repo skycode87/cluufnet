@@ -1,7 +1,17 @@
 // const backend_url_ = "https://cluufweb-backend.herokuapp.com";
-const backend_url_ = "http://localhost:2001";
+const backend_url_ =
+  "https://38c7-2800-e2-180-e7f-58ee-c0b7-c44b-51e4.ngrok.io";
 
 const getParameterByName_pack = (name) => {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+  return results === null
+    ? ""
+    : decodeURIComponent(results[1].replace(/\+/g, " "));
+};
+
+const getParameterByNameURL = (name) => {
   name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
   var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
     results = regex.exec(location.search);
@@ -32,14 +42,42 @@ const getInstance = async (
   xhttp.send();
 };
 
-const getPacks = async ({ instanceId }, { onSuccess = {}, onError = {} }) => {
+const getUsers = async (
+  { instanceId, textValue },
+  { onSuccess = {}, onError = {} }
+) => {
+  const token = getParameterByNameURL("token");
+
   const xhttp = new XMLHttpRequest();
   const params1 = new URLSearchParams({
     instanceId,
+    textValue,
   }).toString();
 
-  xhttp.open(`GET`, `${backend_url_}/tour_get_packs?${params1}`, true);
+  xhttp.open(`GET`, `${backend_url_}/gym_get_users?${params1}`, true);
+  xhttp.setRequestHeader("Authorization", token);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const result = JSON.parse(xhttp.responseText);
+      onSuccess(result);
+    }
+  };
+  xhttp.send();
+};
+
+const getUser = async (userId, { onSuccess = {}, onError = {} }) => {
+  const xhttp = new XMLHttpRequest();
+  const token = getParameterByNameURL("token");
+
+  const params1 = new URLSearchParams({
+    instanceId: localStorage.getItem("instanceId"),
+    userId: userId, //60d8678e1a9233bd8b0a9dba
+  }).toString();
+
+  xhttp.open(`GET`, `${backend_url_}/gym_get_user?${params1}`, true);
+  xhttp.setRequestHeader("Authorization", token);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -50,17 +88,18 @@ const getPacks = async ({ instanceId }, { onSuccess = {}, onError = {} }) => {
   xhttp.send();
 };
 
-const getPack = async ({ instanceId }, { onSuccess = {}, onError = {} }) => {
+const createAsistencia = ({ userId }, { onSuccess = {}, onError = {} }) => {
   const xhttp = new XMLHttpRequest();
-  const packId = getParameterByName_pack("q");
+  const token = getParameterByNameURL("token");
 
   const params1 = new URLSearchParams({
-    instanceId,
-    packId, //60d8678e1a9233bd8b0a9dba
+    instanceId: localStorage.getItem("instanceId"),
+    userId: userId, //60d8678e1a9233bd8b0a9dba
+    message: $("#message-asistencia").val(),
   }).toString();
 
-  xhttp.open(`GET`, `${backend_url_}/tour_find_app?${params1}`, true);
-
+  xhttp.open(`GET`, `${backend_url_}/gym_get_user_asistencia?${params1}`, true);
+  xhttp.setRequestHeader("Authorization", token);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -97,6 +136,8 @@ const getConnection = ({ onSuccess = {}, onError = {} }) => {
     xhttp.send();
   } catch {}
 };
+
+/* CLUUF CONTENT  */
 
 const loadCluufPackContent = ({
   method = "GET",
@@ -298,4 +339,202 @@ const loadCluufContent = ({
     };
     xhttp.send();
   } catch (error) {}
+};
+
+/* USER PROFILE */
+
+const cluufAlert_profile = ({
+  type = "success",
+  title = "",
+  message = "",
+  messagePosition = "top",
+}) => {
+  var positionClass = "cluuf-alert-top";
+  if (messagePosition === "bottom") {
+    positionClass = "cluuf-alert-bottom";
+  }
+
+  $("form.user").append(
+    `<div  onclick="this.style.display='none'" class="cluuf-alert ${positionClass} ${type}"><span class="closebtn" >&times;</span>&nbsp;&nbsp;<span class="text">${message}</span></div>`
+  );
+  setTimeout(function () {
+    $(".cluuf-alert").hide("fast");
+  }, 5000);
+};
+
+const sendRequestUserCluuf = (
+  params2,
+  { onSuccess = {}, onError = {}, onFinally = {} }
+) => {
+  //const code = "67896789987656789"; //localStorage.getItem("usr");
+  //const paramsform = `date=${date}&time=${time}&code=${code}&quantity=${quantity}&instanceId=${instanceId}&packId=${packId}&name=${name}&email=${email}&message=${message}&phone=${phone}&packId=${packId}`;
+
+  var searchParams = new URLSearchParams(params2);
+
+  fetch("https://38c7-2800-e2-180-e7f-58ee-c0b7-c44b-51e4.ngrok.io/user_gym", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: searchParams.toString(),
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      onSuccess(data);
+    })
+    .catch(function (err) {
+      onError(err);
+      console.log(err);
+    })
+    .finally(function () {
+      onFinally({
+        ok: true,
+      });
+    });
+};
+
+const connectToCluuf_userForm = (
+  {
+    email,
+    pin,
+    userId,
+    firstname,
+    lastname,
+    address,
+    city,
+    country,
+    phone,
+    genre,
+    sangretype,
+    birthdate,
+    secondaryphone,
+    bodylesson,
+    alergies,
+    facebook,
+    youtube,
+    linkedin,
+    instagram,
+    bio,
+    campaign = null,
+    formId = null,
+    instanceId = null,
+    successMessage = "",
+    messagePosition = "top",
+    messageVisible = true,
+  },
+  { onSuccess, onError }
+) => {
+  if (firstname.required) {
+    if (firstname.value === "") {
+      cluufAlert_pack({
+        type: "error",
+        tiuserIdle: "Invalid Field",
+        message: firstname.message,
+        messagePosition,
+      });
+      return false;
+    }
+  }
+
+  if (lastname.required) {
+    if (lastname.value === "") {
+      cluufAlert_pack({
+        type: "error",
+        title: "Invalid Field",
+        message: lastname.message,
+        messagePosition,
+      });
+      return false;
+    }
+  }
+
+  if (email.required) {
+    if (email.value === "") {
+      cluufAlert_pack({
+        type: "error",
+        title: "Invalid Field",
+        message: email.message,
+        messagePosition,
+      });
+      return false;
+    }
+  }
+
+  if (phone.required) {
+    if (phone.value === "") {
+      cluufAlert_pack({
+        type: "error",
+        title: "Invalid Field",
+        message: phone.message,
+        messagePosition,
+      });
+      return false;
+    }
+  }
+
+  //$("form.user .li-submit").hide();
+  //$("form.user .li-loading").show();
+
+  const params2 = {
+    pin: pin.value,
+    userId: userId.value,
+    firstname: firstname.value,
+    lastname: lastname.value,
+    email: email.value,
+    phone: phone.value,
+    genre: genre.value,
+    birthdate: birthdate.value,
+    address: address.value,
+    city: city.value,
+    country: country.value,
+    alergies: alergies.value,
+    bodylesson: bodylesson.value,
+    sangretype: sangretype.value,
+    bio: bio.value,
+    facebook: facebook.value,
+    instagram: instagram.value,
+    linkedin: linkedin.value,
+    youtube: youtube.value,
+    secondaryphone: secondaryphone.value,
+    packId: formId,
+    instanceId,
+    campaign,
+  };
+
+  sendRequestUserCluuf(params2, {
+    onSuccess: (res) => {
+      onSuccess(res);
+
+      console.log(res);
+
+      if (res.ok) {
+        cluufAlert_profile({
+          type: "success",
+          title: "Information Sent!",
+          message: successMessage,
+          messagePosition: "bottom",
+        });
+
+        setTimeout(() => location.reload(), 3000);
+      }
+
+      $("form .li-submit").show();
+      $("form .li-loading").hide();
+    },
+    onError: () => {
+      onError();
+      cluufAlert_pack({
+        type: "error",
+        title: "",
+        message: "Error enviando la información!",
+        messagePosition: "bottom",
+      });
+    },
+    onFinally: () => {
+      $("form .li-submit").show();
+      $("form .li-loading").hide();
+    },
+  });
 };

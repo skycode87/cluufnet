@@ -5,7 +5,7 @@
         <!-- Meta Data -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Cirkle | User Timeline</title>
+        <title>Cluuf</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- Favicon -->
@@ -42,7 +42,7 @@
                     <div class="navbar">
                         <div class="nav-item d-none d-sm-block">
                             <div class="header-logo">
-                                <a href="index.html"><img src="media/logo.png" alt="Cirkle"></a>
+                                <a href="index.html"><img src="media/logo.png" alt="cluuf" class="instance-logowhite" width="150px" style="margin-top:20px"> </a>
                             </div>
                         </div>
                         <div class="nav-item nav-top-menu">
@@ -63,7 +63,7 @@
                                     <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                                         <span class="media">
                                             <span class="item-img">
-                                                <img src="media/figure/chat_5.jpg" alt="Chat">
+                                                <img class="user-avatar" width="44px" height="44px" src="media/figure/chat_5.jpg" alt="Chat">
                                                 <span class="acc-verified"><i class="icofont-check"></i></span>
                                             </span>
                                         </span>
@@ -108,29 +108,47 @@
                     <div class="sidebar-menu-wrap">
                         <div class="mCustomScrollbar" data-mcs-theme="dark" data-mcs-axis="y">
                             <ul class="user-chat-list">
-                                <li class="chat-item chat-open">
-                                    <div class="author-img">
-                                        <img src="media/figure/chat_1.jpg" alt="chat">
-                                        <span class="chat-status offline"></span>
-                                    </div>
+                                <li class="chat-item chat-open isWhatsapp hide">
+                                    <a target="blank" href="" class="cluuf-instance-whatsapp-src">
+                                        <div class="author-img">
+                                            <img style="width: 45px;" src="media/icons/whatsapp.svg" alt="chat">
+                                            <span class="chat-status online"></span>
+                                        </div>
+                                    </a>
                                 </li>
-                                <li class="chat-item chat-open">
-                                    <div class="author-img">
-                                        <img src="media/figure/chat_2.jpg" alt="chat">
-                                        <span class="chat-status offline"></span>
-                                    </div>
+                                <li class="chat-item chat-open isEmail hide">
+                                    <a target="blank" href="#!" class="cluuf-instance-emailpublic-src">
+                                        <div class="author-img">
+                                            <img style="width: 45px;" src="media/icons/email.svg" alt="chat">
+                                            <span class="chat-status online"></span>
+                                        </div>
+                                    </a>
                                 </li>
-                                <li class="chat-item chat-open">
-                                    <div class="author-img">
-                                        <img src="media/figure/chat_3.jpg" alt="chat">
-                                        <span class="chat-status offline"></span>
-                                    </div>
+                                <li class="chat-item chat-open isPhone hide">
+                                    <a target="blank" href="#!" class="cluuf-instance-phonepublic-src">
+                                        <div class="author-img">
+                                            <img style="width: 45px;" src="media/icons/telefono.svg" alt="chat">
+                                            <span class="chat-status online"></span>
+                                        </div>
+                                    </a>
                                 </li>
-                                <li class="chat-item chat-open">
-                                    <div class="author-img">
-                                        <img src="media/figure/chat_4.jpg" alt="chat">
-                                        <span class="chat-status online"></span>
-                                    </div>
+
+                                <li class="chat-item chat-open isFacebook hide">
+                                    <a target="blank" href="#!" class="cluuf-instance-facebook-src">
+                                        <div class="author-img">
+                                            <img style="width: 45px;" src="media/icons/facebook.svg" alt="chat">
+                                            <span class="chat-status online"></span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="chat-item chat-open isInstagram hide">
+                                    <a target="blank" href="#!" class="cluuf-instance-instagram-src">
+
+                                        <div class="author-img">
+                                            <img style="width: 45px;" src="media/icons/instagram.svg" alt="chat">
+                                            <span class="chat-status online"></span>
+                                        </div>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -145,27 +163,22 @@
                 <!--=====================================-->
                 <div class="container">
                     <!-- Banner Area Start -->
-                    <div class="banner-user">
+                    <div class="banner-user  instance-background">
                         <div class="banner-content">
                             <div class="media">
                                 <div class="item-img">
-                                    <img src="media/banner/user_1.jpg" alt="User">
+                                    <img src="media/banner/user_1.jpg" class="user-avatar" width="115px" height="115px" alt="User">
                                 </div>
                                 <div class="media-body">
-                                    <h3 class="item-title">Rebeca Powel</h3>
-                                    <div class="item-subtitle">United State of America</div>
+                                    <h3 class="item-title user-fullname"></h3>
+                                    <div class="item-subtitle user-profession"></div>
                                     <ul class="item-social">
-                                        <li><a href="#" class="bg-fb"><i class="icofont-facebook"></i></a></li>
-                                        <li><a href="#" class="bg-twitter"><i class="icofont-twitter"></i></a></li>
-                                        <li><a href="#" class="bg-dribble"><i class="icofont-dribbble"></i></a></li>
-                                        <li><a href="#" class="bg-youtube"><i class="icofont-brand-youtube"></i></a></li>
-                                        <li><a href="#" class="bg-behance"><i class="icofont-behance"></i></a></li>
+                                        <li><a href="#" class="bg-twitter user-linkedin"><i class="icofont-linkedin"></i></a></li>
+                                        <li><a href="#" class="bg-fb user-facebook"><i class="icofont-facebook"></i></a></li>
+                                        <li><a href="#" class="bg-youtube user-youtube"><i class="icofont-brand-youtube"></i></a></li>
+                                        <li><a href="#" class="bg-instagram user-instagram"><i class="icofont-instagram"></i></a></li>
                                     </ul>
-                                    <ul class="user-meta">
-                                        <li>Posts: <span>30</span></li>
-                                        <li>Comments: <span>12</span></li>
-                                        <li>Views: <span>1.2k</span></li>
-                                    </ul>
+
                                 </div>
                             </div>
                         </div>
@@ -254,26 +267,117 @@
 
                             <section class="tab-content tab-content-3">
                                 <div class="block-box" style="padding: 30px">
-                                    <form id="contact-form">
+                                    <form id="contact-form" class="user">
+                                        <input type="hidden" id="instanceId" value="">
+                                        <input type="hidden" id="userId" value="">
+                                        <input type="hidden" id="pin" value="">
                                         <div class="row gutters-20">
-                                            <div class="col-lg-6 form-group">
-                                                <input type="text" class="form-control" name="fname" placeholder="First Name">
+                                            <div class="col-lg-12 form-group">
+                                                <h5>Básica Personal</h5>
                                             </div>
                                             <div class="col-lg-6 form-group">
-                                                <input type="text" class="form-control" name="lname" placeholder="Last Name">
+                                                <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Nombre">
                                             </div>
                                             <div class="col-lg-6 form-group">
-                                                <input type="email" class="form-control" name="email" placeholder="E-mail">
+                                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellido">
+                                            </div>
+
+                                            <div class="col-lg-6 form-group">
+                                                <input type="email" class="form-control" name="email" id="email" placeholder="E-mail">
                                             </div>
                                             <div class="col-lg-6 form-group">
-                                                <input type="text" class="form-control" name="phone" placeholder="Phone">
+                                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Telefono">
                                             </div>
-                                            <div class="col-12 form-group">
-                                                <textarea name="message" id="message" cols="30" rows="3" class="textarea form-control" placeholder="Message"></textarea>
+
+                                            <div class="col-lg-6 form-group">
+                                                <input type="date" class="form-control" name="birthdate" id="birthdate" placeholder="Fecha de Nacimiento">
                                             </div>
-                                            <div class="col-12 form-group">
-                                                <input type="submit" class="submit-btn" value="Send Us Message">
+
+                                            <div class="col-lg-6 form-group">
+                                                <select style="height: 50px;" class="custom-select form-control-lg" id="genre" name="genre">
+                                                    <option value="Femenino">Femenino</option>
+                                                    <option value="Masculino">Masculino</option>
+                                                    <option value="Otro">Otro</option>
+                                                </select>
                                             </div>
+
+                                            <div class="col-lg-12 form-group">
+                                                <textarea class="form-control" name="bio" id="bio"></textarea>
+                                            </div>
+
+                                            <div class="col-lg-12 form-group">
+                                                <br>
+                                                <h5>Direccion de Habitacion</h5>
+                                            </div>
+
+                                            <div class="col-lg-12 form-group">
+                                                <input type="text" class="form-control" name="address" id="address" placeholder="Direccion">
+                                            </div>
+                                            <div class="col-lg-6 form-group">
+                                                <input type="text" class="form-control" name="city" id="city" placeholder="Ciudad">
+                                            </div>
+                                            <div class="col-lg-6 form-group">
+                                                <input type="text" class="form-control" name="country" id="country" placeholder="Pais">
+                                            </div>
+
+
+
+                                            <div class="col-lg-12 form-group">
+                                                <br>
+                                                <h5>Informacion extra</h5>
+                                            </div>
+
+                                            <div class="col-lg-6 form-group">
+                                                <select style="height: 50px;" class="custom-select form-control-lg" id="sangretype" name="sangreType">
+                                                    <option value="A">AB</option>
+                                                    <option value="A">A</option>
+                                                    <option value="B">B</option>
+                                                    <option value="+O">+O</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-lg-6 form-group">
+                                                <input type="text" class="form-control" id="secondaryphone" name="secondaryphone" placeholder="Telefono opcional de contacto">
+                                            </div>
+
+                                            <div class="col-lg-12 form-group">
+                                                <input type="text" class="form-control" name="alergies" id="alergies" placeholder="Alguna alergia">
+                                            </div>
+
+                                            <div class="col-lg-12 form-group">
+                                                <input type="text" class="form-control" name="bodylesson" id="bodylesson" placeholder="Alguna Lesion en el cuerpo">
+                                            </div>
+
+
+
+                                            <div class="col-lg-12 form-group">
+                                                <br>
+                                                <h5>Redes Sociales</h5>
+                                            </div>
+
+                                            <div class="col-lg-6 form-group">
+                                                <input type="text" class="form-control" id="facebook" name="facebook" placeholder="facebook">
+                                            </div>
+                                            <div class="col-lg-6 form-group">
+                                                <input type="text" class="form-control" id="instagram" name="instagram" placeholder="instagram">
+                                            </div>
+                                            <div class="col-lg-6 form-group">
+                                                <input type="text" class="form-control" id="linkedin" name="linkedin" placeholder="linkedin">
+                                            </div>
+                                            <div class="col-lg-6 form-group">
+                                                <input type="text" class="form-control" id="youtube" name="youtube" placeholder="youtube">
+                                            </div>
+
+                                            <ul>
+                                                <li class="col-12 form-group li-submit">
+                                                    <a class="submit-btn" href="javascript:submitUserForm()">Actualizar información</a>
+                                                </li>
+
+                                                <li class="li-loading" style="display: none">
+                                                    <a class="cart-btn " style="background-color: gray;"><span class="t_loading">Sending Information</span></a>
+                                                </li>
+                                            </ul>
+
                                         </div>
                                         <div class="form-response"></div>
                                     </form>
@@ -289,19 +393,25 @@
                                     <h3 class="widget-title">Acerca de mi</h3>
                                 </div>
                                 <div class="user-info">
-                                    <p>Hi! My name is Rebeca Powel but some people may know me asserty GamePagla! I have a Newbike channel where I stream.</p>
+                                    <p class="user-bio"></p>
                                     <ul class="info-list">
-                                        <li><span>Joined:</span>24/12/2020</li>
-                                        <li><span>E-mail:</span>info@gmail.com</li>
-                                        <li><span>Direccion:</span>59 Street Neworkcity</li>
-                                        <li><span>Telefono:</span>+123 9856836</li>
-                                        <li><span>Ciudad:</span>Medellin</li>
+                                        <li><span>PIN:</span><b><span class="user-pin"></span></b></li>
+                                        <li><span>Joined:</span><span class="user-startdate"></span></li>
+                                        <li><span>E-mail:</span><span class="user-email"></span></li>
+                                        <li><span>Tipo de Sangre:</span><span class="user-sangretype"></span></li>
+                                        <li><span>Genero:</span><span class="user-genre"></span></li>
+                                        <li style="background-color: rgb(250, 248, 220) ;"><span>Alergia:</span><span class="user-alergies"></span></li>
+                                        <li style="background-color: rgb(250, 248, 220);"><span>Lesiones:</span><span class="user-bodylesson"></span></li>
+                                        <b>Dirección de habitación</b>
+                                        <li><span>Direccion:</span><span class="user-address"></span></li>
+                                        <li><span>Telefono:</span><span class="user-phone"></span></li>
+                                        <li><span>Ciudad:</span><span class="user-city"></span></li>
                                         <li class="social-share"><span>Social:</span>
                                             <div class="social-icon">
-                                                <a href="#"><i class="icofont-facebook"></i></a>
-                                                <a href="#"><i class="icofont-twitter"></i></a>
-                                                <a href="#"><i class="icofont-whatsapp"></i></a>
-                                                <a href="#"><i class="icofont-instagram"></i></a>
+                                                <a class="user-facebook" href="#"><i class="icofont-facebook"></i></a>
+                                                <a class="user-linkedin" href="#"><i class="icofont-linkedin"></i></a>
+                                                <a class="user-instagram" href="#"><i class="icofont-instagram"></i></a>
+                                                <a class="user-youtube" href="#"><i class="icofont-youtube"></i></a>
                                             </div>
                                         </li>
                                     </ul>
@@ -312,24 +422,19 @@
                             <div class="widget widget-author">
                                 <div class="author-heading">
                                     <div class="cover-img">
-                                        <img src="media/figure/shape_12.jpg" alt="cover">
+                                        <img src="media/cover.png" style="max-width: 100%;" alt="cover">
                                     </div>
                                     <div class="profile-img">
                                         <a href="#">
-                                            <img src="media/figure/author_1.jpg" alt="author">
+                                            <img width="100px" src="media/cristian.png" alt="author">
                                         </a>
                                     </div>
                                     <div class="profile-name">
-                                        <h4 class="author-name"><a href="#">Rebeca Powel</a></h4>
-                                        <div class="author-location">United State Of America</div>
+                                        <h4 class="author-name"><a href="#">Cristian Muñoz</a></h4>
+                                        <div class="author-location">Dojobox CEO</div>
                                     </div>
                                 </div>
-                                <ul class="author-badge">
-                                    <li><a href="#" class="bg-salmon-gradient"><i class="icofont-star"></i></a></li>
-                                    <li><a href="#" class="bg-amethyst-gradient"><i class="icofont-ui-play"></i></a></li>
-                                    <li><a href="#" class="bg-sun-gradient"><i class="icofont-squirrel"></i></a></li>
-                                    <li><a href="#" class="profile-circle">+5</a></li>
-                                </ul>
+
                                 <ul class="author-statistics">
                                     <li>
                                         <a href="#"><span class="item-number">30</span> <span class="item-text">POSTS</span></a>
@@ -345,7 +450,7 @@
 
 
 
-                            <div class="widget widget-banner">
+                            <div class="widget widget-banner" style="background: rgb(63, 63, 63) !important;">
                                 <h3 class="item-title">Most Popular</h3>
                                 <div class="item-subtitle">Circle Application</div>
                                 <a href="#" class="item-btn">
@@ -358,7 +463,7 @@
                                     </span>
                                 </a>
                                 <div class="item-img">
-                                    <img src="media/figure/widget_banner_1.png" alt="banner">
+                                    <img src="media/promotion.jpg" alt="banner">
                                 </div>
                             </div>
                         </div>

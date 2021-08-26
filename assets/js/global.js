@@ -1,6 +1,8 @@
 const globals_pack = Object.freeze({
-  CLUUFWEB_SERVER_FORM: "https://cluufweb-backend.herokuapp.com/tour_app",
-  // CLUUFWEB_SERVER_FORM: "https://38c7-2800-e2-180-e7f-58ee-c0b7-c44b-51e4.ngrok.io/tour_app",
+  //CLUUFWEB_SERVER: "https://cluufweb-backend.herokuapp.com",
+  CLUUFWEB_SERVER: " https://38c7-2800-e2-180-e7f-58ee-c0b7-c44b-51e4.ngrok.io",
+  CLUUFWEB_SERVER_FORM: `${CLUUFWEB_SERVER}/tour_app`,
+  CLUUFWEB_SERVER_USER_FORM: `${CLUUFWEB_SERVER}/user_gym`,
 });
 
 const connectToCluuf_Pack = (
@@ -233,24 +235,3 @@ const sendRequestCluuf = (
       });
     });
 };
-
-/*
-const crm_register_pack = (params) => {
-  return fetch(CLUUFWEB_SERVER, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: params,
-  })
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      return data;
-    })
-    .catch(function (err) {
-      console.error(err);
-    });
-};
-*/

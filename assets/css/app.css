@@ -11677,3 +11677,38 @@ nav.template-main-menu > ul > li:hover ul.mega-menu {
     -ms-transform: scale(1.1);
     transform: scale(1.1);
 }
+
+.panel-content{
+display: none;
+}
+
+h4.title-panel-content-user{
+    text-align: left;
+    color: #000;
+    background: #fff;
+    position:relative;
+    padding-bottom: 7px;
+    margin-bottom: 20px;
+}
+
+h4.title-panel-content-user:after {
+    content: "";
+    height: 3px;
+    width: 18px;
+    background-color: #615dfa;
+    border-radius: 4px;
+    position: absolute;
+    left: 10px;
+    bottom: 0;
+}
+
+h4.title-panel-content-user:before {
+    content: "";
+    height: 3px;
+    width: 8px;
+    background-color: #615dfa;
+    border-radius: 4px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}

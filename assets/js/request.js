@@ -246,7 +246,6 @@ const loadCluufContent = ({
             }
 
             if (result[key].tag === "primaryColor") {
-              console.log(result[key].tag, `${result[key].content} !important`);
               $(".fixed-header .header-menu").css(
                 "background-color",
                 result[key].content
@@ -267,7 +266,6 @@ const loadCluufContent = ({
             if (result[key].type === "LIST") {
               let listado = result[key].content.split(",");
               listado.forEach((key2, index) => {
-                console.log(`.cluuf-list-${result[key].code}-${index}`, key2);
                 $(`.clf-list-${result[key].code}-${index}`).text(key2);
               });
             }

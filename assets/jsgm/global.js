@@ -1,6 +1,7 @@
 const globals_pack = Object.freeze({
-  CLUUFWEB_SERVER_FORM: "https://cluufweb-backend.herokuapp.com/tour_app",
-  //  CLUUFWEB_SERVER_FORM:  "https://38c7-2800-e2-180-e7f-58ee-c0b7-c44b-51e4.ngrok.io/tour_app",
+  //CLUUFWEB_SERVER_FORM: "https://cluufweb-backend.herokuapp.com/tour_app",
+  CLUUFWEB_SERVER_FORM:
+    "https://38c7-2800-e2-180-e7f-58ee-c0b7-c44b-51e4.ngrok.io/tour_app",
 });
 
 const connectToCluuf_Pack = (

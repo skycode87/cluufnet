@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+
+    <head>
+        <!-- Meta Data -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Cluuf</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="media/favicon.png">
+        <link rel="stylesheet" href="dependencies/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="dependencies/icofont/icofont.min.css">
+        <link rel="stylesheet" href="dependencies/slick-carousel/css/slick.css">
+        <link rel="stylesheet" href="dependencies/slick-carousel/css/slick-theme.css">
+        <link rel="stylesheet" href="dependencies/magnific-popup/css/magnific-popup.css">
+        <link rel="stylesheet" href="dependencies/sal.js/sal.css">
+        <link rel="stylesheet" href="dependencies/mcustomscrollbar/jquery.mCustomScrollbar.min.css">
+        <link rel="stylesheet" href="dependencies/select2/css/select2.min.css">
+
+        <!-- Site Stylesheet -->
+        <link rel="stylesheet" href="assets/css/app.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+
+        <!-- Google Web Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    </head>
+
+    <body class="bg-link-water">
+        <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+        <a href="#wrapper" data-type="section-switch" class="scrollup">
+            <i class="icofont-bubble-up"></i>
+        </a>
+        <!-- Preloader Start Here -->
+        <div id="preloader"></div>
+        <!-- Preloader End Here -->
+        <div id="wrapper" class="wrapper">
+            <!-- Top Header -->
+            <header class="fixed-header">
+                <div class="header-menu">
+                    <div class="navbar">
+                        <div class="nav-item d-none d-sm-block">
+                            <div class="header-logo">
+                                <img class="clf-src-general_image_logo_white tag_" width="160px" style="padding: 15px; padding-top: 20px">
+                            </div>
+                        </div>
+                        <div class="nav-item nav-top-menu">
+                            <nav id="dropdown" class="template-main-menu">
+                                <ul class="menu-content" style="justify-content: flex-end;">
+                                    <li class="header-nav-item">
+                                        <a href="#!" class="menu-link cluuf-gotours-href">Go to the entire list of tours of<b><span class="cluuf-instance-name"></span></b></a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="nav-item header-control">
+
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Sidebar Left -->
+            <div class="fixed-sidebar">
+                <div class="fixed-sidebar-left small-sidebar">
+                    <!-- <div class="sidebar-toggle">
+                        <button class="toggle-btn toggler-open">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div> -->
+
+                </div>
+                <div class="fixed-sidebar-left large-sidebar">
+                    <div class="sidebar-toggle">
+                        <div class="sidebar-logo">
+                        </div>
+                        <button class="toggle-btn toggler-close">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                    <div class="sidebar-menu-wrap">
+                        <br><br>
+                        <div class="progress-box">
+                            <img class="item-title cluuf-instance-logo logo-who-we-are" width="160px">
+                        </div>
+                        <p class="cluuf-instance-aboutus info-agency-sidebar">
+                        </p>
+                        <p style="text-align: right; padding-right: 20px;">
+                            <a target="blank" href="" class="cluuf-instance-website-src info-agency-sidebar-link">Our Website</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Sidebar Right -->
+            <div class="fixed-sidebar right">
+                <div class="fixed-sidebar-right small-sidebar">
+                    <div class="sidebar-toggle" id="chat-head-toggle">
+                        <button class="chat-icon">
+                            <i class="icofont-speech-comments"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar-menu-wrap">
+                        <div class="mCustomScrollbar" data-mcs-theme="dark" data-mcs-axis="y">
+                            <ul class="user-chat-list">
+                                <li class="chat-item chat-open isWhatsapp hide">
+                                    <a target="blank" href="" class="cluuf-instance-whatsapp-src">
+                                        <div class="author-img">
+                                            <img style="width: 45px;" src="media/icons/whatsapp.svg" alt="chat">
+                                            <span class="chat-status online"></span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="chat-item chat-open isEmail hide">
+                                    <a target="blank" href="#!" class="cluuf-instance-emailpublic-src">
+                                        <div class="author-img">
+                                            <img style="width: 45px;" src="media/icons/email.svg" alt="chat">
+                                            <span class="chat-status online"></span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="chat-item chat-open isPhone hide">
+                                    <a target="blank" href="#!" class="cluuf-instance-phonepublic-src">
+                                        <div class="author-img">
+                                            <img style="width: 45px;" src="media/icons/telefono.svg" alt="chat">
+                                            <span class="chat-status online"></span>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="chat-item chat-open isFacebook hide">
+                                    <a target="blank" href="#!" class="cluuf-instance-facebook-src">
+                                        <div class="author-img">
+                                            <img style="width: 45px;" src="media/icons/facebook.svg" alt="chat">
+                                            <span class="chat-status online"></span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="chat-item chat-open isInstagram hide">
+                                    <a target="blank" href="#!" class="cluuf-instance-instagram-src">
+
+                                        <div class="author-img">
+                                            <img style="width: 45px;" src="media/icons/instagram.svg" alt="chat">
+                                            <span class="chat-status online"></span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Page Content -->
+            <div class="page-content">
+
+                <!--=====================================-->
+                <!--=        Newsfeed  Area Start       =-->
+                <!--=====================================-->
+                <div class="container">
+                    <!-- <div class="product-breadcrumb block-box cluuf-instance-background">
+                        <div class="overlay">
+                            <div class="breadcrumb-area">
+                                <img class="item-title cluuf-instance-logowhite header-title-logo" width="300px">
+                            </div>
+                        </div>
+                    </div>-->
+                    <div class="single-product" style="margin-top:0px;">
+                        <div class="row">
+                            <div class="row gutters-20 zoom-gallery">
+                                <div class="col-lg-6">
+                                    <div class="product-gallery">
+                                        <div class="tab-content images-tab-content" style="padding: 20px;"></div>
+                                        <ul class=" nav nav-tabs tab-nav-list images-tab-list"> </ul>
+                                    </div>
+                                    <div class="col-lg-12" style="padding: 50px;">
+                                        <a class="popup-zoom btn-global btn-all-photos">Load All Photos</a>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="product-content">
+                                        <div class="review-form" style="background-color: #fff; padding: 30px; min-height: 570px;">
+                                            <!-- 
+                                            <img style="margin:auto; margin-bottom: 30px; display: block;" class="item-title clf-src-general_image_logo tag_ header-title-logo" width="220px">
+                                           -->
+                                            <div class="item-category"><span class="clf-content-pack_category tagpack_"></span></div>
+                                            <h2 class="item-title"><span class="clf-content-pack_title tagpack_"></span></h2>
+                                            <div class="item-price"><span class="cluuf-pack-price"> </span></div>
+                                            <ul class="entry-meta">
+                                                <li><strong><span class="t_duration"></span></strong>:
+                                                    <span><span class="clf-content-pack_duration tagpack_"></span>
+                                                </li>
+
+                                                <li>
+                                                    <span class="clf-content-pack_excerpt tagpack_"></span>
+                                                </li>
+                                            </ul>
+
+                                            <!--
+                                        <div class="see-all-btn btn-watch-video">
+                                            <a class="play-btn popup-youtube button-slide cluuf-pack-video" href="">
+                                                <span class="btn-text">Watch Video</span>
+                                                <span class="btn-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21px" height="10px">
+                                                        <path fill-rule="evenodd" fill="rgb(255, 255, 255)"
+                                                            d="M16.671,9.998 L12.997,9.998 L16.462,6.000 L5.000,6.000 L5.000,4.000 L16.462,4.000 L12.997,0.002 L16.671,0.002 L21.003,5.000 L16.671,9.998 ZM17.000,5.379 L17.328,5.000 L17.000,4.621 L17.000,5.379 ZM-0.000,4.000 L3.000,4.000 L3.000,6.000 L-0.000,6.000 L-0.000,4.000 Z">
+                                                        </path>
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                        </div>
+                                        -->
+
+                                            <form id="form-reservation">
+                                                <input type="hidden" class="cluuf-pack-id" id="formId">
+                                                <input type="hidden" id="instanceId">
+
+                                                <div class="row gutters-15">
+                                                    <div class="col-lg-5 form-group">
+                                                        <input type="text" placeholder="Name" class="form-control" name="name" id="name" required>
+                                                    </div>
+                                                    <div class="col-lg-7 form-group">
+                                                        <input type="email" placeholder="E-mail" class="form-control" name="email" id="email" required>
+                                                    </div>
+                                                    <div class="col-lg-4 form-group">
+                                                        <input type="text" placeholder="Phone Number" class="form-control" name="phone" id="phone" required>
+                                                    </div>
+                                                    <div class="col-lg-5 form-group">
+                                                        <input type="date" placeholder="Date" class="form-control" name="date" id="date" required>
+                                                    </div>
+                                                    <div class="col-lg-3 form-group">
+                                                        <select style="height: 50px;" class="custom-select form-control-lg" id="time" name="time">
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-12" style="display: flex; justify-content: center;">
+                                                        <small><b><span class=" t_availability_only_days"></span>:</b> <span class=" cluuf-pack-availableDays"></small>
+                                                    </div>
+
+                                                    <div class="col-12 form-group">
+                                                        <textarea class="form-control textarea" placeholder="Comment Here *" name="message" id="message" cols="30" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="col-lg-12 form-group" style="display: flex; justify-content: center; background-color: #fcfcfc; padding-bottom: 5px;">
+                                                        <ul class="action-area" style="margin-top: 5px;">
+                                                            <li id="quantity-holder">
+                                                                <b><span class="t_number_tickets"></span></b>
+                                                                <div class="input-group quantity-holder">
+                                                                    <button class="quantity-btn quantity-plus" type="button">
+                                                                        <i class="icofont-plus" aria-hidden="true"></i>
+                                                                    </button>
+                                                                    <input type="text" id="quantity" class=" form-control quantity-input" value="1" placeholder="1">
+                                                                    <button class="quantity-btn quantity-minus" type="button">
+                                                                        <i class="icofont-minus" aria-hidden="true"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+
+                                                    </div>
+                                                    <div class="col-lg-12 form-group " style="display: flex; justify-content: center;">
+                                                        <ul class="action-area" style="margin-top: 10px;">
+                                                            <li class="li-submit">
+                                                                <a href="javascript:submitPack()" class="cart-btn "><span class="t_book_now"></span></a>
+                                                            </li>
+                                                            <li class="li-loading" style="display: none">
+                                                                <a class="cart-btn " style="background-color: gray;"><span class="t_loading"></span></a>
+                                                            </li>
+                                                        </ul>
+
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 container-gallery" style="display: none;"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="single-product-info">
+                        <ul class="nav nav-tabs" role="tablist">
+
+                            <li class="nav-item">
+                                <a class="nav-link active is-cluuf-pack-additional-info" id="profile-tab" data-toggle="tab" href="#add-info" role="tab" aria-selected="false"><span
+                                        class="t_additional_information"></span></a>
+                            </li>
+
+
+                            <li class="nav-item is-cluuf-pack-iframe_location">
+                                <a class="nav-link " id="home-tab" data-toggle="tab" href="#googlemap" role="tab" aria-selected="true"><span class="t_geographic_location"></span></a>
+                            </li>
+
+                            <li class="nav-item is-cluuf-pack-iframe_meetingpoint">
+                                <a class="nav-link " id="home-tab" data-toggle="tab" href="#meeting-point" role="tab" aria-selected="true"><span class="t_meeting_point"></span></a>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content">
+
+                            <div class="tab-pane fade  " id="description" role="tabpanel">
+
+                            </div>
+                            <div class="tab-pane fade active show" id="add-info" role="tabpanel">
+
+                                <div class="row">
+                                    <div class="col-lg-12 is-cluuf-pack-itineraries">
+                                        <div class="product-description" style="margin-bottom: 30px;">
+                                            <span class="clf-content-pack_description tagpack_"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 is-cluuf-pack-itineraries">
+                                        <h4><span class="t_itineraries"></h4>
+                                        <ul class="additional-info clf-list-pack_itineraries tagpack_"></ul>
+                                    </div>
+                                    <div class="col-lg-3 is-cluuf-pack-include">
+                                        <h4><span class="t_include"></h4>
+                                        <ul class="additional-info clf-list-pack_include tagpack_">
+
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-3 is-cluuf-pack-recomendations">
+                                        <h4><span class="t_recomendations"></h4>
+                                        <ul class="additional-info clf-list-pack_recomendations tagpack_"></ul>
+                                    </div>
+                                    <div class="col-lg-3 is-cluuf-pack-exclude">
+                                        <h4><span class="t_exclude"></h4>
+                                        <ul class="additional-info clf-list-pack_exclude tagpack_"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="googlemap" role="tabpanel">
+                                <div class="product-description">
+                                    <div class="clf-content-pack_iframe_location tagpack_"></div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="meeting-point" role="tabpanel">
+                                <div class="product-description">
+                                    <div class="clf-content-pack_iframe_meetingpoint tagpack_"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <section>
+                    <div class="row no-gutters">
+                        <div class="col-lg-12" style="padding: 50px;">
+                            <a class="btn-global-dark cluuf-gotours-href" href="">
+                                Go to the entire list of tours of <b><span class="cluuf-instance-name"></span></b>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="about-us" style="padding: 50px 0 110px">
+                    <div class="container">
+                        <div class="row no-gutters">
+                            <div class="col-lg-6">
+                                <div class="about-us-content">
+                                    <div class="progress-box">
+                                        <br><br>
+                                        <img class="item-title clf-src-general_image_logo tag_ logo-who-we-are" width="250px">
+                                        <br><br>
+                                    </div>
+                                    <div style="margin: auto">
+                                        <ul>
+                                            <li class="header-social">
+                                                <a target="blank" style="color: #615dfa;" href="#" class="cluuf-instance-facebook-src"><i class="icofont-facebook"></i></a>
+                                                <a target="blank" style="color: #615dfa;" href="#" class="cluuf-instance-instagram-src"><i class="icofont-instagram"></i></a>
+                                                <a target="blank" style="color: #615dfa;" href="#" class="cluuf-instance-phonepublic-src"><i class="icofont-phone"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="item-subtitle"><span class="clf-content-general_whoWeAre tag_"></span></div>
+                                    <h2 class="item-title clf-content-general_about_us_title tag_"></h2>
+                                    <div class="clf-content-general_about_us tag_">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="about-us-img">
+                                    <div class="item-img" data-sal="slide-left" data-sal-duration="800">
+                                        <img class="clf-src-general_image_about_us01 tag_" width="430px" alt="about">
+                                    </div>
+                                    <div class="item-video" data-sal="slide-up" data-sal-duration="800" data-sal-delay="200">
+                                        <img width="250px" height="290px" class="clf-src-general_image_about_us02 tag_" alt="about">
+                                        <div class="video-icon">
+                                            <a href="" class="popup-youtube play-icon">
+
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section class="contact-page">
+
+                    <div class="contact-box-wrap">
+                        <div class="container">
+                            <div class="contact-form" style="margin-top: 50px;">
+                                <div class="row">
+                                    <div class="col-lg-7">
+                                        <div class="contact-box">
+                                            <h3 class="item-title"><span class="clf-content-general_contact_us_title tag_"></span></h3>
+                                            <form id="contact-form">
+                                                <div class="row gutters-20">
+                                                    <div class="col-lg-6 form-group">
+                                                        <input type="text" class="form-control" name="fname" id="fname" placeholder="First Name">
+                                                    </div>
+                                                    <div class="col-lg-6 form-group">
+                                                        <input type="email" class="form-control" name="email" id="femail" placeholder="E-mail">
+                                                    </div>
+                                                    <div class="col-lg-6 form-group">
+                                                        <input type="text" class="form-control" name="phone" id="fphone" placeholder="Phone">
+                                                    </div>
+                                                    <div class="col-12 form-group">
+                                                        <textarea name="message" id="message" cols="30" rows="3" id="fmessage" class="textarea form-control" placeholder="Message"></textarea>
+                                                    </div>
+                                                    <div class="col-12 form-group">
+                                                        <a class="submit-btn" href="javascript:formSubmit()">Send Us Message</a>
+                                                    </div>
+                                                </div>
+                                                <div class="form-response"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <div class="contact-box contact-method">
+                                            <h3 class="item-title">Contact Info.</h3>
+                                            <ul>
+                                                <li><i class="icofont-location-pin"></i><span class="clf-content-general_address tag_"></span></li>
+                                                <li><i class="icofont-ui-message"></i> <span class="clf-content-general_email tag_"></span></li>
+                                                <li><i class="icofont-phone"></i><span class="clf-content-general_phone tag_"></span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="clfedit" style="display: none; max-width: 900px; margin: auto; margin-top: 100px">
+                    <h2 style="text-align: center; padding: 30px">Haga click para actualizar la imagen</h2>
+                    <div class="row imageUpdatePack"></div>
+                </div>
+
+                <!--=====================================-->
+                <!--=        Footer Area Start       	=-->
+                <!--=====================================-->
+                <footer class="footer-wrap footer-dashboard">
+                    <div class="footer-bottom">
+                        <div class="footer-copyright">Copy© Cluuf <span class="t_all_rights_reserved"></span></div>
+                    </div>
+                </footer>
+            </div>
+
+            <div class="overlay-loading">
+                <p style="text-align: center;">
+                    <img class="item-title cluuf-instance-logo logo-who-we-are" width="200px">
+                </p>
+            </div>
+        </div>
+
+        <!-- Jquery Js -->
+        <script src="dependencies/jquery/js/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/20.3.2/i18next.min.js"></script>
+        <script src="assets/js/moment.min.js"></script>
+        <script src="dependencies/popper.js/js/popper.min.js"></script>
+        <script src="dependencies/bootstrap/js/bootstrap.min.js"></script>
+        <script src="dependencies/imagesloaded/js/imagesloaded.pkgd.min.js"></script>
+        <script src="dependencies/isotope-layout/js/isotope.pkgd.min.js"></script>
+        <script src="dependencies/slick-carousel/js/slick.min.js"></script>
+        <script src="dependencies/sal.js/sal.js"></script>
+        <script src="dependencies/magnific-popup/js/jquery.magnific-popup.min.js"></script>
+        <script src="dependencies/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="dependencies/select2/js/select2.min.js"></script>
+        <script src="dependencies/elevate-zoom/jquery.elevatezoom.js"></script>
+        <script src="dependencies/bootstrap-validator/js/validator.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtmXSwv4YmAKtcZyyad9W7D4AC08z0Rb4"></script>
+
+        <!-- Site Scripts -->
+        <script src="assets/js/request.js"></script>
+        <script src="assets/js/global.js"></script>
+        <script src="assets/js/init.js"></script>
+        <script src="assets/js/app.js"></script>
+
+
+        <!-- Cluuf configuration -->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script>localStorage.setItem("privacyPolicyURL", "false");</script>
+        <link async rel="stylesheet" href="https://cluuftracks.herokuapp.com/cluuf.css">
+        <script async type="text/javascript" src="https://cluuftracks.herokuapp.com/track.js?cluuf_key=local&instance=local" id="cluuf-analytics"></script>
+        <!-- Cluuf configuration https://cluuftracks.herokuapp.com -->
+
+    </body>
+
+</html>
