@@ -139,6 +139,10 @@ getConnection({
     $("form.user #instanceId").val(user.instanceId);
     $("form.user #userId").val(user._id);
     $("form.user #pin").val(user.pin);
+    $(`form.user #sangretype option[value='${user.sangretype}']`).attr(
+      "selected",
+      true
+    );
 
     getInstance(
       { instanceId: userdata.result.instanceId },
@@ -841,6 +845,10 @@ const loadDataFormUSer = ({ user }) => {
   $("form.user #userId").val(user._id);
   $("form.user #pin").val(user.pin);
   $("#user-interest").text(user.interests[0]);
+  $(`form.user #sangretype option[value='${user.sangretype}']`).attr(
+    "selected",
+    true
+  );
 };
 
 const closePanelContent = () => {
