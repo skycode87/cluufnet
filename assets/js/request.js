@@ -1,5 +1,6 @@
-const backend_url_ = "https://cluufweb-backend.herokuapp.com";
-// const backend_url_ = "https://38c7-2800-e2-180-e7f-58ee-c0b7-c44b-51e4.ngrok.io";
+// const backend_url_ = "https://cluufweb-backend.herokuapp.com";
+const backend_url_ =
+  "https://38c7-2800-e2-180-e7f-58ee-c0b7-c44b-51e4.ngrok.io";
 
 const getParameterByName_pack = (name) => {
   name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -20,7 +21,6 @@ const getInstance = async (
   }).toString();
 
   xhttp.open(`GET`, `${backend_url_}/tour_get_instance?${params1}`, true);
-
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -40,6 +40,27 @@ const getPacks = async ({ instanceId }, { onSuccess = {}, onError = {} }) => {
 
   xhttp.open(`GET`, `${backend_url_}/tour_get_packs?${params1}`, true);
 
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const result = JSON.parse(xhttp.responseText);
+      onSuccess(result);
+    }
+  };
+  xhttp.send();
+};
+
+const getPlans = async (
+  { instanceId, packId },
+  { onSuccess = {}, onError = {} }
+) => {
+  const xhttp = new XMLHttpRequest();
+  const params1 = new URLSearchParams({
+    instanceId,
+    packId,
+  }).toString();
+
+  xhttp.open(`GET`, `${backend_url_}/subscripcion_get_plans?${params1}`, true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -73,6 +94,8 @@ const getPack = async ({ instanceId }, { onSuccess = {}, onError = {} }) => {
 
 const getConnection = ({ onSuccess = {}, onError = {} }) => {
   const alias = getParameterByName_pack("agency");
+  const type = getParameterByName_pack("type");
+  sessionStorage.getItem("packType", type);
   try {
     const xhttp = new XMLHttpRequest();
 

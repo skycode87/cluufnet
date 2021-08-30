@@ -319,6 +319,32 @@ getConnection({
                     });
                   }
 
+                  if (pack.type === "SUBSCRIPTION") {
+                    getPlans(
+                      {
+                        instanceId: instance.result._id,
+                        packId: pack._id,
+                      },
+                      {
+                        onSuccess: (resultPlans) => {
+                          $("#plan option").remove();
+                          if (resultPlans.plans[0]) {
+                            resultPlans.plans.forEach((element) => {
+                              $("#plan").append(
+                                `<option value="${element._id}">${
+                                  element.name
+                                } - Costo:  ${priceFormat(
+                                  element.price
+                                )}</option>`
+                              );
+                            });
+                          }
+                        },
+                        onError: () => {},
+                      }
+                    );
+                  }
+
                   loadCluufPackContent({
                     method: "GET",
                     url: `https://cluuf.s3.sa-east-1.amazonaws.com/${localStorage.getItem(
@@ -470,6 +496,53 @@ const submitPack = () => {
         setTimeout(() => {
           location.reload();
         }, 3000);
+      },
+      onError: () => console.log("Error enviando el formulario"),
+    }
+  );
+};
+
+const submitSubscription = () => {
+  connectToCluuf_SUBSCRIPTION_Pack(
+    {
+      email: {
+        value: $("#email").val(),
+        required: true,
+        message: "Please verify Email and try again.",
+      },
+      name: {
+        value: $("#name").val(),
+        required: true,
+        message: "Please verify Name and try again.",
+      },
+      phone: {
+        value: $("#phone").val(),
+        required: false,
+        message: "Please verify phone and try again.",
+      },
+      message: {
+        value: $("#message").val(),
+        required: false,
+        message: "Please verify Message and try again.",
+      },
+      date: {
+        required: true,
+        value: $("#date").val(),
+        message: "Please verify date and try again.",
+      },
+      formId: $("#formId").val(), // proporcionado por cluuf-web
+      instanceId: $("#instanceId").val(), // proporcionado por cluuf-web
+      successMessage: "The message has been sent successfully",
+      campaign: localStorage.getItem("cluufpackname"),
+      plan: $("#plan").val(),
+    },
+    {
+      onSuccess: (response) => {
+        $("#name").val("");
+        $("#email").val("");
+        $("#phone").val("");
+        $("#message").val("");
+        $("#quantity").val("0");
       },
       onError: () => console.log("Error enviando el formulario"),
     }

@@ -514,7 +514,7 @@ const openPanel1 = ({ userId, num }) => {
         const userdata = result.result;
         const events = result.events;
         $(".table-asistencia tbody tr").remove();
-
+        loadDataFormUSer({ user: userdata });
         $.each(events, function (i, n) {
           $(".table-asistencia tbody").append(` 
           <tr>
@@ -553,10 +553,10 @@ const openPanel1 = ({ userId, num }) => {
                 </div>
             </div>
             <ul class="author-badge">
-            <li><a href="javascript:openPanelContent(1)"><img width="40px" src="media/icons/navegador-web.svg"></a></li>
+            <li><a href="javascript:openPanelContent(1)"><img width="40px" src="media/icons/assistencia.png.svg"></a></li>
             <li><a href="javascript:openPanelContent(2)"><img width="40px" src="media/icons/medios-de-comunicacion-social.svg"></a></li> 
+            <li><a href="javascript:openPanelContent(3)"><img width="40px" src="media/icons/pasar.svg"></a></li>
             <li><a href="javascript:openPanelContent(0)"><img width="40px" src="media/icons/entrar.svg"></a></li>
-   
             </ul>
 
             <div class="form-group">
@@ -821,6 +821,32 @@ const priceFormat = (text) => `$ ${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const openPanelContent = (number) => {
   $(".panel-content").hide();
   $(`.panel-content-${number}`).show("fast");
+};
+
+const loadDataFormUSer = ({ user }) => {
+  $("form.user #firstname").val(user.firstname);
+  $("form.user #lastname").val(user.lastname);
+  $("form.user #email").val(user.email);
+  $("form.user #phone").val(user.phone);
+  $("form.user #address").val(user.address);
+  $("form.user #city").val(user.city);
+  $("form.user #country").val(user.country);
+  $("form.user #startdate").val(user.startdate);
+  $("form.user #profession").val(user.profession);
+  $("form.user #facebook").val(user.facebook);
+  $("form.user #instagram").val(user.instagram);
+  $("form.user #youtube").val(user.youtube);
+  $("form.user #linkedin").val(user.linkedin);
+  $("form.user #bio").val(user.bio);
+  $("form.user #sangretype").val(user.sangretype);
+  $("form.user #genre").val(user.genre);
+  $("form.user #alergies").val(user.alergies);
+  $("form.user #bodylesson").val(user.bodylesson);
+  $("form.user #secondaryphone").val(user.secondaryphone);
+  $("form.user #birthdate").val(user.birthdate);
+  $("form.user #instanceId").val(user.instanceId);
+  $("form.user #userId").val(user._id);
+  $("form.user #pin").val(user.pin);
 };
 
 const closePanelContent = () => {
