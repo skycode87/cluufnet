@@ -112,7 +112,7 @@
                         <div class="col-lg-12">
                             <div class="block-box user-timeline-header">
                                 <ul class="menu-list d-none d-md-block">
-                                    <li><a href="javascript:openTabContent(4)" class="active tab-4">Usuarios</a></li>
+                                    <li><a href="javascript:openTabContent(4)" class="active tab-4">Clientes</a></li>
 
 
                                 </ul>
@@ -192,13 +192,13 @@
 
 
                                             <div class="block-box" style="padding: 30px">
-                                                <h4 class="title-panel-content-user">Asistencía</h4>
+                                                <h4 class="title-panel-content-user"><img width="30px" src="media/icons/entrar.svg"> Asistencía</h4>
                                                 <form id="contact-form">
                                                     <input type="hidden" id="userIdAssistencia">
                                                     <div class="row gutters-20">
                                                         <div class="col-12 form-group">
                                                             <textarea name="message-asistencia" id="message-asistencia" cols="30" rows="3" class="textarea form-control"
-                                                                placeholder="Message"></textarea>
+                                                                placeholder="Alguna observación"></textarea>
                                                         </div>
                                                         <div class="col-12 form-group">
                                                             <input type="button" class="submit-btn" onclick="createAsistenciaClient()" value="Confirmar Asistencia">
@@ -215,7 +215,7 @@
 
 
                                             <div class="forum-list-table" style="background: #fff; padding: 30px; border-radius: 5px; ">
-                                                <h4 class="title-panel-content-user">Historial de Asistencias</h4>
+                                                <h4 class="title-panel-content-user"><img width="30px" src="media/icons/pasar.svg"> Historial de Asistencias</h4>
 
                                                 <div class="table-responsive">
                                                     <table class="table table-bordered table-asistencia">
@@ -235,26 +235,25 @@
                                         <section class="panel-content panel-content-2">
                                             <div class="block-box" style="padding: 30px">
                                                 <form id="contact-form">
-                                                    <h4 class="title-panel-content-user">Registrar nuevo pago</h4>
+                                                    <h4 class="title-panel-content-user"><img width="30px" src="media/icons/navegador-web.svg"> Registrar nuevo pago</h4>
 
                                                     <div class="row gutters-20">
                                                         <div class="col-lg-6 form-group">
-                                                            <input type="text" class="form-control" name="fname" placeholder="First Name">
+                                                            <input type="text" class="form-control" name="fname" placeholder="Monto">
                                                         </div>
                                                         <div class="col-lg-6 form-group">
-                                                            <input type="text" class="form-control" name="lname" placeholder="Last Name">
-                                                        </div>
-                                                        <div class="col-lg-6 form-group">
-                                                            <input type="email" class="form-control" name="email" placeholder="E-mail">
-                                                        </div>
-                                                        <div class="col-lg-6 form-group">
-                                                            <input type="text" class="form-control" name="phone" placeholder="Phone">
+                                                            <select style="height: 50px;" class="custom-select form-control-lg" id="genre" name="genre">
+                                                                <option value="Efectivo">Efectivo</option>
+                                                                <option value="Debito">Débito</option>
+                                                                <option value="Credito">Credito</option>
+                                                                <option value="Transferencía">Transferencía</option>
+                                                            </select>
                                                         </div>
                                                         <div class="col-12 form-group">
-                                                            <textarea name="message" id="message" cols="30" rows="3" class="textarea form-control" placeholder="Message"></textarea>
+                                                            <textarea name="message" id="message" cols="30" rows="3" class="textarea form-control" placeholder="Alguna observación"></textarea>
                                                         </div>
                                                         <div class="col-12 form-group">
-                                                            <input type="submit" class="submit-btn" value="Send Us Message">
+                                                            <input type="submit" class="submit-btn" value="Registrar Pago">
                                                         </div>
                                                     </div>
                                                     <div class="form-response"></div>
@@ -271,8 +270,13 @@
                                                     <input type="hidden" id="pin" value="">
                                                     <div class="row gutters-20">
                                                         <div class="col-lg-12 form-group">
+                                                            <h4 class="title-panel-content-user"><img width="30px" src="media/icons/medios-de-comunicacion-social.svg"> Editar Información del cliente
+                                                            </h4>
+                                                            <br>
                                                             <h5>Básica Personal</h5>
+                                                            <p> <b>Plan:</b> <span style="color: #615dfa; font-weight: bold;" id="user-interest"></span></p>
                                                         </div>
+
                                                         <div class="col-lg-6 form-group">
                                                             <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Nombre">
                                                         </div>
