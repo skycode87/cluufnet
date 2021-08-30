@@ -449,7 +449,7 @@ const searchUserbyText = ({ textValue }) => {
             <div class="widget-author">
                 <div class="author-heading">
                     <div class="cover-img">
-                        <img src="media/figure/cover_1.jpg" alt="cover">
+                    <img src="media/fondo.jpg" alt="cover">
                     </div>
                     <div class="profile-img">
                         <a href="#">
@@ -537,7 +537,7 @@ const openPanel1 = ({ userId, num }) => {
         <div class="widget-author" style="background: #fff">
             <div class="author-heading">
                 <div class="cover-img">
-                    <img src="media/figure/cover_1.jpg" alt="cover">
+                    <img src="media/fondo.jpg" alt="cover">
                 </div>
                 <div class="profile-img">
                     <a href="#">
@@ -553,9 +553,9 @@ const openPanel1 = ({ userId, num }) => {
                 </div>
             </div>
             <ul class="author-badge">
-            <li><a href="javascript:openPanelContent(1)"><img width="40px" src="media/icons/assistencia.png.svg"></a></li>
+            <li><a href="javascript:openPanelContent(1)"><img width="40px" src="media/icons/asistencia.png"></a></li>
             <li><a href="javascript:openPanelContent(2)"><img width="40px" src="media/icons/medios-de-comunicacion-social.svg"></a></li> 
-            <li><a href="javascript:openPanelContent(3)"><img width="40px" src="media/icons/pasar.svg"></a></li>
+            <li><a href="javascript:openPanelContent(3)"><img width="40px" src="media/icons/editar.svg"></a></li>
             <li><a href="javascript:openPanelContent(0)"><img width="40px" src="media/icons/entrar.svg"></a></li>
             </ul>
 
