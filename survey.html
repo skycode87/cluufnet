@@ -118,21 +118,6 @@
 </form>
 <script src="https://cdn.jotfor.ms//js/vendor/smoothscroll.min.js?v=3.3.27367"></script>
 <script src="https://cdn.jotfor.ms//js/errorNavigation.js?v=3.3.27367"></script>
-<script src="dependencies/jquery/js/jquery.min.js"></script>
-
-<script>
-    const getParameter = (name) => {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
-        return results === null
-            ? ""
-            : decodeURIComponent(results[1].replace(/\+/g, " "));
-    };
-
-
-    $("form").append(`<input type="hidden" value="${getParameter("packId")}"  id="packId">`);
-    $("form").append(`<input type="hidden" value="${getParameter("instanceId")}"  id="instanceId">`);
 
 
 </script>
