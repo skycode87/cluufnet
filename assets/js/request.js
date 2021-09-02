@@ -112,6 +112,25 @@ const getConnection = ({ onSuccess = {}, onError = {} }) => {
   } catch {}
 };
 
+const planValidate = ({ onSuccess = {}, onError = {} }) => {
+  const instanceId = getParameterByName_pack("instanceId");
+  const id = getParameterByName_pack("planId");
+  try {
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.open(`GET`, `${backend_url_}/planValidate/${id}/${instanceId}`, true);
+
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        const result = JSON.parse(xhttp.responseText);
+        onSuccess(result);
+      }
+    };
+    xhttp.send();
+  } catch {}
+};
+
 const loadCluufPackContent = ({
   method = "GET",
   params = "",
