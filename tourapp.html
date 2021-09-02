@@ -1295,6 +1295,8 @@
                                 localStorage.setItem("instanceId", result._id);
                                 localStorage.setItem("keypublic", result.keypublic);
                                 localStorage.setItem("cluuf", "true");
+                                localStorage.setItem("website", result.website);
+
 
                                 document.getElementById("header_1").innerHTML =
                                     `<img src="${result.logo}" width="220px"> `;
@@ -1307,9 +1309,17 @@
 
                                 planValidate({
                                     onSuccess: (result) => {
-                                        document.getElementById("subHeader_1").innerHTML =
-                                            `<span style="color: #000">${result.result.name}  ${result.startdate} Hora: ${result.departureTime} </span>`
-                                    }, onError: {
+
+                                        if (result.ok) {
+                                            document.getElementById("subHeader_1").innerHTML =
+                                                `<span style="color: #000">${result.result.name}  ${result.startdate} Hora: ${result.departureTime} </span>`
+
+                                        } else {
+                                            alert("Este Tour no se encuentra activo");
+                                            location.href = localStorage.getItem("website");
+                                        }
+
+                                    }, onError: (result) => {
 
                                     }
                                 });
@@ -1317,7 +1327,7 @@
 
                                 /* Load Content  */
                             },
-                            onError: (result) => console.log(result),
+                            onError: (result) => { location.href = "https://google.com" }
                         }
                     );
                 },
