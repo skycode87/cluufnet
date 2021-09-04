@@ -1,6 +1,5 @@
-// const backend_url_ = "https://cluufweb-backend.herokuapp.com";
-const backend_url_ =
-  "https://38c7-2800-e2-180-e7f-58ee-c0b7-c44b-51e4.ngrok.io";
+const backend_url_ = "https://cluufweb-backend.herokuapp.com";
+// const backend_url_ = ("https://38c7-2800-e2-180-e7f-58ee-c0b7-c44b-51e4.ngrok.io");
 
 const getParameterByName_pack = (name) => {
   name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
