@@ -1,9 +1,9 @@
 const globals_pack = Object.freeze({
-  //CLUUFWEB_SERVER: "https://cluufweb-backend.herokuapp.com",
-  CLUUFWEB_SERVER: "https://38c7-2800-e2-180-e7f-58ee-c0b7-c44b-51e4.ngrok.io",
-  CLUUFWEB_SERVER_FORM: `https://38c7-2800-e2-180-e7f-58ee-c0b7-c44b-51e4.ngrok.io/tour_app`,
-  CLUUFWEB_SERVER_USER_FORM: `https://38c7-2800-e2-180-e7f-58ee-c0b7-c44b-51e4.ngrok.io/user_gym`,
-  CLUUFWEB_SERVER_FORM_GYM: `https://38c7-2800-e2-180-e7f-58ee-c0b7-c44b-51e4.ngrok.io/subscription_app`,
+  CLUUFWEB_SERVER: "https://cluufweb-backend.herokuapp.com",
+  //CLUUFWEB_SERVER: "https://38c7-2800-e2-180-e7f-58ee-c0b7-c44b-51e4.ngrok.io",
+  CLUUFWEB_SERVER_FORM: `${CLUUFWEB_SERVER}/tour_app`,
+  CLUUFWEB_SERVER_USER_FORM: `${CLUUFWEB_SERVER}/user_gym`,
+  CLUUFWEB_SERVER_FORM_GYM: `${CLUUFWEB_SERVER}/subscription_app`,
 });
 
 const connectToCluuf_Pack = (
