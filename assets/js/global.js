@@ -37,7 +37,7 @@ const validarEmail_pack = (valor) => {
   } else return true;
 };
 
-const validarEmail = (valor) => {
+const validarEmail_ = (valor) => {
   re = /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
   if (!re.exec(valor)) {
     return false;

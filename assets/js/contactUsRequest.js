@@ -57,7 +57,7 @@ const website_form_register_contact_us = (
   if (keypublic_ === "") return false;
   if (formId === "") return false;
 
-  if (validarEmail(email)) {
+  if (validarEmail_(email)) {
     const body = new URLSearchParams({
       code,
       email,
