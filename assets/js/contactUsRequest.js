@@ -16,6 +16,10 @@ const form_register_contact_us = (body) => {
       return response.json();
     })
     .then(function (data) {
+      $("#fname").val("");
+      $("#femail").val("");
+      $("#fmessage").val("");
+      $("#fphone").val("");
       return data;
     })
     .catch(function (err) {
@@ -176,6 +180,10 @@ const connectToCluufContactUs = (
         timer: 2000,
         icon: "success",
       });
+      $("#fname").val("");
+      $("#femail").val("");
+      $("#fmessage").val("");
+      $("#fphone").val("");
     },
     onError: () => {
       Swal.fire({
