@@ -9850,17 +9850,18 @@ nav.template-main-menu > ul > li:hover ul.mega-menu {
     color: #615dfa;
 }
 
-#user-view .widget-author {
+.common-view .widget-author {
     background-color: #ffffff;
     border-radius: 8px;
     margin-bottom: 20px;
+    height: 360px;
 }
 
-#user-view .widget-author .author-name {
+.common-view .widget-author .author-name {
     line-height: 20px;
 }
 
-.user-list-view .row > [class^="col-"] {
+.common-list-view .row > [class^="col-"] {
     max-width: 100% !important;
     -webkit-box-flex: 100%;
     -ms-flex: 100%;
@@ -9868,7 +9869,7 @@ nav.template-main-menu > ul > li:hover ul.mega-menu {
     flex: 100%;
 }
 
-.user-list-view .widget-author {
+.common-list-view .widget-author {
     padding: 30px 80px 30px 40px;
     display: -webkit-box;
     display: -webkit-flex;
@@ -9884,6 +9885,9 @@ nav.template-main-menu > ul > li:hover ul.mega-menu {
     justify-content: space-between;
     overflow: hidden;
 }
+
+
+
 
 @media only screen and (max-width: 991px) {
     .user-list-view .widget-author {
@@ -10957,6 +10961,8 @@ nav.template-main-menu > ul > li:hover ul.mega-menu {
     background-color: #ffffff;
     padding: 5px;
     border-radius: 50%;
+    height: 100px;
+    width: 100px;
 }
 
 .widget-author .profile-img a:before {
@@ -11711,4 +11717,18 @@ h4.title-panel-content-user:before {
     position: absolute;
     left: 0;
     bottom: 0;
+}
+
+.menu-options li a{
+font-weight: bold;
+color: #000 !important;
+}
+
+.menu-options li a:hover {
+   transform: scale(1.2);
+}
+    
+
+.menu-options{
+    margin-bottom: 25px;
 }

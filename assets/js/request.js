@@ -1,6 +1,3 @@
-const backend_url_ = "https://cluufweb-backend.herokuapp.com";
-// const backend_url_ = ("https://38c7-2800-e2-180-e7f-58ee-c0b7-c44b-51e4.ngrok.io");
-
 const getParameterByName_pack = (name) => {
   name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
   var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -19,7 +16,11 @@ const getInstance = async (
     instanceId,
   }).toString();
 
-  xhttp.open(`GET`, `${backend_url_}/tour_get_instance?${params1}`, true);
+  xhttp.open(
+    `GET`,
+    `${localStorage.getItem("backend_url")}/tour_get_instance?${params1}`,
+    true
+  );
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -37,7 +38,11 @@ const getPacks = async ({ instanceId }, { onSuccess = {}, onError = {} }) => {
     instanceId,
   }).toString();
 
-  xhttp.open(`GET`, `${backend_url_}/tour_get_packs?${params1}`, true);
+  xhttp.open(
+    `GET`,
+    `${localStorage.getItem("backend_url")}/tour_get_packs?${params1}`,
+    true
+  );
 
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.onreadystatechange = function () {
@@ -59,7 +64,11 @@ const getPlans = async (
     packId,
   }).toString();
 
-  xhttp.open(`GET`, `${backend_url_}/subscripcion_get_plans?${params1}`, true);
+  xhttp.open(
+    `GET`,
+    `${localStorage.getItem("backend_url")}/subscripcion_get_plans?${params1}`,
+    true
+  );
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -79,7 +88,11 @@ const getPack = async ({ instanceId }, { onSuccess = {}, onError = {} }) => {
     packId, //60d8678e1a9233bd8b0a9dba
   }).toString();
 
-  xhttp.open(`GET`, `${backend_url_}/tour_find_app?${params1}`, true);
+  xhttp.open(
+    `GET`,
+    `${localStorage.getItem("backend_url")}/tour_find_app?${params1}`,
+    true
+  );
 
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.onreadystatechange = function () {
@@ -98,7 +111,11 @@ const getConnection = ({ onSuccess = {}, onError = {} }) => {
   try {
     const xhttp = new XMLHttpRequest();
 
-    xhttp.open(`GET`, `${backend_url_}/instanceByAlias/${alias}`, true);
+    xhttp.open(
+      `GET`,
+      `${localStorage.getItem("backend_url")}/instanceByAlias/${alias}`,
+      true
+    );
 
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.onreadystatechange = function () {
@@ -117,7 +134,11 @@ const planValidate = ({ onSuccess = {}, onError = {} }) => {
   try {
     const xhttp = new XMLHttpRequest();
 
-    xhttp.open(`GET`, `${backend_url_}/planValidate/${id}/${instanceId}`, true);
+    xhttp.open(
+      `GET`,
+      `${localStorage.getItem("backend_url")}/planValidate/${id}/${instanceId}`,
+      true
+    );
 
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.onreadystatechange = function () {

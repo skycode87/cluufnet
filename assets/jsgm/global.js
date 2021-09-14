@@ -1,6 +1,69 @@
+// const backend_url_ = "https://cluufweb-backend.herokuapp.com";
+const backend_url_ = "http://localhost:2001";
+
+localStorage.setItem("backend_url", backend_url_);
+localStorage.setItem("params", location.search);
+
+const goto = (name) => {
+  if (localStorage.getItem("params")) {
+    let active = {};
+    if (name === "gmu") active.user = "active";
+    if (name === "gma") active.admin = "active";
+
+    localStorage.setItem(
+      "main-menu",
+      `<li><a href="javascript:goto('gmu')" class="${
+        active.user || ""
+      }">Clientes</a></li>
+    <li><a href="javascript:goto('gma')" class="${
+      active.admin || ""
+    }">Equipo</a></li>
+    <li><a href="#" >Nuevo Cliente</a></li>
+    `
+    );
+
+    window.location.href = `${name}.html${localStorage.getItem("params")}`;
+  } else {
+    alert("Falta de parametros validos para continuar, inicie sesión de nuevo");
+  }
+};
+
+if (localStorage.getItem("main-menu")) {
+  document.getElementById("main-menu").innerHTML =
+    localStorage.getItem("main-menu");
+} else {
+  goto("gmu");
+}
+
+const isValid = (dato) => {
+  if (!dato || dato === undefined || dato === "" || dato === null) {
+    return false;
+  }
+  return true;
+};
+
+const availablesDayFormat = (dayNumber, idioma = "en") => {
+  if (idioma === "es") {
+    if (parseInt(dayNumber) === 0) return "Domingo";
+    if (parseInt(dayNumber) === 1) return "Lunes";
+    if (parseInt(dayNumber) === 2) return "Martes";
+    if (parseInt(dayNumber) === 3) return "Miercoles";
+    if (parseInt(dayNumber) === 4) return "Jueves";
+    if (parseInt(dayNumber) === 5) return "Viernes";
+    if (parseInt(dayNumber) === 6) return "Sabado";
+  } else {
+    if (parseInt(dayNumber) === 0) return "Sunday";
+    if (parseInt(dayNumber) === 1) return "Monday";
+    if (parseInt(dayNumber) === 2) return "Tuesday";
+    if (parseInt(dayNumber) === 3) return "Wednesday";
+    if (parseInt(dayNumber) === 4) return "Thursday";
+    if (parseInt(dayNumber) === 5) return "Friday";
+    if (parseInt(dayNumber) === 6) return "Saturday";
+  }
+};
+
 const globals_pack = Object.freeze({
-  CLUUFWEB_SERVER_FORM: "https://cluufweb-backend.herokuapp.com/tour_app",
-  // CLUUFWEB_SERVER_FORM:  "https://38c7-2800-e2-180-e7f-58ee-c0b7-c44b-51e4.ngrok.io/tour_app",
+  CLUUFWEB_SERVER_FORM: `${backend_url_}/tour_app`,
 });
 
 const connectToCluuf_Pack = (
@@ -193,6 +256,8 @@ const validarEmail_pack = (valor) => {
   } else return true;
 };
 
+const priceFormat = (text) => `$ ${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
 const sendRequestCluuf = (
   {
     name = null,
@@ -234,23 +299,20 @@ const sendRequestCluuf = (
     });
 };
 
-/*
-const crm_register_pack = (params) => {
-  return fetch(CLUUFWEB_SERVER, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: params,
-  })
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      return data;
-    })
-    .catch(function (err) {
-      console.error(err);
-    });
+const getParameterByName_pack = (name) => {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+  return results === null
+    ? ""
+    : decodeURIComponent(results[1].replace(/\+/g, " "));
 };
-*/
+
+const getParameterByNameURL = (name) => {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+  return results === null
+    ? ""
+    : decodeURIComponent(results[1].replace(/\+/g, " "));
+};

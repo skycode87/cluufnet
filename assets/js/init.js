@@ -103,7 +103,6 @@ getConnection({
 
           if (result.logowhite.length < 5)
             $(".cluuf-instance-logowhite").attr("src", result.logo);
-
           $(".cluuf-instance-name").text(result.name);
           $(".cluuf-instance-phonepublic").text(result.phonepublic);
           $(".cluuf-instance-emailpublic").text(result.emailpublic);
@@ -221,75 +220,7 @@ getConnection({
                       $(".is-cluuf-pack-description").hide();
                   }
 
-                  /*
-
-                   if (pack.iframeMap)
-                    if (!isValid(pack.iframeMap))
-                      $(".is-cluuf-pack-iframeMap").hide();
-
-
-                  if (pack.include)
-                    if (!isValid(pack.include))
-                      $(".is-cluuf-pack-include").hide();
-
-                  if (!isValid(pack.exclude))
-                    $(".is-cluuf-pack-exclude").hide();
-
-                  if (!isValid(pack.itineraries))
-                    $(".is-cluuf-pack-itineraries").hide();
-
-                  if (!isValid(pack.recomendations))
-                    $(".is-cluuf-pack-recomendations").hide();
-
-                       $(".images-tab-content")
-                    .append(`<div role="tabpanel" class="tab-pane fade active show" id="related0">
-                  <a href="#">
-                      <img class="img-fluid" alt="single" src=${pack.avatar}>
-                  </a>
-              </div>`);
-
-                  $(".images-tab-list").append(`<li class="nav-item">
-                                <a  href="#related0" data-toggle="tab" aria-expanded="false">
-                                    <img alt="related0" src="${pack.avatar}" class="img-fluid" />
-                                </a>
-                            </li>`);
-
-                  */
-
                   $(".btn-all-photos").attr("href", pack.avatar);
-
-                  /*
-                  pack.images.forEach((item, index) => {
-                    $(".container-gallery")
-                      .append(`<div class="col-lg-3 col-md-4 col-6">
-                                        <div class="user-group-photo">
-                                            <a href="https://cluuf.s3.amazonaws.com/${item}" class="popup-zoom">
-                                                <img src="https://cluuf.s3.amazonaws.com/${item}" alt="Gallery" class="img-fluid">
-                                            </a>
-                                        </div>
-                                    </div>`);
-
-                    if (index < 3) {
-                      $(".images-tab-content")
-                        .append(`<div role="tabpanel" class="tab-pane fade" id="related${
-                        index + 1
-                      }">
-                      <a href="#">
-                          <img class="img-fluid" alt="single" src="https://cluuf.s3.amazonaws.com/${item}">
-                      </a>
-                  </div>`);
-
-                      $(".images-tab-list").append(`<li class="nav-item">
-                                    <a  href="#related${
-                                      index + 1
-                                    }" data-toggle="tab" aria-expanded="false">
-                                        <img alt="related${
-                                          index + 1
-                                        }" src="https://cluuf.s3.amazonaws.com/${item}" class="img-fluid" />
-                                    </a>
-                                </li>`);
-                    }
-                  });*/
 
                   let days = "";
                   if (pack.availableDays) {
@@ -330,13 +261,36 @@ getConnection({
                           $("#plan option").remove();
                           if (resultPlans.plans[0]) {
                             resultPlans.plans.forEach((element) => {
-                              $("#plan").append(
-                                `<option value="${element._id}">${
-                                  element.name
-                                } - Costo:  ${priceFormat(
-                                  element.price
-                                )}</option>`
+                              sessionStorage.setItem(
+                                element._id,
+                                element.observation
                               );
+
+                              if (
+                                getParameterByName_pack("p") === element._id
+                              ) {
+                                $("#plan").append(
+                                  `<option selected value="${element._id}">${
+                                    element.name
+                                  } - Costo:  ${priceFormat(
+                                    element.price
+                                  )}</option>`
+                                );
+
+                                $(".plan_description").html(
+                                  `<div>${sessionStorage.getItem(
+                                    $("#plan").val()
+                                  )}</div>`
+                                );
+                              } else {
+                                $("#plan").append(
+                                  `<option value="${element._id}">${
+                                    element.name
+                                  } - Costo:  ${priceFormat(
+                                    element.price
+                                  )}</option>`
+                                );
+                              }
                             });
                           }
                         },
@@ -347,46 +301,16 @@ getConnection({
 
                   loadCluufPackContent({
                     method: "GET",
-                    url: `https://cluuf.s3.sa-east-1.amazonaws.com/${localStorage.getItem(
-                      "keypublic"
-                    )}.json`,
+                    url: `${localStorage.getItem(
+                      "aws_url"
+                    )}/${localStorage.getItem("keypublic")}.json`,
                   });
-
-                  /*
-                  if (isValid(pack.include)) {
-                    pack.include.forEach((element) => {
-                      $(".cluuf-pack-include").append(`<li>${element}</li>`);
-                    });
-                  }
-
-                  if (isValid(pack.recomendations)) {
-                    pack.recomendations.forEach((element) => {
-                      $(".cluuf-pack-recomendations").append(
-                        `<li>${element}</li>`
-                      );
-                    });
-                  }
-                  
-
-                  if (isValid(pack.exclude)) {
-                    pack.exclude.forEach((element) => {
-                      $(".cluuf-pack-exclude").append(`<li>${element}</li>`);
-                    });
-                  }
-
-                  if (isValid(pack.itineraries)) {
-                    pack.itineraries.forEach((element) => {
-                      $(".cluuf-pack-itineraries").append(
-                        `<li>${element}</li>`
-                      );
-                    });
-                  }*/
 
                   loadCluufContent({
                     method: "GET",
-                    url: `https://cluuf.s3.sa-east-1.amazonaws.com/${localStorage.getItem(
-                      "keypublic"
-                    )}.json`,
+                    url: `${localStorage.getItem(
+                      "aws_url"
+                    )}/${localStorage.getItem("keypublic")}.json`,
                   });
 
                   $(".overlay-loading").hide();
@@ -401,9 +325,9 @@ getConnection({
                 onSuccess: (result2) => {
                   loadCluufContent({
                     method: "GET",
-                    url: `https://cluuf.s3.sa-east-1.amazonaws.com/${localStorage.getItem(
-                      "keypublic"
-                    )}.json`,
+                    url: `${localStorage.getItem(
+                      "aws_url"
+                    )}/${localStorage.getItem("keypublic")}.json`,
                   });
 
                   $(".overlay-loading").hide();
@@ -434,8 +358,6 @@ getConnection({
               }
             );
           }
-
-          /* Load Content  */
         },
         onError: (result) => console.log(result),
       }
@@ -443,118 +365,19 @@ getConnection({
   },
 });
 
-const submitPack = () => {
-  connectToCluuf_Pack(
-    {
-      email: {
-        value: $("#email").val(),
-        required: true,
-        message: "Please verify Email and try again.",
-      },
-      name: {
-        value: $("#name").val(),
-        required: true,
-        message: "Please verify Name and try again.",
-      },
-      phone: {
-        value: $("#phone").val(),
-        required: true,
-        message: "Please verify phone and try again.",
-      },
-      quantity: {
-        value: $("#quantity").val(),
-        required: true,
-        message: "Please verify quantity and try again.",
-      },
-      message: {
-        value: $("#message").val(),
-        required: false,
-        message: "Please verify Message and try again.",
-      },
-      date: {
-        required: true,
-        value: $("#date").val(),
-        message: "Please verify date and try again.",
-      },
-      time: {
-        required: true,
-        value: $("#time").val(),
-        message: "Please verify time and try again.",
-      },
-      formId: $("#formId").val(), // proporcionado por cluuf-web
-      instanceId: $("#instanceId").val(), // proporcionado por cluuf-web
-      successMessage: "The message has been sent successfully",
-      campaign: localStorage.getItem("cluufpackname"),
-    },
-    {
-      onSuccess: (response) => {
-        $("#name").val("");
-        $("#email").val("");
-        $("#phone").val("");
-        $("#message").val("");
-        $("#quantity").val("0");
-        setTimeout(() => {
-          location.reload();
-        }, 3000);
-      },
-      onError: () => console.log("Error enviando el formulario"),
-    }
-  );
-};
-
-const submitSubscription = () => {
-  connectToCluuf_SUBSCRIPTION_Pack(
-    {
-      email: {
-        value: $("#email").val(),
-        required: true,
-        message: "Please verify Email and try again.",
-      },
-      name: {
-        value: $("#name").val(),
-        required: true,
-        message: "Please verify Name and try again.",
-      },
-      phone: {
-        value: $("#phone").val(),
-        required: false,
-        message: "Please verify phone and try again.",
-      },
-      message: {
-        value: $("#message").val(),
-        required: false,
-        message: "Please verify Message and try again.",
-      },
-      date: {
-        required: true,
-        value: $("#date").val(),
-        message: "Please verify date and try again.",
-      },
-      formId: $("#formId").val(), // proporcionado por cluuf-web
-      instanceId: $("#instanceId").val(), // proporcionado por cluuf-web
-      successMessage: "The message has been sent successfully",
-      campaign: localStorage.getItem("cluufpackname"),
-      plan: $("#plan").val(),
-    },
-    {
-      onSuccess: (response) => {
-        $("#name").val("");
-        $("#email").val("");
-        $("#phone").val("");
-        $("#message").val("");
-        $("#quantity").val("0");
-      },
-      onError: () => console.log("Error enviando el formulario"),
-    }
-  );
-};
-
 $(".is-cluuf-pack-iframeMap").on("click", () => {
   $(".cluuf-pack-iframeMap iframe").css("width", "100%");
 });
 
 $(".is-cluuf-pack-meetingPoint").on("click", () => {
   $(".cluuf-pack-meetingPoint iframe").css("width", "100%");
+});
+
+$("#plan").on("change", () => {
+  $(".plan_description div").remove();
+  $(".plan_description").html(
+    `<div>${sessionStorage.getItem($("#plan").val())}</div>`
+  );
 });
 
 $("#date").on("change", () => {
@@ -584,197 +407,3 @@ $("#date").on("change", () => {
 $(".cluuf-alert").on("click", () => {
   $(".cluuf-alert").hide("fast");
 });
-
-const formSubmit = () => {
-  connectToCluufCRM(
-    {
-      email: {
-        value: jQuery("#femail").val(),
-        required: true,
-        message: "Please verify Email and try again.",
-      },
-      name: {
-        value: jQuery("#fname").val(),
-        required: true,
-        message: "Please verify Name and try again.",
-      },
-      message: {
-        value: jQuery("#fmessage").val(),
-        required: true,
-        message: "Please verify Message and try again.",
-      },
-      phone: {
-        value: jQuery("#fphone").val(),
-        required: true,
-        message: "Please verify Phone and try again.",
-      },
-      campaign: localStorage.getItem("cluufpackname"),
-      formId: localStorage.getItem("cluufpackId"),
-      keypublic: localStorage.getItem("keypublic"),
-      instanceId: localStorage.getItem("instanceId"),
-      successMessage: "The message has been sent successfully",
-      cluuf: localStorage.getItem("cluuf"),
-    },
-    {
-      onSuccess: (response) => {
-        $("#fname").val("");
-        $("#femail").val("");
-        $("#fmessage").val("");
-        $("#fphone").val("");
-      },
-      onError: () => console.log("Error enviando el formulario"),
-    }
-  );
-};
-
-const priceFormat = (text) => `$ ${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-/*
-if (getParameterByName_pack("q") && getParameterByName_pack("agency")) {
-  getConnection({
-    onSuccess: (instance) => {
-      getPack(
-        { instanceId: instance.result._id },
-        {
-          onSuccess: (result) => {
-            const pack = result.pack[0];
-            sessionStorage.setItem("cluuf-pack", JSON.stringify(pack));
-            $(".cluuf-pack-name").text(pack.name);
-            $(".cluuf-pack-category").text(pack.category);
-            $(".cluuf-pack-price").text(priceFormat(pack.price));
-            $(".cluuf-pack-description").html(pack.description);
-            $(".cluuf-pack-duration").text(pack.duration);
-            $(".cluuf-pack-id").val(pack._id);
-            $("#instanceId").val(pack.instanceId);
-            $(".cluuf-pack-iframeMap").append(pack.iframeMap);
-            $(".cluuf-pack-meetingPoint").append(pack.meetingPoint);
-            $(".cluuf-pack-excerpt").html(pack.excerpt);
-
-            if (pack.video) {
-              if (pack.video.length > 10) {
-                $(".cluuf-pack-video").attr("href", pack.video);
-              }
-            }
-
-            if (pack.description) {
-              if (
-                pack.description === undefined ||
-                pack.description === "" ||
-                String(pack.description).length < 20
-              )
-                $(".is-cluuf-pack-description").hide();
-            }
-
-            if (pack.iframeMap)
-              if (!isValid(pack.iframeMap))
-                $(".is-cluuf-pack-iframeMap").hide();
-
-            if (pack.include)
-              if (!isValid(pack.include)) $(".is-cluuf-pack-include").hide();
-
-            if (!isValid(pack.exclude)) $(".is-cluuf-pack-exclude").hide();
-
-            if (!isValid(pack.itineraries))
-              $(".is-cluuf-pack-itineraries").hide();
-
-            if (!isValid(pack.recomendations))
-              $(".is-cluuf-pack-recomendations").hide();
-
-            $(".cluuf-pack-avatar")
-              .attr("src", pack.avatar)
-              .attr("data-zoom-image", pack.avatar);
-
-            if (pack.images[0] !== undefined) {
-              $(".cluuf-pack-gallery1")
-                .attr("src", `https://cluuf.s3.amazonaws.com/${pack.images[0]}`)
-                .attr(
-                  "data-zoom-image",
-                  `https://cluuf.s3.amazonaws.com/${pack.images[0]}`
-                );
-            } else {
-              $(".gallery1").hide();
-            }
-
-            if (pack.images[1] !== undefined) {
-              $(".cluuf-pack-gallery2")
-                .attr("src", `https://cluuf.s3.amazonaws.com/${pack.images[1]}`)
-                .attr(
-                  "data-zoom-image",
-                  `https://cluuf.s3.amazonaws.com/${pack.images[1]}`
-                );
-            } else {
-              $(".gallery2").hide();
-            }
-
-            if (pack.images[2] !== undefined) {
-              $(".cluuf-pack-gallery3")
-                .attr("src", `https://cluuf.s3.amazonaws.com/${pack.images[2]}`)
-                .attr(
-                  "data-zoom-image",
-                  `https://cluuf.s3.amazonaws.com/${pack.images[2]}`
-                );
-            } else {
-              $(".gallery3").hide();
-            }
-
-            let days = "";
-            if (pack.availableDays) {
-              if (pack.availableDays.length > 6) {
-                days = "Todos los dias";
-              } else {
-                if (pack.availableDays) {
-                  pack.availableDays.forEach((element) => {
-                    days = `${days}  ${availablesDayFormat(element)}`;
-                  });
-                } else {
-                  days = "All Days";
-                }
-              }
-            } else {
-              days = "All Days";
-            }
-
-            $(".cluuf-pack-availableDays").html(days);
-
-            $("#time option").remove();
-            if (pack.departureTime) {
-              pack.departureTime.forEach((element) => {
-                $("#time").append(
-                  `<option value="${element}">${element}</option>`
-                );
-              });
-            }
-
-            if (isValid(pack.include)) {
-              pack.include.forEach((element) => {
-                $(".cluuf-pack-include").append(`<li>${element}</li>`);
-              });
-            }
-
-            if (isValid(pack.recomendations)) {
-              pack.recomendations.forEach((element) => {
-                $(".cluuf-pack-recomendations").append(`<li>${element}</li>`);
-              });
-            }
-
-            if (isValid(pack.exclude)) {
-              pack.exclude.forEach((element) => {
-                $(".cluuf-pack-exclude").append(`<li>${element}</li>`);
-              });
-            }
-
-            if (isValid(pack.itineraries)) {
-              pack.itineraries.forEach((element) => {
-                $(".cluuf-pack-itineraries").append(`<li>${element}</li>`);
-              });
-            }
-
-            $(".overlay-loading").hide();
-          },
-          onError: (err) => {},
-        }
-      );
-    },
-  });
-}
-*/

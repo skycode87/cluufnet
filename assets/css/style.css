@@ -195,3 +195,14 @@ img.logo-who-we-are{
         color: #615dfa;
         background: #fff;
     }
+
+
+    .plan_description div{
+        padding: 10px 2px;
+    text-align: center;
+    background: #ddf3f9;
+    margin-bottom: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    }
+    

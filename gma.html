@@ -117,8 +117,6 @@
                         <div class="col-lg-12">
                             <div class="block-box user-timeline-header">
                                 <ul class="menu-list d-none d-md-block" id="main-menu">
-
-
                                 </ul>
                                 <div class="header-dropdown d-md-none">
                                     <label>Show:</label>
@@ -127,29 +125,28 @@
                                             Menu
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Blogs</a>
-                                            <a class="dropdown-item" href="#">Pagos</a>
-                                            <a class="dropdown-item" href="#">Actualizar perfil</a>
+                                            <a class="dropdown-item" href="#">Client</a>
+                                            <a class="dropdown-item" href="#">Equipo</a>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
 
-                            <div class="col-lg-12 contacts-container">
-                                <section class="tab-content tab-content-4">
+                            <div class="col-lg-12 teams-container">
+                                <section>
                                     <div class="block-box user-search-bar">
                                         <div class="box-item search-box">
                                             <div class="input-group">
-                                                <input type="text" id="search-user-value" class="form-control" placeholder="Search Member">
+                                                <input type="text" id="search-team-value" class="form-control" placeholder="Search Member">
                                                 <div class="input-group-append">
-                                                    <button class="search-btn" onClick="searchUsers()" type="button"><i class="icofont-search"></i></button>
+                                                    <button class="search-btn" onClick="searchTeams()" type="button"><i class="icofont-search"></i></button>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
-                                    <div id="user-view" class="user-grid-view ">
-                                        <div class="row gutters-20 contacts-list">
+                                    <div id="team-view" class="user-grid-view common-view ">
+                                        <div class="row gutters-20 teams-list">
 
 
                                         </div>
@@ -158,29 +155,26 @@
                                 </section>
                             </div>
 
-                            <div class="col-lg-12 contact-container">
+                            <div class="col-lg-12 team-container">
                                 <div class="row">
 
                                     <div class="col-lg-3">
-
-                                        <div class="row gutters-20 current-contact">
+                                        <div class="row gutters-20 current-team">
                                         </div>
                                     </div>
                                     <div class="col-lg-9">
                                         <section class="panel-content panel-content-0">
-
-
                                             <div class="block-box" style="padding: 30px">
                                                 <h4 class="title-panel-content-user">Asistencía</h4>
                                                 <form id="contact-form">
-                                                    <input type="hidden" id="userIdAssistencia">
+                                                    <input type="hidden" id="teamIdAssistencia">
                                                     <div class="row gutters-20">
                                                         <div class="col-12 form-group">
                                                             <textarea name="message-asistencia" id="message-asistencia" cols="30" rows="3" class="textarea form-control"
                                                                 placeholder="Alguna observación"></textarea>
                                                         </div>
                                                         <div class="col-12 form-group">
-                                                            <input type="button" class="submit-btn" onclick="createAsistenciaUser()" value="Confirmar Asistencia">
+                                                            <input type="button" class="submit-btn" onclick="createAsistenciaTeam()" value="Confirmar Asistencia">
                                                         </div>
                                                     </div>
                                                     <div class="form-response"></div>
@@ -194,8 +188,7 @@
 
 
                                             <div class="forum-list-table" style="background: #fff; padding: 30px; border-radius: 5px; ">
-                                                <h4 class="title-panel-content-user">Historial de Asistencias</h4>
-
+                                                <h4 class="title-panel-content-team">Historial de Asistencias</h4>
                                                 <div class="table-responsive">
                                                     <table class="table table-bordered table-asistencia">
                                                         <thead class="thead-dark">
@@ -214,27 +207,9 @@
                                         <section class="panel-content panel-content-2">
                                             <div class="block-box" style="padding: 30px">
                                                 <form id="contact-form">
-                                                    <h4 class="title-panel-content-user">Registrar nuevo pago</h4>
+                                                    <h4 class="title-panel-content-user">Opciones de Seguridad</h4>
 
-                                                    <div class="row gutters-20">
-                                                        <div class="col-lg-6 form-group">
-                                                            <input type="text" class="form-control" name="fname" placeholder="Monto">
-                                                        </div>
-                                                        <div class="col-lg-6 form-group">
-                                                            <select style="height: 50px;" class="custom-select form-control-lg" id="genre" name="genre">
-                                                                <option value="Efectivo">Efectivo</option>
-                                                                <option value="Debito">Débito</option>
-                                                                <option value="Credito">Credito</option>
-                                                                <option value="Transferencía">Transferencía</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-12 form-group">
-                                                            <textarea name="message" id="message" cols="30" rows="3" class="textarea form-control" placeholder="Alguna observación"></textarea>
-                                                        </div>
-                                                        <div class="col-12 form-group">
-                                                            <input type="submit" class="submit-btn" value="Registrar Pago">
-                                                        </div>
-                                                    </div>
+
                                                     <div class="form-response"></div>
                                                 </form>
 
@@ -243,9 +218,9 @@
 
                                         <section class="panel-content panel-content-3">
                                             <div class="block-box" style="padding: 30px">
-                                                <form id="contact-form" class="user">
+                                                <form id="contact-form" class="team">
                                                     <input type="hidden" id="instanceId" value="">
-                                                    <input type="hidden" id="userId" value="">
+                                                    <input type="hidden" id="teamId" value="">
                                                     <input type="hidden" id="pin" value="">
                                                     <div class="row gutters-20">
                                                         <div class="col-lg-12 form-group">
@@ -357,7 +332,7 @@
 
                                                         <ul>
                                                             <li class="col-12 form-group li-submit">
-                                                                <a class="submit-btn" href="javascript:submitUserForm()">Actualizar información</a>
+                                                                <a class="submit-btn" href="javascript:submitTeamForm()">Actualizar información</a>
                                                             </li>
 
                                                             <li class="li-loading" style="display: none">
@@ -377,8 +352,6 @@
                                 </div>
 
                             </div>
-
-
 
                         </div>
 
@@ -415,10 +388,15 @@
         <!-- Site Scripts -->
         <script src="assets/jsgm/global.js"></script>
         <script src="assets/jsgm/user.js"></script>
+        <script src="assets/jsgm/team.js"></script>
         <script src="assets/jsgm/request.js"></script>
         <script src="assets/jsgm/init.js"></script>
         <script src="assets/js/app.js"></script>
 
+        <script>
+            $(".teams-container").show();
+            $(".team-container").hide();
+        </script>
 
     </body>
 
