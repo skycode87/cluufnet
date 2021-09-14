@@ -13,6 +13,7 @@ const sendRequestCluuf = (
     time = null,
     packId = null,
     instanceId = null,
+    plan = null,
   },
   { onSuccess = {}, onError = {}, onFinally = {} }
 ) => {
