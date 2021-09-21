@@ -11732,3 +11732,59 @@ color: #000 !important;
 .menu-options{
     margin-bottom: 25px;
 }
+
+  
+    .menu-checkbox-filters{
+        background-color: #fff;
+        padding: 10px;
+        padding-left: 20px;
+        margin-bottom: 21px;
+        margin-top: -50px;
+    }
+
+    .menu-checkbox-filters label{
+    cursor: pointer;
+    }
+
+    .menu-checkbox-filters label:hover{
+        transform: scale(1.04);
+        font-weight: bold;
+    }
+
+
+    .widget-author .profile-img a.inwait:after {
+    content: "\eedc";
+    font-family: IcoFont;
+    font-size: 20px;
+    color: #fff;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    background-color: #ff1f00;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -9px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+
+.widget-author .profile-img a.cancel:after {
+    content: "\eead";
+    font-family: IcoFont;
+    font-size: 20px;
+    color: #fff;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    background-color: #ffd740;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -9px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+

@@ -29,7 +29,7 @@ const loadDataFormUSer = ({ user }) => {
   );
 };
 
-const getUsers = async (
+const getApps = async (
   { instanceId, textValue, filter = false },
   { onSuccess = {}, onError = {} }
 ) => {
@@ -44,7 +44,7 @@ const getUsers = async (
 
   xhttp.open(
     `GET`,
-    `${localStorage.getItem("backend_url")}/gym_get_users?${params1}`,
+    `${localStorage.getItem("backend_url")}/subscription_get_apps?${params1}`,
     true
   );
   xhttp.setRequestHeader("Authorization", token);
@@ -59,46 +59,18 @@ const getUsers = async (
   xhttp.send();
 };
 
-const getUserApps = async ({ userId }, { onSuccess = {}, onError = {} }) => {
-  const token = getParameterByNameURL("token");
-
-  const xhttp = new XMLHttpRequest();
-  const params1 = new URLSearchParams({
-    instanceId: localStorage.getItem("instanceId"),
-    userId,
-  }).toString();
-
-  xhttp.open(
-    `GET`,
-    `${localStorage.getItem(
-      "backend_url"
-    )}/subscription_get_apps_by_user?${params1}`,
-    true
-  );
-  xhttp.setRequestHeader("Authorization", token);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      const result = JSON.parse(xhttp.responseText);
-      onSuccess(result);
-    }
-  };
-  xhttp.send();
-};
-
-const getUser = async (userId, { onSuccess = {}, onError = {} }) => {
+const getApp = async (appId, { onSuccess = {}, onError = {} }) => {
   const xhttp = new XMLHttpRequest();
   const token = getParameterByNameURL("token");
 
   const params1 = new URLSearchParams({
     instanceId: localStorage.getItem("instanceId"),
-    userId: userId, //60d8678e1a9233bd8b0a9dba
+    appId,
   }).toString();
 
   xhttp.open(
     `GET`,
-    `${localStorage.getItem("backend_url")}/gym_get_user?${params1}`,
+    `${localStorage.getItem("backend_url")}/subscription_get_app?${params1}`,
     true
   );
   xhttp.setRequestHeader("Authorization", token);
@@ -272,14 +244,14 @@ const connectToCluuf_userForm = (
   });
 };
 
-const searchUserbyText = ({ textValue, filter = false }) => {
+const searchApps = ({ textValue = "", filter = false }) => {
   $(".contacts-list div").remove("");
   $(".contacts-list").append("<div><h2>Buscando...</h2></div>");
-  getUsers(
+  getApps(
     { instanceId: localStorage.getItem("instanceId"), textValue, filter },
     {
-      onSuccess: (usersResult) => {
-        if (usersResult.result.length < 1) {
+      onSuccess: (result) => {
+        if (result.apps.length < 1) {
           $(".current-contact div").remove();
           $(".contacts-list div").remove();
           $(".contacts-list").append(
@@ -288,12 +260,18 @@ const searchUserbyText = ({ textValue, filter = false }) => {
         } else {
           $(".contacts-list div").remove("");
           $(".overlay-loading").hide();
-          $.each(usersResult.result, function (i, n) {
+          $.each(result.apps, function (i, n) {
+            let user = n.userId;
             var avatar = "media/no-avatar.png";
 
-            if (n.avatar) {
-              avatar = n.avatar;
+            if (user.avatar) {
+              avatar = user.avatar;
             }
+
+            let statusIcon = "";
+            if (n.status === "inwait") statusIcon = "inwait";
+            if (n.status === "open") statusIcon = "";
+            if (n.status === "cancel") statusIcon = "cancel";
 
             $(".contacts-list").append(`<div class="col-xl-3 col-lg-4 col-md-6">
               <div class="widget-author">
@@ -302,24 +280,28 @@ const searchUserbyText = ({ textValue, filter = false }) => {
                       <img src="media/fondo.jpg" alt="cover">
                       </div>
                       <div class="profile-img">
-                          <a href="#">
+                          <a  class="${statusIcon}" href="#">
                               <img width="100px"  src="${avatar}" alt="author">
                           </a>
                       </div>
                       <div class="profile-name">
-                      <h2>${n.pin || ""}</h2>
+                      <h2>${user.pin || ""}</h2>
                           <h2 class="author-name" style="font-size: 22px; line-height: 26px">${
-                            n.firstname || ""
-                          } <br> ${n.lastname || ""}</h2>
-                          <div class="author-location"> ${n.email || ""}</div>
+                            user.firstname || ""
+                          } <br> ${user.lastname || ""}</h2>
+                          <div class="author-location"> ${
+                            user.email || ""
+                          }</div>
+
+                       
                       </div>
                   </div>
                   <ul class="author-badge">
                   </ul>
   
-                  <a href="javascript:openPanelUser({ userId: '${
+                  <a href="javascript:openPanelApp({ appId: '${
                     n._id
-                  }',num: 0})" class="button-slide">
+                  }',num: 3})" class="button-slide">
                   <span class="btn-text"> Abrir </span>
                   <span class="btn-icon">
                       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21px" height="10px">
@@ -337,89 +319,19 @@ const searchUserbyText = ({ textValue, filter = false }) => {
   );
 };
 
-const createAsistenciaUserRequest = (
-  { userId },
-  { onSuccess = {}, onError = {} }
-) => {
-  const xhttp = new XMLHttpRequest();
-  const token = getParameterByNameURL("token");
-
-  const params1 = new URLSearchParams({
-    instanceId: localStorage.getItem("instanceId"),
-    userId: userId, //60d8678e1a9233bd8b0a9dba
-    message: $("#message-asistencia").val(),
-  }).toString();
-
-  xhttp.open(`GET`, `${backend_url_}/gym_get_user_asistencia?${params1}`, true);
-  xhttp.setRequestHeader("Authorization", token);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      const result = JSON.parse(xhttp.responseText);
-      onSuccess(result);
-    }
-  };
-  xhttp.send();
-};
-
-const createAsistenciaExternalUserRequest = (
-  { userId, token, instanceId },
-  { onSuccess = {}, onError = {} }
-) => {
-  const xhttp = new XMLHttpRequest();
-
-  const params1 = new URLSearchParams({
-    instanceId,
-    userId, //60d8678e1a9233bd8b0a9dba
-  }).toString();
-
-  xhttp.open(`GET`, `${backend_url_}/gym_get_user_asistencia?${params1}`, true);
-  xhttp.setRequestHeader("Authorization", token);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      const result = JSON.parse(xhttp.responseText);
-      onSuccess(result);
-    }
-  };
-  xhttp.send();
-};
-
-const createAsistenciaUser = () => {
-  createAsistenciaUserRequest(
-    { userId: $("#userIdAssistencia").val() },
-    {
-      onSuccess: (usersResult) => {
-        Swal.fire(`El usuario ha sido actualizado`, "", "success");
-        closePanelContent();
-        openPanelUser({ userId: $("#userIdAssistencia").val(), num: 1 });
-      },
-      onError: () => {
-        Swal.fire(`Error en actualización`, "", "warning");
-      },
-    }
-  );
-};
-
-const openPanelUser = ({ userId, num }) => {
-  $(".team-container").hide();
-  $(".teams-container").hide();
-  getUser(
-    userId,
+const openPanelApp = ({ appId, num }) => {
+  getApp(
+    appId,
     {
       onSuccess: (result) => {
-        const userdata = result.result;
+        const userdata = result.app.userId;
         const events = result.events;
         $(".contact-container table-asistencia tbody tr").remove();
         loadDataFormUSer({ user: userdata });
-        $.each(events, function (i, n) {
-          $(".contact-container .table-asistencia tbody").append(` 
-            <tr>
-              <td> <img width="18px" src="media/icons/entrar.svg"> ${n.title} <small>${n.description}</small></td>
-            </tr>`);
-        });
 
-        sessionStorage.setItem("currentUserId", userId);
+        sessionStorage.setItem("currentAppId", appId);
+        sessionStorage.setItem("currentUserId", userdata._id);
+
         $(".contacts-container").hide();
         $(".contact-container").show();
 
@@ -429,6 +341,25 @@ const openPanelUser = ({ userId, num }) => {
         if (userdata.avatar) {
           avatar = userdata.avatar;
         }
+
+        let statusIcon = "";
+        if (result.app.status === "inwait") statusIcon = "inwait";
+        if (result.app.status === "open") statusIcon = "";
+        if (result.app.status === "cancel") statusIcon = "cancel";
+
+        const url_active_user = `${localStorage.getItem(
+          "frontend_url"
+        )}/userext/dojobox/${result.app._id}/status`;
+
+        if (result.app.status === "inwait" && !result.app.isPayment)
+          isActive = `<li><a href="${url_active_user}" target="blank">Activar aplicación</a></li>`;
+
+        if (result.app.status === "cancel" && !result.app.isPayment)
+          isActive = `<li><a href="${url_active_user}" target="blank" >Activar aplicación</a></li>`;
+
+        if (result.app.status === "open" && result.app.isPayment)
+          isActive = `<li><a href="javascript:statusApp('cancel')">Inactivar aplicación</a></li>`;
+
         $(".current-contact")
           .append(`<div class="col-xl-12 col-lg-12 col-md-12">
           <div class="widget-author" style="background: #fff">
@@ -437,7 +368,7 @@ const openPanelUser = ({ userId, num }) => {
                       <img src="media/fondo.jpg" alt="cover">
                   </div>
                   <div class="profile-img">
-                      <a href="#">
+                      <a href="#" class="${statusIcon}"> 
                           <img width="100px"  src="${avatar}" alt="author">
                       </a>
                   </div>
@@ -451,11 +382,9 @@ const openPanelUser = ({ userId, num }) => {
               </div>
 
               <ul class="menu-options">
-              <li><a href="javascript:openPanelContent(1)">Historial de Eventos</a></li>
-              <li><a href="javascript:openPanelContent(2)">Otra cosa</a></li> 
-              <li><a href="javascript:resetPasswordUser()">Resetear Password</a></li> 
-              <li><a href="javascript:openPanelContent(3)">Editar Perfil</a></li>
-              <li><a href="javascript:openPanelContent(0)">Marcar Asistencía</a></li>
+              ${isActive} 
+              <li><a href="javascript:resetPasswordUser()">Resetear password</a></li> 
+              <li><a href="javascript:openPanelContent(3)">Editar usuario</a></li>
               </ul>
 
   
@@ -475,9 +404,9 @@ const openPanelUser = ({ userId, num }) => {
   );
 };
 
-const searchUsers = () => {
+const searchAppsUsers = () => {
   const value = $("#search-user-value").val();
-  searchUserbyText({ textValue: value });
+  // searchUserbyText({ textValue: value });
 };
 
 const submitPack = () => {
@@ -671,19 +600,6 @@ const requestResetPasswordUser = (
     });
 };
 
-const renderApps = (data) => {
-  $("#appsTable tbody tr").remove();
-  data.forEach((element) => {
-    $("#appsTable tbody").append(` <tr>
-  <td>${element.packId.name} ${element.planId.name}</td>
-  <td class="text-center">${priceFormat(element.total)}</td>
-  <td>${dateFormat2(element.startDate)}</td>
-  <td>${dateFormat2(element.closureDate)}</td>
-  <td><b>${priceFormat(element.amount)}</b></td>
-</tr>`);
-  });
-};
-
 const resetPasswordUser = () => {
   Swal.fire({
     title: `Confirma que desea resetear la contraseña de ${$(
@@ -709,6 +625,87 @@ const resetPasswordUser = () => {
             );
           },
           onError: () => {},
+          onFinally: () => {},
+        }
+      );
+    } else if (result.isDenied) {
+      // Swal.fire("Changes are not saved", "", "info");
+    }
+  });
+};
+
+const requestStatusApp = (
+  params2,
+  { onSuccess = {}, onError = {}, onFinally = {} }
+) => {
+  var searchParams = new URLSearchParams({
+    ...params2,
+    instanceId: localStorage.getItem("instanceId"),
+  });
+  fetch(
+    `${localStorage.getItem("backend_url")}/subscription_update_status/${
+      params2.appId
+    }`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: getParameterByNameURL("token"),
+      },
+      body: searchParams.toString(),
+    }
+  )
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      onSuccess(data);
+    })
+    .catch(function (err) {
+      onError(err);
+      console.log(err);
+    })
+    .finally(function () {
+      onFinally({
+        ok: true,
+      });
+    });
+};
+
+const statusApp = (status) => {
+  let msg = "";
+  if (status === "inwait") msg = "poner en ESPERA la aplicación";
+  if (status === "open") msg = "ACTIVAR la aplicación";
+  if (status === "cancel") msg = "INACTIVAR la aplicación";
+
+  Swal.fire({
+    title: `Confirma que desea  ${msg} de ${$("form.user #firstname").val()} ?`,
+    showDenyButton: true,
+    confirmButtonText: msg,
+    denyButtonText: `Volver atràs`,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      requestStatusApp(
+        {
+          appId: sessionStorage.currentAppId,
+          status,
+        },
+        {
+          onSuccess: () => {
+            Swal.fire({
+              title: `Operación exitosa!`,
+              timer: "3000",
+              icon: "success",
+            });
+            document.location.reload();
+          },
+          onError: () => {
+            Swal.fire(
+              `Operación no permitida!`,
+              "Ponerse en contacto con el admin del sistema",
+              "error"
+            );
+          },
           onFinally: () => {},
         }
       );
@@ -759,10 +756,10 @@ const checkinUserByQR = ({ onSuccess = {}, onError = {}, onFinally = {} }) => {
       });
     });
 };
-
 $(document).ready(function () {
+  searchApps({ textValue: "", filter: false });
   $("input[name=filter-user]").click(function () {
-    searchUserbyText(
+    /*searchUserbyText(
       {
         instanceId: localStorage.getItem("instanceId"),
         filter: $(this).val(),
@@ -771,6 +768,6 @@ $(document).ready(function () {
         onSuccess: () => {},
         onError: () => {},
       }
-    );
+    ); */
   });
 });

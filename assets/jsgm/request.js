@@ -20,11 +20,20 @@ const getInstance = async (
   xhttp.send();
 };
 
+const getParameterByName2 = (name) => {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+  return results === null
+    ? ""
+    : decodeURIComponent(results[1].replace(/\+/g, " "));
+};
+
 const getConnection = ({ onSuccess = {}, onError = {} }) => {
-  const alias = getParameterByName_pack("agency");
-  const token = getParameterByName_pack("token");
-  const user = getParameterByName_pack("user");
-  const mode = getParameterByName_pack("atm");
+  const alias = getParameterByName2("agency");
+  const token = getParameterByName2("token");
+  const user = getParameterByName2("user");
+  const mode = getParameterByName2("atm");
 
   try {
     const xhttp = new XMLHttpRequest();

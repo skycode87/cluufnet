@@ -176,7 +176,6 @@ const connectToCluuf_Pack = (
       if (res.ok) {
         Swal.fire({
           title: "La aplicación ha sido enviada con exito.",
-          timer: 1500,
           icon: "success",
         });
       }

@@ -76,7 +76,7 @@ const initConnection = ({ onSuccess, onError }) => {
       $(".user-address").text(user.address);
       $(".user-city").text(user.city);
       $(".user-country").text(user.country);
-      $(".user-startdate").text(user.startdate);
+      $(".user-startdate").text(dateFormat2(user.startdate));
       $(".user-profession").text(user.profession);
       $(".user-facebook").attr("href", user.facebook);
       $(".user-instagram").attr("href", user.instagram);
@@ -88,6 +88,60 @@ const initConnection = ({ onSuccess, onError }) => {
       $(".user-genre").text(user.genre);
       $(".user-alergies").text(user.alergies);
       $(".user-bodylesson").text(user.bodylesson);
+
+      if (user.role === "ADMIN") {
+        $("#main-menu").html(
+          `<li><a href="javascript:goto('gmu')" class="cliente" >Clientes</a></li>
+          <li><a href="javascript:goto('gmApps')" class="apps" >Aplicaciones</a></li>`
+        );
+      }
+
+      if (user.role === "SUPERADMIN") {
+        $("#main-menu")
+          .html(`<li><a href="javascript:goto('gmu')" class="cliente">Clientes</a></li>
+          <li><a href="javascript:goto('gmApps')" class="apps" >Aplicaciones</a></li>
+        <li><a href="javascript:goto('gma')"  class="team" >Equipo</a></li>`);
+      }
+
+      if (String(document.location.href).indexOf("gmu.html") > -1)
+        $(".cliente").addClass("active");
+      else if (String(document.location.href).indexOf("gma.html") > -1)
+        $(".team").addClass("active");
+      else if (String(document.location.href).indexOf("gmApps.html") > -1)
+        $(".apps").addClass("active");
+
+      if (String(document.location.href).indexOf("gm.html") > -1) {
+        getUserApps(
+          { userId: user._id },
+          {
+            onSuccess: (resultApps) => {
+              if (resultApps.apps.length > 0) {
+                renderApps(resultApps.apps);
+                $(".user-plan").html(
+                  `${resultApps.apps[0].packId.name} ${resultApps.apps[0].planId.name}`
+                );
+
+                $(".about-plan").html(
+                  `${resultApps.apps[0].planId.observation}`
+                );
+
+                $(".plan-startdate").html(
+                  `${dateFormat2(resultApps.apps[0].startDate)}`
+                );
+
+                $(".plan-closuredate").html(
+                  `${dateFormat2(resultApps.apps[0].closureDate)}`
+                );
+
+                $(".plan-price").html(
+                  `${priceFormat(resultApps.apps[0].planId.price)}`
+                );
+              }
+            },
+            onError: () => {},
+          }
+        );
+      }
 
       /* user-form */
       $("form.user #firstname").val(user.firstname);
@@ -226,7 +280,7 @@ const initConnection = ({ onSuccess, onError }) => {
 initConnection({
   onSuccess: () => {
     searchUserbyText({ textValue: "" });
-    searchTeambyText({ textValue: "" });
+    //searchTeambyText({ textValue: "" });
   },
   onError: () => {},
 });

@@ -5,6 +5,7 @@ localStorage.setItem("params", location.search);
 
 if (String(document.location.host).indexOf("localhost") > -1) {
   backend_url_ = "http://localhost:2001";
+  localStorage.setItem("backend_url", backend_url_);
 }
 
 const globals_pack = Object.freeze({
@@ -45,3 +46,8 @@ const validarEmail_ = (valor) => {
 };
 
 const priceFormat = (text) => `$ ${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+const dateFormat = (date) => moment(date).format("L");
+const dateFormat2 = (date) => moment(date).format("LL");
+const dateFormat4 = (date) => moment(date).format(" dddd MMMM Do YYYY"); // July 2nd 2021, 3:19:33 am
+const timeFormat3 = (date) => moment(date, "HH:mm").format("h:mm a"); // July 2nd 2021, 3:19:33 am

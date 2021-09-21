@@ -157,17 +157,27 @@
                                 <div class="row menu-checkbox-filters">
                                     <div class=" col-lg-2">
                                         <input type="radio" id="html" name="filter-user" value="waiting">
-                                        <label for="html">En Espera</label>
+                                        <label for="html">
+
+                                            <i style="color: orange;" class="icofont-ban"></i>
+                                            En Espera</label>
                                     </div>
 
                                     <div class=" col-lg-2">
                                         <input type="radio" id="css" name="filter-user" value="all">
-                                        <label for="css">Todos</label>
+                                        <label for="css">
+                                            <i style="color: green;" class="icofont-ban"></i>
+                                            Aprobadas</label>
                                     </div>
 
                                     <div class=" col-lg-2">
                                         <input type="radio" id="javascript" name="filter-user" value="checkinnow">
-                                        <label for="javascript">Asistentes</label>
+                                        <label for="javascript"> <i style="color: red;" class="icofont-ban"></i> No aprobadas</label>
+                                    </div>
+
+                                    <div class=" col-lg-2">
+                                        <input type="radio" id="javascripts" name="filter-user" value="checkinnow">
+                                        <label for="javascripts"> <i style="color: gray;" class="icofont-ban"></i> Todas</label>
                                     </div>
                                 </div>
 
@@ -271,7 +281,9 @@
                                         <div class="block-box" style="padding: 30px">
                                             <form id="contact-form" class="user">
                                                 <input type="hidden" id="instanceId" value="">
+                                                <input type="hidden" id="appId" value="">
                                                 <input type="hidden" id="userId" value="">
+
                                                 <input type="hidden" id="pin" value="">
                                                 <div class="row gutters-20">
                                                     <div class="col-lg-12 form-group">
@@ -326,8 +338,6 @@
                                                     <div class="col-lg-6 form-group">
                                                         <input type="text" class="form-control" name="country" id="country" placeholder="Pais">
                                                     </div>
-
-
 
                                                     <div class="col-lg-12 form-group">
                                                         <br>
@@ -440,12 +450,10 @@
 
         <!-- Site Scripts -->
         <script src="assets/jsgm/global.js"></script>
-        <script src="assets/jsgm/user.js"></script>
+        <script src="assets/jsgm/apps.js"></script>
         <script src="assets/jsgm/request.js"></script>
         <script src="assets/jsgm/init.js"></script>
         <script src="assets/js/app.js"></script>
-
-
     </body>
 
 </html>

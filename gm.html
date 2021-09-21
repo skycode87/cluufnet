@@ -177,7 +177,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h3 class="item-title user-fullname"></h3>
-                                    <div class="item-subtitle user-profession"></div>
+                                    <div class="item-subtitle user-plan"></div>
                                     <ul class="item-social">
                                         <li><a href="#" class="bg-twitter user-linkedin"><i class="icofont-linkedin"></i></a></li>
                                         <li><a href="#" class="bg-fb user-facebook"><i class="icofont-facebook"></i></a></li>
@@ -218,21 +218,18 @@
                             <section class="tab-content tab-content-2">
                                 <div class="forum-list-table">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered">
+                                        <table class="table table-bordered " id="appsTable">
                                             <thead class="thead-dark">
                                                 <tr>
-                                                    <th scope="col">Proximo cobro</th>
-                                                    <th scope="col">Monto</th>
-                                                    <th scope="col">Estatus</th>
-
+                                                    <th scope="col">Plan</th>
+                                                    <th scope="col">Costo</th>
+                                                    <th scope="col">Inicio</th>
+                                                    <th scope="col">Finalización</th>
+                                                    <th scope="col">A pagar</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>20 febrero 2021</td>
-                                                    <td class="text-center">40.000</td>
-                                                    <td class="text-center">Completed</td>
-                                                </tr>
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -428,6 +425,24 @@
                         </div>
                         <div class="col-lg-4 widget-block widget-break-lg">
                             <div class="widget widget-user-about">
+
+                                <div class="widget-heading">
+                                    <h3 class="widget-title">Acerca de mi plan</h3>
+                                </div>
+
+                                <div class="user-info">
+                                    <ul class="info-list">
+                                        <li><span>Nombre:</span>&nbsp;<b><span class="user-plan"></span></b></li>
+                                        <li>
+                                            <span class="about-plan"></span></b>
+                                        </li>
+                                        <li><span>Desde:</span>&nbsp;<span class="plan-startdate"></span></b></li>
+                                        <li><span>Hasta:</span>&nbsp;<span class="plan-closuredate"></span></b></li>
+                                        <li><span>Costo Mensual:</span>&nbsp;<span class="plan-price"></span></b></li>
+                                    </ul>
+
+                                </div>
+                                <br>
                                 <div class="widget-heading">
                                     <h3 class="widget-title">Acerca de mi</h3>
                                 </div>
@@ -474,17 +489,6 @@
                                     </div>
                                 </div>
 
-                                <ul class="author-statistics">
-                                    <li>
-                                        <a href="#"><span class="item-number">30</span> <span class="item-text">POSTS</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><span class="item-number">12</span> <span class="item-text">COMMENTS</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><span class="item-number">1,125</span> <span class="item-text">VIEWS</span></a>
-                                    </li>
-                                </ul>
                             </div>
 
 
@@ -530,10 +534,13 @@
         <script src="dependencies/elevate-zoom/jquery.elevatezoom.js"></script>
         <script src="dependencies/bootstrap-validator/js/validator.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtmXSwv4YmAKtcZyyad9W7D4AC08z0Rb4"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <!-- Site Scripts -->
-        <script src="assets/jsgm/request.js"></script>
         <script src="assets/jsgm/global.js"></script>
+        <script src="assets/jsgm/user.js"></script>
+        <script src="assets/jsgm/team.js"></script>
+        <script src="assets/jsgm/request.js"></script>
         <script src="assets/jsgm/init.js"></script>
         <script src="assets/js/app.js"></script>
 

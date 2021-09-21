@@ -1,8 +1,19 @@
 // const backend_url_ = "https://cluufweb-backend.herokuapp.com";
-const backend_url_ = "http://localhost:2001";
+let backend_url_ = "https://cluufweb-backend.herokuapp.com";
+let frontend_url_ = "https://cluuf-web.herokuapp.com";
 
 localStorage.setItem("backend_url", backend_url_);
+localStorage.setItem("frontend_url", frontend_url_);
+
+localStorage.setItem("aws_url", "https://cluuf.s3.sa-east-1.amazonaws.com");
 localStorage.setItem("params", location.search);
+
+if (String(document.location.host).indexOf("localhost") > -1) {
+  backend_url_ = "http://localhost:2001";
+  frontend_url_ = "http://localhost:3000";
+  localStorage.setItem("backend_url", backend_url_);
+  localStorage.setItem("frontend_url", frontend_url_);
+}
 
 const goto = (name) => {
   if (localStorage.getItem("params")) {
@@ -10,36 +21,53 @@ const goto = (name) => {
     if (name === "gmu") active.user = "active";
     if (name === "gma") active.admin = "active";
 
-    localStorage.setItem(
-      "main-menu",
-      `<li><a href="javascript:goto('gmu')" class="${
-        active.user || ""
-      }">Clientes</a></li>
-    <li><a href="javascript:goto('gma')" class="${
-      active.admin || ""
-    }">Equipo</a></li>
-    <li><a href="#" >Nuevo Cliente</a></li>
-    `
-    );
-
     window.location.href = `${name}.html${localStorage.getItem("params")}`;
   } else {
     alert("Falta de parametros validos para continuar, inicie sesión de nuevo");
   }
 };
 
-if (localStorage.getItem("main-menu")) {
-  document.getElementById("main-menu").innerHTML =
-    localStorage.getItem("main-menu");
-} else {
-  goto("gmu");
-}
+const getParameterByName_pack = (name) => {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+  return results === null
+    ? ""
+    : decodeURIComponent(results[1].replace(/\+/g, " "));
+};
+
+const getParameterByNameURL = (name) => {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+  return results === null
+    ? ""
+    : decodeURIComponent(results[1].replace(/\+/g, " "));
+};
 
 const isValid = (dato) => {
   if (!dato || dato === undefined || dato === "" || dato === null) {
     return false;
   }
   return true;
+};
+
+const setCookies_ = (name, value, expires = null) => {
+  if (expires === null) {
+    document.cookie = `${name}=${value}`;
+  } else {
+    var now = new Date();
+    now.setTime(now.getTime() + 1 * 3600 * 1000);
+    document.cookie = `${name}=${value}; expires=${now.toUTCString()}`;
+  }
+};
+const getCookies_ = (name) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(";").shift();
+};
+const removeCookie_ = (name) => {
+  document.cookie = name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 };
 
 const availablesDayFormat = (dayNumber, idioma = "en") => {
@@ -299,20 +327,7 @@ const sendRequestCluuf = (
     });
 };
 
-const getParameterByName_pack = (name) => {
-  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(location.search);
-  return results === null
-    ? ""
-    : decodeURIComponent(results[1].replace(/\+/g, " "));
-};
-
-const getParameterByNameURL = (name) => {
-  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(location.search);
-  return results === null
-    ? ""
-    : decodeURIComponent(results[1].replace(/\+/g, " "));
-};
+const dateFormat = (date) => moment(date).format("L");
+const dateFormat2 = (date) => moment(date).format("LL");
+const dateFormat4 = (date) => moment(date).format(" dddd MMMM Do YYYY"); // July 2nd 2021, 3:19:33 am
+const timeFormat3 = (date) => moment(date, "HH:mm").format("h:mm a"); // July 2nd 2021, 3:19:33 am
