@@ -456,6 +456,7 @@ const openPanelUser = ({ userId, num }) => {
               <li><a href="javascript:resetPasswordUser()">Resetear Password</a></li> 
               <li><a href="javascript:openPanelContent(3)">Editar Perfil</a></li>
               <li><a href="javascript:openPanelContent(0)">Marcar Asistencía</a></li>
+              <li><a href="javascript:openPanelContent(4)">Registro Invitados</a></li>
               </ul>
 
   
@@ -721,6 +722,17 @@ const resetPasswordUser = () => {
 const openPanelContent = (number) => {
   $(".panel-content").hide();
   $(`.panel-content-${number}`).show("fast");
+
+  // Invitados del usuario ==== buscar en guest.js
+  if (number === 4) {
+    $("#guestsTable tbody tr").remove();
+    searchGuestsByUser({
+      onSuccess: (data) => {
+        renderGuests(data.result);
+      },
+      onError: () => {},
+    });
+  }
 };
 
 const closePanelContent = () => {

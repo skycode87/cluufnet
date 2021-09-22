@@ -194,8 +194,6 @@
                                 </div>
                                 <div class="col-lg-9">
                                     <section class="panel-content panel-content-0">
-
-
                                         <div class="block-box" style="padding: 30px">
                                             <h4 class="title-panel-content-user">Asistencía</h4>
                                             <form id="contact-form">
@@ -211,7 +209,6 @@
                                                 </div>
                                                 <div class="form-response"></div>
                                             </form>
-
                                         </div>
                                     </section>
 
@@ -398,6 +395,67 @@
                                         </div>
 
                                     </section>
+
+                                    <section class="panel-content panel-content-4">
+                                        <div class="block-box" style="padding: 30px">
+                                            <h4 class="title-panel-content-user">Invitado</h4>
+                                            <form id="guest-form" class="guest">
+                                                <input type="hidden" id="instanceId" value="">
+                                                <input type="hidden" id="userId" value="">
+                                                <div class="row gutters-20">
+
+                                                    <div class="col-lg-6 form-group">
+                                                        <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Nombre">
+                                                    </div>
+                                                    <div class="col-lg-6 form-group">
+                                                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellido">
+                                                    </div>
+
+                                                    <div class="col-lg-6 form-group">
+                                                        <input type="email" class="form-control" name="email" id="email" placeholder="E-mail">
+                                                    </div>
+
+                                                    <div class="col-lg-6 form-group">
+                                                        <select style="height: 50px;" class="custom-select form-control-lg" id="genre" name="genre">
+                                                            <option value="Femenino">Femenino</option>
+                                                            <option value="Masculino">Masculino</option>
+                                                            <option value="Otro">Otro</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <ul>
+                                                        <li class="col-12 form-group li-submit">
+                                                            <a class="submit-btn" href="javascript:submitGuestForm()">Registrar Invitado</a>
+                                                        </li>
+
+                                                        <li class="li-loading" style="display: none">
+                                                            <a class="cart-btn " style="background-color: gray;"><span class="t_loading">Sending Information</span></a>
+                                                        </li>
+                                                    </ul>
+
+                                                </div>
+                                                <div class="form-response"></div>
+                                            </form>
+                                        </div>
+                                        <div class="forum-list-table">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered " id="guestsTable">
+                                                    <thead class="thead-dark">
+                                                        <tr>
+                                                            <th scope="col">Nombre</th>
+                                                            <th scope="col">Email</th>
+                                                            <th scope="col">Fecha</th>
+                                                            <th scope="col">Genero</th>
+                                                            <th scope="col">por usuario</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                    </section>
+
                                 </div>
 
                             </div>
@@ -441,6 +499,7 @@
         <!-- Site Scripts -->
         <script src="assets/jsgm/global.js"></script>
         <script src="assets/jsgm/user.js"></script>
+        <script src="assets/jsgm/guest.js"></script>
         <script src="assets/jsgm/request.js"></script>
         <script src="assets/jsgm/init.js"></script>
         <script src="assets/js/app.js"></script>
