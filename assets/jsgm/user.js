@@ -452,7 +452,7 @@ const openPanelUser = ({ userId, num }) => {
 
               <ul class="menu-options">
               <li><a href="javascript:openPanelContent(1)">Historial de Eventos</a></li>
-              <li><a href="javascript:openPanelContent(2)">Foto de Perfil</a></li> 
+              <li><a href="javascript:openPanelContent(2)">Subir foto de perfil</a></li> 
               <li><a href="javascript:resetPasswordUser()">Resetear Password</a></li> 
               <li><a href="javascript:openPanelContent(3)">Editar Perfil</a></li>
               <li><a href="javascript:openPanelContent(0)">Marcar Asistencía</a></li>
