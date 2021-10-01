@@ -16,6 +16,9 @@ const sendRequestGYMCluuf = (
     packId = null,
     instanceId = null,
     plan = null,
+    campaign = null,
+    adminEmail = null,
+    isNotifyContact = null,
   },
   { onSuccess = {}, onError = {}, onFinally = {} }
 ) => {
@@ -32,6 +35,9 @@ const sendRequestGYMCluuf = (
     packId,
     instanceId,
     plan,
+    campaign,
+    adminEmail,
+    isNotifyContact,
   }).toString();
 
   fetch(globals_gym.CLUUFWEB_SERVER_FORM_GYM, {
@@ -102,6 +108,8 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
     successMessage = "",
     messagePosition = "top",
     messageVisible = true,
+    adminEmail = false,
+    isNotifyContact = false,
   },
   { onSuccess, onError }
 ) => {
@@ -164,6 +172,8 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
     instanceId,
     campaign,
     plan,
+    adminEmail,
+    isNotifyContact,
   };
 
   sendRequestGYMCluuf(params2, {
@@ -218,8 +228,10 @@ const submitSubscription = () => {
       formId: $("#formId").val(), // proporcionado por cluuf-web
       instanceId: $("#instanceId").val(), // proporcionado por cluuf-web
       successMessage: "The message has been sent successfully",
-      campaign: localStorage.getItem("cluufpackname"),
+      campaign: `${$("#packname").val()} ${$("#planname").val()}`,
       plan: $("#plan").val(),
+      adminEmail: $("#adminEmail").val(),
+      isNotifyContact: $("#isNotifyContact").val(),
     },
     {
       onSuccess: (response) => {

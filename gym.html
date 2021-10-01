@@ -172,7 +172,12 @@
 
                                             <form id="form-reservation">
                                                 <input type="hidden" class="cluuf-pack-id" id="formId">
-                                                <input type="hidden" id="instanceId">
+                                                <input type="hidden" id="instanceId"> <input type="hidden" id="campaign">
+                                                <input type="hidden" id="packname">
+                                                <input type="hidden" id="planname">
+                                                <input type="hidden" id="code">
+                                                <input value="false" type="hidden" id="adminEmail" name="adminEmail">
+                                                <input type="hidden" id="isNotifyContact" name="isNotifyContact" value="false">
                                                 <div class="row gutters-15">
                                                     <div class="col-lg-12 form-group">
                                                         <b>Fecha que tienes planeado iniciar con nosotros</b>
@@ -353,12 +358,12 @@
         <script src="assets/js/app.js"></script>
 
 
-        <!-- Cluuf configuration -->
+        <!--
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script>localStorage.setItem("privacyPolicyURL", "false");</script>
         <link async rel="stylesheet" href="https://cluuftracks.herokuapp.com/cluuf.css">
         <script async type="text/javascript" src="https://cluuftracks.herokuapp.com/track.js?cluuf_key=local&instance=local" id="cluuf-analytics"></script>
-        <!-- Cluuf configuration https://cluuftracks.herokuapp.com -->
+        -->
 
     </body>
 

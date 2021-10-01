@@ -201,8 +201,6 @@ getConnection({
                   $(".cluuf-pack-iframeMap").append(pack.iframeMap);
                   $(".cluuf-pack-meetingPoint").append(pack.meetingPoint);
                   $(".cluuf-pack-excerpt").html(pack.excerpt);
-                  $("#packname").val(pack.name);
-
                   localStorage.setItem("cluufpackname", pack.name);
                   localStorage.setItem("cluufpackId", pack._id);
                   localStorage.setItem("cluufclient", pack.name);
@@ -265,10 +263,7 @@ getConnection({
                             resultPlans.plans.forEach((element) => {
                               sessionStorage.setItem(
                                 element._id,
-                                JSON.stringify({
-                                  name: element.name,
-                                  observation: element.observation,
-                                })
+                                element.observation
                               );
 
                               if (
@@ -282,19 +277,10 @@ getConnection({
                                   )}</option>`
                                 );
 
-                                $("#planname").val(
-                                  JSON.parse(
-                                    sessionStorage.getItem($("#plan").val())
-                                  ).name
-                                );
-
                                 $(".plan_description").html(
-                                  `<div>
-                                  ${
-                                    JSON.parse(
-                                      sessionStorage.getItem($("#plan").val())
-                                    ).observation
-                                  }</div>`
+                                  `<div>${sessionStorage.getItem(
+                                    $("#plan").val()
+                                  )}</div>`
                                 );
                               } else {
                                 $("#plan").append(
@@ -389,10 +375,8 @@ $(".is-cluuf-pack-meetingPoint").on("click", () => {
 
 $("#plan").on("change", () => {
   $(".plan_description div").remove();
-  $("#planname").val(JSON.parse(sessionStorage.getItem($("#plan").val())).name);
   $(".plan_description").html(
-    `<div>
-    ${JSON.parse(sessionStorage.getItem($("#plan").val())).observation}</div>`
+    `<div>${sessionStorage.getItem($("#plan").val())}</div>`
   );
 });
 
