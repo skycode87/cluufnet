@@ -244,6 +244,11 @@ getConnection({
                     pack.colorBtnForm
                   );
 
+                  $(" body .contact-page .contact-box-wrap .contact-form").css(
+                    "background",
+                    pack.backgroundForm
+                  );
+
                   $(
                     "body .single-product .product-content .action-area li .cart-btn"
                   ).css("background", pack.colorBtnForm);
