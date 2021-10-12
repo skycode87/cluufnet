@@ -218,7 +218,7 @@ const submitSubscription = () => {
     if (!$("#privacyPolicy").prop("checked")) {
       Swal.fire({
         title:
-          "Por favor acepta los terminos y condiciones para poder continuar",
+          "Por favor acepta los têrminos y condiciones para poder continuar",
         timer: 2000,
         icon: "warning",
       });
@@ -230,7 +230,7 @@ const submitSubscription = () => {
     if (!$("#parentalControl").prop("checked")) {
       Swal.fire({
         title:
-          "Esta aplicacion es valida solo para personas mayores de 18 años",
+          "Esta aplicación es válida solo para personas mayores de 18 años",
         timer: 3000,
         icon: "warning",
       });
