@@ -295,6 +295,10 @@ getConnection({
                       $(".is-cluuf-pack-description").hide();
                   }
 
+                  if (String(meetingPoint).length > 10) {
+                    $(".pack_iframe_meetingpoint").html(pack.meetingPoint);
+                  }
+
                   $(".btn-all-photos").attr("href", pack.avatar);
 
                   let days = "";
