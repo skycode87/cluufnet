@@ -98,6 +98,22 @@ getConnection({
       { instanceId: instance.result._id },
       {
         onSuccess: (result) => {
+          localStorage.setItem(
+            "cluufSettings",
+            JSON.stringify({
+              client: result.name,
+              keypublic: result.keypublic,
+              instanceId: result._id,
+              tracking: false,
+              editing: true,
+              backend: "https://cluufweb-backend.herokuapp.com",
+              trackBackend: "https://cluuftracks.herokuapp.com",
+              frontend: "https://cluuf-web.herokuapp.com",
+              //trackBackend: "http://localhost:2000",
+              //backend: "http://localhost:2001",
+            })
+          );
+
           $(".cluuf-instance-logo").attr("src", result.logo);
           $(".cluuf-instance-logowhite").attr("src", result.logowhite);
 
