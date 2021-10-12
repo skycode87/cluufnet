@@ -42,6 +42,8 @@
             <header class="fixed-header">
                 <div class="header-menu">
                     <div class="navbar">
+                        <img class="clf-src-general_image_logo_white onlyMobile tag_" style="display: none; padding: 15px; padding-top: 20px; height: 80px;">
+
                         <div class="nav-item d-none d-sm-block">
                             <div class="header-logo">
                                 <img class="clf-src-general_image_logo_white tag_" width="160px" style="padding: 15px; padding-top: 20px">
@@ -149,30 +151,36 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="product-content">
-                                        <div class="review-form" style="background-color: #fff; padding: 30px; min-height: 570px;">
-                                            <!-- 
-                                            <img style="margin:auto; margin-bottom: 30px; display: block;" class="item-title clf-src-general_image_logo tag_ header-title-logo" width="220px">
-                                           -->
-                                            <div class="item-category"><span class="clf-content-pack_category tagpack_"></span></div>
-                                            <h1 class="item-title" style="font-size: 32px;"><span class="clf-content-pack_title tagpack_"></span></h1>
+                                        <div class="review-form cluuf-instance-background-form" style="padding: 30px; min-height: 570px;">
+                                            <div class="item-category" style="color: #fff;">
+                                                <span class="clf-content-pack_category tagpack_">
+
+                                                </span>
+                                            </div>
+                                            <h1 class="item-title" style="font-size: 32px; color: #fff;">
+                                                <span class="clf-content-pack_title tagpack_ "></span>
+                                            </h1>
                                             <ul class="entry-meta">
                                                 <li>
-                                                    <span class="clf-content-pack_excerpt tagpack_"></span>
+                                                    <span style="color: #fff" class="clf-content-pack_excerpt tagpack_"></span>
                                                 </li>
                                             </ul>
-                                            <div class="item-price">
-                                                <b>Seleccione un plan</b>
-                                                <select style="height: 50px; font-weight: bold; font-size: 18px;" class="custom-select form-control-lg" id="plan" name="plan">
-
-                                                </select>
-                                            </div>
-                                            <div class="plan_description">
-
+                                            <div class="item-price" style="color: #fff">
+                                                <label>Seleccione un plan</label>
+                                                <select style="height: 50px; font-weight: bold; font-size: 18px;" class="custom-select form-control-lg" id="plan" name="plan"> </select>
                                             </div>
 
-                                            <form id="form-reservation">
+                                            <div class="plan_description"></div>
+                                            <form id="form-reservation" class="subscriber-form">
+                                                <input type="hidden" id="isPrivacyPolicy" value="false">
+                                                <input type="hidden" id="isParentalControl" value="false">
+                                                <input type="hidden" id="isCupon" value="false">
+                                                <input type="hidden" id="campaign" value="">
+                                                <input type="hidden" id="facilitator" value="">
+                                                <input type="hidden" id="refererUserId" value="">
+                                                <input type="hidden" id="refererAppId" value="">
                                                 <input type="hidden" class="cluuf-pack-id" id="formId">
-                                                <input type="hidden" id="instanceId"> <input type="hidden" id="campaign">
+                                                <input type="hidden" id="instanceId">
                                                 <input type="hidden" id="packname">
                                                 <input type="hidden" id="planname">
                                                 <input type="hidden" id="code">
@@ -180,22 +188,49 @@
                                                 <input type="hidden" id="isNotifyContact" name="isNotifyContact" value="false">
                                                 <div class="row gutters-15">
                                                     <div class="col-lg-12 form-group">
-                                                        <b>Fecha que tienes planeado iniciar con nosotros</b>
+                                                        <label>Fecha que tienes planeado iniciar con nosotros</label>
                                                         <input type="date" placeholder="Date" class="form-control" name="date" id="date" required>
                                                     </div>
 
                                                     <div class="col-lg-12 form-group">
-                                                        <input type="text" placeholder="Nombre Completo" class="form-control" name="name" id="name" required>
+                                                        <label>Nombre y Apellido</label>
+                                                        <input type="text" class="form-control" name="name" id="name" required>
                                                     </div>
                                                     <div class="col-lg-12 form-group">
-                                                        <input type="email" placeholder="E-mail" class="form-control" name="email" id="email" required>
+                                                        <label>Correo Electronico</label>
+                                                        <input type="email" class="form-control" name="email" id="email" required>
                                                     </div>
                                                     <div class="col-lg-12 form-group">
-                                                        <input type="text" placeholder="Número de teléfono" class="form-control" name="phone" id="phone" required>
+                                                        <label>Número de teléfono</label>
+                                                        <input type="text" class="form-control" name="phone" id="phone" required>
                                                     </div>
 
-                                                    <div class="col-12 form-group">
-                                                        <textarea class="form-control textarea" placeholder="Mensaje" name="message" id="message" cols="30" rows="1"></textarea>
+                                                    <div class="col-12 form-group isCupon" style="display: none;">
+                                                        <label>Codigo del Cupón</label>
+                                                        <input type="text" class="form-control" name="cupon" id="cupon">
+
+                                                    </div>
+
+                                                    <div class="col-12 form-group isPrivacyPolicyPack" style="display: none;">
+                                                        <label class="containerCheck">
+                                                            Acepto los <a class="privacyPolicyPack" style="text-decoration: underline; color: #fff;" target="_blank"> terminos y condiciones</a> <br>
+
+                                                            <input type="checkbox" name="privacyPolicy" id="privacyPolicy">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="col-12 form-group isParentalControl" style="display: none;">
+                                                        <label class="containerCheck">
+                                                            Admito que soy una persona de 18 años de edad.
+                                                            <input type="checkbox" name="parentalControl" id="parentalControl">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="col-12 form-group" style="display: none">
+                                                        <label>Algún mensaje o alguna pregunta</label>
+                                                        <textarea class="form-control textarea" name="message" id="message" cols="30" rows="1"></textarea>
                                                     </div>
 
                                                     <div class="col-lg-12 form-group " style="display: flex; justify-content: center;">
@@ -273,20 +308,24 @@
                                             <h3 class="item-title"><span class="clf-content-general_contact_us_title tag_"></span></h3>
                                             <form id="contact-form">
                                                 <div class="row gutters-20">
-                                                    <div class="col-lg-6 form-group">
-                                                        <input type="text" class="form-control" name="fname" id="fname" placeholder="First Name">
+                                                    <div class="col-lg-12 form-group">
+                                                        <label>Nombre y Apellido</label>
+                                                        <input type="text" class="form-control" name="fname" id="fname">
                                                     </div>
                                                     <div class="col-lg-6 form-group">
-                                                        <input type="email" class="form-control" name="email" id="femail" placeholder="E-mail">
+                                                        <label>Correo Electronico</label>
+                                                        <input type="email" class="form-control" name="email" id="femail">
                                                     </div>
                                                     <div class="col-lg-6 form-group">
-                                                        <input type="text" class="form-control" name="phone" id="fphone" placeholder="Phone">
+                                                        <label>Teléfono</label>
+                                                        <input type="text" class="form-control" name="phone" id="fphone">
                                                     </div>
                                                     <div class="col-12 form-group">
-                                                        <textarea name="message" id="fmessage" cols="30" rows="3" id="fmessage" class="textarea form-control" placeholder="Message"></textarea>
+                                                        <label>Dejanos tu mensaje </label>
+                                                        <textarea name="message" id="fmessage" cols="30" rows="3" id="fmessage" class="textarea form-control"></textarea>
                                                     </div>
                                                     <div class="col-12 form-group">
-                                                        <a class="submit-btn" href="javascript:formSubmit()">Send Us Message</a>
+                                                        <a style="font-size: 18px; padding: 10px 50px;" class="submit-btn" href="javascript:formSubmit()">Enviar mensaje</a>
                                                     </div>
                                                 </div>
                                                 <div class="form-response"></div>
@@ -350,12 +389,12 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <!-- Site Scripts -->
-        <script src="assets/js/global.js"></script>
-        <script src="assets/js/request.js"></script>
-        <script src="assets/js/gymRequest.js"></script>
-        <script src="assets/js/contactUsRequest.js"></script>
-        <script src="assets/js/init.js"></script>
-        <script src="assets/js/app.js"></script>
+        <script src="assets/js-subscriber/global.js"></script>
+        <script src="assets/js-subscriber/request.js"></script>
+        <script src="assets/js-subscriber/gymRequest.js"></script>
+        <script src="assets/js-subscriber/contactUsRequest.js"></script>
+        <script src="assets/js-subscriber/init.js"></script>
+        <script src="assets/js-subscriber/app.js"></script>
 
 
         <!--
