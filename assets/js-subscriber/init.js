@@ -295,7 +295,7 @@ getConnection({
                       $(".is-cluuf-pack-description").hide();
                   }
 
-                  if (String(meetingPoint).length > 10) {
+                  if (String(pack.meetingPoint).length > 10) {
                     $(".pack_iframe_meetingpoint").html(pack.meetingPoint);
                   }
 
