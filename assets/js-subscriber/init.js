@@ -268,6 +268,7 @@ getConnection({
                     $("#isCupon").val(true);
                     $(".isCupon").show();
                   }
+                  $("#date").val(moment().format("YYYY-MM-DD"));
 
                   $(".cluuf-pack-name").text(pack.name);
                   $(".cluuf-pack-category").text(pack.category);
