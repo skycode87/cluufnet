@@ -18,11 +18,15 @@ const sendRequestGYMCluuf = (
     date = null,
     document = null,
     documentType = null,
+    firstname = null,
+    medium = null,
+    lastname = null,
     address = null,
     time = null,
     packId = null,
     instanceId = null,
     plan = null,
+    birthday = null,
     campaign = null,
     adminEmail = null,
     isNotifyContact = null,
@@ -56,7 +60,11 @@ const sendRequestGYMCluuf = (
     refererAppId,
     refererUserId,
     cupon,
+    birthday,
     facilitator,
+    firstname,
+    lastname,
+    medium,
   }).toString();
 
   console.log({
@@ -80,6 +88,10 @@ const sendRequestGYMCluuf = (
     refererUserId,
     cupon,
     facilitator,
+    birthday,
+    medium,
+    lastname,
+    firstname,
   });
 
   let url = globals_gym.CLUUFWEB_SERVER_FORM_GYM;
@@ -116,7 +128,7 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
   {
     quantity = {
       value: "1",
-      required: true,
+      required: false,
       message: "",
     },
     email = {
@@ -126,7 +138,17 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
     },
     name = {
       value: "",
-      required: true,
+      required: false,
+      message: "",
+    },
+    firstname = {
+      value: "",
+      required: false,
+      message: "",
+    },
+    lastname = {
+      value: "",
+      required: false,
       message: "",
     },
     message = {
@@ -160,6 +182,16 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
       message: "",
     },
     time = {
+      value: "",
+      required: false,
+      message: "",
+    },
+    birthday = {
+      value: "",
+      required: false,
+      message: "",
+    },
+    medium = {
       value: "",
       required: false,
       message: "",
@@ -258,6 +290,50 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
     }
   }
 
+  if (birthday.required) {
+    if (birthday.value === "") {
+      Swal.fire({
+        title: birthday.message,
+        timer: 2000,
+        icon: "warning",
+      });
+      return false;
+    }
+  }
+
+  if (firstname.required) {
+    if (firstname.value === "") {
+      Swal.fire({
+        title: firstname.message,
+        timer: 2000,
+        icon: "warning",
+      });
+      return false;
+    }
+  }
+
+  if (lastname.required) {
+    if (lastname.value === "") {
+      Swal.fire({
+        title: lastname.message,
+        timer: 2000,
+        icon: "warning",
+      });
+      return false;
+    }
+  }
+
+  if (medium.required) {
+    if (medium.value === "") {
+      Swal.fire({
+        title: medium.message,
+        timer: 2000,
+        icon: "warning",
+      });
+      return false;
+    }
+  }
+
   $("form .li-submit").hide();
   $("form .li-loading").show();
 
@@ -272,6 +348,10 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
     document: document.value || null,
     documentType: documentType.value || null,
     address: address.value || null,
+    firstname: firstname.value || null,
+    lastname: lastname.value || null,
+    birthday: birthday.value || null,
+    medium: medium.value || null,
     packId: formId,
     instanceId,
     campaign,
@@ -418,10 +498,15 @@ const submitSubscriptionS1 = () => {
         required: true,
         message: "Please verify Email and try again.",
       },
-      name: {
-        value: $("#name").val(),
+      firstname: {
+        value: $("#firstname").val(),
         required: true,
-        message: "Please verify Name and try again.",
+        message: "Please verify firstname and try again.",
+      },
+      lastname: {
+        value: $("#lastname").val(),
+        required: true,
+        message: "Please verify lastname and try again.",
       },
       phone: {
         value: $("#phone").val(),
@@ -453,6 +538,16 @@ const submitSubscriptionS1 = () => {
         value: $("#address").val(),
         message: "Please verify address and try again.",
       },
+      birthday: {
+        required: true,
+        value: $("#birthday").val(),
+        message: "Please verify birthday and try again.",
+      },
+      medium: {
+        required: true,
+        value: $("#medium").val(),
+        message: "Please verify medium and try again.",
+      },
       formId: $("#formId").val(), // proporcionado por cluuf-web
       instanceId: $("#instanceId").val(), // proporcionado por cluuf-web
       successMessage: "The message has been sent successfully",
@@ -468,13 +563,19 @@ const submitSubscriptionS1 = () => {
     },
     {
       onSuccess: (response) => {
-        $("#name").val("");
+        $("#firstname").val("");
+        $("#lastname").val("");
+        $("#birthday").val("");
+        $("#address").val("");
+        $("#document").val("");
+        $("#documentType").val("");
         $("#email").val("");
         $("#phone").val("");
         $("#message").val("");
         $("#quantity").val("0");
         $("#cupon").val("");
         $("#facilitator").val("");
+        $("#medium").val("");
       },
       onError: () => console.log("Error enviando el formulario"),
     }
