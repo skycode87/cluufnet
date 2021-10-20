@@ -303,14 +303,18 @@ getConnection({
                     method: "GET",
                     url: `${localStorage.getItem(
                       "aws_url"
-                    )}/${localStorage.getItem("keypublic")}.json`,
+                    )}/${localStorage.getItem(
+                      "alias"
+                    )}_files/${localStorage.getItem("keypublic")}.json`,
                   });
 
                   loadCluufContent({
                     method: "GET",
                     url: `${localStorage.getItem(
                       "aws_url"
-                    )}/${localStorage.getItem("keypublic")}.json`,
+                    )}/${localStorage.getItem(
+                      "alias"
+                    )}_files/${localStorage.getItem("keypublic")}.json`,
                   });
 
                   $(".overlay-loading").hide();

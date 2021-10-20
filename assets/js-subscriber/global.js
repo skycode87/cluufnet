@@ -1,6 +1,9 @@
 let backend_url_ = "https://cluufweb-backend.herokuapp.com";
 localStorage.setItem("backend_url", backend_url_);
-localStorage.setItem("aws_url", "https://cluuf.s3.sa-east-1.amazonaws.com");
+localStorage.setItem(
+  "aws_url",
+  "https://cluufcontent.s3.sa-east-1.amazonaws.com"
+);
 localStorage.setItem("params", location.search);
 
 if (String(document.location.host).indexOf("localhost") > -1) {

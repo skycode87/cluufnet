@@ -140,6 +140,7 @@ getConnection({
           localStorage.setItem("instanceId", result._id);
           localStorage.setItem("keypublic", result.keypublic);
           localStorage.setItem("cluuf", "true");
+          localStorage.setItem("alias", result.alias);
 
           if (result.video) {
             if (result.video.length > 10) {
@@ -396,18 +397,23 @@ getConnection({
                     );
                   }
 
+                  /// https://cluufcontent.s3.sa-east-1.amazonaws.com/dojobox_files/32242525fd2f7d184fbc00511153b7eq33232.json
                   loadCluufPackContent({
                     method: "GET",
                     url: `${localStorage.getItem(
                       "aws_url"
-                    )}/${localStorage.getItem("keypublic")}.json`,
+                    )}/${localStorage.getItem(
+                      "alias"
+                    )}_files/${localStorage.getItem("keypublic")}.json`,
                   });
 
                   loadCluufContent({
                     method: "GET",
                     url: `${localStorage.getItem(
                       "aws_url"
-                    )}/${localStorage.getItem("keypublic")}.json`,
+                    )}/${localStorage.getItem(
+                      "alias"
+                    )}_files/${localStorage.getItem("keypublic")}.json`,
                   });
 
                   $(".overlay-loading").hide();
@@ -424,7 +430,9 @@ getConnection({
                     method: "GET",
                     url: `${localStorage.getItem(
                       "aws_url"
-                    )}/${localStorage.getItem("keypublic")}.json`,
+                    )}/${localStorage.getItem(
+                      "alias"
+                    )}_files/${localStorage.getItem("keypublic")}.json`,
                   });
 
                   $(".overlay-loading").hide();
