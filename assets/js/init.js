@@ -116,6 +116,7 @@ getConnection({
 
           localStorage.setItem("hostname", result.hostname);
           localStorage.setItem("instanceId", result._id);
+          localStorage.setItem("alias", result.alias);
           localStorage.setItem("keypublic", result.keypublic);
           localStorage.setItem("cluuf", "true");
 
