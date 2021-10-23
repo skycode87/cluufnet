@@ -345,13 +345,13 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
     quantity: quantity.value || 1,
     date: date.value || null,
     time: time.value || null,
-    document: document.value || null,
-    documentType: documentType.value || null,
-    address: address.value || null,
-    firstname: firstname.value || null,
-    lastname: lastname.value || null,
-    birthday: birthday.value || null,
-    medium: medium.value || null,
+    document: document.value || "",
+    documentType: documentType.value || "",
+    address: address.value || "",
+    firstname: firstname.value || "",
+    lastname: lastname.value || "",
+    birthday: birthday.value || "",
+    medium: medium.value || "",
     packId: formId,
     instanceId,
     campaign,
@@ -418,10 +418,15 @@ const submitSubscription = () => {
         required: true,
         message: "Please verify Email and try again.",
       },
-      name: {
-        value: $("#name").val(),
+      firstname: {
+        value: $("#firstname").val(),
         required: true,
-        message: "Please verify Name and try again.",
+        message: "Please verify firstname and try again.",
+      },
+      lastname: {
+        value: $("#lastname").val(),
+        required: true,
+        message: "Please verify lastname and try again.",
       },
       phone: {
         value: $("#phone").val(),
@@ -437,6 +442,16 @@ const submitSubscription = () => {
         required: true,
         value: $("#date").val(),
         message: "Please verify date and try again.",
+      },
+      document: {
+        required: false,
+        value: " ",
+        message: "Please verify documento and try again.",
+      },
+      documentType: {
+        required: false,
+        value: " ",
+        message: "Please verify Tipo de Documento and try again.",
       },
       formId: $("#formId").val(), // proporcionado por cluuf-web
       instanceId: $("#instanceId").val(), // proporcionado por cluuf-web
