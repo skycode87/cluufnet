@@ -1,5 +1,10 @@
+function capitalize(word) {
+  const lower = word.toLowerCase();
+  return word.charAt(0).toUpperCase() + lower.slice(1);
+}
+
 const JsonLanguage = {
-  lng: "en", // if you're using a language detector, do not define the lng option
+  lng: "es", // if you're using a language detector, do not define the lng option
   debug: true,
   resources: {
     en: {
@@ -119,11 +124,43 @@ getConnection({
 
           if (result.logowhite.length < 5)
             $(".cluuf-instance-logowhite").attr("src", result.logo);
+
           $(".cluuf-instance-name").text(result.name);
           $(".cluuf-instance-phonepublic").text(result.phonepublic);
           $(".cluuf-instance-emailpublic").text(result.emailpublic);
           $(".cluuf-instance-website").text(result.website);
           $(".cluuf-instance-address").text(result.address);
+
+          $(".cluuf-instance-cover").css(
+            "background-image",
+            `url(${result.cover})`
+          );
+
+          let contador = "1";
+          localStorage.setItem("contador", contador);
+          setInterval(() => {
+            if (localStorage.getItem("contador") === "0") {
+              $(".cluuf-instance-cover").css(
+                "background-image",
+                `url(${result.cover})`
+              );
+              localStorage.setItem("contador", "1");
+            } else if (localStorage.getItem("contador") === "1") {
+              $(".cluuf-instance-cover").css(
+                "background-image",
+                `url(${result.cover2})`
+              );
+              localStorage.setItem("contador", "2");
+            } else if (localStorage.getItem("contador") === "2") {
+              $(".cluuf-instance-cover").css(
+                "background-image",
+                `url(${result.cover3})`
+              );
+              localStorage.setItem("contador", "0");
+            }
+          }, 5000);
+
+          $(".cluuf-instance-email").text(result.email);
           $(".cluuf-instance-website-src").attr("href", result.website);
 
           $("#refererUserId").val(sessionStorage.getItem("ruId") || "");
@@ -133,7 +170,11 @@ getConnection({
 
           $(".cluuf-gotours-href").attr(
             "href",
-            `tours.html?agency=${result.alias}`
+            `app_s0.html?agency=${
+              result.alias
+            }&type=suscriber&fclt=${sessionStorage.getItem(
+              "fclt"
+            )}&utmc=Local&raId=null&ruId=null#`
           );
 
           localStorage.setItem("hostname", result.hostname);
@@ -230,6 +271,11 @@ getConnection({
                     pack.backgroundForm
                   );
 
+                  $(".fixed-header .header-menu").css(
+                    "background",
+                    pack.primaryColor
+                  );
+
                   $("body .form-group .submit-btn").css(
                     "background-color",
                     pack.colorBtnForm
@@ -282,6 +328,9 @@ getConnection({
                   $(".cluuf-pack-meetingPoint").append(pack.meetingPoint);
                   $(".cluuf-pack-excerpt").html(pack.excerpt);
                   $("#packname").val(pack.name);
+                  $(".cluuf-pack-title").text(pack.title);
+                  $(".cluuf-pack-titleSelectPlan").text(pack.titleSelectPlan);
+                  $(".cluuf-pack-labelBtnForm").text(pack.labelBtnForm);
 
                   localStorage.setItem("cluufpackname", pack.name);
                   localStorage.setItem("cluufpackId", pack._id);
@@ -325,6 +374,12 @@ getConnection({
                     days = "All Days";
                   }
 
+                  $(".image-avatar").attr("src", pack.avatar);
+                  $(".image-gallery1").attr("src", pack.gallery1);
+                  $(".image-gallery2").attr("src", pack.gallery2);
+                  $(".image-gallery3").attr("src", pack.gallery3);
+                  $(".image-gallery4").attr("src", pack.gallery4);
+
                   $(".cluuf-pack-availableDays").html(days);
 
                   $("#time option").remove();
@@ -332,6 +387,69 @@ getConnection({
                     pack.departureTime.forEach((element) => {
                       $("#time").append(
                         `<option value="${element}">${element}</option>`
+                      );
+                    });
+                  }
+
+                  if (pack.itineraries && String(pack.itineraries).length > 5) {
+                    $(".is-cluuf-pack-itineraries").show();
+                    let itinerariesHTML = String(pack.itineraries).split(",");
+                    itinerariesHTML.forEach((element) => {
+                      $(".pack_itineraries").append(
+                        `<li>${capitalize(element.trim())}</li>`
+                      );
+                    });
+                  }
+
+                  if (pack.include && String(pack.include).length > 5) {
+                    $(".is-cluuf-pack-include").show();
+                    let includesHTML = String(pack.include).split(",");
+                    includesHTML.forEach((element) => {
+                      $(".pack_include").append(
+                        `<li>${capitalize(element.trim())}</li>`
+                      );
+                    });
+                  }
+
+                  if (pack.exclude && String(pack.exclude).length > 5) {
+                    $(".is-cluuf-pack-exclude").show();
+                    let excludehtml = String(pack.exclude).split(",");
+                    excludehtml.forEach((element) => {
+                      $(".pack_exclude").append(
+                        `<li>${capitalize(element.trim())}</li>`
+                      );
+                    });
+                  }
+
+                  if (pack.description && String(pack.description).length > 5) {
+                    $(".is-cluuf-pack-description").show();
+                    $(".pack_description").html(pack.description);
+                  }
+
+                  if (pack.iframeMap && String(pack.iframeMap).length > 5) {
+                    $(".is-cluuf-pack-iframeMap").show();
+                    $(".pack_iframeMap").html(pack.iframeMap);
+                  }
+
+                  if (
+                    pack.meetingPoint &&
+                    String(pack.meetingPoint).length > 5
+                  ) {
+                    $(".is-cluuf-pack-meetingPoint").show();
+                    $(".pack_meetingPoint").html(pack.meetingPoint);
+                  }
+
+                  if (
+                    pack.recomendations &&
+                    String(pack.recomendations).length > 5
+                  ) {
+                    $(".is-cluuf-pack-recomendations").show();
+                    let recomendationshtml = String(pack.recomendations).split(
+                      ","
+                    );
+                    recomendationshtml.forEach((element) => {
+                      $(".pack_recomendations").append(
+                        `<li>${capitalize(element.trim())}</li>`
                       );
                     });
                   }
@@ -397,25 +515,6 @@ getConnection({
                     );
                   }
 
-                  /// https://cluufcontent.s3.sa-east-1.amazonaws.com/dojobox_files/32242525fd2f7d184fbc00511153b7eq33232.json
-                  loadCluufPackContent({
-                    method: "GET",
-                    url: `${localStorage.getItem(
-                      "aws_url"
-                    )}/${localStorage.getItem(
-                      "alias"
-                    )}_files/${localStorage.getItem("keypublic")}.json`,
-                  });
-
-                  loadCluufContent({
-                    method: "GET",
-                    url: `${localStorage.getItem(
-                      "aws_url"
-                    )}/${localStorage.getItem(
-                      "alias"
-                    )}_files/${localStorage.getItem("keypublic")}.json`,
-                  });
-
                   $(".overlay-loading").hide();
                 },
                 onError: (err) => {},
@@ -436,23 +535,44 @@ getConnection({
                   });
 
                   $(".overlay-loading").hide();
+
+                  $(".fixed-header .header-menu").css(
+                    "background",
+                    instance.result.color
+                  );
+
+                  $(" body .contact-page .contact-box-wrap .contact-form").css(
+                    "background",
+                    instance.result.color
+                  );
+
+                  $("body .fixed-sidebar.right .sidebar-toggle").css(
+                    "background-color",
+                    instance.result.primary
+                  );
+
+                  $("body .form-group .submit-btn").css(
+                    "background-color",
+                    instance.result.primary
+                  );
+
                   $.each(result2.packs, function (i, n) {
                     $(".packs-list").append(` 
                           <div class="col-lg-4 col-md-6">
                           <div class="block-box product-box">
                               <div class="product-img">
-                                  <a href="tour.html?q=${
-                                    n._id
-                                  }&agency=${instance.result.alias}"><img src="${n.avatar}" alt="${n.name}"></a>
+                              <a href="app_s.html?q=${
+                                n._id
+                              }&agency=${instance.result.alias}&type=suscriber&p=${n._id}&fclt=web&utmc=web&raId=null&ruId=null#"><img src="${n.avatar}" alt="${n.name}"></a>
                               </div>
                               <div class="product-content">
                                   <div class="item-category">
                                       <a href="#">${n.category}</a>
                                   </div>
-                                  <h3 class="product-title"><a href="tour.html?q=${
+                                  <h3 class="product-title"><a href="app_s.html?q=${
                                     n._id
-                                  }&agency=${instance.result.alias}">${n.name}</a></h3>
-                                  <div class="product-price">${priceFormat(
+                                  }&agency=${instance.result.alias}&type=suscriber&p=${n._id}&fclt=web&utmc=web&raId=null&ruId=null#">${n.name}</a></h3>
+                                  <div class="product-price" style="display: none">${priceFormat(
                                     n.price
                                   )}</div>
                               </div>

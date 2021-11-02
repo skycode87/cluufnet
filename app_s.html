@@ -42,11 +42,11 @@
             <header class="fixed-header">
                 <div class="header-menu">
                     <div class="navbar">
-                        <img class="clf-src-general_image_logo_white onlyMobile tag_" style="display: none; padding: 15px; padding-top: 20px; height: 80px;">
+                        <img class="cluuf-instance-logowhite onlyMobile tag_" style="display: none; padding: 15px; padding-top: 20px; height: 80px;">
 
                         <div class="nav-item d-none d-sm-block">
                             <div class="header-logo">
-                                <img class="clf-src-general_image_logo_white tag_" width="160px" style="padding: 15px; padding-top: 20px">
+                                <img class="cluuf-instance-logowhite" width="120px" style="padding: 15px; padding-top: 20px">
                             </div>
                         </div>
                         <div class="nav-item nav-top-menu">
@@ -131,20 +131,61 @@
                 <!--=        Newsfeed  Area Start       =-->
                 <!--=====================================-->
                 <div class="container">
-                    <!-- <div class="product-breadcrumb block-box cluuf-instance-background">
+                    <div class="product-breadcrumb block-box  image-cover cluuf-instance-cover">
                         <div class="overlay">
                             <div class="breadcrumb-area">
                                 <img class="item-title cluuf-instance-logowhite header-title-logo" width="300px">
                             </div>
                         </div>
-                    </div>-->
+                    </div>
                     <div class="single-product" style="margin-top:0px;">
                         <div class="row">
                             <div class="row gutters-20 zoom-gallery">
                                 <div class="col-lg-6">
+
                                     <div class="product-gallery">
-                                        <div class="tab-content images-tab-content" style="padding: 20px;"></div>
-                                        <ul class=" nav nav-tabs tab-nav-list images-tab-list"> </ul>
+                                        <ul class=" nav nav-tabs tab-nav-list images-tab-list">
+                                            <li class="nav-item">
+                                                <a href="#related0" data-toggle="tab" aria-expanded="false">
+                                                    <img alt="related0" class="img-fluid image-avatar">
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#related1" data-toggle="tab" aria-expanded="false">
+                                                    <img alt="related1 " class="img-fluid image-gallery1">
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#related2" data-toggle="tab" aria-expanded="false">
+                                                    <img alt="related2" class="img-fluid image-gallery2">
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#related3" data-toggle="tab" aria-expanded="false">
+                                                    <img alt="related3" src="" class="img-fluid image-gallery3">
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content images-tab-content" style="padding: 20px;">
+                                            <div role="tabpanel" class="tab-pane fade active show" id="related0"><a href="#">
+                                                    <img class="img-fluid image-avatar" alt="single"></a></div>
+                                            <div role="tabpanel" class="tab-pane fade" id="related1">
+                                                <a href="#">
+                                                    <img class="img-fluid  image-gallery1" alt="single" src="">
+                                                </a>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="related2">
+                                                <a href="#">
+                                                    <img class="img-fluid image-gallery2" alt="single" src="">
+                                                </a>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="related3">
+                                                <a href="#">
+                                                    <img class="img-fluid image-gallery3" alt="single" src="">
+                                                </a>
+                                            </div>
+                                        </div>
+
                                     </div>
 
 
@@ -153,20 +194,20 @@
                                     <div class="product-content">
                                         <div class="review-form cluuf-instance-background-form" style="padding: 30px; min-height: 570px;">
                                             <div class="item-category" style="color: #fff;">
-                                                <span class="clf-content-pack_category tagpack_">
+                                                <span class="pack_category ">
 
                                                 </span>
                                             </div>
                                             <h1 class="item-title" style="font-size: 32px; color: #fff;">
-                                                <span class="clf-content-pack_title tagpack_ "></span>
+                                                <span class="cluuf-pack-title "></span>
                                             </h1>
                                             <ul class="entry-meta">
                                                 <li>
-                                                    <span style="color: #fff" class="clf-content-pack_excerpt tagpack_"></span>
+                                                    <span style="color: #fff" class="cluuf-pack-excerpt"></span>
                                                 </li>
                                             </ul>
                                             <div class="item-price" style="color: #fff">
-                                                <label>Seleccione un plan</label>
+                                                <label class="cluuf-pack-titleSeslectPlan">Seleccione un plan</label>
                                                 <select style="height: 50px; font-weight: bold; font-size: 18px;" class="custom-select form-control-lg" id="plan" name="plan"> </select>
                                             </div>
 
@@ -243,7 +284,7 @@
                                                     <div class="col-lg-12 form-group " style="display: flex; justify-content: center;">
                                                         <ul class="action-area" style="margin-top: 10px;">
                                                             <li class="li-submit">
-                                                                <a href="javascript:submitSubscription()" class="cart-btn ">Unete a nosotros</a>
+                                                                <a href="javascript:submitSubscription()" class="cart-btn cluuf-pack-labelBtnForm ">Unete a nosotros</a>
                                                             </li>
                                                             <li class="li-loading" style="display: none">
                                                                 <a class="cart-btn " style="background-color: gray;"><span class="t_loading"></span></a>
@@ -262,16 +303,24 @@
 
                         </div>
                     </div>
+
                     <div class="single-product-info">
                         <ul class="nav nav-tabs" role="tablist">
 
                             <li class="nav-item">
-                                <a class="nav-link active is-cluuf-pack-additional-info" id="profile-tab" data-toggle="tab" href="#add-info" role="tab" aria-selected="false">
-                                    Información adicional</a>
+                                <a class="nav-link active is-cluuf-pack-additional-info" id="profile-tab" data-toggle="tab" href="#add-info" role="tab" aria-selected="false"><span
+                                        class="t_additional_information"></span></a>
                             </li>
-                            <li class="nav-item is-cluuf-pack-iframe_location">
-                                <a class="nav-link " id="home-tab" data-toggle="tab" href="#googlemap" role="tab" aria-selected="true">Ubicación Geográfica</a>
+
+
+                            <li class="nav-item is-cluuf-pack-iframeMap" style="display: none">
+                                <a class="nav-link " id="home-tab" data-toggle="tab" href="#googlemap" role="tab" aria-selected="true"><span class="t_geographic_location"></span></a>
                             </li>
+
+                            <li class="nav-item is-cluuf-pack-meetingPoint" style="display: none">
+                                <a class="nav-link " id="home-tab" data-toggle="tab" href="#meeting-point" role="tab" aria-selected="true"><span class="t_meeting_point"></span></a>
+                            </li>
+
                         </ul>
                         <div class="tab-content">
 
@@ -281,26 +330,45 @@
                             <div class="tab-pane fade active show" id="add-info" role="tabpanel">
 
                                 <div class="row">
-                                    <div class="col-lg-12 is-cluuf-pack-itineraries">
+                                    <div class="col-lg-12 is-cluuf-pack-description" style="display:none">
                                         <div class="product-description" style="margin-bottom: 30px;">
-                                            <span class="clf-content-pack_description tagpack_"></span>
+                                            <span class="pack_description "></span>
                                         </div>
+                                    </div>
+
+                                    <div class="col-lg-3 is-cluuf-pack-itineraries" style="display:none">
+                                        <h4><span class="">Itinerario</h4>
+                                        <ul class="additional-info pack_itineraries "></ul>
+                                    </div>
+
+                                    <div class="col-lg-3 is-cluuf-pack-include" style="display:none">
+                                        <h4><span>Incluye</h4>
+                                        <ul class="additional-info pack_include "></ul>
+                                    </div>
+
+                                    <div class="col-lg-3 is-cluuf-pack-recomendations" style="display:none">
+                                        <h4><span class="">Recomendaciones</h4>
+                                        <ul class="additional-info pack_recomendations "></ul>
+                                    </div>
+                                    <div class="col-lg-3 is-cluuf-pack-exclude" style="display:none">
+                                        <h4><span class="">No incluye</h4>
+                                        <ul class="additional-info pack_exclude "></ul>
                                     </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="googlemap" role="tabpanel">
-                                <div class="row">
-                                    <div class="col-lg-12 is-cluuf-pack-iframe_location">
-                                        <div class="product-description" style="margin-bottom: 30px;">
-                                            <div class="pack_iframe_meetingpoint"></div>
-                                        </div>
-                                    </div>
+                                <div class="product-description">
+                                    <div class="pack_iframeMap "></div>
                                 </div>
-
                             </div>
-
+                            <div class="tab-pane fade" id="meeting-point" role="tabpanel">
+                                <div class="product-description">
+                                    <div class="pack_meetingPoint "></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
 
 
@@ -313,7 +381,7 @@
                                 <div class="row">
                                     <div class="col-lg-7">
                                         <div class="contact-box">
-                                            <h3 class="item-title"><span class="clf-content-general_contact_us_title tag_"></span></h3>
+                                            <h3 class="item-title"><span class="">Contactanos</span></h3>
                                             <form id="contact-form">
                                                 <div class="row gutters-20">
                                                     <div class="col-lg-12 form-group">
@@ -342,11 +410,11 @@
                                     </div>
                                     <div class="col-lg-5">
                                         <div class="contact-box contact-method">
-                                            <h3 class="item-title">Contact Info.</h3>
+                                            <h3 class="item-title">Donde ubicarnos</h3>
                                             <ul>
-                                                <li><i class="icofont-location-pin"></i><span class="clf-content-general_address tag_"></span></li>
-                                                <li><i class="icofont-ui-message"></i> <span class="clf-content-general_email tag_"></span></li>
-                                                <li><i class="icofont-phone"></i><span class="clf-content-general_phone tag_"></span></li>
+                                                <li><i class="icofont-location-pin"></i><span class="cluuf-instance-address"></span></li>
+                                                <li><i class="icofont-ui-message"></i> <span class="cluuf-instance-emailpublic"></span></li>
+                                                <li><i class="icofont-phone"></i><span class="cluuf-instance-phonepublic"></span></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -356,10 +424,6 @@
                     </div>
                 </section>
 
-                <div class="clfedit" style="display: none; max-width: 900px; margin: auto; margin-top: 100px">
-                    <h2 style="text-align: center; padding: 30px">Haga click para actualizar la imagen</h2>
-                    <div class="row imageUpdatePack"></div>
-                </div>
 
                 <!--=====================================-->
                 <!--=        Footer Area Start       	=-->
