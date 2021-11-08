@@ -79,6 +79,31 @@ const getPlans = async (
   xhttp.send();
 };
 
+const getPlan = async (
+  { instanceId, planId },
+  { onSuccess = {}, onError = {} }
+) => {
+  const xhttp = new XMLHttpRequest();
+  const params1 = new URLSearchParams({
+    instanceId,
+    planId,
+  }).toString();
+
+  xhttp.open(
+    `GET`,
+    `${localStorage.getItem("backend_url")}/subscripcion_get_plan?${params1}`,
+    true
+  );
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const result = JSON.parse(xhttp.responseText);
+      onSuccess(result);
+    }
+  };
+  xhttp.send();
+};
+
 const getPack = async ({ instanceId }, { onSuccess = {}, onError = {} }) => {
   const xhttp = new XMLHttpRequest();
   const packId = getParameterByName_pack("q");

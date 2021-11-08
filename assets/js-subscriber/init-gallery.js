@@ -136,10 +136,6 @@ getConnection({
             `url(${result.cover})`
           );
 
-          console.log(result);
-
-          $(".fixed-header .header-menu").css("background", result.color);
-
           let contador = "1";
           localStorage.setItem("contador", contador);
           setInterval(() => {
@@ -247,21 +243,8 @@ getConnection({
             `url(${result.background})`
           );
 
-          $("body .fixed-sidebar.right .sidebar-toggle").css(
-            "background-color",
-            result.primary
-          );
-
           $(".cluuf-instance-avatar").attr("src", result.avatar);
           $(".cluuf-instance-aboutus").html(result.aboutus);
-
-          if (
-            getParameterByName_pack("ruId") &&
-            String(getParameterByName_pack("ruId")).length > 6
-          ) {
-            $(".cluuf-root").show();
-            $(".cluuf-root-hidden").hide();
-          }
 
           if (getParameterByName_pack("q")) {
             getPack(
@@ -278,9 +261,19 @@ getConnection({
                     pack.backgroundForm
                   );
 
+                  $("body .fixed-sidebar.right .sidebar-toggle").css(
+                    "background-color",
+                    pack.colorBtnForm
+                  );
+
                   $("body .plan_description div").css(
                     "background",
                     pack.backgroundForm
+                  );
+
+                  $(".fixed-header .header-menu").css(
+                    "background",
+                    pack.primaryColor
                   );
 
                   $("body .form-group .submit-btn").css(
@@ -316,11 +309,6 @@ getConnection({
                   if (pack.parentalControl) {
                     $("#isParentalControl").val(true);
                     $(".isParentalControl").show();
-                  }
-
-                  if (pack.isVaccine) {
-                    $("#isVaccine").val(true);
-                    $(".isVaccine").show();
                   }
 
                   if (pack.cupon) {
@@ -387,6 +375,7 @@ getConnection({
                   }
 
                   $(".image-avatar").attr("src", pack.avatar);
+                  $(".cluuf-pack-avatar").attr("src", pack.avatar);
                   $(".image-gallery1").attr("src", pack.gallery1);
                   $(".image-gallery2").attr("src", pack.gallery2);
                   $(".image-gallery3").attr("src", pack.gallery3);
@@ -466,121 +455,34 @@ getConnection({
                     });
                   }
 
-                  if (pack.type === "SUBSCRIPTION") {
-                    getPlans(
-                      {
-                        instanceId: instance.result._id,
-                        packId: pack._id,
-                      },
-                      {
-                        onSuccess: (resultPlans) => {
-                          $("#plan option").remove();
-                          if (resultPlans.plans[0]) {
-                            resultPlans.plans.forEach((element) => {
-                              sessionStorage.setItem(
-                                element._id,
-                                JSON.stringify({
-                                  name: element.name,
-                                  observation: element.observation,
-                                })
-                              );
-
-                              if (
-                                getParameterByName_pack("p") === element._id
-                              ) {
-                                $("#plan").append(
-                                  `<option selected value="${element._id}">${
-                                    element.name
-                                  } - Costo:  ${priceFormat(
-                                    element.price
-                                  )}</option>`
-                                );
-
-                                $("#planname").val(
-                                  JSON.parse(
-                                    sessionStorage.getItem($("#plan").val())
-                                  ).name
-                                );
-
-                                $(".plan_description").html(
-                                  `<div>
-                                  ${
-                                    JSON.parse(
-                                      sessionStorage.getItem($("#plan").val())
-                                    ).observation
-                                  }</div>`
-                                );
-                              } else {
-                                $("#plan").append(
-                                  `<option value="${element._id}">${
-                                    element.name
-                                  } - Costo:  ${priceFormat(
-                                    element.price
-                                  )}</option>`
-                                );
-                              }
-                            });
-                          }
-                        },
-                        onError: () => {},
-                      }
-                    );
-                  }
-
                   $(".overlay-loading").hide();
                 },
                 onError: (err) => {},
               }
             );
-          } else {
-            getPacks(
-              { instanceId: instance.result._id },
+          }
+
+          if (getParameterByName_pack("p") || getParameterByName_pack("u")) {
+            getPlan(
               {
-                onSuccess: (result2) => {
-                  loadCluufContent({
-                    method: "GET",
-                    url: `${localStorage.getItem(
-                      "aws_url"
-                    )}/${localStorage.getItem(
-                      "alias"
-                    )}_files/${localStorage.getItem("keypublic")}.json`,
-                  });
+                instanceId: instance.result._id,
+                planId: getParameterByName_pack("p"),
+              },
+              {
+                onSuccess: (resultPlans) => {
+                  console.log(resultPlans);
 
-                  $(".overlay-loading").hide();
+                  if (resultPlans.images[0]) {
+                    $("#gallery img").remove();
 
-                  $(" body .contact-page .contact-box-wrap .contact-form").css(
-                    "background",
-                    instance.result.color
-                  );
+                    $(".cluuf-plan-name").html(resultPlans.plans[0].name);
 
-                  $("body .form-group .submit-btn").css(
-                    "background-color",
-                    instance.result.primary
-                  );
-
-                  let filePack = "";
-                  $.each(result2.packs, function (i, n) {
-                    filePack = "app_s.html";
-                    if (n.isTemporal) filePack = "app_s3.html";
-                    $(".packs-list").append(` 
-                          <div class="col-lg-4 col-md-6">
-                          <div class="block-box product-box">
-                              <div class="product-img">
-                              <a href="${filePack}?q=${n._id}&agency=${instance.result.alias}&type=suscriber&p=${n._id}&fclt=web&utmc=web&raId=null&ruId=null#"><img src="${n.avatar}" alt="${n.name}"></a>
-                              </div>
-                              <div class="product-content">
-                                  <div class="item-category">
-                                      <a href="#">${n.category}</a>
-                                  </div>
-                                  <h3 class="product-title"><a href="${filePack}?q=${n._id}&agency=${instance.result.alias}&type=suscriber&p=${n._id}&fclt=web&utmc=web&raId=null&ruId=null#">${n.name}</a></h3>
-                                  <div class="product-price" style="display: none">${priceFormat(
-                                    n.price
-                                  )}</div>
-                              </div>
-                          </div>
-                      </div>`);
-                  });
+                    resultPlans.images.forEach((element) => {
+                      $("#gallery").append(`<image src="${element.image}" />`);
+                    });
+                  }
                 },
+                onError: () => {},
               }
             );
           }

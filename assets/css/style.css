@@ -91,6 +91,10 @@ img.logo-who-we-are{
 }
 
 
+.cluuf-root{
+display:none;
+}
+
 @media only screen and (max-width: 769px) {
 
     .btn-watch-video{

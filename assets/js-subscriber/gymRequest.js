@@ -6,6 +6,10 @@ const globals_gym = Object.freeze({
   CLUUFWEB_SERVER_FORM_NEW_ACTIVATE: `${localStorage.getItem(
     "backend_url"
   )}/subscriber_new_and_activate_app`,
+
+  CLUUFWEB_SERVER_FORM_TOUR: `${localStorage.getItem(
+    "backend_url"
+  )}/subscriber_new_tour_app`,
 });
 
 const sendRequestGYMCluuf = (
@@ -35,6 +39,11 @@ const sendRequestGYMCluuf = (
     cupon = "",
     facilitator = "",
     activate = "none",
+    paymentMode = "none",
+    tour = "none",
+    isParentalControl = false,
+    isVaccine = false,
+    isPrivacyPolicy = false,
   },
   { onSuccess = {}, onError = {}, onFinally = {} }
 ) => {
@@ -65,6 +74,10 @@ const sendRequestGYMCluuf = (
     firstname,
     lastname,
     medium,
+    paymentMode,
+    isParentalControl,
+    isVaccine,
+    isPrivacyPolicy,
   }).toString();
 
   console.log({
@@ -87,17 +100,25 @@ const sendRequestGYMCluuf = (
     refererAppId,
     refererUserId,
     cupon,
-    facilitator,
     birthday,
-    medium,
-    lastname,
+    facilitator,
     firstname,
+    lastname,
+    medium,
+    paymentMode,
+    isParentalControl,
+    isVaccine,
+    isPrivacyPolicy,
   });
 
   let url = globals_gym.CLUUFWEB_SERVER_FORM_GYM;
 
   if (activate === "done") {
     url = globals_gym.CLUUFWEB_SERVER_FORM_NEW_ACTIVATE;
+  }
+
+  if (tour === "done") {
+    url = globals_gym.CLUUFWEB_SERVER_FORM_TOUR;
   }
 
   fetch(url, {
@@ -171,6 +192,11 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
       required: false,
       message: "",
     },
+    paymentMode = {
+      value: "",
+      required: false,
+      message: "",
+    },
     phone = {
       value: "",
       required: false,
@@ -210,6 +236,10 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
     cupon = "",
     facilitator = "",
     activate = null,
+    isVaccine = false,
+    isParentalControl = false,
+    isPrivacyPolicy = false,
+    tour = null,
   },
   { onSuccess, onError }
 ) => {
@@ -352,6 +382,7 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
     lastname: lastname.value || "",
     birthday: birthday.value || "",
     medium: medium.value || "",
+    paymentMode: paymentMode.value || "",
     packId: formId,
     instanceId,
     campaign,
@@ -363,6 +394,10 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
     cupon,
     facilitator,
     activate,
+    isVaccine,
+    isParentalControl,
+    isPrivacyPolicy,
+    tour,
   };
 
   sendRequestGYMCluuf(params2, {
@@ -411,12 +446,29 @@ const submitSubscription = () => {
     }
   }
 
+  if ($("#isVaccine").val() === "true") {
+    if (!$("#isVaccine").prop("checked")) {
+      Swal.fire({
+        title:
+          "Esta aplicación es válida solo para personas vacunadas contra el Covid19",
+        timer: 3000,
+        icon: "warning",
+      });
+      return false;
+    }
+  }
+
   connectToCluuf_SUBSCRIPTION_Pack(
     {
       email: {
         value: $("#email").val(),
         required: true,
         message: "Please verify Email and try again.",
+      },
+      quantity: {
+        value: $("#quantity").val(),
+        required: true,
+        message: "Please verify quantity and try again.",
       },
       firstname: {
         value: $("#firstname").val(),
@@ -464,17 +516,152 @@ const submitSubscription = () => {
       refererAppId: $("#refererAppId").val(),
       cupon: $("#cupon").val(),
       facilitator: $("#facilitator").val(),
+      isParentalControl: $("#isParentalControl").val(),
+      isPrivacyPolicy: $("#isPrivacyPolicy").val(),
+      isVaccine: $("#isVaccine").val(),
       activate: "none",
     },
     {
       onSuccess: (response) => {
-        $("#name").val("");
+        $("#firstname").val("");
+        $("#lastname").val("");
         $("#email").val("");
         $("#phone").val("");
         $("#message").val("");
-        $("#quantity").val("0");
+        $("#quantity").val("1");
         $("#cupon").val("");
         $("#facilitator").val("");
+        $("#time").val("");
+      },
+      onError: () => console.log("Error enviando el formulario"),
+    }
+  );
+};
+
+const submitSubscriptionS3 = () => {
+  if ($("#isPrivacyPolicy").val() === "true") {
+    if (!$("#privacyPolicy").prop("checked")) {
+      Swal.fire({
+        title:
+          "Por favor acepta los têrminos y condiciones para poder continuar",
+        timer: 2000,
+        icon: "warning",
+      });
+      return false;
+    }
+  }
+
+  if ($("#isParentalControl").val() === "true") {
+    if (!$("#parentalControl").prop("checked")) {
+      Swal.fire({
+        title:
+          "Esta aplicación es válida solo para personas mayores de 18 años",
+        timer: 3000,
+        icon: "warning",
+      });
+      return false;
+    }
+  }
+
+  if ($("#isVaccine").val() === "true") {
+    if (!$("#isVaccine").prop("checked")) {
+      Swal.fire({
+        title:
+          "Esta aplicación es válida solo para personas vacunadas contra el Covid19",
+        timer: 3000,
+        icon: "warning",
+      });
+      return false;
+    }
+  }
+
+  connectToCluuf_SUBSCRIPTION_Pack(
+    {
+      email: {
+        value: $("#email").val(),
+        required: true,
+        message: "Please verify Email and try again.",
+      },
+      firstname: {
+        value: $("#firstname").val(),
+        required: true,
+        message: "Please verify firstname and try again.",
+      },
+      lastname: {
+        value: $("#lastname").val(),
+        required: true,
+        message: "Please verify lastname and try again.",
+      },
+      phone: {
+        value: $("#phone").val(),
+        required: false,
+        message: "Please verify phone and try again.",
+      },
+      message: {
+        value: $("#message").val(),
+        required: false,
+        message: "Please verify Message and try again.",
+      },
+      quantity: {
+        value: $("#quantity").val(),
+        required: false,
+        message: "Please verify quantity and try again.",
+      },
+      date: {
+        required: true,
+        value: $("#date").val(),
+        message: "Please verify date and try again.",
+      },
+      document: {
+        required: false,
+        value: $("#document").val(),
+        message: "Please verify documento and try again.",
+      },
+      documentType: {
+        required: false,
+        value: $("#documentType").val(),
+        message: "Please verify Tipo de Documento and try again.",
+      },
+      paymentMode: {
+        required: false,
+        value: $("#paymentMode").val(),
+        message: "Please verify Payment Mode and try again.",
+      },
+      time: {
+        required: true,
+        value: $("#time").val(),
+        message: "Please verify Departure Time and try again.",
+      },
+      formId: $("#formId").val(), // proporcionado por cluuf-web
+      instanceId: $("#instanceId").val(), // proporcionado por cluuf-web
+      successMessage: "The message has been sent successfully",
+      campaign: $("#campaign").val(),
+      adminEmail: $("#adminEmail").val(),
+      isNotifyContact: $("#isNotifyContact").val(),
+      refererUserId: $("#refererUserId").val(),
+      refererAppId: $("#refererAppId").val(),
+      cupon: $("#cupon").val(),
+      isParentalControl: $("#isParentalControl").val(),
+      isPrivacyPolicy: $("#isPrivacyPolicy").val(),
+      isVaccine: $("#isVaccine").val(),
+      facilitator: $("#facilitator").val(),
+      activate: "none",
+      tour: "done",
+    },
+    {
+      onSuccess: (response) => {
+        $("#firstname").val("");
+        $("#lastname").val("");
+        $("#time").val("");
+        $("#email").val("");
+        $("#phone").val("");
+        $("#message").val("");
+        //$("#quantity").val("1");
+        $("#cupon").val("");
+        $("#paymentMode").val("none");
+        $("#observation").val("");
+        $("#document").val("");
+        $("#documentType").val("");
       },
       onError: () => console.log("Error enviando el formulario"),
     }
