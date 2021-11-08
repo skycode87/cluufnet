@@ -9031,10 +9031,38 @@ nav.template-main-menu > ul > li:hover ul.mega-menu {
 .single-product-info .tab-content .additional-info li:before {
     content: "\eed8";
     font-family: IcoFont;
-    color: #615dfa;
+    color: #28a745;
     font-size: 20px;
     padding-right: 10px;
 }
+
+.single-product-info .tab-content .additional-info li.red:before {
+    content: "\efa9";
+    font-family: IcoFont;
+    color: #dc3545;
+    font-size: 20px;
+    padding-right: 10px;
+}
+
+.single-product-info .tab-content .additional-info li.blue:before {
+    content: "\ef60";
+    font-family: IcoFont;
+    color: #28a745;
+    font-size: 20px;
+    padding-right: 10px;
+}
+
+.single-product-info .tab-content .additional-info li.clock:before {
+    content: "\f022";
+    font-family: IcoFont;
+    color: #ff9800;
+    font-size: 20px;
+    padding-right: 10px;
+}
+
+
+
+
 
 .single-product-info .tab-content .product-review {
     margin-bottom: 40px;

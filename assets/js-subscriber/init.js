@@ -131,38 +131,47 @@ getConnection({
           $(".cluuf-instance-website").text(result.website);
           $(".cluuf-instance-address").text(result.address);
 
+          $(".cluuf-gowebsite-href").text(result.website);
+          $(".cluuf-gowebsite-href").attr("href", result.hostname);
+          $(".cluuf-gowebsite-href").attr("target", "blank");
+
           $(".cluuf-instance-cover").css(
             "background-image",
             `url(${result.cover})`
           );
 
-          console.log(result);
-
           $(".fixed-header .header-menu").css("background", result.color);
 
-          let contador = "1";
-          localStorage.setItem("contador", contador);
-          setInterval(() => {
-            if (localStorage.getItem("contador") === "0") {
-              $(".cluuf-instance-cover").css(
-                "background-image",
-                `url(${result.cover})`
-              );
-              localStorage.setItem("contador", "1");
-            } else if (localStorage.getItem("contador") === "1") {
-              $(".cluuf-instance-cover").css(
-                "background-image",
-                `url(${result.cover2})`
-              );
-              localStorage.setItem("contador", "2");
-            } else if (localStorage.getItem("contador") === "2") {
-              $(".cluuf-instance-cover").css(
-                "background-image",
-                `url(${result.cover3})`
-              );
-              localStorage.setItem("contador", "0");
-            }
-          }, 5000);
+          if (!getParameterByName_pack("q")) {
+            $(".cluuf-instance-cover").css(
+              "background-image",
+              `url(${result.cover})`
+            );
+
+            let contador = "1";
+            localStorage.setItem("contador", contador);
+            setInterval(() => {
+              if (localStorage.getItem("contador") === "0") {
+                $(".cluuf-instance-cover").css(
+                  "background-image",
+                  `url(${result.cover})`
+                );
+                localStorage.setItem("contador", "1");
+              } else if (localStorage.getItem("contador") === "1") {
+                $(".cluuf-instance-cover").css(
+                  "background-image",
+                  `url(${result.cover2})`
+                );
+                localStorage.setItem("contador", "2");
+              } else if (localStorage.getItem("contador") === "2") {
+                $(".cluuf-instance-cover").css(
+                  "background-image",
+                  `url(${result.cover3})`
+                );
+                localStorage.setItem("contador", "0");
+              }
+            }, 5000);
+          }
 
           $(".cluuf-instance-email").text(result.email);
           $(".cluuf-instance-website-src").attr("href", result.website);
@@ -272,6 +281,35 @@ getConnection({
                   sessionStorage.setItem("cluuf-pack", JSON.stringify(pack));
                   localStorage.setItem("cluuf-pack-tag", pack.tag);
                   sessionStorage.setItem("packname", pack.tag);
+
+                  $(".cluuf-instance-cover").css(
+                    "background-image",
+                    `url(${pack.avatar})`
+                  );
+
+                  let contador = "1";
+                  localStorage.setItem("contador", contador);
+                  setInterval(() => {
+                    if (localStorage.getItem("contador") === "0") {
+                      $(".cluuf-instance-cover").css(
+                        "background-image",
+                        `url(${pack.gallery1})`
+                      );
+                      localStorage.setItem("contador", "1");
+                    } else if (localStorage.getItem("contador") === "1") {
+                      $(".cluuf-instance-cover").css(
+                        "background-image",
+                        `url(${pack.gallery2})`
+                      );
+                      localStorage.setItem("contador", "2");
+                    } else if (localStorage.getItem("contador") === "2") {
+                      $(".cluuf-instance-cover").css(
+                        "background-image",
+                        `url(${pack.gallery3})`
+                      );
+                      localStorage.setItem("contador", "0");
+                    }
+                  }, 5000);
 
                   $("body .review-form.cluuf-instance-background-form").css(
                     "background",
@@ -407,9 +445,11 @@ getConnection({
                     $(".is-cluuf-pack-itineraries").show();
                     let itinerariesHTML = String(pack.itineraries).split(",");
                     itinerariesHTML.forEach((element) => {
-                      $(".pack_itineraries").append(
-                        `<li>${capitalize(element.trim())}</li>`
-                      );
+                      if (String(element.trim()).length > 2) {
+                        $(".pack_itineraries").append(
+                          `<li class="clock">${capitalize(element.trim())}</li>`
+                        );
+                      }
                     });
                   }
 
@@ -417,9 +457,11 @@ getConnection({
                     $(".is-cluuf-pack-include").show();
                     let includesHTML = String(pack.include).split(",");
                     includesHTML.forEach((element) => {
-                      $(".pack_include").append(
-                        `<li>${capitalize(element.trim())}</li>`
-                      );
+                      if (String(element.trim()).length > 2) {
+                        $(".pack_include").append(
+                          `<li>${capitalize(element.trim())}</li>`
+                        );
+                      }
                     });
                   }
 
@@ -427,9 +469,11 @@ getConnection({
                     $(".is-cluuf-pack-exclude").show();
                     let excludehtml = String(pack.exclude).split(",");
                     excludehtml.forEach((element) => {
-                      $(".pack_exclude").append(
-                        `<li>${capitalize(element.trim())}</li>`
-                      );
+                      if (String(element.trim()).length > 2) {
+                        $(".pack_exclude").append(
+                          `<li class="red">${capitalize(element.trim())}</li>`
+                        );
+                      }
                     });
                   }
 
@@ -460,9 +504,11 @@ getConnection({
                       ","
                     );
                     recomendationshtml.forEach((element) => {
-                      $(".pack_recomendations").append(
-                        `<li>${capitalize(element.trim())}</li>`
-                      );
+                      if (String(element.trim()).length > 2) {
+                        $(".pack_recomendations").append(
+                          `<li class="blue">${capitalize(element.trim())}</li>`
+                        );
+                      }
                     });
                   }
 

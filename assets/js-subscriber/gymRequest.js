@@ -567,7 +567,7 @@ const submitSubscriptionS3 = () => {
     if (!$("#isVaccine").prop("checked")) {
       Swal.fire({
         title:
-          "Esta aplicación es válida solo para personas vacunadas contra el Covid19",
+          "Esta aplicación es válida solo para personas con el equema de vacunación completo.",
         timer: 3000,
         icon: "warning",
       });
