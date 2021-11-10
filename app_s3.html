@@ -52,6 +52,8 @@
                         <div class="nav-item nav-top-menu">
                             <nav id="dropdown" class="template-main-menu">
                                 <ul class="menu-content" style="justify-content: flex-end;">
+
+
                                     <li class="header-nav-item">
 
                                         <a href="#!" class="menu-link cluuf-gotours-href" style="text-decoration: underline;">Explorar otras experiencias con <b><span
@@ -218,10 +220,15 @@
 
                                                 </span>
                                             </div>
+
+
                                             <h1 class="item-title" style="font-size: 32px; color: #fff;">
                                                 <span class="cluuf-pack-title "></span>
+
                                             </h1>
+
                                             <ul class="entry-meta">
+
                                                 <li style="color: #fff">
                                                     <i style="color: #fff" class="icofont-clock-time"></i> Duración: <span style="color: #fff" class="cluuf-pack-duration"></span>
                                                     <button type="button" class="btn-videos3 is-cluuf-video-pack btn btn-primary video-btn cluuf-video-pack" data-toggle="modal" data-target="#myModal"
@@ -233,6 +240,10 @@
                                                     <span style="color: #fff" class="cluuf-pack-excerpt"></span>
                                                 </li>
                                             </ul>
+
+                                            <div id="google_translate_element" class="google"></div>
+
+
 
                                             <div class="plan_description"></div>
                                             <form id="form-reservation" class="subscriber-form">
@@ -252,8 +263,9 @@
                                                 <input type="hidden" id="isNotifyContact" name="isNotifyContact" value="true">
                                                 <div class="row gutters-15">
                                                     <div class="col-12"
-                                                        style="display: flex; justify-content: center; color: #fff; border:1px solid #fff; padding: 4px; border-radius: 7px; margin-bottom: 30px;">
+                                                        style="display: flex; justify-content: center; color: #fff; border-bottom: 1px solid #fff; position: relative; top: -10px; font-weight: bold; padding: 4px;  margin-bottom: 0px;">
                                                         <small><b><span class=" t_availability_only_days"></span>:</b> <span class=" cluuf-pack-availableDays"></small>
+                                                        <hr>
                                                     </div>
                                                     <br />
                                                     <div class="col-lg-6 form-group">
@@ -628,6 +640,14 @@
             <script src="https://cluuftracks.herokuapp.com/cluuf.js"></script>
             <script async src="https://cluuftracks.herokuapp.com/adminCluuf.js"></script>
             <script async src="https://cluuftracks.herokuapp.com/contentCluuf.js"></script>
+
+            <script type="text/javascript">
+                function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({ pageLanguage: 'es', includedLanguages: 'es,ca,eu,gl,en,fr,it,pt,de', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true }, 'google_translate_element');
+                }
+            </script>
+            <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
             <style>
                 .single-product .product-content .action-area li .input-group .quantity-btn {
