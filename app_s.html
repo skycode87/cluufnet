@@ -18,6 +18,9 @@
         <link rel="stylesheet" href="dependencies/sal.js/sal.css">
         <link rel="stylesheet" href="dependencies/mcustomscrollbar/jquery.mCustomScrollbar.min.css">
         <link rel="stylesheet" href="dependencies/select2/css/select2.min.css">
+        <link rel="stylesheet" href="https://cdn.rawgit.com/JacobLett/bootstrap4-latest/master/bootstrap-4-latest.min.css">
+
+
 
         <!-- Site Stylesheet -->
         <link rel="stylesheet" href="assets/css/app.css">
@@ -198,7 +201,13 @@
                                         <p> Se proporcionará todo el equipo de protección requerido </p>
                                     </div>
 
-
+                                    <div style="background: #fff; border-radius: 7px; padding: 10px">
+                                        <h4><i class="icofont-label"></i> Cancellation policy </h4>
+                                        <small>This tour has a 1 day(s) cancellation policy. Failure to cancel within this time or in the case of your non-arrival, will result in a cancellation charge
+                                            of
+                                            $USD 2 fee per person.
+                                        </small>
+                                    </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="product-content">
@@ -214,6 +223,12 @@
                                             <ul class="entry-meta">
                                                 <li>
                                                     <span style="color: #fff" class="cluuf-pack-excerpt"></span>
+
+                                                    <button type="button" class=" btn-video is-cluuf-video-pack btn btn-primary video-btn cluuf-video-pack" data-toggle="modal" data-target="#myModal"
+                                                        style="display: none">
+                                                        Ver video
+                                                    </button>
+
                                                 </li>
                                             </ul>
                                             <div class="item-price" style="color: #fff">
@@ -389,6 +404,9 @@
 
                 </div>
 
+                <div class="row gutters-20">
+                    <img class="cluuf-instance-cover" width="100%" max-width="100%" src="">
+                </div>
 
 
                 <section class="contact-page" style="display: none">
@@ -478,6 +496,30 @@
             }
         </style>
 
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+
+                    <div class="modal-body">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <!-- 16:9 aspect ratio -->
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="" id="video" allowscriptaccess="always" allow="autoplay"></iframe>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
         <!-- Jquery Js -->
         <script src="dependencies/jquery/js/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/20.3.2/i18next.min.js"></script>
@@ -495,6 +537,9 @@
         <script src="dependencies/bootstrap-validator/js/validator.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtmXSwv4YmAKtcZyyad9W7D4AC08z0Rb4"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.rawgit.com/JacobLett/bootstrap4-latest/master/bootstrap-4-latest.min.js"></script>
+
+
 
         <!-- Site Scripts -->
         <script src="assets/js-subscriber/global.js"></script>
@@ -513,6 +558,12 @@
         <script async src="https://cluuftracks.herokuapp.com/adminCluuf.js"></script>
         <script async src="https://cluuftracks.herokuapp.com/contentCluuf.js"></script>
 
+
+        <script>
+
+
+
+        </script>
     </body>
 
 </html>

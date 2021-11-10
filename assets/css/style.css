@@ -331,3 +331,24 @@ display: none;
     }
 }
 
+.btn-video{
+    background: #0000;
+    border: #fff 1px solid;
+    padding: 1px 30px;
+    float: right;
+    margin: 20px;
+}
+
+.btn-video:hover,
+.btn-videos3:hover{
+    background: #fff;
+    color: #000;
+}
+
+.btn-videos3{
+    background: #0000;
+    border: #fff 1px solid;
+    padding: 1px 10px;
+    float: right;
+    margin: -20px;
+}
