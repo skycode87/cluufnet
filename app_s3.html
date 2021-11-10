@@ -213,6 +213,9 @@
                                                 <span class="cluuf-pack-title "></span>
                                             </h1>
                                             <ul class="entry-meta">
+                                                <li style="color: #fff">
+                                                    <i style="color: #fff" class="icofont-clock-time"></i> Duración: <span style="color: #fff" class="cluuf-pack-duration"></span>
+                                                </li>
                                                 <li>
                                                     <span style="color: #fff" class="cluuf-pack-excerpt"></span>
                                                 </li>
@@ -235,6 +238,11 @@
                                                 <input value="true" type="hidden" id="adminEmail" name="adminEmail">
                                                 <input type="hidden" id="isNotifyContact" name="isNotifyContact" value="true">
                                                 <div class="row gutters-15">
+                                                    <div class="col-12"
+                                                        style="display: flex; justify-content: center; color: #fff; border:1px solid #fff; padding: 4px; border-radius: 7px; margin-bottom: 30px;">
+                                                        <small><b><span class=" t_availability_only_days"></span>:</b> <span class=" cluuf-pack-availableDays"></small>
+                                                    </div>
+                                                    <br />
                                                     <div class="col-lg-6 form-group">
                                                         <label><i class="icofont-calendar"></i> Fecha: </label>
                                                         <input type="date" placeholder="Date" class="form-control" name="date" id="date" required>
@@ -382,208 +390,214 @@
                         </div>
                     </div>
 
-                    <div class="single-product-info cluuf-root-hidden">
-                        <ul class="nav nav-tabs" role="tablist">
+                    <div class="row gutters-20 zoom-gallery">
+                        <div class="col-lg-12">
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="single-product-info cluuf-root-hidden">
+                                <ul class="nav nav-tabs" role="tablist">
 
-                            <li class="nav-item">
-                                <a class="nav-link active is-cluuf-pack-additional-info" id="profile-tab" data-toggle="tab" href="#add-info" role="tab" aria-selected="false"><span
-                                        class="t_additional_information"></span></a>
-                            </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link active is-cluuf-pack-additional-info" id="profile-tab" data-toggle="tab" href="#add-info" role="tab" aria-selected="false"><span
+                                                class="t_additional_information"></span></a>
+                                    </li>
 
 
-                            <li class="nav-item is-cluuf-pack-iframeMap" style="display: none">
-                                <a class="nav-link " id="home-tab" data-toggle="tab" href="#googlemap" role="tab" aria-selected="true"><span class="t_geographic_location"></span></a>
-                            </li>
+                                    <li class="nav-item is-cluuf-pack-iframeMap" style="display: none">
+                                        <a class="nav-link " id="home-tab" data-toggle="tab" href="#googlemap" role="tab" aria-selected="true"><span class="t_geographic_location"></span></a>
+                                    </li>
 
-                            <li class="nav-item is-cluuf-pack-meetingPoint" style="display: none">
-                                <a class="nav-link " id="home-tab" data-toggle="tab" href="#meeting-point" role="tab" aria-selected="true"><span class="t_meeting_point"></span></a>
-                            </li>
+                                    <li class="nav-item is-cluuf-pack-meetingPoint" style="display: none">
+                                        <a class="nav-link " id="home-tab" data-toggle="tab" href="#meeting-point" role="tab" aria-selected="true"><span class="t_meeting_point"></span></a>
+                                    </li>
 
-                        </ul>
-                        <div class="tab-content">
+                                </ul>
+                                <div class="tab-content">
 
-                            <div class="tab-pane fade  " id="description" role="tabpanel">
+                                    <div class="tab-pane fade  " id="description" role="tabpanel">
 
-                            </div>
-                            <div class="tab-pane fade active show" id="add-info" role="tabpanel">
+                                    </div>
+                                    <div class="tab-pane fade active show" id="add-info" role="tabpanel">
 
-                                <div class="row">
-                                    <div class="col-lg-12 is-cluuf-pack-description" style="display:none">
-                                        <div class="product-description" style="margin-bottom: 30px;">
-                                            <span class="pack_description "></span>
+                                        <div class="row">
+                                            <div class="col-lg-12 is-cluuf-pack-description" style="display:none">
+                                                <div class="product-description" style="margin-bottom: 30px;">
+                                                    <span class="pack_description "></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 is-cluuf-pack-itineraries" style="display:none">
+                                                <h4><span class="">Itinerario</h4>
+                                                <ul class="additional-info pack_itineraries "></ul>
+                                            </div>
+
+                                            <div class="col-lg-3 is-cluuf-pack-include" style="display:none">
+                                                <h4><span>Incluye</h4>
+                                                <ul class="additional-info pack_include "></ul>
+                                            </div>
+
+                                            <div class="col-lg-3 is-cluuf-pack-recomendations" style="display:none">
+                                                <h4><span class="">Recomendaciones</h4>
+                                                <ul class="additional-info pack_recomendations "></ul>
+                                            </div>
+                                            <div class="col-lg-3 is-cluuf-pack-exclude" style="display:none">
+                                                <h4><span class="">No incluye</h4>
+                                                <ul class="additional-info pack_exclude "></ul>
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <div class="col-lg-3 is-cluuf-pack-itineraries" style="display:none">
-                                        <h4><span class="">Itinerario</h4>
-                                        <ul class="additional-info pack_itineraries "></ul>
+                                    <div class="tab-pane fade" id="googlemap" role="tabpanel">
+                                        <div class="product-description">
+                                            <div class="pack_iframeMap "></div>
+                                        </div>
                                     </div>
-
-                                    <div class="col-lg-3 is-cluuf-pack-include" style="display:none">
-                                        <h4><span>Incluye</h4>
-                                        <ul class="additional-info pack_include "></ul>
+                                    <div class="tab-pane fade" id="meeting-point" role="tabpanel">
+                                        <div class="product-description">
+                                            <div class="pack_meetingPoint "></div>
+                                        </div>
                                     </div>
-
-                                    <div class="col-lg-3 is-cluuf-pack-recomendations" style="display:none">
-                                        <h4><span class="">Recomendaciones</h4>
-                                        <ul class="additional-info pack_recomendations "></ul>
-                                    </div>
-                                    <div class="col-lg-3 is-cluuf-pack-exclude" style="display:none">
-                                        <h4><span class="">No incluye</h4>
-                                        <ul class="additional-info pack_exclude "></ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="googlemap" role="tabpanel">
-                                <div class="product-description">
-                                    <div class="pack_iframeMap "></div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="meeting-point" role="tabpanel">
-                                <div class="product-description">
-                                    <div class="pack_meetingPoint "></div>
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
 
+
+
+                    <section class="contact-page" style="display: none">
+
+                        <div class="contact-box-wrap">
+                            <div class="container">
+                                <div class="contact-form" style="margin-top: 50px;">
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            <div class="contact-box">
+                                                <h3 class="item-title"><span class="">Contactanos</span></h3>
+                                                <form id="contact-form">
+                                                    <div class="row gutters-20">
+                                                        <div class="col-lg-12 form-group">
+                                                            <label>Nombres y Apellidos</label>
+                                                            <input type="text" class="form-control" name="fname" id="fname">
+                                                        </div>
+                                                        <div class="col-lg-6 form-group">
+                                                            <label>Correo Electronico</label>
+                                                            <input type="email" class="form-control" name="email" id="femail">
+                                                        </div>
+                                                        <div class="col-lg-6 form-group">
+                                                            <label>Teléfono</label>
+                                                            <input type="text" class="form-control" name="phone" id="fphone">
+                                                        </div>
+                                                        <div class="col-12 form-group">
+                                                            <label>Dejanos tu mensaje </label>
+                                                            <textarea name="message" id="fmessage" cols="30" rows="3" id="fmessage" class="textarea form-control"></textarea>
+                                                        </div>
+                                                        <div class="col-12 form-group">
+                                                            <a style="font-size: 18px; padding: 10px 50px;" class="submit-btn" href="javascript:formSubmit()">Enviar mensaje</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-response"></div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <div class="contact-box contact-method">
+                                                <h3 class="item-title">Donde ubicarnos</h3>
+                                                <ul>
+                                                    <li><i class="icofont-location-pin"></i><span class="cluuf-instance-address"></span></li>
+                                                    <li><i class="icofont-ui-message"></i> <span class="cluuf-instance-emailpublic"></span></li>
+                                                    <li><i class="icofont-phone"></i><span class="cluuf-instance-phonepublic"></span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <!--=====================================-->
+                    <!--=        Footer Area Start       	=-->
+                    <!--=====================================-->
+                    <footer class="footer-wrap footer-dashboard">
+                        <div class="footer-bottom">
+                            <div class="footer-copyright">Copy© Cluuf <span class="t_all_rights_reserved"></span></div>
+                        </div>
+                    </footer>
                 </div>
 
-
-
-                <section class="contact-page" style="display: none">
-
-                    <div class="contact-box-wrap">
-                        <div class="container">
-                            <div class="contact-form" style="margin-top: 50px;">
-                                <div class="row">
-                                    <div class="col-lg-7">
-                                        <div class="contact-box">
-                                            <h3 class="item-title"><span class="">Contactanos</span></h3>
-                                            <form id="contact-form">
-                                                <div class="row gutters-20">
-                                                    <div class="col-lg-12 form-group">
-                                                        <label>Nombres y Apellidos</label>
-                                                        <input type="text" class="form-control" name="fname" id="fname">
-                                                    </div>
-                                                    <div class="col-lg-6 form-group">
-                                                        <label>Correo Electronico</label>
-                                                        <input type="email" class="form-control" name="email" id="femail">
-                                                    </div>
-                                                    <div class="col-lg-6 form-group">
-                                                        <label>Teléfono</label>
-                                                        <input type="text" class="form-control" name="phone" id="fphone">
-                                                    </div>
-                                                    <div class="col-12 form-group">
-                                                        <label>Dejanos tu mensaje </label>
-                                                        <textarea name="message" id="fmessage" cols="30" rows="3" id="fmessage" class="textarea form-control"></textarea>
-                                                    </div>
-                                                    <div class="col-12 form-group">
-                                                        <a style="font-size: 18px; padding: 10px 50px;" class="submit-btn" href="javascript:formSubmit()">Enviar mensaje</a>
-                                                    </div>
-                                                </div>
-                                                <div class="form-response"></div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-5">
-                                        <div class="contact-box contact-method">
-                                            <h3 class="item-title">Donde ubicarnos</h3>
-                                            <ul>
-                                                <li><i class="icofont-location-pin"></i><span class="cluuf-instance-address"></span></li>
-                                                <li><i class="icofont-ui-message"></i> <span class="cluuf-instance-emailpublic"></span></li>
-                                                <li><i class="icofont-phone"></i><span class="cluuf-instance-phonepublic"></span></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-
-                <!--=====================================-->
-                <!--=        Footer Area Start       	=-->
-                <!--=====================================-->
-                <footer class="footer-wrap footer-dashboard">
-                    <div class="footer-bottom">
-                        <div class="footer-copyright">Copy© Cluuf <span class="t_all_rights_reserved"></span></div>
-                    </div>
-                </footer>
+                <div class="overlay-loading">
+                    <p style="text-align: center;">
+                        <img class="item-title cluuf-instance-logo logo-who-we-are" width="200px">
+                    </p>
+                </div>
             </div>
+            <style>
+                .contact-form label {
+                    color: #fff !important;
+                }
 
-            <div class="overlay-loading">
-                <p style="text-align: center;">
-                    <img class="item-title cluuf-instance-logo logo-who-we-are" width="200px">
-                </p>
-            </div>
-        </div>
-        <style>
-            .contact-form label {
-                color: #fff !important;
-            }
-
-            .contact-page .contact-box-wrap .contact-method li {
-                color: #fff !important;
-            }
+                .contact-page .contact-box-wrap .contact-method li {
+                    color: #fff !important;
+                }
 
 
-            .contact-page .contact-box-wrap .contact-box .item-title {
-                color: #fff !important;
-            }
+                .contact-page .contact-box-wrap .contact-box .item-title {
+                    color: #fff !important;
+                }
 
-            .contact-page .contact-box-wrap .contact-method li i {
-                color: #fff !important;
-            }
-        </style>
+                .contact-page .contact-box-wrap .contact-method li i {
+                    color: #fff !important;
+                }
+            </style>
 
-        <!-- Jquery Js -->
-        <script src="dependencies/jquery/js/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/20.3.2/i18next.min.js"></script>
-        <script src="assets/js/moment.min.js"></script>
-        <script src="dependencies/popper.js/js/popper.min.js"></script>
-        <script src="dependencies/bootstrap/js/bootstrap.min.js"></script>
-        <script src="dependencies/imagesloaded/js/imagesloaded.pkgd.min.js"></script>
-        <script src="dependencies/isotope-layout/js/isotope.pkgd.min.js"></script>
-        <script src="dependencies/slick-carousel/js/slick.min.js"></script>
-        <script src="dependencies/sal.js/sal.js"></script>
-        <script src="dependencies/magnific-popup/js/jquery.magnific-popup.min.js"></script>
-        <script src="dependencies/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-        <script src="dependencies/select2/js/select2.min.js"></script>
-        <script src="dependencies/elevate-zoom/jquery.elevatezoom.js"></script>
-        <script src="dependencies/bootstrap-validator/js/validator.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtmXSwv4YmAKtcZyyad9W7D4AC08z0Rb4"></script>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <!-- Jquery Js -->
+            <script src="dependencies/jquery/js/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/20.3.2/i18next.min.js"></script>
+            <script src="assets/js/moment.min.js"></script>
+            <script src="dependencies/popper.js/js/popper.min.js"></script>
+            <script src="dependencies/bootstrap/js/bootstrap.min.js"></script>
+            <script src="dependencies/imagesloaded/js/imagesloaded.pkgd.min.js"></script>
+            <script src="dependencies/isotope-layout/js/isotope.pkgd.min.js"></script>
+            <script src="dependencies/slick-carousel/js/slick.min.js"></script>
+            <script src="dependencies/sal.js/sal.js"></script>
+            <script src="dependencies/magnific-popup/js/jquery.magnific-popup.min.js"></script>
+            <script src="dependencies/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+            <script src="dependencies/select2/js/select2.min.js"></script>
+            <script src="dependencies/elevate-zoom/jquery.elevatezoom.js"></script>
+            <script src="dependencies/bootstrap-validator/js/validator.min.js"></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtmXSwv4YmAKtcZyyad9W7D4AC08z0Rb4"></script>
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        <!-- Site Scripts -->
-        <script src="assets/js-subscriber/global.js"></script>
-        <script src="assets/js-subscriber/request.js"></script>
-        <script src="assets/js-subscriber/gymRequest.js"></script>
-        <script src="assets/js-subscriber/contactUsRequest.js"></script>
-        <script src="assets/js-subscriber/init.js"></script>
-        <script src="assets/js-subscriber/app.js"></script>
+            <!-- Site Scripts -->
+            <script src="assets/js-subscriber/global.js"></script>
+            <script src="assets/js-subscriber/request.js"></script>
+            <script src="assets/js-subscriber/gymRequest.js"></script>
+            <script src="assets/js-subscriber/contactUsRequest.js"></script>
+            <script src="assets/js-subscriber/init.js"></script>
+            <script src="assets/js-subscriber/app.js"></script>
 
 
-        <!-- Cluuf configuration -->
+            <!-- Cluuf configuration -->
 
-        <script>localStorage.setItem("privacyPolicyURL", "false");</script>
-        <link async rel="stylesheet" href="https://cluuftracks.herokuapp.com/cluuf.css?v=10">
-        <script src="https://cluuftracks.herokuapp.com/cluuf.js"></script>
-        <script async src="https://cluuftracks.herokuapp.com/adminCluuf.js"></script>
-        <script async src="https://cluuftracks.herokuapp.com/contentCluuf.js"></script>
+            <script>localStorage.setItem("privacyPolicyURL", "false");</script>
+            <link async rel="stylesheet" href="https://cluuftracks.herokuapp.com/cluuf.css?v=10">
+            <script src="https://cluuftracks.herokuapp.com/cluuf.js"></script>
+            <script async src="https://cluuftracks.herokuapp.com/adminCluuf.js"></script>
+            <script async src="https://cluuftracks.herokuapp.com/contentCluuf.js"></script>
 
-        <style>
-            .single-product .product-content .action-area li .input-group .quantity-btn {
-                font-size: 20px;
-                color: #251f20;
-            }
+            <style>
+                .single-product .product-content .action-area li .input-group .quantity-btn {
+                    font-size: 20px;
+                    color: #251f20;
+                }
 
-            .single-product .product-content .action-area li .input-group .form-control {
-                font-size: 20px;
-                font-weight: bold;
-            }
-        </style>
+                .single-product .product-content .action-area li .input-group .form-control {
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+            </style>
 
     </body>
 
