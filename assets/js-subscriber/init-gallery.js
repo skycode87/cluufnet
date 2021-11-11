@@ -238,6 +238,8 @@ getConnection({
             }
           }
 
+          $(".fixed-header .header-menu").css("background", result.color);
+
           $(".cluuf-instance-background").css(
             "background-image",
             `url(${result.background})`
@@ -256,24 +258,19 @@ getConnection({
                   localStorage.setItem("cluuf-pack-tag", pack.tag);
                   sessionStorage.setItem("packname", pack.tag);
 
-                  $("body .review-form.cluuf-instance-background-form").css(
-                    "background",
-                    pack.backgroundForm
-                  );
-
-                  $("body .fixed-sidebar.right .sidebar-toggle").css(
-                    "background-color",
-                    pack.colorBtnForm
-                  );
-
                   $("body .plan_description div").css(
                     "background",
                     pack.backgroundForm
                   );
 
-                  $(".fixed-header .header-menu").css(
-                    "background",
-                    pack.primaryColor
+                  $(".cluuf-instance-background").css(
+                    "background-image",
+                    `url(${result.background})`
+                  );
+
+                  $("body .fixed-sidebar.right .sidebar-toggle").css(
+                    "background-color",
+                    result.primary
                   );
 
                   $("body .form-group .submit-btn").css(
@@ -472,13 +469,13 @@ getConnection({
                 onSuccess: (resultPlans) => {
                   console.log(resultPlans);
 
-                  if (resultPlans.images[0]) {
+                  if (resultPlans.images) {
                     $("#gallery img").remove();
 
                     $(".cluuf-plan-name").html(resultPlans.plans[0].name);
 
-                    resultPlans.images.forEach((element) => {
-                      $("#gallery").append(`<image src="${element.image}" />`);
+                    resultPlans.images.images.forEach((element) => {
+                      $("#gallery").append(`<img src="${element.image}" />`);
                     });
                   }
                 },
