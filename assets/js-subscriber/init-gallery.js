@@ -183,6 +183,10 @@ getConnection({
           localStorage.setItem("cluuf", "true");
           localStorage.setItem("alias", result.alias);
 
+          $(".cluuf-gowebsite-href").text(result.website);
+          $(".cluuf-gowebsite-href").attr("href", result.hostname);
+          $(".cluuf-gowebsite-href").attr("target", "blank");
+
           if (result.video) {
             if (result.video.length > 10) {
               $(".cluuf-instance-video").attr("href", result.video);
