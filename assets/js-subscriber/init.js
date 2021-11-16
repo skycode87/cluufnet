@@ -323,22 +323,13 @@ getConnection({
                   localStorage.setItem("contador", contador);
                   setInterval(() => {
                     if (localStorage.getItem("contador") === "0") {
-                      $(".cluuf-instance-cover").css(
-                        "background-image",
-                        `url(${pack.gallery1})`
-                      );
+                      $(".zoom-gallery .panel1").attr("src", pack.gallery1);
                       localStorage.setItem("contador", "1");
                     } else if (localStorage.getItem("contador") === "1") {
-                      $(".cluuf-instance-cover").css(
-                        "background-image",
-                        `url(${pack.gallery2})`
-                      );
+                      $(".zoom-gallery .panel1").attr("src", pack.gallery2);
                       localStorage.setItem("contador", "2");
                     } else if (localStorage.getItem("contador") === "2") {
-                      $(".cluuf-instance-cover").css(
-                        "background-image",
-                        `url(${pack.gallery3})`
-                      );
+                      $(".zoom-gallery .panel1").attr("src", pack.gallery3);
                       localStorage.setItem("contador", "0");
                     }
                   }, 5000);
