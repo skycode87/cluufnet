@@ -196,18 +196,17 @@
 
                                     </div>
 
-                                    <div style="background: #fff; border-radius: 7px; padding: 10px">
-                                        <h4><i class="icofont-heart-alt"></i> Precauciones contra la Covid-19 </h4>
-                                        <small> Se proporcionará todo el equipo de protección requerido </small>
+
+                                    <div style="background: #fff; border-radius: 7px; padding: 10px" class="isCancellationPolicy">
+                                        <h4><i class="icofont-label"></i> Cancellation policy </h4>
+                                        <small><span class="cancellationPolicy"></span></small>
                                     </div>
 
-                                    <div style="background: #fff; border-radius: 7px; padding: 10px">
-                                        <h4><i class="icofont-label"></i> Cancellation policy </h4>
-                                        <small>This tour has a 1 day(s) cancellation policy. Failure to cancel within this time or in the case of your non-arrival, will result in a cancellation charge
-                                            of
-                                            $USD 2 fee per person.
-                                        </small>
+                                    <div style="background: #fff; border-radius: 7px; padding: 10px" class="isCancellationPolicy">
+                                        <h4><i class="icofont-label"></i> Terms & Conditions </h4>
+                                        <small><span class="cancellationPolicy"></span></small>
                                     </div>
+
 
 
 
@@ -297,8 +296,8 @@
                                                         <input type="text" class="form-control" name="phone" id="phone" required>
                                                     </div>
 
-                                                    <div class="col-lg-12 col-md-12 form-group cluuf-root">
-                                                        <label>Tipo de Documento de Identidad</label>
+                                                    <div class="col-lg-6 col-md-6 form-group cluuf-isDocumentRequired">
+                                                        <label>Tipo de Identificación</label>
                                                         <select style="height: 50px; font-weight: bold; font-size: 18px;" class="custom-select form-control-lg" name="documentType" id="documentType">
                                                             <option value="none">Seleccione</option>
                                                             <option value="Pasaporte">Pasaporte</option>
@@ -309,12 +308,12 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="col-lg-12 col-md-12 form-group cluuf-root">
+                                                    <div class="col-lg-6 col-md-6 form-group cluuf-isDocumentRequired">
                                                         <label>Número de documento</label>
                                                         <input type="text" value="" class="form-control" name="document" id="document" required>
                                                     </div>
 
-                                                    <div class="col-lg-12 col-md-12 form-group cluuf-root">
+                                                    <div class="col-lg-12 col-md-12 form-group cluuf-root cluuf-isFree">
                                                         <label><i class="icofont-money-bag"></i> Método de Pago</label>
                                                         <select style="height: 50px; font-weight: bold; font-size: 18px;" class="custom-select form-control-lg" name="paymentMode" id="paymentMode">
                                                             <option value="none" selected>Sin Pago</option>
@@ -329,7 +328,7 @@
                                                         <Textarea class="form-control" name="message" id="message"></Textarea>
                                                     </div>
 
-                                                    <div class="col-lg-12 form-group" style="display: flex; justify-content: center; padding-bottom: 5px;">
+                                                    <div class="col-lg-12 form-group cluuf-isTicketsNumber" style="display: flex; justify-content: center; padding-bottom: 5px;">
                                                         <ul class="action-area" style="margin-top: 5px;">
                                                             <li id="quantity-holder" style="color: #fff; ">
                                                                 <b>Número de Tickets</b>
@@ -346,7 +345,7 @@
                                                         </ul>
                                                     </div>
 
-                                                    <div class="col-12 form-group isCupon" style="display: none;">
+                                                    <div class="col-12 form-group isCupon cluuf-isFree" style="display: none;">
                                                         <label><i class="icofont-tag"></i> Codigo del Cupón</label>
                                                         <input type="text" class="form-control" name="cupon" id="cupon">
 
@@ -388,6 +387,11 @@
                                                             </li>
                                                         </ul>
 
+                                                    </div>
+
+                                                    <div class="col-lg-12" style="color: #fff; text-align: center;">
+                                                        <h5 style="color: #fff; text-align: center;"><i class="icofont-heart-alt"></i> Precauciones contra la Covid-19 </h5>
+                                                        <small style="color: #fff;"> Se proporcionará todo el equipo de protección requerido </small>
                                                     </div>
 
                                                 </div>

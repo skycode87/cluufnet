@@ -1,3 +1,5 @@
+let INSTANCE_ = {};
+
 function capitalize(word) {
   const lower = word.toLowerCase();
   return word.charAt(0).toUpperCase() + lower.slice(1);
@@ -118,6 +120,8 @@ getConnection({
               //backend: "http://localhost:2001",
             })
           );
+
+          INSTANCE_ = result;
 
           $(".cluuf-instance-logo").attr("src", result.logo);
           $(".cluuf-instance-logowhite").attr("src", result.logowhite);
@@ -339,39 +343,62 @@ getConnection({
                     }
                   }, 5000);
 
-                  $("body .review-form.cluuf-instance-background-form").css(
-                    "background",
-                    pack.backgroundForm
-                  );
+                  if (pack.isDefaultColor) {
+                    $("body .review-form.cluuf-instance-background-form").css(
+                      "background",
+                      INSTANCE_.color
+                    );
 
-                  $("body .plan_description div").css(
-                    "background",
-                    pack.backgroundForm
-                  );
+                    $("body .plan_description div").css(
+                      "background",
+                      INSTANCE_.color
+                    );
 
-                  $("body .form-group .submit-btn").css(
-                    "background-color",
-                    pack.colorBtnForm
-                  );
+                    $(".cluuf-pack-labelBtnForm").css(
+                      "background-color",
+                      INSTANCE_.primary
+                    );
 
-                  $("body .scrollup").css(
-                    "background-color",
-                    pack.colorBtnForm
-                  );
+                    $("body .scrollup").css(
+                      "background-color",
+                      INSTANCE_.primary
+                    );
 
-                  $(" body .product-content  .item-title").css(
-                    "background",
-                    pack.colorBtnForm
-                  );
+                    $(" body .product-content  .item-title").css(
+                      "background",
+                      INSTANCE_.primary
+                    );
+                  } else {
+                    $("body .review-form.cluuf-instance-background-form").css(
+                      "background",
+                      pack.backgroundForm
+                    );
 
-                  $(" body .contact-page .contact-box-wrap .contact-form").css(
-                    "background",
-                    pack.backgroundForm
-                  );
+                    $("body .plan_description div").css(
+                      "background",
+                      pack.backgroundForm
+                    );
 
-                  $(
-                    "body .single-product .product-content .action-area li .cart-btn"
-                  ).css("background", pack.colorBtnForm);
+                    $("body .form-group .submit-btn").css(
+                      "background-color",
+                      pack.colorBtnForm
+                    );
+
+                    $("body .scrollup").css(
+                      "background-color",
+                      pack.colorBtnForm
+                    );
+
+                    $(" body .product-content  .item-title").css(
+                      "background",
+                      pack.colorBtnForm
+                    );
+
+                    $(".cluuf-pack-labelBtnForm").css(
+                      "background-color",
+                      pack.colorBtnForm
+                    );
+                  }
 
                   if (pack.privacyPolicy && pack.privacyPolicy.length > 5) {
                     $("#isPrivacyPolicy").val(true);
@@ -393,6 +420,37 @@ getConnection({
                     $("#isCupon").val(true);
                     $(".isCupon").show();
                   }
+
+                  if (pack.isTemporal) {
+                    $(".isTemporalPack").hide();
+                  }
+
+                  if (pack.isFree) {
+                    $(".cluuf-isFree").hide();
+                  }
+
+                  $(".cluuf-isTicketsNumber").hide();
+                  if (pack.isTicketsNumber) {
+                    $(".cluuf-isTicketsNumber").show();
+                  }
+
+                  $(".cluuf-isDocumentRequired").hide();
+                  if (pack.isDocumentRequired) {
+                    $(".cluuf-isDocumentRequired").show();
+                  }
+
+                  $(".isCancellationPolicy").hide();
+                  if (String(INSTANCE_.cancellationPolicy).length > 10) {
+                    $(".isCancellationPolicy").show();
+                    $(".cancellationPolicy").html(INSTANCE_.cancellationPolicy);
+                  }
+
+                  $(".isTermsConditions").hide();
+                  if (String(INSTANCE_.termsConditions).length > 10) {
+                    $(".isTermsConditions").show();
+                    $(".termsConditions").html(INSTANCE_.termsConditions);
+                  }
+
                   $("#date").val(moment().format("YYYY-MM-DD"));
 
                   $(".cluuf-pack-name").text(pack.name);
@@ -576,14 +634,22 @@ getConnection({
                                   ).name
                                 );
 
-                                $(".plan_description").html(
-                                  `<div>
-                                  ${
+                                if (
+                                  String(
                                     JSON.parse(
                                       sessionStorage.getItem($("#plan").val())
                                     ).observation
-                                  }</div>`
-                                );
+                                  ).length > 10
+                                ) {
+                                  $(".plan_description").html(
+                                    `<div>
+                                    ${
+                                      JSON.parse(
+                                        sessionStorage.getItem($("#plan").val())
+                                      ).observation
+                                    }</div>`
+                                  );
+                                }
                               } else {
                                 $("#plan").append(
                                   `<option value="${element._id}">${
@@ -674,12 +740,19 @@ $(".is-cluuf-pack-meetingPoint").on("click", () => {
 });
 
 $("#plan").on("change", () => {
-  $(".plan_description div").remove();
-  $("#planname").val(JSON.parse(sessionStorage.getItem($("#plan").val())).name);
-  $(".plan_description").html(
-    `<div>
-    ${JSON.parse(sessionStorage.getItem($("#plan").val())).observation}</div>`
-  );
+  if (
+    String(JSON.parse(sessionStorage.getItem($("#plan").val())).observation)
+      .length > 10
+  ) {
+    $(".plan_description div").remove();
+    $("#planname").val(
+      JSON.parse(sessionStorage.getItem($("#plan").val())).name
+    );
+    $(".plan_description").html(
+      `<div>
+      ${JSON.parse(sessionStorage.getItem($("#plan").val())).observation}</div>`
+    );
+  }
 });
 
 $("#date").on("change", () => {

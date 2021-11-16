@@ -546,7 +546,6 @@
 })(jQuery);
 
 setTimeout(() => {
-  console.log("iniciando");
   (function ($) {
     "use strict";
 

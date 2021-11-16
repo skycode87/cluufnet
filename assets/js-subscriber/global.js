@@ -49,7 +49,6 @@ const validarEmail_ = (valor) => {
 };
 
 const priceFormat = (text) => {
-  console.log(text);
   if (text !== "0" || text !== "" || text !== 0)
     return `$ ${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   return "";
