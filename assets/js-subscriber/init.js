@@ -123,6 +123,9 @@ getConnection({
 
           INSTANCE_ = result;
 
+          if (getParameterByName_pack("redirect"))
+            sessionStorage.setItem("redirect", true);
+
           $(".cluuf-instance-logo").attr("src", result.logo);
           $(".cluuf-instance-logowhite").attr("src", result.logowhite);
 
@@ -511,12 +514,21 @@ getConnection({
 
                   $("#time option").remove();
                   if (pack.departureTime) {
+                    var seletedTime = "";
                     pack.departureTime.forEach((element) => {
+                      seletedTime = "";
+                      if (getParameterByName_pack("h") === element) {
+                        seletedTime = "selected";
+                      }
+
                       $("#time").append(
-                        `<option value="${element}">${element}</option>`
+                        `<option ${seletedTime} value="${element}">${element}</option>`
                       );
                     });
                   }
+
+                  if (getParameterByName_pack("f"))
+                    $("#date").val(getParameterByName_pack("f"));
 
                   if (pack.itineraries && String(pack.itineraries).length > 5) {
                     $(".is-cluuf-pack-itineraries").show();

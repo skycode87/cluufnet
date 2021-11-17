@@ -139,6 +139,10 @@ const sendRequestGYMCluuf = (
       console.log(err);
     })
     .finally(function () {
+      if (sessionStorage.getItem("redirect")) {
+        setTimeout(() => window.history.back(), 2000);
+      }
+
       onFinally({
         ok: true,
       });
