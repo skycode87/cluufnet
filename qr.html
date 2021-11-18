@@ -4,10 +4,10 @@
 
 
 <div class="qrcode">
-    <img id="logo" src="https://cluuftracks.herokuapp.com/bot.gif" width="120px">
+    <img id="logo" src="https://cluuftracks.herokuapp.com/bot.gif" width="220px">
     <h2 id="title"></h2>
     <div id="qrcode-2"></div>
-    <p style="margin-top: 2px;">By <b><span id="agency"></span></b></p>
+    <img style="margin-top: -10px;" id="logoReferer" src="https://cluuftracks.herokuapp.com/bot.gif" width="120px">
 
 </div>
 
@@ -52,12 +52,13 @@
     setTimeout(() => {
 
         $("#logo").attr("src", getParams("logo"));
+        $("#logoReferer").attr("src", getParams("avatar"));
+
 
         const block = document.getElementById('title');
         block.innerHTML = getParams("title");
 
-        const block2 = document.getElementById('agency');
-        block2.innerHTML = getParams("agency");
+
 
 
         var qrcode = new QRCode(document.getElementById("qrcode-2"), {
