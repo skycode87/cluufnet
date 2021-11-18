@@ -18,8 +18,8 @@
 
 @media only screen and (max-width: 769px) {
     .product-content   .cluuf-alert{
-        height: 950px;
-        padding-top: 750px;
+        height: 2000px;
+        padding-top: 200px;
     }
 }
 
@@ -355,4 +355,21 @@ display: none;
 
 .google{
 margin: 20px 0px;
+}
+
+.availability-panel{
+    border: 1px solid #505152;
+    display: block;
+    padding: 20px 30px;
+    background: #212529;
+    border-radius: 10px;
+}
+
+.referer-title{
+    font-weight: bold;
+    background: #8ed78e;
+    color: #040404;
+    letter-spacing: 1px;
+    padding: 3px 20px;
+    border-radius: 4px;
 }

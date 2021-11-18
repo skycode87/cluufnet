@@ -10,6 +10,9 @@ const globals_gym = Object.freeze({
   CLUUFWEB_SERVER_FORM_TOUR: `${localStorage.getItem(
     "backend_url"
   )}/subscriber_new_tour_app`,
+  CLUUFWEB_SERVER_VALIDATE_TOUR: `${localStorage.getItem(
+    "backend_url"
+  )}/subscriber_available_tour`,
 });
 
 const sendRequestGYMCluuf = (
@@ -120,6 +123,48 @@ const sendRequestGYMCluuf = (
   if (tour === "done") {
     url = globals_gym.CLUUFWEB_SERVER_FORM_TOUR;
   }
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body,
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      onSuccess(data);
+    })
+    .catch(function (err) {
+      onError(err);
+      console.log(err);
+    })
+    .finally(function () {
+      if (sessionStorage.getItem("redirect")) {
+        setTimeout(() => window.history.back(), 2000);
+      }
+
+      onFinally({
+        ok: true,
+      });
+    });
+};
+
+const sendRequestAvailableTour = (
+  { fecha = null, hora = null },
+  { onSuccess = {}, onError = {}, onFinally = {} }
+) => {
+  const body = new URLSearchParams({
+    fecha,
+    hora,
+    rootId: sessionStorage.getItem("referer"),
+    instanceId: $("#instanceId").val(),
+    packId: sessionStorage.getItem("cluuf-packId"),
+  }).toString();
+
+  let url = globals_gym.CLUUFWEB_SERVER_VALIDATE_TOUR;
 
   fetch(url, {
     method: "POST",
@@ -784,6 +829,39 @@ const submitSubscriptionS1 = () => {
         $("#medium").val("");
       },
       onError: () => console.log("Error enviando el formulario"),
+    }
+  );
+};
+
+const submitValidarDisponibilidad = (execute = false) => {
+  const fecha = $("#date").val();
+  const hora = $("#time").val();
+  sendRequestAvailableTour(
+    { fecha, hora },
+    {
+      onSuccess: (data) => {
+        if (data.result.availability) {
+          $(".cluuf-plan-available").text(data.result.availability);
+          $(".cluuf-plan-pending").text(data.result.pending);
+          $(".cluuf-plan-date").text(data.result.name);
+          if (execute) {
+            submitSubscriptionS3();
+          }
+        } else {
+          if (!data.result.isExist) {
+            $(".cluuf-plan-date").text(
+              `${$("#date").val()} ${$("#time").val()} `
+            );
+            $(".cluuf-plan-available").text($("#maxLimit").val());
+            $(".cluuf-plan-pending").text(0);
+            if (execute) {
+              submitSubscriptionS3();
+            }
+          }
+        }
+      },
+      onError: () => {},
+      onFinally: () => {},
     }
   );
 };

@@ -307,6 +307,8 @@ getConnection({
                 onSuccess: (result) => {
                   const pack = result.pack[0];
                   sessionStorage.setItem("cluuf-pack", JSON.stringify(pack));
+                  sessionStorage.setItem("cluuf-packId", pack._id);
+
                   localStorage.setItem("cluuf-pack-tag", pack.tag);
                   sessionStorage.setItem("packname", pack.tag);
 
@@ -478,6 +480,7 @@ getConnection({
                   $(".cluuf-pack-excerpt").html(pack.excerpt);
                   $("#packname").val(pack.name);
                   $(".cluuf-pack-title").text(pack.title);
+                  $("#maxLimit").val(pack.maxLimit);
                   $(".cluuf-pack-titleSelectPlan").text(pack.titleSelectPlan);
                   $(".cluuf-pack-labelBtnForm").text(pack.labelBtnForm);
 
@@ -625,6 +628,8 @@ getConnection({
                       }
                     });
                   }
+
+                  if (pack.isTemporal) submitValidarDisponibilidad();
 
                   if (pack.type === "SUBSCRIPTION") {
                     getPlans(
@@ -799,10 +804,9 @@ $("#date").on("change", () => {
     });
     if (!isAvailable) {
       $("#date").val("");
-      cluufAlert_pack({
-        type: "error",
-        title: "Invalid Field",
-        message: `Excuse me, we only have availability for the days ${daysName}`,
+      Swal.fire({
+        title: `Excuse me, we only have availability for the days ${daysName}`,
+        icon: "error",
       });
     }
   }

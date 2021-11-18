@@ -142,8 +142,8 @@
                     <div class="block-box" style="margin-top: 0px;">
                         <img class="item-title cluuf-instance-logo header-title-logo" width="220px" style="margin: auto; display: block; padding: 30px;">
 
-                        <p style="text-align: center; font-weight: bold; padding: 10px;  background-color: #e1fbff; font-size: 18px;  position: relative; top:-10px"><img
-                                style="width: 30px; border-radius: 10%;" class="cluuf-referer-avatar" src="">&nbsp; <span class="cluuf-referer-name"></span>
+                        <p style="text-align: center; font-weight: bold; padding: 10px; font-size: 18px;  position: relative; top:-10px">
+                            <!--<img style="width: 120px; border-radius: 10%;" class="cluuf-referer-avatar" src=""><br> --> <small> <span class="cluuf-referer-name referer-title"></span></small>
                         </p>
                     </div>
                     <div class="single-product" style="margin-top:0px;">
@@ -259,6 +259,7 @@
                                                 <input type="hidden" id="campaign" value="">
                                                 <input type="hidden" id="facilitator" value="">
                                                 <input type="hidden" id="refererUserId" value="">
+                                                <input type="hidden" id="maxLimit" value="">
                                                 <input type="hidden" id="refererAppId" value="">
                                                 <input type="hidden" class="cluuf-pack-id" id="formId">
                                                 <input type="hidden" id="instanceId">
@@ -282,6 +283,25 @@
                                                         <label><i class="icofont-clock-time"></i> Hora: </label>
                                                         <select style="height: 50px;" class="custom-select form-control-lg" id="time" name="time">
                                                         </select>
+                                                    </div>
+                                                    <div class="col-lg-12 form-group cluuf-root availability-panel">
+
+                                                        <p style=" color: #fff; font-weight: bold">
+                                                            Disponible: <span style="background: #008000; font-size: 14px;
+                                                            padding: 2px 5px;
+                                                            border-radius: 7px;
+                                                            margin: 0px 10px;" class="cluuf-plan-available"> </span> |
+                                                            En espera: <span style="background: #c96b00af; font-size: 14px;
+                                                            padding: 2px 5px;
+                                                            border-radius: 7px;
+                                                            margin: 0px 10px;" class="cluuf-plan-pending"> </span>
+                                                            <i class="icofont-calendar"></i> <span class="cluuf-plan-date"> </span>
+                                                        </p>
+
+
+                                                        </p>
+                                                        <a style="background-color: #e3020daf; color: #fff; padding: 1px 10px; border-radius: 7px;"
+                                                            href="javascript:submitValidarDisponibilidad()">Click aqui para verificar disponibilidad</a>
                                                     </div>
 
                                                     <div class="col-lg-6 col-md-12 form-group">
@@ -326,6 +346,7 @@
                                                             <option value="none" selected>Sin Pago</option>
                                                             <option value="cash">Efectivo</option>
                                                             <option value="transfer">Transferencía</option>
+                                                            <option value="deposit">Deposito</option>
                                                             <option value="card">Tarjeta</option>
                                                         </select>
                                                     </div>
@@ -387,7 +408,7 @@
                                                     <div class="col-lg-12 form-group " style="display: flex; justify-content: center;">
                                                         <ul class="action-area" style="margin-top: 10px;">
                                                             <li class="li-submit">
-                                                                <a href="javascript:submitSubscriptionS3()" class="cart-btn cluuf-pack-labelBtnForm ">Unete a nosotros</a>
+                                                                <a href="javascript:submitValidarDisponibilidad(true)" class="cart-btn cluuf-pack-labelBtnForm ">Unete a nosotros</a>
                                                             </li>
                                                             <li class="li-loading" style="display: none">
                                                                 <a class="cart-btn " style="background-color: gray;"><span class="t_loading"></span></a>
@@ -497,10 +518,6 @@
                         </div>
 
 
-                    </div>
-
-                    <div class="row gutters-20">
-                        <img class="cluuf-instance-cover" width="100%" max-width="100%" src="">
                     </div>
 
 
