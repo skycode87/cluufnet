@@ -148,6 +148,9 @@ getConnection({
                       )}&utmc=referer&raId=null&ruId=${root._id}`
                     );
                     sessionStorage.setItem("referer", root._id);
+                    $(".cluuf-referer-avatar").attr("src", root.avatar);
+                    $(".cluuf-referer-name").text(root.firstname);
+
                     $(".cluuf-root").show();
                     $(".cluuf-root-hidden").hide();
                   }
