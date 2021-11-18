@@ -121,6 +121,15 @@ getConnection({
             })
           );
 
+          $(".cluuf-gotours-href").attr(
+            "href",
+            `app_s0.html?agency=${
+              result.alias
+            }&type=suscriber&fclt=${sessionStorage.getItem(
+              "fclt"
+            )}&utmc=Local&raId=null&ruId=null`
+          );
+
           INSTANCE_ = result;
           sessionStorage.removeItem("referer");
 
