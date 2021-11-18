@@ -122,6 +122,30 @@ getConnection({
           );
 
           INSTANCE_ = result;
+          sessionStorage.removeItem("referer");
+
+          if (getParameterByName_pack("utmc") === "referer") {
+            getReferer(
+              { instanceId: instance.result._id },
+              {
+                onSuccess: (root) => {
+                  if (root.role === "REFERER") {
+                    $(".cluuf-gotours-href").attr(
+                      "href",
+                      `app_s0.html?agency=${
+                        result.alias
+                      }&type=suscriber&fclt=${sessionStorage.getItem(
+                        "fclt"
+                      )}&utmc=referer&raId=null&ruId=${root._id}`
+                    );
+                    sessionStorage.setItem("referer", root._id);
+                    $(".cluuf-root").show();
+                    $(".cluuf-root-hidden").hide();
+                  }
+                },
+              }
+            );
+          }
 
           if (getParameterByName_pack("redirect"))
             sessionStorage.setItem("redirect", true);
@@ -187,15 +211,6 @@ getConnection({
           $("#refererAppId").val(sessionStorage.getItem("raId") || "");
           $("#facilitator").val(sessionStorage.getItem("fclt") || "");
           $("#campaign").val(sessionStorage.getItem("utmc") || "");
-
-          $(".cluuf-gotours-href").attr(
-            "href",
-            `app_s0.html?agency=${
-              result.alias
-            }&type=suscriber&fclt=${sessionStorage.getItem(
-              "fclt"
-            )}&utmc=Local&raId=null&ruId=null#`
-          );
 
           localStorage.setItem("hostname", result.hostname);
           localStorage.setItem("instanceId", result._id);
@@ -272,14 +287,6 @@ getConnection({
 
           $(".cluuf-instance-avatar").attr("src", result.avatar);
           $(".cluuf-instance-aboutus").html(result.aboutus);
-
-          if (
-            getParameterByName_pack("ruId") &&
-            String(getParameterByName_pack("ruId")).length > 6
-          ) {
-            $(".cluuf-root").show();
-            $(".cluuf-root-hidden").hide();
-          }
 
           if (getParameterByName_pack("q")) {
             getPack(
@@ -530,6 +537,12 @@ getConnection({
                   if (getParameterByName_pack("f"))
                     $("#date").val(getParameterByName_pack("f"));
 
+                  if (String(getParameterByName_pack("ruId")).length > 6) {
+                    // console.log("ok");
+                  } else {
+                    // console.log("no");
+                  }
+
                   if (pack.itineraries && String(pack.itineraries).length > 5) {
                     $(".is-cluuf-pack-itineraries").show();
                     let itinerariesHTML = String(pack.itineraries).split(",");
@@ -705,17 +718,18 @@ getConnection({
                   $.each(result2.packs, function (i, n) {
                     filePack = "app_s.html";
                     if (n.isTemporal) filePack = "app_s3.html";
+
                     $(".packs-list").append(` 
                           <div class="col-lg-4 col-md-6">
                           <div class="block-box product-box">
                               <div class="product-img">
-                              <a href="${filePack}?q=${n._id}&agency=${instance.result.alias}&type=suscriber&p=${n._id}&fclt=web&utmc=web&raId=null&ruId=null#"><img src="${n.avatar}" alt="${n.name}"></a>
+                              <a href="${filePack}?q=${n._id}&agency=${instance.result.alias}&type=suscriber&p=${n._id}&fclt=web&utmc=${sessionStorage.getItem("referer") ? "referer" : "Local"} &raId=null&ruId=${sessionStorage.getItem("referer") || null}#"><img src="${n.avatar}" alt="${n.name}"></a>
                               </div>
                               <div class="product-content">
                                   <div class="item-category">
                                       <a href="#">${n.category}</a>
                                   </div>
-                                  <h3 class="product-title"><a href="${filePack}?q=${n._id}&agency=${instance.result.alias}&type=suscriber&p=${n._id}&fclt=web&utmc=web&raId=null&ruId=null#">${n.name}</a></h3>
+                                  <h3 class="product-title"><a href="${filePack}?q=${n._id}&agency=${instance.result.alias}&type=suscriber&p=${n._id}&fclt=web&utmc=${sessionStorage.getItem("referer") ? "referer" : "Local"}&raId=null&ruId=${sessionStorage.getItem("referer")}">${n.name}</a></h3>
                                   <div class="product-price" style="display: none">${priceFormat(
                                     n.price
                                   )}</div>
