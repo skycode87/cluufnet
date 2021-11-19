@@ -466,7 +466,7 @@ getConnection({
                     $(".termsConditions").html(INSTANCE_.termsConditions);
                   }
 
-                  $("#date").val(moment().format("YYYY-MM-DD"));
+                  // $("#date").val(moment().format("YYYY-MM-DD"));
 
                   $(".cluuf-pack-name").text(pack.name);
                   $(".cluuf-pack-category").text(pack.category);
