@@ -804,11 +804,34 @@ $("#date").on("change", () => {
     });
     if (!isAvailable) {
       $("#date").val("");
+      $(".cluuf-plan-available").text("0");
+      $(".cluuf-plan-pending").text("0");
+      $(".cluuf-plan-date").text("");
       Swal.fire({
         title: `Excuse me, we only have availability for the days ${daysName}`,
         icon: "error",
       });
+    } else {
+      if (
+        sessionStorage.getItem("referer") &&
+        getParameterByName_pack("utmc") === "referer"
+      ) {
+        $(".availability-panel").hide();
+        setTimeout(() => $(".availability-panel").show("fast"), 500);
+        submitValidarDisponibilidad();
+      }
     }
+  }
+});
+
+$("#time").on("change", () => {
+  if (
+    sessionStorage.getItem("referer") &&
+    getParameterByName_pack("utmc") === "referer"
+  ) {
+    $(".availability-panel").hide();
+    setTimeout(() => $(".availability-panel").show("fast"), 500);
+    submitValidarDisponibilidad();
   }
 });
 
