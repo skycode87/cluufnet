@@ -229,6 +229,14 @@ getConnection({
           localStorage.setItem("keypublic", result.keypublic);
           localStorage.setItem("cluuf", "true");
           localStorage.setItem("alias", result.alias);
+          $(".referer-title").hide();
+          if (
+            sessionStorage.getItem("referer") &&
+            getParameterByName_pack("utmc") === "referer"
+          ) {
+            $(".availability-panel").show();
+            $(".referer-title").show();
+          }
 
           if (result.video) {
             if (result.video.length > 10) {
@@ -802,6 +810,7 @@ $("#date").on("change", () => {
         isAvailable = true;
       }
     });
+
     if (!isAvailable) {
       $("#date").val("");
       $(".cluuf-plan-available").text("0");
