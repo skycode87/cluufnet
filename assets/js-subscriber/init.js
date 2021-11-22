@@ -231,7 +231,7 @@ getConnection({
           localStorage.setItem("alias", result.alias);
           $(".referer-title").hide();
           if (
-            sessionStorage.getItem("referer") &&
+            String(getParameterByName_pack("ruId")).length > 7 &&
             getParameterByName_pack("utmc") === "referer"
           ) {
             $(".availability-panel").show();
