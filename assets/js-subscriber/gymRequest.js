@@ -711,6 +711,7 @@ const submitSubscriptionS3 = () => {
         $("#observation").val("");
         $("#document").val("");
         $("#documentType").val("");
+        setTimeout(() => location.reload(), 1000);
       },
       onError: () => console.log("Error enviando el formulario"),
     }
