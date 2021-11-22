@@ -58,11 +58,11 @@
         const block = document.getElementById('title');
         block.innerHTML = getParams("title");
 
-
+        const text = `https://d28850bg6enx1h.cloudfront.net/app_s0.html?agency=${getParams("alias")}&type=suscriber&fclt=${getParams("alias")}&utmc=referer&raId=null&ruId=${getParams("referer")}`;
 
 
         var qrcode = new QRCode(document.getElementById("qrcode-2"), {
-            text: getParams("url"),
+            text,
             width: 300,
             height: 300,
             colorDark: "#5868bf",
