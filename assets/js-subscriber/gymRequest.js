@@ -841,7 +841,9 @@ const submitValidarDisponibilidad = (execute = false) => {
     {
       onSuccess: (data) => {
         if (data.result.availability) {
-          $(".cluuf-plan-available").text(data.result.availability);
+          $(".cluuf-plan-available").text(
+            parseInt(data.result.maxLimit) - parseInt(data.result.totalApps)
+          );
           $(".cluuf-plan-pending").text(data.result.pending);
           $(".cluuf-plan-date").text(data.result.name);
           if (execute) {
