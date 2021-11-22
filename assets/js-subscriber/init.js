@@ -138,7 +138,7 @@ getConnection({
               { instanceId: instance.result._id },
               {
                 onSuccess: (root) => {
-                  if (root.role === "REFERER") {
+                  if (root.active) {
                     $(".cluuf-gotours-href").attr(
                       "href",
                       `app_s0.html?agency=${
