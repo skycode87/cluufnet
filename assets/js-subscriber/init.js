@@ -748,7 +748,7 @@ getConnection({
                           <div class="col-lg-4 col-md-6">
                           <div class="block-box product-box">
                               <div class="product-img">
-                              <a href="${filePack}?q=${n._id}&agency=${instance.result.alias}&type=suscriber&p=${n._id}&fclt=web&utmc=${sessionStorage.getItem("referer") ? "referer" : "Local"} &raId=null&ruId=${sessionStorage.getItem("referer") || null}#"><img src="${n.avatar}" alt="${n.name}"></a>
+                              <a href="${filePack}?q=${n._id}&agency=${instance.result.alias}&type=suscriber&p=${n._id}&fclt=web&utmc=${sessionStorage.getItem("referer") ? "referer" : "Local"}&raId=null&ruId=${sessionStorage.getItem("referer")}" ><img src="${n.avatar}" alt="${n.name}"></a>
                               </div>
                               <div class="product-content">
                                   <div class="item-category">
