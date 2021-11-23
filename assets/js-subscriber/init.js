@@ -450,6 +450,12 @@ getConnection({
 
                   if (pack.isFree) {
                     $(".cluuf-isFree").hide();
+                  } else {
+                    $(".cluuf-pack-price").text(`
+                    $  ${new Intl.NumberFormat("es-CO").format(
+                      pack.price
+                    )} Pesos Colombianos
+                    `);
                   }
 
                   $(".cluuf-isTicketsNumber").hide();
@@ -773,6 +779,72 @@ getConnection({
   },
 });
 
+var dtToday = new Date();
+
+var month = dtToday.getMonth() + 1;
+var day = dtToday.getDate();
+var year = dtToday.getFullYear();
+if (month < 10) month = "0" + month.toString();
+if (day < 10) day = "0" + day.toString();
+
+var maxDate = year + "-" + month + "-" + day;
+
+$("#date").attr("min", maxDate);
+
+// Format  Currency
+
+$("input[data-type='currency']").on({
+  keyup: function () {
+    formatCurrency($(this));
+  },
+  blur: function () {
+    formatCurrency($(this), "blur");
+  },
+});
+
+function formatNumber(n) {
+  // format number 1000000 to 1,234,567
+  return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+function formatCurrency(input, blur) {
+  // appends $ to value, validates decimal side
+  // and puts cursor back in right position.
+
+  // get input value
+  var input_val = input.val();
+
+  // don't validate empty input
+  if (input_val === "") {
+    return;
+  }
+
+  // original length
+  var original_len = input_val.length;
+
+  // initial caret position
+  var caret_pos = input.prop("selectionStart");
+
+  // no decimal entered
+  // add commas to number
+  // remove all non-digits
+  input_val = formatNumber(input_val);
+  input_val = "$" + input_val;
+
+  // final formatting
+  if (blur === "blur") {
+    // input_val += ".00";
+  }
+
+  // send updated string to input
+  input.val(input_val);
+
+  // put caret back in the right position
+  var updated_len = input_val.length;
+  caret_pos = updated_len - original_len + caret_pos;
+  input[0].setSelectionRange(caret_pos, caret_pos);
+}
+
 $(".is-cluuf-pack-iframeMap").on("click", () => {
   $(".cluuf-pack-iframeMap iframe").css("width", "100%");
 });
@@ -846,4 +918,23 @@ $("#time").on("change", () => {
 
 $(".cluuf-alert").on("click", () => {
   $(".cluuf-alert").hide("fast");
+});
+
+$("#paymentMode").on("change", () => {
+  if ($("#paymentMode").val() === "deposit") {
+    $(".cluuf-isAmount").show();
+    $("#currency-field").val("0");
+  } else {
+    $(".cluuf-isAmount").hide();
+    $("#currency-field").val("0");
+  }
+
+  if (
+    $("#paymentMode").val() === "card" ||
+    $("#paymentMode").val() === "transfer"
+  ) {
+    $(".cluuf-isPaymentReference").show();
+  } else {
+    $(".cluuf-isPaymentReference").hide();
+  }
 });

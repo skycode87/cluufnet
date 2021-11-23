@@ -47,6 +47,8 @@ const sendRequestGYMCluuf = (
     isParentalControl = false,
     isVaccine = false,
     isPrivacyPolicy = false,
+    paymentReference = "",
+    amount = 0,
   },
   { onSuccess = {}, onError = {}, onFinally = {} }
 ) => {
@@ -81,6 +83,8 @@ const sendRequestGYMCluuf = (
     isParentalControl,
     isVaccine,
     isPrivacyPolicy,
+    paymentReference,
+    amount,
   }).toString();
 
   console.log({
@@ -112,6 +116,8 @@ const sendRequestGYMCluuf = (
     isParentalControl,
     isVaccine,
     isPrivacyPolicy,
+    paymentReference,
+    amount,
   });
 
   let url = globals_gym.CLUUFWEB_SERVER_FORM_GYM;
@@ -267,6 +273,16 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
       message: "",
     },
     medium = {
+      value: "",
+      required: false,
+      message: "",
+    },
+    paymentReference = {
+      value: "",
+      required: false,
+      message: "",
+    },
+    amount = {
       value: "",
       required: false,
       message: "",
@@ -431,7 +447,9 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
     lastname: lastname.value || "",
     birthday: birthday.value || "",
     medium: medium.value || "",
-    paymentMode: paymentMode.value || "",
+    paymentMode: paymentMode.value || "none",
+    paymentReference: paymentReference.value || "",
+    amount: amount.value || 0,
     packId: formId,
     instanceId,
     campaign,
@@ -675,6 +693,19 @@ const submitSubscriptionS3 = () => {
         required: false,
         value: $("#paymentMode").val(),
         message: "Please verify Payment Mode and try again.",
+      },
+      paymentReference: {
+        required: false,
+        value: $("#paymentReference").val(),
+        message: "Please verify payment Reference Mode and try again.",
+      },
+      amount: {
+        required: false,
+        value: String($("#currency-field").val())
+          .replaceAll(".", "")
+          .replaceAll("$", "")
+          .trim(),
+        message: "Please verify amount and try again.",
       },
       time: {
         required: true,
