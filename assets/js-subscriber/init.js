@@ -98,6 +98,15 @@ const availablesDayFormat = (dayNumber, idioma = "en") => {
   }
 };
 
+const formaterModeTrans = (transMode) => {
+  if (transMode === "cash") return "Efectivo";
+  if (transMode === "card") return "Tarjeta de crédito";
+  if (transMode === "deposit") return "Deposito";
+  if (transMode === "debitcard") return "Tarjeta de débito";
+  if (transMode === "creditcard") return "Tarjeta de crédito";
+  if (transMode === "transfer") return "Transferencía";
+};
+
 getConnection({
   onSuccess: (instance) => {
     sessionStorage.removeItem("packname");
@@ -161,6 +170,43 @@ getConnection({
                     $(".cluuf-root").show();
                     $(".cluuf-root-hidden").hide();
                   }
+                },
+              }
+            );
+          }
+
+          if (
+            getParameterByName_pack("utmc") === "invoice" &&
+            getParameterByName_pack("app")
+          ) {
+            getApp(
+              { instanceId: instance.result._id },
+              {
+                onSuccess: (resultApp) => {
+                  $(".cluuf-trans-amount").text(resultApp.transId.amount);
+                  $(".trans-id").text(
+                    `Security code:: ${resultApp.transId._id}-${resultApp._id}`
+                  );
+
+                  $(".cluuf-trans-total").text(resultApp.transId.total);
+                  $(".cluuf-trans-mode").text(
+                    formaterModeTrans(resultApp.transId.mode)
+                  );
+                  $(".cluuf-trans-code").text(resultApp.transId.code);
+                  $(".cluuf-trans-reference").text(resultApp.transId.reference);
+                  $(".cluuf-trans-fecha").text(resultApp.transId.fecha);
+                  $(".cluuf-trans-hora").text(resultApp.transId.hora);
+                  $(".cluuf-trans-description").text(
+                    ` ${resultApp.code}  ${resultApp.packId.name} ${resultApp.planId.name}`
+                  );
+
+                  $(".cluuf-user-firstname").text(resultApp.userId.firstname);
+                  $(".cluuf-user-lastname").text(resultApp.userId.lastname);
+                  $(".cluuf-user-document").text(resultApp.userId.document);
+                  $(".cluuf-user-email").text(resultApp.userId.email);
+                  $(".cluuf-user-documentType").text(
+                    resultApp.userId.documentType
+                  );
                 },
               }
             );
