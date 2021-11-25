@@ -61,6 +61,7 @@ const getApp = async ({ instanceId }, { onSuccess = {}, onError = {} }) => {
   const params1 = new URLSearchParams({
     appId: getParameterByName_pack("app"),
     instanceId,
+    invoice: getParameterByName_pack("invoice") || null,
   }).toString();
 
   xhttp.open(
