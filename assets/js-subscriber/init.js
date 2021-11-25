@@ -121,6 +121,13 @@ getConnection({
             })
           );
 
+          $("body").append(`
+<div  class="whatsapp-icon isWhatsapp hide" style="z-index: 9999; position: fixed; right: 10px; bottom:100px; background: yellow; border-radius:20px" >
+    <a target="blank" class="cluuf-instance-whatsapp-src" href="">
+    <img class="image-whatsapp" width="70px" src="https://cluuftracks.herokuapp.com/whatsapp-transparent.png">
+    </a>
+  </div>`);
+
           $(".cluuf-gotours-href").attr(
             "href",
             `app_s0.html?agency=${
@@ -175,7 +182,7 @@ getConnection({
           $(".cluuf-instance-address").text(result.address);
 
           $(".cluuf-gowebsite-href").text(result.website);
-          $(".cluuf-gowebsite-href").attr("href", result.hostname);
+          $(".cluuf-gowebsite-href").attr("href", result.website);
           $(".cluuf-gowebsite-href").attr("target", "blank");
 
           $(".cluuf-instance-cover").css(
@@ -670,9 +677,11 @@ getConnection({
                                 $("#plan").append(
                                   `<option selected value="${element._id}">${
                                     element.name
-                                  } - Costo:  ${priceFormat(
-                                    element.price
-                                  )}</option>`
+                                  } - Costo:  ${
+                                    !pack.isFree
+                                      ? priceFormat(element.price)
+                                      : "Gratis"
+                                  }</option>`
                                 );
 
                                 $("#planname").val(
@@ -699,11 +708,13 @@ getConnection({
                                 }
                               } else {
                                 $("#plan").append(
-                                  `<option value="${element._id}">${
+                                  `<option  value="${element._id}">${
                                     element.name
-                                  } - Costo:  ${priceFormat(
-                                    element.price
-                                  )}</option>`
+                                  } - Costo:  ${
+                                    !pack.isFree
+                                      ? priceFormat(element.price)
+                                      : "Gratis"
+                                  }</option>`
                                 );
                               }
                             });
