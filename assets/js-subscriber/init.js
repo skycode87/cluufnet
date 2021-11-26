@@ -179,7 +179,7 @@ getConnection({
             getParameterByName_pack("utmc") === "invoice" &&
             getParameterByName_pack("app")
           ) {
-            getApp(
+            getpApp(
               { instanceId: instance.result._id },
               {
                 onSuccess: (resultApp) => {
