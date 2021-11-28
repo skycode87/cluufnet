@@ -188,30 +188,42 @@ getConnection({
               { instanceId: instance.result._id },
               {
                 onSuccess: (resultApp) => {
-                  $(".cluuf-trans-amount").text(resultApp.transId.amount);
-                  $(".trans-id").text(
-                    `Security code:: ${resultApp.transId._id}-${resultApp._id}`
-                  );
+                  if (resultApp) {
+                    $(".cluuf-trans-amount").text(resultApp.transId.amount);
+                    $(".trans-id").text(
+                      `Security code:: ${resultApp.transId._id}-${resultApp._id}`
+                    );
 
-                  $(".cluuf-trans-total").text(resultApp.transId.total);
-                  $(".cluuf-trans-mode").text(
-                    formaterModeTrans(resultApp.transId.mode)
-                  );
-                  $(".cluuf-trans-code").text(resultApp.transId.code);
-                  $(".cluuf-trans-reference").text(resultApp.transId.reference);
-                  $(".cluuf-trans-fecha").text(resultApp.transId.fecha);
-                  $(".cluuf-trans-hora").text(resultApp.transId.hora);
-                  $(".cluuf-trans-description").text(
-                    ` ${resultApp.code}  ${resultApp.packId.name} ${resultApp.planId.name}`
-                  );
+                    $(".cluuf-trans-total").text(resultApp.transId.amount);
+                    $(".cluuf-trans-mode").text(
+                      formaterModeTrans(resultApp.transId.mode)
+                    );
+                    $(".cluuf-trans-code").text(resultApp.transId.code);
+                    $(".cluuf-trans-reference").text(
+                      resultApp.transId.reference
+                    );
+                    $(".cluuf-trans-fecha").text(resultApp.transId.fecha);
+                    $(".cluuf-trans-hora").text(resultApp.transId.hora);
+                    $(".cluuf-trans-description").text(
+                      ` ${resultApp.code}  ${resultApp.packId.name} ${resultApp.planId.name}`
+                    );
 
-                  $(".cluuf-user-firstname").text(resultApp.userId.firstname);
-                  $(".cluuf-user-lastname").text(resultApp.userId.lastname);
-                  $(".cluuf-user-document").text(resultApp.userId.document);
-                  $(".cluuf-user-email").text(resultApp.userId.email);
-                  $(".cluuf-user-documentType").text(
-                    resultApp.userId.documentType
-                  );
+                    $(".cluuf-user-firstname").text(resultApp.userId.firstname);
+                    $(".cluuf-user-lastname").text(resultApp.userId.lastname);
+                    $(".cluuf-user-document").text(resultApp.userId.document);
+                    $(".cluuf-user-email").text(resultApp.userId.email);
+                    $(".cluuf-user-documentType").text(
+                      resultApp.userId.documentType
+                    );
+                  } else {
+                    $(".invoice-box").hide();
+                    Swal.fire({
+                      title: `Disculpe hubo un error emitiendo el comprobante`,
+                      text: `Se ha informado al remitente, para que lo vuelva a generar`,
+                      icon: "error",
+                    });
+                    setTimeout(() => window.close(), 3000);
+                  }
                 },
               }
             );
