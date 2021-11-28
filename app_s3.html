@@ -143,7 +143,7 @@
                         <img class="item-title cluuf-instance-logo header-title-logo" width="220px" style="margin: auto; display: block; padding: 30px;">
 
                         <p style="text-align: center; font-weight: bold; padding: 10px; font-size: 18px;  position: relative; top:-10px">
-                            <!--<img style="width: 120px; border-radius: 10%;" class="cluuf-referer-avatar" src=""><br> --> <small> <span class="cluuf-referer-name referer-title"></span></small>
+                            <small> <span class="cluuf-referer-name referer-title"></span></small>
                         </p>
                     </div>
                     <div class="single-product" style="margin-top:0px;">
@@ -230,7 +230,8 @@
 
                                             <ul class="entry-meta">
                                                 <li style="color: #fff">
-                                                    <i style="color: #fff" class="icofont-clock-time"></i> Duración: <span style="color: #fff" class="cluuf-pack-duration"></span>
+                                                    <i style="color: #fff" class="icofont-clock-time"></i> Duración: <span style="color: #fff" class="cluuf-pack-duration"></span> <span
+                                                        style="color: #fff" class="cluuf-pack-durationMode"></span>
                                                     <button type="button" class="btn-videos3 is-cluuf-video-pack btn btn-primary video-btn cluuf-video-pack" data-toggle="modal" data-target="#myModal"
                                                         style="display: none">
                                                         <i class="icofont-ui-video-play"></i> Ver video
@@ -273,7 +274,7 @@
                                                     </div>
                                                     <div class="col-lg-6 form-group">
                                                         <label><i class="icofont-clock-time"></i> Hora: </label>
-                                                        <select style="height: 50px;" class="custom-select form-control-lg" id="time" name="time">
+                                                        <select style="height: 50px; font-size: 22px; font-weight: bold;" class="custom-select form-control-lg" id="time" name="time">
                                                         </select>
                                                     </div>
                                                     <div class="col-lg-12 form-group cluuf-root availability-panel" style="display: none">
@@ -311,7 +312,9 @@
                                                         <input type="email" class="form-control" name="email" id="email" required>
                                                     </div>
                                                     <div class="col-lg-12 form-group">
-                                                        <label><i class="icofont-smart-phone"></i> Número de teléfono</label>
+                                                        <label><i class="icofont-smart-phone"></i> *whatsapp number including coountry code
+
+                                                        </label>
                                                         <input type="text" class="form-control" name="phone" id="phone" required>
                                                     </div>
 
@@ -332,10 +335,11 @@
                                                         <input type="text" value="" class="form-control" name="document" id="document" required>
                                                     </div>
 
-                                                    <div class="col-lg-12 col-md-12 form-group cluuf-root cluuf-isFree">
+                                                    <div class="col-lg-12 col-md-12 form-group cluuf-root">
                                                         <label><i class="icofont-money-bag"></i> </span>Método de Pago |<span style="color: yellow"> Costo: <span class="cluuf-pack-price"></span> por
                                                                 ticket </span></span>
-                                                            <select style="height: 50px; font-weight: bold; font-size: 18px;" class="custom-select form-control-lg" name="paymentMode" id="paymentMode">
+                                                            <select style="height: 50px; font-weight: bold; font-size: 18px;" class="custom-select form-control-lg cluuf-isFree" name="paymentMode"
+                                                                id="paymentMode">
                                                                 <option value="none" selected>Sin Pago</option>
                                                                 <option value="cash">Efectivo</option>
                                                                 <option value="transfer">Transferencía</option>
@@ -382,21 +386,10 @@
                                                     <div class="col-12 form-group isCupon cluuf-isFree" style="display: none;">
                                                         <label><i class="icofont-tag"></i> Codigo del Cupón</label>
                                                         <input type="text" class="form-control" name="cupon" id="cupon">
-
-                                                    </div>
-
-                                                    <div class="col-12 form-group isPrivacyPolicyPack" style="display: none;">
-                                                        <label class="containerCheck">
-                                                            He leído y acepto <a class="privacyPolicyPack" style="text-decoration: underline; color: #fff;" target="_blank"> los términos y condiciones
-                                                            </a> <br>
-
-                                                            <input type="checkbox" name="privacyPolicy" id="privacyPolicy">
-                                                            <span class="checkmark"></span>
-                                                        </label>
                                                     </div>
 
                                                     <div class="col-12 form-group isParentalControl" style="display: none;">
-                                                        <label class="containerCheck">
+                                                        <label class="containerCheck" style="font-size: 16px;">
                                                             Soy una persona mayor 18 años de edad.
                                                             <input type="checkbox" name="parentalControl" id="parentalControl">
                                                             <span class="checkmark"></span>
@@ -404,9 +397,22 @@
                                                     </div>
 
                                                     <div class="col-12 form-group isVaccine" style="display: none;">
-                                                        <label class="containerCheck">
+                                                        <label class="containerCheck" style="font-size: 16px;">
                                                             Sí, completé mi esquema de vacunación.
                                                             <input type="checkbox" name="isVaccine" id="isVaccine">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="col-12 form-group isPrivacyPolicyPack" style="display: none;">
+                                                        <label class="containerCheck" style="font-size: 16px;">
+                                                            By submitting this form, I accept <span class="cluuf-instance-name"></span> data processing policy
+                                                            <a class="privacyPolicyPack" style="text-decoration: underline; color: #fff;" target="_blank"> (view here)</a> and
+                                                            <a class="privacyPolicyPack" style="text-decoration: underline; color: #fff;" target="_blank"> the Privacy Notice </a> in compliance with
+                                                            Colombian Law.
+                                                            <br>
+
+                                                            <input type="checkbox" name="privacyPolicy" id="privacyPolicy">
                                                             <span class="checkmark"></span>
                                                         </label>
                                                     </div>
@@ -414,16 +420,17 @@
                                                     <div class="col-lg-12 form-group " style="display: flex; justify-content: center;">
                                                         <ul class="action-area" style="margin-top: 10px;">
                                                             <li class="li-submit">
-                                                                <a href="javascript:submitValidarDisponibilidad(true)" class="cart-btn cluuf-pack-labelBtnForm ">Unete a nosotros</a>
+                                                                <a href="javascript:submitValidarDisponibilidad(true)" class="cart-btn cluuf-pack-labelBtnForm " style="font-size: 22px;
+                                                                padding: 15px 120px;letter-spacing: 5px; font-weight: bold;">Unete a nosotros</a>
                                                             </li>
                                                             <li class="li-loading" style="display: none">
                                                                 <a class="cart-btn " style="background-color: gray;"><span class="t_loading"></span></a>
                                                             </li>
                                                         </ul>
-
                                                     </div>
 
                                                     <div class="col-lg-12" style="color: #fff; text-align: center;">
+                                                        <p style="color: #fff">(We'll send you an email within 1 minute. Please check your SPAM folder too).</p>
                                                         <h5 style="color: #fff; text-align: center;"><i class="icofont-heart-alt"></i> Precauciones contra la Covid-19 </h5>
                                                         <small style="color: #fff;"> Se proporcionará todo el equipo de protección requerido </small>
                                                     </div>

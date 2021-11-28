@@ -367,8 +367,17 @@ margin: 20px 0px;
 
 .referer-title{
     font-weight: bold;
-    background: #8ed78e;
-    color: #040404;
+    background: #28a745;
+    color: #fff;
+    letter-spacing: 1px;
+    padding: 3px 20px;
+    border-radius: 4px;
+}
+
+.referer-title.pnd{
+    font-weight: bold;
+    background: #e75a00;
+    color: #fff;
     letter-spacing: 1px;
     padding: 3px 20px;
     border-radius: 4px;

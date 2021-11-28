@@ -49,6 +49,7 @@ const sendRequestGYMCluuf = (
     isPrivacyPolicy = false,
     paymentReference = "",
     amount = 0,
+    secure,
   },
   { onSuccess = {}, onError = {}, onFinally = {} }
 ) => {
@@ -85,6 +86,7 @@ const sendRequestGYMCluuf = (
     isPrivacyPolicy,
     paymentReference,
     amount,
+    secure,
   }).toString();
 
   console.log({
@@ -118,6 +120,7 @@ const sendRequestGYMCluuf = (
     isPrivacyPolicy,
     paymentReference,
     amount,
+    secure,
   });
 
   let url = globals_gym.CLUUFWEB_SERVER_FORM_GYM;
@@ -287,6 +290,7 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
       required: false,
       message: "",
     },
+    secure,
     plan,
     campaign = null,
     formId = null,
@@ -465,13 +469,18 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
     isParentalControl,
     isPrivacyPolicy,
     tour,
+    secure,
   };
 
   sendRequestGYMCluuf(params2, {
     onSuccess: (res) => {
       onSuccess(res);
       if (res.ok) {
-        Swal.fire(`Los datos han sido enviados con exito`, "", "success");
+        Swal.fire({
+          icon: "success",
+          title: "Well done!",
+          text: " (We'll send you an email within 1 minute. Please check your SPAM folder too).",
+        });
       }
 
       $("form .li-submit").show();
@@ -493,7 +502,7 @@ const submitSubscription = () => {
     if (!$("#privacyPolicy").prop("checked")) {
       Swal.fire({
         title:
-          "Por favor acepta los têrminos y condiciones para poder continuar",
+          "Por favor acepta los términos y condiciones para poder continuar",
         timer: 2000,
         icon: "warning",
       });
@@ -727,6 +736,7 @@ const submitSubscriptionS3 = () => {
       facilitator: $("#facilitator").val(),
       activate: "none",
       tour: "done",
+      secure: sessionStorage.getItem("secure") || 1,
     },
     {
       onSuccess: (response) => {
@@ -842,6 +852,7 @@ const submitSubscriptionS1 = () => {
       refererAppId: $("#refererAppId").val(),
       cupon: $("#cupon").val(),
       facilitator: $("#facilitator").val(),
+      secure: sessionStorage.getItem("secure") || 1,
       activate: "done",
     },
     {

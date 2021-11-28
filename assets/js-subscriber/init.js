@@ -150,6 +150,10 @@ getConnection({
           sessionStorage.removeItem("referer");
 
           if (getParameterByName_pack("utmc") === "referer") {
+            var pnd_ = "end=134";
+            if (getParameterByName_pack("pnd"))
+              pnd_ = `pnd=${instance.result._id}`;
+
             getReferer(
               { instanceId: instance.result._id },
               {
@@ -161,7 +165,7 @@ getConnection({
                         result.alias
                       }&type=suscriber&fclt=${sessionStorage.getItem(
                         "fclt"
-                      )}&utmc=referer&raId=null&ruId=${root._id}`
+                      )}&utmc=referer&raId=null&ruId=${root._id}&${pnd_}`
                     );
                     sessionStorage.setItem("referer", root._id);
                     $(".cluuf-referer-avatar").attr("src", root.avatar);
@@ -214,6 +218,13 @@ getConnection({
 
           if (getParameterByName_pack("redirect"))
             sessionStorage.setItem("redirect", true);
+
+          sessionStorage.setItem("secure", 1);
+          // user pendiente
+          if (getParameterByName_pack("pnd")) {
+            $(".cluuf-referer-name").addClass("pnd");
+            sessionStorage.setItem("secure", 0);
+          }
 
           $(".cluuf-instance-logo").attr("src", result.logo);
           $(".cluuf-instance-logowhite").attr("src", result.logowhite);
@@ -501,8 +512,12 @@ getConnection({
                     $(".isTemporalPack").hide();
                   }
 
+                  console.log(pack.isFree);
+
                   if (pack.isFree) {
                     $(".cluuf-isFree").hide();
+                    $("#paymentMode").hide();
+                    $("#paymentMode").val("none");
                   } else {
                     $(".cluuf-pack-price").text(`
                     $  ${new Intl.NumberFormat("es-CO").format(
@@ -540,6 +555,8 @@ getConnection({
                   $(".cluuf-pack-price").text(priceFormat(pack.price));
                   $(".cluuf-pack-description").html(pack.description);
                   $(".cluuf-pack-duration").text(pack.duration);
+                  $(".cluuf-pack-durationMode").text(pack.durationMode);
+
                   $(".cluuf-pack-id").val(pack._id);
                   $("#instanceId").val(pack.instanceId);
                   $(".cluuf-pack-iframeMap").append(pack.iframeMap);
@@ -620,9 +637,9 @@ getConnection({
                     $("#date").val(getParameterByName_pack("f"));
 
                   if (String(getParameterByName_pack("ruId")).length > 6) {
-                    // console.log("ok");
                   } else {
-                    // console.log("no");
+                    // Sino tiene referido no es seguro
+                    sessionStorage.setItem("secure", 0);
                   }
 
                   if (pack.itineraries && String(pack.itineraries).length > 5) {
@@ -803,21 +820,26 @@ getConnection({
                   );
 
                   let filePack = "";
+                  let pnd__ = "";
                   $.each(result2.packs, function (i, n) {
+                    pnd__ = "end=134";
                     filePack = "app_s.html";
                     if (n.isTemporal) filePack = "app_s3.html";
+
+                    if (getParameterByName_pack("pnd"))
+                      pnd__ = `pnd=${instance.result._id}`;
 
                     $(".packs-list").append(` 
                           <div class="col-lg-4 col-md-6">
                           <div class="block-box product-box">
                               <div class="product-img">
-                              <a href="${filePack}?q=${n._id}&agency=${instance.result.alias}&type=suscriber&p=${n._id}&fclt=web&utmc=${sessionStorage.getItem("referer") ? "referer" : "Local"}&raId=null&ruId=${sessionStorage.getItem("referer")}" ><img src="${n.avatar}" alt="${n.name}"></a>
+                              <a href="${filePack}?q=${n._id}&agency=${instance.result.alias}&type=suscriber&p=${n._id}&fclt=web&utmc=${sessionStorage.getItem("referer") ? "referer" : "Local"}&raId=null&ruId=${sessionStorage.getItem("referer")}&${pnd__}" ><img src="${n.avatar}" alt="${n.name}"></a>
                               </div>
                               <div class="product-content">
                                   <div class="item-category">
                                       <a href="#">${n.category}</a>
                                   </div>
-                                  <h3 class="product-title"><a href="${filePack}?q=${n._id}&agency=${instance.result.alias}&type=suscriber&p=${n._id}&fclt=web&utmc=${sessionStorage.getItem("referer") ? "referer" : "Local"}&raId=null&ruId=${sessionStorage.getItem("referer")}">${n.name}</a></h3>
+                                  <h3 class="product-title"><a href="${filePack}?q=${n._id}&agency=${instance.result.alias}&type=suscriber&p=${n._id}&fclt=web&utmc=${sessionStorage.getItem("referer") ? "referer" : "Local"}&raId=null&ruId=${sessionStorage.getItem("referer")}&${pnd__}">${n.name}</a></h3>
                                   <div class="product-price" style="display: none">${priceFormat(
                                     n.price
                                   )}</div>
@@ -993,5 +1015,28 @@ $("#paymentMode").on("change", () => {
     $(".cluuf-isPaymentReference").show();
   } else {
     $(".cluuf-isPaymentReference").hide();
+  }
+});
+
+function RamdonNumber(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+$("#firstname").on("change", () => {
+  var user = `test${RamdonNumber(1000, 9999)}`;
+  var tlf = `+57${RamdonNumber(11111, 99999999)}`;
+  var docm = RamdonNumber(11111, 9999999);
+
+  if (String($("#firstname").val()).indexOf("***") > -1) {
+    $("#firstname").val(`${user}`);
+    $("#lastname").val(`lastname`);
+    $("#email").val(`${user}@nosend.com`);
+    $("#phone").val(tlf);
+    $("#message").val("");
+    $("#cupon").val("");
+    $("#paymentMode").val("none");
+    $("#observation").val("");
+    $("#document").val(docm);
+    $("#documentType").val("passport");
   }
 });
