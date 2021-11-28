@@ -77,6 +77,7 @@ const isValid = (dato) => {
   }
   return true;
 };
+// control
 
 const availablesDayFormat = (dayNumber, idioma = "en") => {
   if (idioma === "es") {
