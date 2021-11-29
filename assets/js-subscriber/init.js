@@ -202,8 +202,9 @@ getConnection({
                     $(".cluuf-trans-reference").text(
                       resultApp.transId.reference
                     );
-                    $(".cluuf-trans-fecha").text(resultApp.transId.fecha);
-                    $(".cluuf-trans-hora").text(resultApp.transId.hora);
+                    $(".cluuf-trans-fecha").text(
+                      moment(resultApp.paymentDate).format("L")
+                    );
                     $(".cluuf-trans-description").text(
                       ` ${resultApp.code}  ${resultApp.packId.name} ${resultApp.planId.name}`
                     );
