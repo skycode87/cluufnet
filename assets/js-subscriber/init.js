@@ -526,8 +526,6 @@ getConnection({
                     $(".isTemporalPack").hide();
                   }
 
-                  console.log(pack.isFree);
-
                   if (pack.isFree) {
                     $(".cluuf-isFree").hide();
                     $("#paymentMode").hide();
@@ -561,8 +559,6 @@ getConnection({
                     $(".isTermsConditions").show();
                     $(".termsConditions").html(INSTANCE_.termsConditions);
                   }
-
-                  // $("#date").val(moment().format("YYYY-MM-DD"));
 
                   $(".cluuf-pack-name").text(pack.name);
                   $(".cluuf-pack-category").text(pack.category);
