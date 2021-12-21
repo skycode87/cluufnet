@@ -162,7 +162,7 @@ const sendRequestGYMCluuf = (
 };
 
 const sendRequestAvailableTour = (
-  { fecha = null, hora = null },
+  { fecha = null, hora = null, planId = null },
   { onSuccess = {}, onError = {}, onFinally = {} }
 ) => {
   const body = new URLSearchParams({
@@ -171,6 +171,7 @@ const sendRequestAvailableTour = (
     rootId: sessionStorage.getItem("referer"),
     instanceId: $("#instanceId").val(),
     packId: sessionStorage.getItem("cluuf-packId"),
+    planId,
   }).toString();
 
   let url = globals_gym.CLUUFWEB_SERVER_VALIDATE_TOUR;
@@ -639,6 +640,16 @@ const submitSubscriptionS3 = () => {
     }
   }
 
+  if (String($("#plan").val()).length > 10) {
+    console.log("ingressss");
+    $("#date").val(
+      String(JSON.parse(sessionStorage.getItem($("#plan").val())).departureDate)
+    );
+    $("#time").val(
+      String(JSON.parse(sessionStorage.getItem($("#plan").val())).departureTime)
+    );
+  }
+
   if ($("#isVaccine").val() === "true") {
     if (!$("#isVaccine").prop("checked")) {
       Swal.fire({
@@ -650,6 +661,8 @@ const submitSubscriptionS3 = () => {
       return false;
     }
   }
+
+  console.log("Aquiii");
 
   connectToCluuf_SUBSCRIPTION_Pack(
     {
@@ -877,10 +890,12 @@ const submitSubscriptionS1 = () => {
 };
 
 const submitValidarDisponibilidad = (execute = false) => {
-  const fecha = $("#date").val();
-  const hora = $("#time").val();
+  const fecha = $("#date").val() || null;
+  const hora = $("#time").val() || null;
+  const planId = $("#plan").val() || "0";
+
   sendRequestAvailableTour(
-    { fecha, hora },
+    { fecha, hora, planId },
     {
       onSuccess: (data) => {
         if (data.result.availability) {
@@ -889,6 +904,9 @@ const submitValidarDisponibilidad = (execute = false) => {
           );
           $(".cluuf-plan-pending").text(data.result.pending);
           $(".cluuf-plan-date").text(data.result.name);
+          $(".availability-panel").show("fast");
+          $(".availability-panel-loading").hide();
+
           if (execute) {
             submitSubscriptionS3();
           }
@@ -899,6 +917,8 @@ const submitValidarDisponibilidad = (execute = false) => {
             );
             $(".cluuf-plan-available").text($("#maxLimit").val());
             $(".cluuf-plan-pending").text(0);
+            $(".availability-panel").show("fast");
+            $(".availability-panel-loading").hide();
             if (execute) {
               submitSubscriptionS3();
             }

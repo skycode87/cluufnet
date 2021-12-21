@@ -1,0 +1,83 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+
+<div class="qrcode">
+    <img id="logo" src="https://cluuftracks.herokuapp.com/bot.gif" width="220px">
+    <h2 id="title"></h2>
+    <div id="qrcode-2"></div>
+    <img style="margin-top: 10px; border-radius: 10px;" id="logoReferer" src="https://cluuftracks.herokuapp.com/bot.gif" width="120px">
+
+</div>
+
+<style>
+    #title {
+        letter-spacing: 1px;
+        margin-bottom: 0px;
+        color: rgb(78, 43, 96);
+    }
+
+    #qrcode-2 {
+        margin: 10px;
+    }
+
+    .qrcode {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        margin-top: 50px;
+
+    }
+</style>
+
+<script type="text/javascript">
+
+    const getParams = (name) => {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null
+            ? ""
+            : decodeURIComponent(results[1].replace(/\+/g, " "));
+    };
+
+
+
+    setTimeout(() => {
+
+        $("#logo").attr("src", getParams("logo"));
+        $("#logoReferer").attr("src", getParams("avatar"));
+
+        const block = document.getElementById('title');
+        block.innerHTML = getParams("title");
+
+
+        let mode = getParams("mode")
+
+        let text;
+
+        if (mode === "calendar") {
+            text = `https://d28850bg6enx1h.cloudfront.net/app_s3.html?q=${getParams("packId")}&agency=${getParams("alias")}&type=suscriber&fclt=${getParams("alias")}&utmc=referer&raId=null&ruId=${getParams("referer")}`;
+        }
+
+        if (mode === "plans") {
+            text = `https://d28850bg6enx1h.cloudfront.net/app_s5.html?q=${getParams("packId")}&agency=${getParams("alias")}&type=suscriber&fclt=${getParams("alias")}&utmc=referer&raId=null&ruId=${getParams("referer")}`;
+        }
+
+
+        var qrcode = new QRCode(document.getElementById("qrcode-2"), {
+            text,
+            width: 300,
+            height: 300,
+            colorDark: "#5868bf",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        }, 2000);
+
+    })
+
+
+</script>

@@ -5,6 +5,16 @@ function capitalize(word) {
   return word.charAt(0).toUpperCase() + lower.slice(1);
 }
 
+const formatDurationMode = (value) => {
+  if (value === "HOURS") {
+    return "Horas";
+  } else if (value === "MONTHS") {
+    return "Meses";
+  } else if (value === "DAYS") {
+    return "Días";
+  }
+};
+
 const JsonLanguage = {
   lng: "es", // if you're using a language detector, do not define the lng option
   debug: true,
@@ -565,7 +575,9 @@ getConnection({
                   $(".cluuf-pack-price").text(priceFormat(pack.price));
                   $(".cluuf-pack-description").html(pack.description);
                   $(".cluuf-pack-duration").text(pack.duration);
-                  $(".cluuf-pack-durationMode").text(pack.durationMode);
+                  $(".cluuf-pack-durationMode").text(
+                    formatDurationMode(pack.durationMode)
+                  );
 
                   $(".cluuf-pack-id").val(pack._id);
                   $("#instanceId").val(pack.instanceId);
@@ -650,6 +662,7 @@ getConnection({
                   } else {
                     // Sino tiene referido no es seguro
                     sessionStorage.setItem("secure", 0);
+                    $(".wrapper-availability-panel").hide();
                   }
 
                   if (pack.itineraries && String(pack.itineraries).length > 5) {
@@ -741,6 +754,8 @@ getConnection({
                                 JSON.stringify({
                                   name: element.name,
                                   observation: element.observation,
+                                  departureDate: element.departureDate,
+                                  departureTime: element.departureTime,
                                 })
                               );
 
@@ -987,7 +1002,7 @@ $("#date").on("change", () => {
         getParameterByName_pack("utmc") === "referer"
       ) {
         $(".availability-panel").hide();
-        setTimeout(() => $(".availability-panel").show("fast"), 500);
+        $(".availability-panel-loading").show();
         submitValidarDisponibilidad();
       }
     }
@@ -1000,7 +1015,18 @@ $("#time").on("change", () => {
     getParameterByName_pack("utmc") === "referer"
   ) {
     $(".availability-panel").hide();
-    setTimeout(() => $(".availability-panel").show("fast"), 500);
+    $(".availability-panel-loading").show();
+    submitValidarDisponibilidad();
+  }
+});
+
+$("#plan").on("change", () => {
+  if (
+    sessionStorage.getItem("referer") &&
+    getParameterByName_pack("utmc") === "referer"
+  ) {
+    $(".availability-panel").hide();
+    $(".availability-panel-loading").show();
     submitValidarDisponibilidad();
   }
 });

@@ -270,6 +270,26 @@
                                                         <input type="date" placeholder="Date" class="form-control" name="date" id="date" required>
                                                     </div>
 
+                                                    <div class="col-lg-12 form-group cluuf-root availability-panel" style="display: none">
+
+                                                        <p style=" color: #fff; font-weight: bold">
+                                                            Disponible: <span style="background: #008000; font-size: 14px;
+                                                            padding: 2px 5px;
+                                                            border-radius: 7px;
+                                                            margin: 0px 10px;" class="cluuf-plan-available"> </span> |
+                                                            En espera: <span style="background: #c96b00af; font-size: 14px;
+                                                            padding: 2px 5px;
+                                                            border-radius: 7px;
+                                                            margin: 0px 10px;" class="cluuf-plan-pending"> </span>
+                                                            <i class="icofont-calendar"></i> <span class="cluuf-plan-date"> </span>
+                                                        </p>
+
+
+                                                        </p>
+                                                        <a style="background-color: #e3020daf; color: #fff; padding: 1px 10px; border-radius: 7px;"
+                                                            href="javascript:submitValidarDisponibilidad()">Click aqui para verificar disponibilidad</a>
+                                                    </div>
+
                                                     <div class="col-lg-6 col-md-12 form-group">
                                                         <label><i class="icofont-id-card"></i> Nombres</label>
                                                         <input type="text" class="form-control" name="firstname" id="firstname" required>
