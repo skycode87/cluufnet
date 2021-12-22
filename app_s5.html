@@ -230,11 +230,11 @@
 
                                             <ul class="entry-meta">
                                                 <li style="color: #fff">
-                                                    <i style="color: #fff" class="icofont-clock-time"></i> Duración: <span style="color: #fff" class="cluuf-pack-duration"></span> <span
-                                                        style="color: #fff" class="cluuf-pack-durationMode"></span>
+                                                    <i style="color: #fff" class="icofont-clock-time"></i> <span class="t_duration" style="color: #fff"></span>: <span style="color: #fff"
+                                                        class="cluuf-pack-duration"></span> <span style="color: #fff" class="cluuf-pack-durationMode"></span>
                                                     <button type="button" class="btn-videos3 is-cluuf-video-pack btn btn-primary video-btn cluuf-video-pack" data-toggle="modal" data-target="#myModal"
                                                         style="display: none">
-                                                        <i class="icofont-ui-video-play"></i> Ver video
+                                                        <i class="icofont-ui-video-play"></i> <span class="t_watch_video" style="color: #fff"></span>
                                                     </button>
                                                 </li>
                                                 <li>
@@ -245,7 +245,7 @@
                                             <div id="google_translate_element" class="google"></div>
 
                                             <div class="item-price" style="color: #fff">
-                                                <label class="cluuf-pack-titleSelectPlan">Seleccione un plan</label>
+                                                <label class="cluuf-pack-titleSelectPlan"><span class="t_select_date" style="color: #fff"></span></label>
                                                 <select style="height: 50px; font-weight: bold; font-size: 18px;" class="custom-select form-control-lg" id="plan" name="plan"> </select>
                                             </div>
 
@@ -283,11 +283,11 @@
                                                     <div class="col-lg-12 form-group cluuf-root availability-panel" style="display: none">
 
                                                         <p style=" color: #fff; font-weight: bold">
-                                                            Disponible: <span style="background: #008000; font-size: 14px;
+                                                            <span class="t_available" style="color: #fff;"></span>: <span style="background: #008000; font-size: 14px;
                                                             padding: 2px 5px;
                                                             border-radius: 7px;
                                                             margin: 0px 10px;" class="cluuf-plan-available"> </span> |
-                                                            En espera: <span style="background: #c96b00af; font-size: 14px;
+                                                            <span class="t_on_hold" style="color: #fff;"></span>: <span style="background: #c96b00af; font-size: 14px;
                                                             padding: 2px 5px;
                                                             border-radius: 7px;
                                                             margin: 0px 10px;" class="cluuf-plan-pending"> </span>
@@ -296,25 +296,32 @@
 
 
                                                         </p>
-                                                        <a style="background-color: #e3020daf; color: #fff; padding: 1px 10px; border-radius: 7px;"
-                                                            href="javascript:submitValidarDisponibilidad()">Click aqui para verificar disponibilidad</a>
+                                                        <a style="background-color: #e3020daf; color: #fff; padding: 1px 10px; border-radius: 7px;" href="javascript:submitValidarDisponibilidad()">
+                                                            <span class="t_click_here_check_availability" style="color: #fff;"></span>
+                                                        </a>
                                                     </div>
                                                     <div class="col-lg-12 form-group cluuf-root availability-panel-loading" style="display: none; color: #fff; font-weight: bold">
                                                         <img src="./media/loading.gif" width="30px"> Revisando disponibilidad...
                                                     </div>
 
                                                     <div class="col-lg-6 col-md-12 form-group">
-                                                        <label><i class="icofont-id-card"></i> Nombres</label>
+                                                        <label><i class="icofont-id-card"></i>
+                                                            <span class="t_firstname" style="color: #fff;"></span>
+                                                        </label>
                                                         <input type="text" class="form-control" name="firstname" id="firstname" required>
                                                     </div>
 
                                                     <div class="col-lg-6 col-md-12 form-group">
-                                                        <label><i class="icofont-id-card"></i> Apellidos</label>
+                                                        <label><i class="icofont-id-card"></i>
+                                                            <span class="t_lastname" style="color: #fff;"></span>
+                                                        </label>
                                                         <input type="text" class="form-control" name="lastname" id="lastname" required>
                                                     </div>
 
                                                     <div class="col-lg-12 form-group">
-                                                        <label><i class="icofont-ui-email"></i> Correo Electrónico</label>
+                                                        <label><i class="icofont-ui-email"></i>
+                                                            <span class="t_email" style="color: #fff;"></span>
+                                                        </label>
                                                         <input type="email" class="form-control" name="email" id="email" required>
                                                     </div>
                                                     <div class="col-lg-12 form-group">
@@ -325,7 +332,11 @@
                                                     </div>
 
                                                     <div class="col-lg-6 col-md-6 form-group cluuf-isDocumentRequired">
-                                                        <label>Tipo de Identificación</label>
+                                                        <label>
+                                                            <span class="t_type_identification_document" style="color: #fff;"></span>
+
+
+                                                        </label>
                                                         <select style="height: 50px; font-weight: bold; font-size: 18px;" class="custom-select form-control-lg" name="documentType" id="documentType">
                                                             <option value="none">Seleccione</option>
                                                             <option value="Pasaporte">Pasaporte</option>

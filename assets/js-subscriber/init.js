@@ -16,7 +16,7 @@ const formatDurationMode = (value) => {
 };
 
 const JsonLanguage = {
-  lng: "es", // if you're using a language detector, do not define the lng option
+  lng: "en", // if you're using a language detector, do not define the lng option
   debug: true,
   resources: {
     en: {
@@ -27,11 +27,17 @@ const JsonLanguage = {
         phone: "Phone Number",
         loading: "Sending Information",
         name: "Fullname",
+        firstname: "Firstname",
+        lastname: "Lastname",
         email: "Email",
         reservation_date: "Reservation Date",
         hour: "Hour",
         duration: "Duration",
         geographic_location: "Geographic Location",
+        watch_video: "Watch video",
+        select_date: "Select a date",
+        available: "Available",
+        on_hold: "On hold",
         description: "Description",
         include: "Include",
         exclude: "Not Include",
@@ -40,6 +46,8 @@ const JsonLanguage = {
         meeting_point: "Meeting Point",
         recomendations: "Recomendations",
         additional_information: "Additional Information",
+        click_here_check_availability: "Click here to check availability",
+        type_identification_document: "Type of identification document",
       },
     },
     es: {
@@ -49,12 +57,18 @@ const JsonLanguage = {
         number_tickets: "Números de Tickes",
         phone: "Telefono",
         name: "Nombre",
-        email: "Email",
+        firstname: "Nombres",
+        lastname: "Apellidos",
+        email: "Correo electronico",
         reservation_date: "Fecha",
+        select_date: "Seleccione una fecha",
         hour: "Hora",
         duration: "Duración",
+        watch_video: "Ver video",
         geographic_location: "Ubicación Geografica",
         description: "Descripción",
+        available: "Disponible",
+        on_hold: "En espera",
         include: "Incluye",
         exclude: "No Incluye",
         itineraries: "Itinerario",
@@ -62,6 +76,9 @@ const JsonLanguage = {
         meeting_point: "Punto de encuentro",
         recomendations: "Recomendaciones",
         additional_information: "Información Adicional",
+        click_here_check_availability:
+          "Click aqui para verificar disponibilidad",
+        type_identification_document: "Tipo de documento de identificación",
       },
     },
   },
@@ -107,6 +124,29 @@ const availablesDayFormat = (dayNumber, idioma = "en") => {
     if (parseInt(dayNumber) === 5) return "Friday";
     if (parseInt(dayNumber) === 6) return "Saturday";
   }
+};
+
+const orderDates = (ajaxinfos) => {
+  const array = [];
+  for (const ajaxinfo of ajaxinfos) {
+    const myobject = {};
+    myobject.departureDate = moment(ajaxinfo.departureDate, "YYYY-MM-DD"); // don't call format
+    myobject.name = ajaxinfo.name;
+    myobject.observation = ajaxinfo.observation;
+    myobject.departureTime = ajaxinfo.departureTime;
+    myobject._id = ajaxinfo._id;
+
+    var SpecialTo = moment(ajaxinfo.departureDate, "YYYY-MM-DD");
+    if (moment().diff(SpecialTo, "days") <= 0) {
+      array.push(myobject);
+    }
+  }
+
+  array.sort((left, right) => {
+    return left.departureDate.diff(right.departureDate); // No more need to convert strings to dates
+  });
+
+  return array;
 };
 
 const formaterModeTrans = (transMode) => {
@@ -748,7 +788,9 @@ getConnection({
                         onSuccess: (resultPlans) => {
                           $("#plan option").remove();
                           if (resultPlans.plans[0]) {
-                            resultPlans.plans.forEach((element) => {
+                            const allPlans = orderDates(resultPlans.plans);
+
+                            allPlans.forEach((element) => {
                               sessionStorage.setItem(
                                 element._id,
                                 JSON.stringify({
@@ -850,6 +892,7 @@ getConnection({
                     pnd__ = "end=134";
                     filePack = "app_s.html";
                     if (n.isTemporal) filePack = "app_s3.html";
+                    if (n.isFree) filePack = "app_s5.html";
 
                     if (getParameterByName_pack("pnd"))
                       pnd__ = `pnd=${instance.result._id}`;
