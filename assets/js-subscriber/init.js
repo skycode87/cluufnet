@@ -1070,6 +1070,20 @@ $("#plan").on("change", () => {
   ) {
     $(".availability-panel").hide();
     $(".availability-panel-loading").show();
+
+    if (String($("#plan").val()).length > 10) {
+      $("#date").val(
+        String(
+          JSON.parse(sessionStorage.getItem($("#plan").val())).departureDate
+        ).substr(0, 10)
+      );
+      $("#time").val(
+        String(
+          JSON.parse(sessionStorage.getItem($("#plan").val())).departureTime
+        )
+      );
+    }
+
     submitValidarDisponibilidad();
   }
 });
