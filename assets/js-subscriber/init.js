@@ -47,7 +47,7 @@ const JsonLanguage = {
         recomendations: "Recomendations",
         additional_information: "Additional Information",
         click_here_check_availability: "Click here to check availability",
-        type_identification_document: "Type of identification document",
+        type_identification_document: "Type of identification ",
       },
     },
     es: {
@@ -135,6 +135,8 @@ const orderDates = (ajaxinfos) => {
     myobject.observation = ajaxinfo.observation;
     myobject.departureTime = ajaxinfo.departureTime;
     myobject._id = ajaxinfo._id;
+    myobject.price = ajaxinfo.price;
+    myobject.isFree = ajaxinfo.isFree;
 
     var SpecialTo = moment(ajaxinfo.departureDate, "YYYY-MM-DD");
     if (moment().diff(SpecialTo, "days") <= 0) {
@@ -362,7 +364,6 @@ getConnection({
             String(getParameterByName_pack("ruId")).length > 7 &&
             getParameterByName_pack("utmc") === "referer"
           ) {
-            $(".availability-panel").show();
             $(".referer-title").show();
           }
 
@@ -790,6 +791,19 @@ getConnection({
                           if (resultPlans.plans[0]) {
                             const allPlans = orderDates(resultPlans.plans);
 
+                            if (getParameterByName_pack("p")) {
+                              $(".availability-panel").show();
+                              submitValidarDisponibilidad();
+                            } else {
+                              $("#plan").append(
+                                `<option selected value="">Seleccione</option>`
+                              );
+                              setTimeout(
+                                () => $(".availability-panel").hide(),
+                                2000
+                              );
+                            }
+
                             allPlans.forEach((element) => {
                               sessionStorage.setItem(
                                 element._id,
@@ -837,6 +851,13 @@ getConnection({
                                   );
                                 }
                               } else {
+                                $(".cluuf-plan-price").html(
+                                  `${
+                                    !pack.isFree
+                                      ? priceFormat(element.price)
+                                      : "Gratis"
+                                  }`
+                                );
                                 $("#plan").append(
                                   `<option  value="${element._id}">${
                                     element.name
