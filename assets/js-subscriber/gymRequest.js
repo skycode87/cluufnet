@@ -663,8 +663,6 @@ const submitSubscriptionS3 = () => {
     }
   }
 
-  console.log("Aquiii");
-
   connectToCluuf_SUBSCRIPTION_Pack(
     {
       email: {
@@ -906,7 +904,6 @@ const submitValidarDisponibilidad = (execute = false) => {
     );
   }
 
-  console.log({ fecha, hora });
 
   sendRequestAvailableTour(
     { fecha, hora, planId },

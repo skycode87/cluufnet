@@ -22,6 +22,7 @@
         <!-- Site Stylesheet -->
         <link rel="stylesheet" href="assets/css/app.css">
         <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/star-rating-svg.css">
 
         <!-- Google Web Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
@@ -133,7 +134,27 @@
                 </div>
             </div>
             <!-- Page Content -->
+
+            <section class="contact-page">
+
+                <div class="contact-box-wrap survey-section" style="display: none">
+                    <div class="container">
+                        <div class="contact-form" style="margin-top: 100px;">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h2 style="color: #fff">Please rate the experience with us</h2>
+                                    <div class="my-rating"></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <div class="page-content">
+
+
 
                 <!--=====================================-->
                 <!--=        Newsfeed  Area Start       =-->
@@ -197,6 +218,8 @@
                 </section>
 
 
+
+
                 <!--=====================================-->
                 <!--=        Footer Area Start       	=-->
                 <!--=====================================-->
@@ -257,6 +280,9 @@
         <script src="assets/js-subscriber/contactUsRequest.js"></script>
         <script src="assets/js-subscriber/init-gallery.js"></script>
         <script src="assets/js-subscriber/app.js"></script>
+        <script src="assets/js-subscriber/jquery.star-rating-svg.js"></script>
+
+
 
 
         <!-- Cluuf configuration -->
@@ -266,6 +292,42 @@
         <script src="https://cluuftracks.herokuapp.com/cluuf.js"></script>
         <script async src="https://cluuftracks.herokuapp.com/adminCluuf.js"></script>
         <script async src="https://cluuftracks.herokuapp.com/contentCluuf.js"></script>
+        <script>
+            $(".my-rating").starRating({
+                initialRating: 3,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 50,
+                callback: function (currentRating, $el) {
+                        Swal.fire({
+                            title:
+                            "Thanks for your feedback!",
+                            timer: 4000,
+                            icon: "success",
+                        });
+
+                         sendSurvey({ 
+                        appId: sessionStorage.getItem("appId"), 
+                        instanceId:sessionStorage.getItem("instanceId") , 
+                        rate:currentRating
+                        }, { 
+                            onSuccess: ()=> {},
+                            onError: () => {},
+                            onFinally: () => {}
+                        });
+
+                        if(sessionStorage.getItem("images") === "yes"){
+                            $(".survey-section").hide();
+                            $(".page-content").show("fast");
+                        }else{
+                            setTimeout(() => {
+                                window.close();
+                            }, 4000);
+                        }
+                     
+                }
+            });
+        </script>
 
     </body>
 
