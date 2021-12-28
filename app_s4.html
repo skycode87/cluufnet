@@ -294,37 +294,37 @@
         <script async src="https://cluuftracks.herokuapp.com/contentCluuf.js"></script>
         <script>
             $(".my-rating").starRating({
-                initialRating: 3,
+                initialRating: 0,
                 strokeColor: '#894A00',
                 strokeWidth: 10,
                 starSize: 50,
                 callback: function (currentRating, $el) {
-                        Swal.fire({
-                            title:
+                    Swal.fire({
+                        title:
                             "Thanks for your feedback!",
-                            timer: 4000,
-                            icon: "success",
-                        });
+                        timer: 4000,
+                        icon: "success",
+                    });
 
-                         sendSurvey({ 
-                        appId: sessionStorage.getItem("appId"), 
-                        instanceId:sessionStorage.getItem("instanceId") , 
-                        rate:currentRating
-                        }, { 
-                            onSuccess: ()=> {},
-                            onError: () => {},
-                            onFinally: () => {}
-                        });
+                    sendSurvey({
+                        appId: sessionStorage.getItem("appId"),
+                        instanceId: sessionStorage.getItem("instanceId"),
+                        rate: currentRating
+                    }, {
+                        onSuccess: () => { },
+                        onError: () => { },
+                        onFinally: () => { }
+                    });
 
-                        if(sessionStorage.getItem("images") === "yes"){
-                            $(".survey-section").hide();
-                            $(".page-content").show("fast");
-                        }else{
-                            setTimeout(() => {
-                                window.close();
-                            }, 4000);
-                        }
-                     
+                    if (sessionStorage.getItem("images") === "yes") {
+                        $(".survey-section").hide();
+                        $(".page-content").show("fast");
+                    } else {
+                        setTimeout(() => {
+                            window.close();
+                        }, 4000);
+                    }
+
                 }
             });
         </script>
