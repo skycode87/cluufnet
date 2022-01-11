@@ -904,7 +904,6 @@ const submitValidarDisponibilidad = (execute = false) => {
     );
   }
 
-
   sendRequestAvailableTour(
     { fecha, hora, planId },
     {
@@ -923,12 +922,13 @@ const submitValidarDisponibilidad = (execute = false) => {
           }
         } else {
           if (!data.result.isExist) {
+            $(".availability-panel").hide();
             $(".cluuf-plan-date").text(
               `${$("#date").val()} ${$("#time").val()} `
             );
             $(".cluuf-plan-available").text($("#maxLimit").val());
             $(".cluuf-plan-pending").text(0);
-            $(".availability-panel").show("fast");
+            //   $(".availability-panel").show("fast");
             $(".availability-panel-loading").hide();
             if (execute) {
               submitSubscriptionS3();

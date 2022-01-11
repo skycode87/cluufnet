@@ -791,16 +791,15 @@ getConnection({
                           if (resultPlans.plans[0]) {
                             const allPlans = orderDates(resultPlans.plans);
 
-                            if (getParameterByName_pack("p")) {
+                            if (getParameterByName_pack("utmc") === "referer") {
                               $(".availability-panel").show();
                               submitValidarDisponibilidad();
-                            } else {
                               $("#plan").append(
                                 `<option selected value="">Seleccione</option>`
                               );
-                              setTimeout(
-                                () => $(".availability-panel").hide(),
-                                2000
+                            } else {
+                              $("#plan").append(
+                                `<option selected value="">Seleccione</option>`
                               );
                             }
 
@@ -922,13 +921,13 @@ getConnection({
                           <div class="col-lg-4 col-md-6">
                           <div class="block-box product-box">
                               <div class="product-img">
-                              <a href="${filePack}?q=${n._id}&agency=${instance.result.alias}&type=suscriber&p=${n._id}&fclt=web&utmc=${sessionStorage.getItem("referer") ? "referer" : "Local"}&raId=null&ruId=${sessionStorage.getItem("referer")}&${pnd__}" ><img src="${n.avatar}" alt="${n.name}"></a>
+                              <a href="${filePack}?q=${n._id}&agency=${instance.result.alias}&type=suscriber&fclt=web&utmc=${sessionStorage.getItem("referer") ? "referer" : "Local"}&raId=null&ruId=${sessionStorage.getItem("referer")}&${pnd__}" ><img src="${n.avatar}" alt="${n.name}"></a>
                               </div>
                               <div class="product-content">
                                   <div class="item-category">
                                       <a href="#">${n.category}</a>
                                   </div>
-                                  <h3 class="product-title"><a href="${filePack}?q=${n._id}&agency=${instance.result.alias}&type=suscriber&p=${n._id}&fclt=web&utmc=${sessionStorage.getItem("referer") ? "referer" : "Local"}&raId=null&ruId=${sessionStorage.getItem("referer")}&${pnd__}">${n.name}</a></h3>
+                                  <h3 class="product-title"><a href="${filePack}?q=${n._id}&agency=${instance.result.alias}&type=suscriber&fclt=web&utmc=${sessionStorage.getItem("referer") ? "referer" : "Local"}&raId=null&ruId=${sessionStorage.getItem("referer")}&${pnd__}">${n.name}</a></h3>
                                   <div class="product-price" style="display: none">${priceFormat(
                                     n.price
                                   )}</div>
