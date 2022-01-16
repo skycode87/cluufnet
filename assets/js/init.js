@@ -278,7 +278,7 @@ getConnection({
                                 $("#plan").append(
                                   `<option selected value="${element._id}">${
                                     element.name
-                                  } - Costo:  ${priceFormat(
+                                  } - Price:  ${priceFormat(
                                     element.price
                                   )}</option>`
                                 );
@@ -301,7 +301,7 @@ getConnection({
                                 $("#plan").append(
                                   `<option value="${element._id}">${
                                     element.name
-                                  } - Costo:  ${priceFormat(
+                                  } - Price:  ${priceFormat(
                                     element.price
                                   )}</option>`
                                 );
