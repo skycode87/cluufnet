@@ -61,7 +61,7 @@ const JsonLanguage = {
         lastname: "Apellidos",
         email: "Correo electronico",
         reservation_date: "Fecha",
-        select_date: "Seleccione una fecha",
+        select_date: "Schedule",
         hour: "Hora",
         duration: "Duración",
         watch_video: "Ver video",
