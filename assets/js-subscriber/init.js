@@ -888,7 +888,7 @@ getConnection({
                                     element._id
                                   }">${traducirPlanes(
                                     element.name
-                                  )} - Costo:  ${
+                                  )} - Price:  ${
                                     !pack.isFree
                                       ? priceFormat(element.price)
                                       : "Based on tips"
