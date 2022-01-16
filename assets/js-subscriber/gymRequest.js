@@ -87,6 +87,7 @@ const sendRequestGYMCluuf = (
     paymentReference,
     amount,
     secure,
+    planId: localStorage.getItem("cluuf-planId") || null,
   }).toString();
 
   console.log({
@@ -121,6 +122,7 @@ const sendRequestGYMCluuf = (
     paymentReference,
     amount,
     secure,
+    planId: localStorage.getItem("cluuf-planId") || null,
   });
 
   let url = globals_gym.CLUUFWEB_SERVER_FORM_GYM;
@@ -144,6 +146,7 @@ const sendRequestGYMCluuf = (
       return response.json();
     })
     .then(function (data) {
+      localStorage.removeItem("cluuf-planId");
       onSuccess(data);
     })
     .catch(function (err) {
@@ -907,11 +910,10 @@ const submitValidarDisponibilidad = (execute = false) => {
     { fecha, hora, planId },
     {
       onSuccess: (data) => {
+        localStorage.setItem("cluuf-planId", planId);
         if (data.result.availability) {
           const availability =
             parseInt(data.result.maxLimit) - parseInt(data.result.totalApps);
-
-          console.log("aqui", data);
 
           if (availability > 0) {
             $(".no-more-space").hide("fast");

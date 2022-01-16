@@ -140,9 +140,11 @@ const traducirDia = (dia, idioma = "en") => {
     if (dia === "lunes") return "Monday";
     if (dia === "martes") return "Tuesday";
     if (dia === "miercoles") return "Wednesday";
+    if (dia === "miércoles") return "Wednesday";
     if (dia === "jueves") return "Thursday";
     if (dia === "viernes") return "Friday";
     if (dia === "sabado") return "Saturday";
+    if (dia === "sábado") return "Saturday";
   }
 };
 
