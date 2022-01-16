@@ -328,72 +328,76 @@
                                                     </div>
 
                                                     <div class="col-lg-6 col-md-6 form-group cluuf-isDocumentRequired">
-                                                        <label>Tipo de Identificación</label>
+                                                        <label>
+                                                            <span class="t_type_identification_document" style="color: #fff;"></span>
+
+
+                                                        </label>
                                                         <select style="height: 50px; font-weight: bold; font-size: 18px;" class="custom-select form-control-lg" name="documentType" id="documentType">
-                                                            <option value="none">Seleccione</option>
-                                                            <option value="Pasaporte">Pasaporte</option>
-                                                            <option value="Cédula de Ciudadanía">Cédula de ciudadanía</option>
-                                                            <option value="Cédula de Extranjería">Cédula de Extranjería</option>
-                                                            <option value="Permiso Especial de Permanencía">Permiso Especial de Permanencía</option>
-                                                            <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
+                                                            <option value="none">Select an option</option>
+                                                            <option value="Pasaporte">Passport</option>
+                                                            <option value="Cédula de Ciudadanía">ID</option>
+
                                                         </select>
                                                     </div>
 
                                                     <div class="col-lg-6 col-md-6 form-group cluuf-isDocumentRequired">
-                                                        <label>Número de documento</label>
+                                                        <label>ID Number</label>
                                                         <input type="text" value="" class="form-control" name="document" id="document" required>
-                                                    </div>
-
-                                                    <div class="col-lg-12 col-md-12 form-group cluuf-root">
-                                                        <label><i class="icofont-money-bag"></i> </span>Método de Pago |<span style="color: yellow"> Costo: <span class="cluuf-pack-price"></span> por
-                                                                ticket </span></span>
-                                                            <select style="height: 50px; font-weight: bold; font-size: 18px;" class="custom-select form-control-lg cluuf-isFree" name="paymentMode"
-                                                                id="paymentMode">
-                                                                <option value="none" selected>Sin Pago</option>
-                                                                <option value="cash">Efectivo</option>
-                                                                <option value="transfer">Transferencía</option>
-                                                                <option value="deposit">Deposito</option>
-                                                                <option value="card">Tarjeta</option>
-                                                            </select>
-                                                    </div>
-
-                                                    <div class="col-lg-12 col-md-12 form-group cluuf-isPaymentReference" style="display: none;">
-                                                        <label>Referencía de la transacción</label>
-                                                        <input style="background:#91d1eb; color: blue" type="text" value="" class="form-control" name="paymentReference" id="paymentReference">
-                                                    </div>
-
-                                                    <div class="col-lg-12 col-md-12 form-group cluuf-isAmount" style="display: none;">
-                                                        <label><i class="icofont-money"></i>Monto del Deposito ( <span class="cluuf-pack-price"></span> )</label>
-                                                        <input class="form-control" style="background:#ebf3cd; color: red; font-size: 26px; font-weight: bold;" type="text" name="currency-field"
-                                                            id="currency-field" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency" placeholder="$1,000,000.00">
-                                                    </div>
-
-
-
-                                                    <div class="col-lg-12 col-md-12 form-group cluuf-root">
-                                                        <label><i class="icofont-comment"></i> Alguna observación</label>
-                                                        <Textarea class="form-control" name="message" id="message"></Textarea>
                                                     </div>
 
                                                     <div class="col-lg-12 form-group cluuf-isTicketsNumber" style="display: flex; justify-content: center; padding-bottom: 5px;">
                                                         <ul class="action-area" style="margin-top: 5px;">
                                                             <li id="quantity-holder" style="color: #fff; ">
-                                                                <b>Número de Tickets</b>
+                                                                <b>Select the number of tickets (Maximum allowed 4)</b>
                                                                 <div class="input-group quantity-holder">
-                                                                    <button class="quantity-btn quantity-plus" type="button">
-                                                                        <i class="icofont-plus" aria-hidden="true"></i>
-                                                                    </button>
-                                                                    <input type="text" id="quantity" class=" form-control quantity-input" value="1" placeholder="1">
                                                                     <button class="quantity-btn quantity-minus" type="button">
                                                                         <i class="icofont-minus" aria-hidden="true"></i>
+                                                                    </button>
+
+                                                                    <input max="4" min="1" type="number" id="quantity" class=" form-control quantity-input" value="1" placeholder="1">
+                                                                    <button class="quantity-btn quantity-plus" type="button">
+                                                                        <i class="icofont-plus" aria-hidden="true"></i>
                                                                     </button>
                                                                 </div>
                                                             </li>
                                                         </ul>
                                                     </div>
 
+                                                    <div class="col-lg-12 col-md-12 form-group cluuf-root">
+                                                        <label><i class="icofont-money-bag"></i> </span>Payment method </span></label> <select style="height: 50px; font-weight: bold; font-size: 18px;"
+                                                            class="custom-select form-control-lg cluuf-isFree" name="paymentMode" id="paymentMode">
+                                                            <option value="cash" selected>Cash</option>
+                                                            <option value="transfer">Transfer</option>
+                                                            <option value="deposit">Only Deposit</option>
+                                                            <option value="card">Credit</option>
+                                                            <option value="none">Pending payment</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <!--
+                                                    <div class="col-lg-12 col-md-12 form-group cluuf-isPaymentReference" style="display: none;">
+                                                        <label>Referencía de la transacción</label>
+                                                        <input style="background:#91d1eb; color: blue" type="text" value="" class="form-control" name="paymentReference" id="paymentReference">
+                                                    </div>
+
+                                                   
+                                                    <div class="col-lg-12 col-md-12 form-group cluuf-isAmount" style="display: none;">
+                                                        <label><i class="icofont-money"></i>Monto del Deposito ( <span class="cluuf-pack-price"></span> )</label>
+                                                        <input class="form-control" style="background:#ebf3cd; color: red; font-size: 26px; font-weight: bold;" type="text" name="currency-field"
+                                                            id="currency-field" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency" placeholder="$1,000,000.00">
+                                                    </div>
+                                                    -->
+
+
+                                                    <div class="col-lg-12 col-md-12 form-group cluuf-root">
+                                                        <label><i class="icofont-comment"></i> Comments</label>
+                                                        <Textarea class="form-control" name="message" id="message"></Textarea>
+                                                    </div>
+
+
                                                     <div class="col-12 form-group isCupon cluuf-isFree" style="display: none;">
-                                                        <label><i class="icofont-tag"></i> Codigo del Cupón</label>
+                                                        <label><i class="icofont-tag"></i>Cupon Code</label>
                                                         <input type="text" class="form-control" name="cupon" id="cupon">
                                                     </div>
 
@@ -407,7 +411,7 @@
 
                                                     <div class="col-12 form-group isVaccine" style="display: none;">
                                                         <label class="containerCheck" style="font-size: 16px;">
-                                                            Sí, completé mi esquema de vacunación.
+                                                            Yes, I have my vaccine card
                                                             <input type="checkbox" name="isVaccine" id="isVaccine">
                                                             <span class="checkmark"></span>
                                                         </label>
