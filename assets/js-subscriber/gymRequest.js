@@ -911,9 +911,11 @@ const submitValidarDisponibilidad = (execute = false) => {
           const availability =
             parseInt(data.result.maxLimit) - parseInt(data.result.totalApps);
 
+          console.log("aqui", data);
+
           if (availability > 0) {
             $(".no-more-space").hide("fast");
-            $(".cluuf-plan-available").text();
+            $(".cluuf-plan-available").text(availability);
             $(".cluuf-plan-pending").text(data.result.pending);
             $(".cluuf-plan-date").text(data.result.name);
             $(".availability-panel").show("fast");
@@ -926,6 +928,7 @@ const submitValidarDisponibilidad = (execute = false) => {
             $(".no-more-space").show("fast");
           }
         } else {
+          console.log("no result");
           if (!data.result.isExist) {
             $(".availability-panel").hide();
             $(".cluuf-plan-date").text(
