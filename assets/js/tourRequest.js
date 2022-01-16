@@ -103,7 +103,7 @@ const connectToCluuf_Pack = (
   if (name.required) {
     if (name.value === "") {
       Swal.fire({
-        title: "Por favor valide el nombre",
+        title: "please validate firstname",
         timer: 1500,
         icon: "warning",
       });
@@ -114,7 +114,7 @@ const connectToCluuf_Pack = (
   if (email.required) {
     if (email.value === "") {
       Swal.fire({
-        title: "Por favor valide el Email Electronico",
+        title: "please validate email address",
         timer: 1500,
         icon: "warning",
       });
@@ -124,7 +124,7 @@ const connectToCluuf_Pack = (
   if (date.required) {
     if (date.value === "") {
       Swal.fire({
-        title: "Por favor valide la fecha",
+        title: "please validate date",
         timer: 1500,
         icon: "warning",
       });
@@ -145,7 +145,7 @@ const connectToCluuf_Pack = (
   if (phone.required) {
     if (phone.value === "") {
       Swal.fire({
-        title: "Por favor valide el número de teléfono",
+        title: "please validate phone number",
         timer: 1500,
         icon: "warning",
       });

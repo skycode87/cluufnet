@@ -316,7 +316,7 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
   if (name.required) {
     if (name.value === "") {
       Swal.fire({
-        title: "Por favor valide el nombre",
+        title: "please validate firstname",
         timer: 2000,
         icon: "warning",
       });
@@ -327,7 +327,7 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
   if (email.required) {
     if (email.value === "") {
       Swal.fire({
-        title: "Por favor valide el Email",
+        title: "please validate email address",
         timer: 2000,
         icon: "warning",
       });
@@ -338,7 +338,7 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
   if (date.required) {
     if (date.value === "") {
       Swal.fire({
-        title: "Por favor valide la fecha de inicio",
+        title: "please validate departure date",
         timer: 2000,
         icon: "warning",
       });
@@ -349,7 +349,7 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
   if (phone.required) {
     if (phone.value === "") {
       Swal.fire({
-        title: "Por favor valide el número de teléfono",
+        title: "please validate phone number",
         timer: 2000,
         icon: "warning",
       });
@@ -654,8 +654,7 @@ const submitSubscriptionS3 = () => {
   if ($("#isVaccine").val() === "true") {
     if (!$("#isVaccine").prop("checked")) {
       Swal.fire({
-        title:
-          "Esta aplicación es válida solo para personas con el equema de vacunación completo.",
+        title: "Please validate the vaccination card field.",
         timer: 3000,
         icon: "warning",
       });
@@ -708,7 +707,7 @@ const submitSubscriptionS3 = () => {
       documentType: {
         required: false,
         value: $("#documentType").val(),
-        message: "Please verify Tipo de Documento and try again.",
+        message: "Please verify Document type and try again.",
       },
       paymentMode: {
         required: false,
@@ -909,16 +908,22 @@ const submitValidarDisponibilidad = (execute = false) => {
     {
       onSuccess: (data) => {
         if (data.result.availability) {
-          $(".cluuf-plan-available").text(
-            parseInt(data.result.maxLimit) - parseInt(data.result.totalApps)
-          );
-          $(".cluuf-plan-pending").text(data.result.pending);
-          $(".cluuf-plan-date").text(data.result.name);
-          $(".availability-panel").show("fast");
-          $(".availability-panel-loading").hide();
+          const availability =
+            parseInt(data.result.maxLimit) - parseInt(data.result.totalApps);
 
-          if (execute) {
-            submitSubscriptionS3();
+          if (availability > 0) {
+            $(".no-more-space").hide("fast");
+            $(".cluuf-plan-available").text();
+            $(".cluuf-plan-pending").text(data.result.pending);
+            $(".cluuf-plan-date").text(data.result.name);
+            $(".availability-panel").show("fast");
+            $(".availability-panel-loading").hide();
+
+            if (execute) {
+              submitSubscriptionS3();
+            }
+          } else {
+            $(".no-more-space").show("fast");
           }
         } else {
           if (!data.result.isExist) {

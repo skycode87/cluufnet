@@ -126,6 +126,29 @@ const availablesDayFormat = (dayNumber, idioma = "en") => {
   }
 };
 
+const traducirDia = (dia, idioma = "en") => {
+  if (idioma === "es") {
+    if (dia === "sunday") return "Domingo";
+    if (dia === "monday") return "Lunes";
+    if (dia === "tuesday") return "Martes";
+    if (dia === "wednesday") return "Miercoles";
+    if (dia === "thursday") return "Jueves";
+    if (dia === "friday") return "Viernes";
+    if (dia === "saturday") return "Sabado";
+  } else {
+    if (dia === "domingo") return "Sunday";
+    if (dia === "lunes") return "Monday";
+    if (dia === "martes") return "Tuesday";
+    if (dia === "miercoles") return "Wednesday";
+    if (dia === "jueves") return "Thursday";
+    if (dia === "viernes") return "Friday";
+    if (dia === "sabado") return "Saturday";
+  }
+};
+
+const traducirPlanes = (plan, idioma = "en") =>
+  `${traducirDia(plan.split(",", 1)[0], idioma)} ${plan.split(",")[1]} `;
+
 const orderDates = (ajaxinfos) => {
   const array = [];
   for (const ajaxinfo of ajaxinfos) {
@@ -581,6 +604,7 @@ getConnection({
                     $(".cluuf-isFree").hide();
                     $("#paymentMode").hide();
                     $("#paymentMode").val("none");
+                    $(".cluuf-payment-method").hide();
                   } else {
                     $(".cluuf-pack-price").text(`
                     $  ${new Intl.NumberFormat("es-CO").format(
@@ -795,11 +819,11 @@ getConnection({
                               $(".availability-panel").show();
                               submitValidarDisponibilidad();
                               $("#plan").append(
-                                `<option selected value="">Seleccione</option>`
+                                `<option selected value="">Select one</option>`
                               );
                             } else {
                               $("#plan").append(
-                                `<option selected value="">Seleccione</option>`
+                                `<option selected value="">Select one</option>`
                               );
                             }
 
@@ -820,10 +844,10 @@ getConnection({
                                 $("#plan").append(
                                   `<option selected value="${element._id}">${
                                     element.name
-                                  } - Costo:  ${
+                                  } - Price:  ${
                                     !pack.isFree
                                       ? priceFormat(element.price)
-                                      : "Gratis"
+                                      : "Based on tips"
                                   }</option>`
                                 );
 
@@ -854,16 +878,18 @@ getConnection({
                                   `${
                                     !pack.isFree
                                       ? priceFormat(element.price)
-                                      : "Gratis"
+                                      : "Based on tips"
                                   }`
                                 );
                                 $("#plan").append(
-                                  `<option  value="${element._id}">${
+                                  `<option  value="${
+                                    element._id
+                                  }">${traducirPlanes(
                                     element.name
-                                  } - Costo:  ${
+                                  )} - Costo:  ${
                                     !pack.isFree
                                       ? priceFormat(element.price)
-                                      : "Gratis"
+                                      : "Based on tips"
                                   }</option>`
                                 );
                               }
@@ -1080,6 +1106,26 @@ $("#time").on("change", () => {
     $(".availability-panel").hide();
     $(".availability-panel-loading").show();
     submitValidarDisponibilidad();
+  }
+});
+
+$("#quantity").on("change", () => {
+  if ($("#quantity").val() > 4) {
+    Swal.fire({
+      title: `Excuse me, The maximum number of tickets allowed is 4`,
+      icon: "warning",
+    });
+    $("#quantity").val("4");
+  }
+});
+
+$(".quantity-btn").on("click", () => {
+  if ($("#quantity").val() >= 4) {
+    $("#quantity").val("3");
+    Swal.fire({
+      title: `Excuse me, The maximum number of tickets allowed is 4`,
+      icon: "warning",
+    });
   }
 });
 
