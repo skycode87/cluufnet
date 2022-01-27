@@ -511,11 +511,11 @@ getConnection({
                     sessionStorage.setItem("instanceId", instance.result._id);
 
                     if (resultApp.app.rate >= 0) {
-                      $(".survey-section").hide();
-                      $(".page-content").show("fast");
+                      $(".box-rating-col").hide();
+                      // $(".page-content").show("fast");
                     } else {
-                      $(".survey-section").show();
-                      $(".page-content").hide("fast");
+                      //$(".survey-section").show();
+                      // $(".page-content").hide("fast");
                     }
                   }
                 },
