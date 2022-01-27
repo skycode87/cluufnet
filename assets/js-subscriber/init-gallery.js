@@ -122,8 +122,9 @@ getConnection({
           $(".cluuf-instance-logo").attr("src", result.logo);
           $(".cluuf-instance-logowhite").attr("src", result.logowhite);
 
-          if (result.logowhite.length < 5)
+          if (result.logowhite.length < 5) {
             $(".cluuf-instance-logowhite").attr("src", result.logo);
+          }
 
           $(".cluuf-instance-name").text(result.name);
           $(".cluuf-instance-phonepublic").text(result.phonepublic);
@@ -243,6 +244,12 @@ getConnection({
           }
 
           $(".fixed-header .header-menu").css("background", result.color);
+          $(".box-rating").css("background", result.color);
+
+          $(" body .contact-page .contact-box-wrap .contact-form").css(
+            "background",
+            result.color
+          );
 
           $(".cluuf-instance-background").css(
             "background-image",
@@ -290,11 +297,6 @@ getConnection({
                   $(" body .product-content  .item-title").css(
                     "background",
                     pack.colorBtnForm
-                  );
-
-                  $(" body .contact-page .contact-box-wrap .contact-form").css(
-                    "background",
-                    pack.backgroundForm
                   );
 
                   $(
@@ -377,10 +379,6 @@ getConnection({
 
                   $(".image-avatar").attr("src", pack.avatar);
                   $(".cluuf-pack-avatar").attr("src", pack.avatar);
-                  $(".image-gallery1").attr("src", pack.gallery1);
-                  $(".image-gallery2").attr("src", pack.gallery2);
-                  $(".image-gallery3").attr("src", pack.gallery3);
-                  $(".image-gallery4").attr("src", pack.gallery4);
 
                   $(".cluuf-pack-availableDays").html(days);
 
@@ -472,12 +470,15 @@ getConnection({
               {
                 onSuccess: (resultPlans) => {
                   if (resultPlans.images) {
-                    $("#gallery img").remove();
                     sessionStorage.setItem("images", "yes");
                     $(".cluuf-plan-name").html(resultPlans.plans[0].name);
 
                     resultPlans.images.images.forEach((element) => {
-                      $("#gallery").append(`<img src="${element.image}" />`);
+                      $("#gallery").append(
+                        `<div class="col-lg-3"><img style="max-width:100%; border-radius: 10px; -webkit-box-shadow: 7px -8px 3px -2px rgba(186,186,186,1);
+                        -moz-box-shadow: 7px -8px 3px -2px rgba(186,186,186,1);
+                        box-shadow: 7px -8px 3px -2px rgba(186,186,186,1);"  src="${element.image}" /></div>`
+                      );
                     });
                   } else {
                     sessionStorage.setItem("images", "no");
@@ -502,6 +503,7 @@ getConnection({
                       getParameterByName_pack("app")
                     );
                     sessionStorage.setItem("instanceId", instance.result._id);
+
                     if (resultApp.app.rate >= 0) {
                       $(".survey-section").hide();
                       $(".page-content").show("fast");
@@ -517,8 +519,10 @@ getConnection({
           }
 
           if (getParameterByName_pack("root")) {
-            $(".survey-section").hide();
-            $(".page-content").show("fast");
+            if (sessionStorage.getItem("images") === "yes") {
+              $(".survey-section").hide();
+              $(".page-content").show("fast");
+            }
           }
         },
         onError: (result) => console.log(result),
