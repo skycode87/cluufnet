@@ -475,9 +475,15 @@ getConnection({
 
                     resultPlans.images.images.forEach((element) => {
                       $("#gallery").append(
-                        `<div class="col-lg-3"><img style="max-width:100%; border-radius: 10px; -webkit-box-shadow: 7px -8px 3px -2px rgba(186,186,186,1);
+                        `<div class="col-lg-3"><img style="margin-bottom:30px; max-width:100%; border-radius: 10px; -webkit-box-shadow: 7px -8px 3px -2px rgba(186,186,186,1);
                         -moz-box-shadow: 7px -8px 3px -2px rgba(186,186,186,1);
-                        box-shadow: 7px -8px 3px -2px rgba(186,186,186,1);"  src="${element.image}" /></div>`
+                        box-shadow: 7px -8px 3px -2px rgba(186,186,186,1);"  src="${element.image}" />
+                      <p style="text-align:center">
+                        <a href="${element.image}" download="picture">
+                        <button style="border:none; border-radius:7px; position:relative; top: -20px; background: #dc3545; color: white" type="button">Download</button> 
+                        </a> 
+                        </p>
+                        </div>`
                       );
                     });
                   } else {
