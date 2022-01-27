@@ -471,78 +471,58 @@ getConnection({
               },
               {
                 onSuccess: (resultPlans) => {
-
                   if (resultPlans.images) {
                     $("#gallery img").remove();
-                    sessionStorage.setItem("images","yes");
+                    sessionStorage.setItem("images", "yes");
                     $(".cluuf-plan-name").html(resultPlans.plans[0].name);
 
                     resultPlans.images.images.forEach((element) => {
                       $("#gallery").append(`<img src="${element.image}" />`);
                     });
-                  }else{
-                    sessionStorage.setItem("images","no");
+                  } else {
+                    sessionStorage.setItem("images", "no");
                   }
-
                 },
                 onError: () => {},
               }
             );
           }
 
-          if (getParameterByName_pack("app")){
-                        
-                          getAppSurvey({
-                          instanceId: instance.result._id,
-                          appId: getParameterByName_pack("app")},
-                                    { 
-                                      onSuccess: (resultApp) => { 
-                                        if(resultApp.ok){
-                                        
-                                          sessionStorage.setItem("appId",getParameterByName_pack("app"));
-                                          sessionStorage.setItem("instanceId",instance.result._id);
-
-                                        
-                                          if(resultApp.app.rate >= 0){
-                                          $(".survey-section").hide();
-                                          $(".page-content").show("fast");
-                                          }else{
-                                          $(".survey-section").show();
-                                          $(".page-content").hide("fast");
-                                          }
-                                        }
-                                      },
-                                        onError: () => {},
-                                    });
-           }
-
-          if (getParameterByName_pack("root")){
-                
-                      if( sessionStorage.getItem("images") === "yes"){
-                            $(".survey-section").hide();
-                            $(".page-content").show("fast");
-                        }else{
-
-                            Swal.fire({
-                                title:
-                                "No hay fotografias registradas",
-                                timer: 4000,
-                                icon: "success",
-                            });
-                          
-                            setTimeout(() => {
-                                window.close();
-                            }, 4000);
-                        }
-
+          if (getParameterByName_pack("app")) {
+            getAppSurvey(
+              {
+                instanceId: instance.result._id,
+                appId: getParameterByName_pack("app"),
+              },
+              {
+                onSuccess: (resultApp) => {
+                  if (resultApp.ok) {
+                    sessionStorage.setItem(
+                      "appId",
+                      getParameterByName_pack("app")
+                    );
+                    sessionStorage.setItem("instanceId", instance.result._id);
+                    if (resultApp.app.rate >= 0) {
+                      $(".survey-section").hide();
+                      $(".page-content").show("fast");
+                    } else {
+                      $(".survey-section").show();
+                      $(".page-content").hide("fast");
+                    }
+                  }
+                },
+                onError: () => {},
+              }
+            );
           }
 
-
-            },
-            onError: (result) => console.log(result),
+          if (getParameterByName_pack("root")) {
+            $(".survey-section").hide();
+            $(".page-content").show("fast");
           }
-
-         
+        },
+        onError: (result) => console.log(result),
+      }
     );
   },
 });
