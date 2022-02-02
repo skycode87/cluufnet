@@ -512,11 +512,12 @@ getConnection({
 
                     if (resultApp.app.rate >= 0) {
                       $(".box-rating-col").hide();
-                      // $(".page-content").show("fast");
+                      $(".page-content").show("fast");
                     } else {
                       //$(".survey-section").show();
                       // $(".page-content").hide("fast");
                     }
+                    $(".page-content").show("fast");
                   }
                 },
                 onError: () => {},
