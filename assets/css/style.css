@@ -382,3 +382,8 @@ margin: 20px 0px;
     padding: 3px 20px;
     border-radius: 4px;
 }
+
+.custom-select:disabled {
+    color: #000;
+    background-color: #fff500 !important;
+}

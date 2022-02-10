@@ -273,7 +273,7 @@
                                                 <input type="hidden" id="packname">
                                                 <input type="hidden" id="planname">
                                                 <input type="hidden" id="code">
-                                                <input value="true" type="hidden" id="adminEmail" name="adminEmail">
+                                                <input value="false" type="hidden" id="adminEmail" name="adminEmail">
                                                 <input type="hidden" id="isNotifyContact" name="isNotifyContact" value="true">
                                                 <div class="row gutters-15">
                                                     <div class="col-12"
@@ -288,6 +288,7 @@
                                                         <input type="date" placeholder="Date" class="form-control" name="date" id="date" required>
                                                         <input type="text" class="form-control" name="time" id="time" required>
                                                     </div>
+
                                                     <div class="col-lg-12 form-group  availability-panel " style="display: none">
                                                         <p style=" color: #fff; font-weight: bold">
                                                             <span class="t_available" style="color: #fff;"></span>: <span style="background: #008000; font-size: 14px;
@@ -320,26 +321,27 @@
 
                                                     <div class="col-lg-6 col-md-12 form-group">
                                                         <label><i class="icofont-id-card"></i>
-                                                            <span class="t_firstname" style="color: #fff;"></span>
+                                                            <span style="color: #fff;">Nombres</span>
                                                         </label>
                                                         <input type="text" class="form-control" name="firstname" id="firstname" required>
                                                     </div>
 
                                                     <div class="col-lg-6 col-md-12 form-group">
                                                         <label><i class="icofont-id-card"></i>
-                                                            <span class="t_lastname" style="color: #fff;"></span>
+                                                            <span style="color: #fff;">Apellidos</span>
                                                         </label>
                                                         <input type="text" class="form-control" name="lastname" id="lastname" required>
                                                     </div>
 
                                                     <div class="col-lg-12 form-group">
                                                         <label><i class="icofont-ui-email"></i>
-                                                            <span class="t_email" style="color: #fff;"></span>
+                                                            <span style="color: #fff;">Email</span>
                                                         </label>
                                                         <input type="email" class="form-control" name="email" id="email" required>
                                                     </div>
                                                     <div class="col-lg-12 form-group">
-                                                        <label><i class="icofont-smart-phone"></i> *whatsapp number including coountry code
+                                                        <label><i class="icofont-smart-phone"></i>
+                                                            <span style="color: #fff;">Whatsapp</span>
 
                                                         </label>
                                                         <input type="text" class="form-control" name="phone" id="phone" required>
@@ -352,22 +354,23 @@
 
                                                         </label>
                                                         <select style="height: 50px; font-weight: bold; font-size: 18px;" class="custom-select form-control-lg" name="documentType" id="documentType">
-                                                            <option value="none">Select an option</option>
-                                                            <option value="Pasaporte">Passport</option>
-                                                            <option value="Cédula de Ciudadanía">ID</option>
-
+                                                            <option value="none">Seleccione el tipo de documento</option>
+                                                            <option value="Pasaporte">Pasaporte</option>
+                                                            <option value="Cédula de Ciudadanía">Cédula de Ciudadanía</option>
+                                                            <option value="Tarjeta de Ciudadanía">Tarjeta de Identidad</option>
+                                                            <option value="Otro">Otro</option>
                                                         </select>
                                                     </div>
 
                                                     <div class="col-lg-6 col-md-6 form-group cluuf-isDocumentRequired">
-                                                        <label>ID Number</label>
+                                                        <label>Número de documento</label>
                                                         <input type="text" value="" class="form-control" name="document" id="document" required>
                                                     </div>
 
                                                     <div class="col-lg-12 form-group cluuf-isTicketsNumber" style="display: flex; justify-content: center; padding-bottom: 5px;">
                                                         <ul class="action-area" style="margin-top: 5px;">
                                                             <li id="quantity-holder" style="color: #fff; ">
-                                                                <b>Select the number of tickets (Maximum allowed 4)</b>
+                                                                <b>Seleccion el número de tickets</b>
                                                                 <div class="input-group quantity-holder">
                                                                     <button class="quantity-btn quantity-minus" type="button">
                                                                         <i class="icofont-minus" aria-hidden="true"></i>
@@ -384,14 +387,14 @@
 
 
                                                     <div class="col-lg-12 col-md-12 form-group cluuf-root cluuf-payment-method">
-                                                        <label><i class="icofont-money-bag"></i></span> Payment method </span></label>
+                                                        <label><i class="icofont-money-bag"></i></span> Metodo de pago </span></label>
                                                         <select style="height: 50px; font-weight: bold; font-size: 18px;" class="custom-select form-control-lg cluuf-isFree" name="paymentMode"
                                                             id="paymentMode">
-                                                            <option value="cash" selected>Cash</option>
-                                                            <option value="transfer">Transfer</option>
-                                                            <option value="deposit">Only Deposit</option>
-                                                            <option value="card">Credit</option>
-                                                            <option value="none">Pending payment</option>
+                                                            <option value="cash" selected>Efectivo</option>
+                                                            <option value="transfer">Transferencia</option>
+                                                            <option value="deposit">Solo deposito </option>
+                                                            <option value="card">Credito</option>
+                                                            <option value="none">Pago Pendiente</option>
                                                         </select>
                                                     </div>
 
@@ -411,14 +414,14 @@
 
 
                                                     <div class="col-lg-12 col-md-12 form-group cluuf-root">
-                                                        <label><i class="icofont-comment"></i> Comments</label>
+                                                        <label><i class="icofont-comment"></i> Comentario</label>
                                                         <Textarea class="form-control" name="message" id="message"></Textarea>
                                                     </div>
 
 
 
                                                     <div class="col-12 form-group isCupon cluuf-isFree" style="display: none;">
-                                                        <label><i class="icofont-tag"></i>Cupon Code</label>
+                                                        <label><i class="icofont-tag"></i>Cupon</label>
                                                         <input type="text" class="form-control" name="cupon" id="cupon">
                                                     </div>
 
@@ -432,7 +435,7 @@
 
                                                     <div class="col-12 form-group isVaccine" style="display: none;">
                                                         <label class="containerCheck" style="font-size: 16px;">
-                                                            Yes, I have my vaccine card
+                                                            Si, presento mi esquema de vacunación
                                                             <input type="checkbox" name="isVaccine" id="isVaccine">
                                                             <span class="checkmark"></span>
                                                         </label>
@@ -455,7 +458,7 @@
                                                         <ul class="action-area" style="margin-top: 10px;">
                                                             <li class="li-submit">
                                                                 <a href="javascript:submitValidarDisponibilidad(true)" class="cart-btn cluuf-pack-labelBtnForm " style="font-size: 22px;
-                                                                padding: 15px 120px;letter-spacing: 5px; font-weight: bold;">Unete a nosotros</a>
+                                                                padding: 15px 120px;letter-spacing: 5px; font-weight: bold;">Registrarme</a>
                                                             </li>
                                                             <li class="li-loading" style="display: none">
                                                                 <a class="cart-btn " style="background-color: gray;">
@@ -470,6 +473,11 @@
                                                         <small style="color: #fff;"> Se proporcionará todo el equipo de protección requerido </small>
                                                     </div>
 
+
+                                                    <div style="padding: 30px; width: 100%;">
+                                                        <h4 style="color: #fff; font-weight: bold;">Ubicacion del Evento</h4>
+                                                        <div class="pack_iframeMap "></div>
+                                                    </div>
 
                                                 </div>
                                             </form>
@@ -517,6 +525,8 @@
                                         <a class="nav-link " id="home-tab" data-toggle="tab" href="#meeting-point" role="tab" aria-selected="true"><span class="t_meeting_point"></span></a>
                                     </li>
 
+
+
                                 </ul>
                                 <div class="tab-content">
 
@@ -553,9 +563,7 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="googlemap" role="tabpanel">
-                                        <div class="product-description">
-                                            <div class="pack_iframeMap "></div>
-                                        </div>
+
                                     </div>
                                     <div class="tab-pane fade" id="meeting-point" role="tabpanel">
                                         <div class="product-description">

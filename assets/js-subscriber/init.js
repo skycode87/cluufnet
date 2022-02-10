@@ -16,7 +16,7 @@ const formatDurationMode = (value) => {
 };
 
 const JsonLanguage = {
-  lng: "en", // if you're using a language detector, do not define the lng option
+  lng: "es", // if you're using a language detector, do not define the lng option
   debug: true,
   resources: {
     en: {
@@ -35,7 +35,7 @@ const JsonLanguage = {
         duration: "Duration",
         geographic_location: "Geographic Location",
         watch_video: "Watch video",
-        select_date: "Select a date",
+        select_date: "Seleccione una fecha",
         available: "Available",
         on_hold: "On hold",
         description: "Description",
@@ -339,6 +339,12 @@ getConnection({
           );
 
           $(".fixed-header .header-menu").css("background", result.color);
+
+          if (getParameterByName_pack("payment") === "pending") {
+            $(".cluuf-payment-method").hide();
+            $("#paymentMode").val("none");
+            $("#paymentMode").attr("disabled","true");
+          }
 
           if (!getParameterByName_pack("q")) {
             $(".cluuf-instance-cover").css(
@@ -843,6 +849,8 @@ getConnection({
                               if (
                                 getParameterByName_pack("p") === element._id
                               ) {
+                                $("#plan").attr("disabled", true);
+
                                 $("#plan").append(
                                   `<option selected value="${element._id}">${
                                     element.name
