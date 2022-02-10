@@ -340,7 +340,7 @@ getConnection({
 
           $(".fixed-header .header-menu").css("background", result.color);
 
-          if (getParameterByName_pack("payment") === "pending") {
+          if (getParameterByName_pack("payment") === "none") {
             $(".cluuf-payment-method").hide();
             $("#paymentMode").val("none");
             $("#paymentMode").attr("disabled", "true");
