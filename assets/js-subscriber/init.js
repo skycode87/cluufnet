@@ -148,8 +148,10 @@ const traducirDia = (dia, idioma = "en") => {
   }
 };
 
-const traducirPlanes = (plan, idioma = "en") =>
-  `${traducirDia(plan.split(",", 1)[0], idioma)} ${plan.split(",")[1]} `;
+const traducirPlanes = (plan, idioma = "en") => {
+  console.log(plan.split(",", 1)[0], plan.split(",")[1], plan);
+  return `${traducirDia(plan.split(",", 1)[0], idioma)} ${plan.split(",")[1]} `;
+};
 
 const orderDates = (ajaxinfos) => {
   const array = [];
@@ -852,9 +854,9 @@ getConnection({
                                 $("#plan").attr("disabled", true);
 
                                 $("#plan").append(
-                                  `<option selected value="${
-                                    element._id
-                                  }">${element.name.split("[", 1)} - Price:  ${
+                                  `<option selected value="${element._id}">${
+                                    element.name
+                                  } - Price:  ${
                                     !pack.isFree
                                       ? priceFormat(element.price)
                                       : "Based on tips"
@@ -884,6 +886,7 @@ getConnection({
                                   );
                                 }
                               } else {
+                                console.log(element.name);
                                 $(".cluuf-plan-price").html(
                                   `${
                                     !pack.isFree
@@ -894,8 +897,8 @@ getConnection({
                                 $("#plan").append(
                                   `<option  value="${
                                     element._id
-                                  }">${traducirPlanes(
-                                    element.name.split("[", 1)
+                                  }"> ${traducirPlanes(
+                                    element.name
                                   )} - Price:  ${
                                     !pack.isFree
                                       ? priceFormat(element.price)
