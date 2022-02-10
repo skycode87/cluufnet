@@ -343,7 +343,7 @@ getConnection({
           if (getParameterByName_pack("payment") === "pending") {
             $(".cluuf-payment-method").hide();
             $("#paymentMode").val("none");
-            $("#paymentMode").attr("disabled","true");
+            $("#paymentMode").attr("disabled", "true");
           }
 
           if (!getParameterByName_pack("q")) {
@@ -852,9 +852,9 @@ getConnection({
                                 $("#plan").attr("disabled", true);
 
                                 $("#plan").append(
-                                  `<option selected value="${element._id}">${
-                                    element.name
-                                  } - Price:  ${
+                                  `<option selected value="${
+                                    element._id
+                                  }">${element.name.split("[", 1)} - Price:  ${
                                     !pack.isFree
                                       ? priceFormat(element.price)
                                       : "Based on tips"
@@ -895,7 +895,7 @@ getConnection({
                                   `<option  value="${
                                     element._id
                                   }">${traducirPlanes(
-                                    element.name
+                                    element.name.split("[", 1)
                                   )} - Price:  ${
                                     !pack.isFree
                                       ? priceFormat(element.price)
