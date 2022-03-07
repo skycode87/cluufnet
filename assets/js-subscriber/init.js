@@ -482,6 +482,11 @@ getConnection({
                   localStorage.setItem("cluuf-pack-tag", pack.tag);
                   sessionStorage.setItem("packname", pack.tag);
 
+                  $("#isExternal").val(pack.isExternal);
+                  $("#redirectTo").val(pack.redirectTo);
+                  $("#whatsappRedirect").val(pack.whatsappRedirect);
+                  $("#urlRedirect").val(pack.urlRedirect);
+
                   $(".cluuf-instance-cover").css(
                     "background-image",
                     `url(${pack.avatar})`
@@ -821,92 +826,98 @@ getConnection({
                       },
                       {
                         onSuccess: (resultPlans) => {
-                          $("#plan option").remove();
-                          if (resultPlans.plans[0]) {
-                            const allPlans = orderDates(resultPlans.plans);
-
-                            if (getParameterByName_pack("utmc") === "referer") {
-                              $(".availability-panel").show();
-                              submitValidarDisponibilidad();
-                              $("#plan").append(
-                                `<option selected value="">Select one</option>`
-                              );
-                            } else {
-                              $("#plan").append(
-                                `<option selected value="">Select one</option>`
-                              );
-                            }
-
-                            allPlans.forEach((element) => {
-                              sessionStorage.setItem(
-                                element._id,
-                                JSON.stringify({
-                                  name: element.name,
-                                  observation: element.observation,
-                                  departureDate: element.departureDate,
-                                  departureTime: element.departureTime,
-                                })
-                              );
+                          if (resultPlans.ok) {
+                            $("#plan option").remove();
+                            if (resultPlans.plans[0]) {
+                              const allPlans = orderDates(resultPlans.plans);
 
                               if (
-                                getParameterByName_pack("p") === element._id
+                                getParameterByName_pack("utmc") === "referer"
                               ) {
-                                $("#plan").attr("disabled", true);
-
+                                $(".availability-panel").show();
+                                submitValidarDisponibilidad();
                                 $("#plan").append(
-                                  `<option selected value="${element._id}">${
-                                    element.name
-                                  } - Price:  ${
-                                    !pack.isFree
-                                      ? priceFormat(element.price)
-                                      : "Based on tips"
-                                  }</option>`
+                                  `<option selected value="">Select one</option>`
                                 );
+                              } else {
+                                $("#plan").append(
+                                  `<option selected value="">Select one</option>`
+                                );
+                              }
 
-                                $("#planname").val(
-                                  JSON.parse(
-                                    sessionStorage.getItem($("#plan").val())
-                                  ).name
+                              allPlans.forEach((element) => {
+                                sessionStorage.setItem(
+                                  element._id,
+                                  JSON.stringify({
+                                    name: element.name,
+                                    observation: element.observation,
+                                    departureDate: element.departureDate,
+                                    departureTime: element.departureTime,
+                                  })
                                 );
 
                                 if (
-                                  String(
+                                  getParameterByName_pack("p") === element._id
+                                ) {
+                                  $("#plan").attr("disabled", true);
+
+                                  $("#plan").append(
+                                    `<option selected value="${element._id}">${
+                                      element.name
+                                    } - Price:  ${
+                                      !pack.isFree
+                                        ? priceFormat(element.price)
+                                        : "Based on tips"
+                                    }</option>`
+                                  );
+
+                                  $("#planname").val(
                                     JSON.parse(
                                       sessionStorage.getItem($("#plan").val())
-                                    ).observation
-                                  ).length > 10
-                                ) {
-                                  $(".plan_description").html(
-                                    `<div>
-                                    ${
+                                    ).name
+                                  );
+
+                                  if (
+                                    String(
                                       JSON.parse(
                                         sessionStorage.getItem($("#plan").val())
                                       ).observation
-                                    }</div>`
+                                    ).length > 10
+                                  ) {
+                                    $(".plan_description").html(
+                                      `<div>
+                                      ${
+                                        JSON.parse(
+                                          sessionStorage.getItem(
+                                            $("#plan").val()
+                                          )
+                                        ).observation
+                                      }</div>`
+                                    );
+                                  }
+                                } else {
+                                  console.log(element.name);
+                                  $(".cluuf-plan-price").html(
+                                    `${
+                                      !pack.isFree
+                                        ? priceFormat(element.price)
+                                        : "Based on tips"
+                                    }`
+                                  );
+                                  $("#plan").append(
+                                    `<option  value="${
+                                      element._id
+                                    }"> ${traducirPlanes(
+                                      element.name
+                                    )} - Price:  ${
+                                      !pack.isFree
+                                        ? priceFormat(element.price)
+                                        : "Based on tips"
+                                    }</option>`
                                   );
                                 }
-                              } else {
-                                console.log(element.name);
-                                $(".cluuf-plan-price").html(
-                                  `${
-                                    !pack.isFree
-                                      ? priceFormat(element.price)
-                                      : "Based on tips"
-                                  }`
-                                );
-                                $("#plan").append(
-                                  `<option  value="${
-                                    element._id
-                                  }"> ${traducirPlanes(
-                                    element.name
-                                  )} - Price:  ${
-                                    !pack.isFree
-                                      ? priceFormat(element.price)
-                                      : "Based on tips"
-                                  }</option>`
-                                );
-                              }
-                            });
+                              });
+                            }
                           }
                         },
                         onError: () => {},

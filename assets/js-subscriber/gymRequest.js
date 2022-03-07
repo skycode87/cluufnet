@@ -90,41 +90,6 @@ const sendRequestGYMCluuf = (
     planId: localStorage.getItem("cluuf-planId") || null,
   }).toString();
 
-  console.log({
-    name,
-    email,
-    message,
-    phone,
-    quantity,
-    date,
-    document,
-    documentType,
-    address,
-    time,
-    packId,
-    instanceId,
-    plan,
-    campaign,
-    adminEmail,
-    isNotifyContact,
-    refererAppId,
-    refererUserId,
-    cupon,
-    birthday,
-    facilitator,
-    firstname,
-    lastname,
-    medium,
-    paymentMode,
-    isParentalControl,
-    isVaccine,
-    isPrivacyPolicy,
-    paymentReference,
-    amount,
-    secure,
-    planId: localStorage.getItem("cluuf-planId") || null,
-  });
-
   let url = globals_gym.CLUUFWEB_SERVER_FORM_GYM;
 
   if (activate === "done") {
@@ -754,19 +719,42 @@ const submitSubscriptionS3 = () => {
     },
     {
       onSuccess: (response) => {
-        $("#firstname").val("");
-        $("#lastname").val("");
-        $("#time").val("");
-        $("#email").val("");
-        $("#phone").val("");
-        $("#message").val("");
-        //$("#quantity").val("1");
-        $("#cupon").val("");
-        $("#paymentMode").val("none");
-        $("#observation").val("");
-        $("#document").val("");
-        $("#documentType").val("");
-        setTimeout(() => location.reload(), 1000);
+        if (
+          $("#isExternal").val() === "true" &&
+          $("#redirectTo").val() === "whatsappRedirect" &&
+          String($("#whatsappRedirect").val()).length > 5
+        ) {
+          let userInfo = `😃 Hola, estoy interesado en ${$(
+            "#quantity"
+          ).val()} cupos(s) para *${localStorage.getItem("cluufpackname")}  ${$(
+            "#date"
+          ).val()}  [ ⏰ ${$(
+            "#time"
+          ).val()}]*. Estos son mis datos personales: (${$(
+            "#email"
+          ).val()} & ${$("#phone").val()}) by ${localStorage.getItem(
+            "hostname"
+          )}`;
+
+          let url = `https://wa.me/${$("#whatsappRedirect")
+            .val()
+            .trim()}?text=${encodeURIComponent(userInfo)}`;
+          location.href = url;
+        } else {
+          $("#firstname").val("");
+          $("#lastname").val("");
+          $("#time").val("");
+          $("#email").val("");
+          $("#phone").val("");
+          $("#message").val("");
+          //$("#quantity").val("1");
+          $("#cupon").val("");
+          $("#paymentMode").val("none");
+          $("#observation").val("");
+          $("#document").val("");
+          $("#documentType").val("");
+          setTimeout(() => location.reload(), 1000);
+        }
       },
       onError: () => console.log("Error enviando el formulario"),
     }
@@ -910,39 +898,48 @@ const submitValidarDisponibilidad = (execute = false) => {
     { fecha, hora, planId },
     {
       onSuccess: (data) => {
-        localStorage.setItem("cluuf-planId", planId);
-        if (data.result.availability) {
-          const availability =
-            parseInt(data.result.maxLimit) - parseInt(data.result.totalApps);
+        if ($("#isExternal").val() === "false") {
+          console.log("entre aqui en no external");
+          localStorage.setItem("cluuf-planId", planId);
+          if (data.result.availability) {
+            const availability =
+              parseInt(data.result.maxLimit) - parseInt(data.result.totalApps);
 
-          if (availability > 0) {
-            $(".no-more-space").hide("fast");
-            $(".cluuf-plan-available").text(availability);
-            $(".cluuf-plan-pending").text(data.result.pending);
-            $(".cluuf-plan-date").text(data.result.name);
-            $(".availability-panel").show("fast");
-            $(".availability-panel-loading").hide();
+            if (availability > 0) {
+              $(".no-more-space").hide("fast");
+              $(".cluuf-plan-available").text(availability);
+              $(".cluuf-plan-pending").text(data.result.pending);
+              $(".cluuf-plan-date").text(data.result.name);
+              $(".availability-panel").show("fast");
+              $(".availability-panel-loading").hide();
 
-            if (execute) {
-              submitSubscriptionS3();
+              if (execute) {
+                submitSubscriptionS3();
+              }
+            } else {
+              $(".no-more-space").show("fast");
             }
           } else {
-            $(".no-more-space").show("fast");
+            console.log("no result");
+            if (!data.result.isExist) {
+              $(".availability-panel").hide();
+              $(".cluuf-plan-date").text(
+                `${$("#date").val()} ${$("#time").val()} `
+              );
+              $(".cluuf-plan-available").text($("#maxLimit").val());
+              $(".cluuf-plan-pending").text(0);
+              //   $(".availability-panel").show("fast");
+              $(".availability-panel-loading").hide();
+              if (execute) {
+                submitSubscriptionS3();
+              }
+            }
           }
         } else {
-          console.log("no result");
-          if (!data.result.isExist) {
-            $(".availability-panel").hide();
-            $(".cluuf-plan-date").text(
-              `${$("#date").val()} ${$("#time").val()} `
-            );
-            $(".cluuf-plan-available").text($("#maxLimit").val());
-            $(".cluuf-plan-pending").text(0);
-            //   $(".availability-panel").show("fast");
-            $(".availability-panel-loading").hide();
-            if (execute) {
-              submitSubscriptionS3();
-            }
+          console.log("entre aqui en  external");
+
+          if (execute) {
+            submitSubscriptionS3();
           }
         }
       },
