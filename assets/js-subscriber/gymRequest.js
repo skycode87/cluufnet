@@ -719,11 +719,15 @@ const submitSubscriptionS3 = () => {
     },
     {
       onSuccess: (response) => {
+        console.log("hey si");
+
         if (
           $("#isExternal").val() === "true" &&
           $("#redirectTo").val() === "whatsappRedirect" &&
           String($("#whatsappRedirect").val()).length > 5
         ) {
+          console.log("soy external fin");
+
           let userInfo = `😃 Hola, estoy interesado en ${$(
             "#quantity"
           ).val()} cupos(s) para *${localStorage.getItem("cluufpackname")}  ${$(
@@ -741,6 +745,8 @@ const submitSubscriptionS3 = () => {
             .trim()}?text=${encodeURIComponent(userInfo)}`;
           location.href = url;
         } else {
+          console.log("no soy external fin");
+
           $("#firstname").val("");
           $("#lastname").val("");
           $("#time").val("");
