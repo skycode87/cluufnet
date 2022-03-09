@@ -728,13 +728,9 @@ const submitSubscriptionS3 = () => {
             "#quantity"
           ).val()} cupos(s) para *${localStorage.getItem("cluufpackname")}  ${$(
             "#date"
-          ).val()}  [ ⏰ ${$(
-            "#time"
-          ).val()}]*. Estos son mis datos personales: (${$(
+          ).val()}  [ ⏰ ${$("#time").val()}]*. Datos personales: (${$(
             "#email"
-          ).val()} & ${$("#phone").val()}) by ${localStorage.getItem(
-            "hostname"
-          )}`;
+          ).val()} & ${$("#phone").val()})`;
 
           let url = `https://wa.me/${$("#whatsappRedirect")
             .val()
