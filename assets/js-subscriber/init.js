@@ -483,6 +483,7 @@ getConnection({
                   sessionStorage.setItem("packname", pack.tag);
 
                   $("#isExternal").val(pack.isExternal);
+
                   $("#redirectTo").val(pack.redirectTo);
                   $("#whatsappRedirect").val(pack.whatsappRedirect);
                   $("#urlRedirect").val(pack.urlRedirect);
@@ -520,7 +521,10 @@ getConnection({
 
                   let contador = "1";
                   localStorage.setItem("contador", contador);
-                  setInterval(() => {
+                  $(".zoom-gallery .panel1").attr("src", pack.gallery1);
+
+                  /*   
+               setInterval(() => {
                     if (localStorage.getItem("contador") === "0") {
                       $(".zoom-gallery .panel1").attr("src", pack.gallery1);
                       localStorage.setItem("contador", "1");
@@ -531,7 +535,8 @@ getConnection({
                       $(".zoom-gallery .panel1").attr("src", pack.gallery3);
                       localStorage.setItem("contador", "0");
                     }
-                  }, 5000);
+                  }, 40000);
+                  */
 
                   if (pack.isDefaultColor) {
                     $("body .review-form.cluuf-instance-background-form").css(
@@ -739,6 +744,10 @@ getConnection({
                     $("#date").val(getParameterByName_pack("f"));
 
                   if (String(getParameterByName_pack("ruId")).length > 6) {
+                    if ($("#isExternal").val() === "true") {
+                      $(".availability-panel-loading").hide();
+                      $(".wrapper-availability-panel").hide();
+                    }
                   } else {
                     // Sino tiene referido no es seguro
                     sessionStorage.setItem("secure", 0);
@@ -1090,46 +1099,53 @@ $("#date").on("change", () => {
   let isAvailable = false;
   let daysName = "";
 
-  if (sessionStorage.getItem("cluuf-pack")) {
-    let days = JSON.parse(sessionStorage.getItem("cluuf-pack")).availableDays;
-    days.forEach((element) => {
-      daysName = `${daysName}  ${availablesDayFormat(element)}`;
+  if ($("#isExternal").val() === "false") {
+    if (sessionStorage.getItem("cluuf-pack")) {
+      let days = JSON.parse(sessionStorage.getItem("cluuf-pack")).availableDays;
+      days.forEach((element) => {
+        daysName = `${daysName}  ${availablesDayFormat(element)}`;
 
-      if (parseInt(moment($("#date").val()).day()) === parseInt(element)) {
-        isAvailable = true;
-      }
-    });
-
-    if (!isAvailable) {
-      $("#date").val("");
-      $(".cluuf-plan-available").text("0");
-      $(".cluuf-plan-pending").text("0");
-      $(".cluuf-plan-date").text("");
-      Swal.fire({
-        title: `Excuse me, we only have availability for the days ${daysName}`,
-        icon: "error",
+        if (parseInt(moment($("#date").val()).day()) === parseInt(element)) {
+          isAvailable = true;
+        }
       });
-    } else {
-      if (
-        sessionStorage.getItem("referer") &&
-        getParameterByName_pack("utmc") === "referer"
-      ) {
-        $(".availability-panel").hide();
-        $(".availability-panel-loading").show();
-        submitValidarDisponibilidad();
+
+      if (!isAvailable) {
+        $("#date").val("");
+        $(".cluuf-plan-available").text("0");
+        $(".cluuf-plan-pending").text("0");
+        $(".cluuf-plan-date").text("");
+        Swal.fire({
+          title: `Excuse me, we only have availability for the days ${daysName}`,
+          icon: "error",
+        });
+      } else {
+        if (
+          sessionStorage.getItem("referer") &&
+          getParameterByName_pack("utmc") === "referer"
+        ) {
+          $(".availability-panel").hide();
+          $(".availability-panel-loading").show();
+          submitValidarDisponibilidad();
+        }
       }
     }
+  } else {
+    $(".availability-panel-loading").hide();
+    $(".wrapper-availability-panel").hide();
   }
 });
 
 $("#time").on("change", () => {
-  if (
-    sessionStorage.getItem("referer") &&
-    getParameterByName_pack("utmc") === "referer"
-  ) {
-    $(".availability-panel").hide();
-    $(".availability-panel-loading").show();
-    submitValidarDisponibilidad();
+  if ($("#isExternal").val() === "false") {
+    if (
+      sessionStorage.getItem("referer") &&
+      getParameterByName_pack("utmc") === "referer"
+    ) {
+      $(".availability-panel").hide();
+      $(".availability-panel-loading").show();
+      submitValidarDisponibilidad();
+    }
   }
 });
 

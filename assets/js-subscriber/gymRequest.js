@@ -719,15 +719,11 @@ const submitSubscriptionS3 = () => {
     },
     {
       onSuccess: (response) => {
-        console.log("hey si");
-
         if (
           $("#isExternal").val() === "true" &&
           $("#redirectTo").val() === "whatsappRedirect" &&
           String($("#whatsappRedirect").val()).length > 5
         ) {
-          console.log("soy external fin");
-
           let userInfo = `😃 Hola, estoy interesado en ${$(
             "#quantity"
           ).val()} cupos(s) para *${localStorage.getItem("cluufpackname")}  ${$(
@@ -743,10 +739,9 @@ const submitSubscriptionS3 = () => {
           let url = `https://wa.me/${$("#whatsappRedirect")
             .val()
             .trim()}?text=${encodeURIComponent(userInfo)}`;
+
           location.href = url;
         } else {
-          console.log("no soy external fin");
-
           $("#firstname").val("");
           $("#lastname").val("");
           $("#time").val("");
@@ -885,72 +880,76 @@ const submitSubscriptionS1 = () => {
 };
 
 const submitValidarDisponibilidad = (execute = false) => {
-  const fecha = $("#date").val() || null;
-  const hora = $("#time").val() || null;
-  const planId = $("#plan").val() || "0";
+  if ($("#isExternal").val() === "false") {
+    const fecha = $("#date").val() || null;
+    const hora = $("#time").val() || null;
+    const planId = $("#plan").val() || "0";
+    if (String($("#plan").val()).length > 10) {
+      $("#date").val(
+        String(
+          JSON.parse(sessionStorage.getItem($("#plan").val())).departureDate
+        ).substr(0, 10)
+      );
+      $("#time").val(
+        String(
+          JSON.parse(sessionStorage.getItem($("#plan").val())).departureTime
+        )
+      );
+    }
+    sendRequestAvailableTour(
+      { fecha, hora, planId },
+      {
+        onSuccess: (data) => {
+          if ($("#isExternal").val() === "false") {
+            localStorage.setItem("cluuf-planId", planId);
+            if (data.result.availability) {
+              const availability =
+                parseInt(data.result.maxLimit) -
+                parseInt(data.result.totalApps);
 
-  if (String($("#plan").val()).length > 10) {
-    $("#date").val(
-      String(
-        JSON.parse(sessionStorage.getItem($("#plan").val())).departureDate
-      ).substr(0, 10)
-    );
-    $("#time").val(
-      String(JSON.parse(sessionStorage.getItem($("#plan").val())).departureTime)
-    );
-  }
+              if (availability > 0) {
+                $(".no-more-space").hide("fast");
+                $(".cluuf-plan-available").text(availability);
+                $(".cluuf-plan-pending").text(data.result.pending);
+                $(".cluuf-plan-date").text(data.result.name);
+                $(".availability-panel").show("fast");
+                $(".availability-panel-loading").hide();
 
-  sendRequestAvailableTour(
-    { fecha, hora, planId },
-    {
-      onSuccess: (data) => {
-        if ($("#isExternal").val() === "false") {
-          console.log("entre aqui en no external");
-          localStorage.setItem("cluuf-planId", planId);
-          if (data.result.availability) {
-            const availability =
-              parseInt(data.result.maxLimit) - parseInt(data.result.totalApps);
-
-            if (availability > 0) {
-              $(".no-more-space").hide("fast");
-              $(".cluuf-plan-available").text(availability);
-              $(".cluuf-plan-pending").text(data.result.pending);
-              $(".cluuf-plan-date").text(data.result.name);
-              $(".availability-panel").show("fast");
-              $(".availability-panel-loading").hide();
-
-              if (execute) {
-                submitSubscriptionS3();
+                if (execute) {
+                  submitSubscriptionS3();
+                }
+              } else {
+                $(".no-more-space").show("fast");
               }
             } else {
-              $(".no-more-space").show("fast");
-            }
-          } else {
-            console.log("no result");
-            if (!data.result.isExist) {
-              $(".availability-panel").hide();
-              $(".cluuf-plan-date").text(
-                `${$("#date").val()} ${$("#time").val()} `
-              );
-              $(".cluuf-plan-available").text($("#maxLimit").val());
-              $(".cluuf-plan-pending").text(0);
-              //   $(".availability-panel").show("fast");
-              $(".availability-panel-loading").hide();
-              if (execute) {
-                submitSubscriptionS3();
+              $(".wrapper-availability-panel").hide();
+              if (!data.result.isExist) {
+                $(".availability-panel").hide();
+                $(".cluuf-plan-date").text(
+                  `${$("#date").val()} ${$("#time").val()} `
+                );
+                $(".cluuf-plan-available").text($("#maxLimit").val());
+                $(".cluuf-plan-pending").text(0);
+                //   $(".availability-panel").show("fast");
+                $(".availability-panel-loading").hide();
+                if (execute) {
+                  submitSubscriptionS3();
+                }
               }
             }
+          } else {
+            if (execute) {
+              submitSubscriptionS3();
+            }
           }
-        } else {
-          console.log("entre aqui en  external");
-
-          if (execute) {
-            submitSubscriptionS3();
-          }
-        }
-      },
-      onError: () => {},
-      onFinally: () => {},
+        },
+        onError: () => {},
+        onFinally: () => {},
+      }
+    );
+  } else {
+    if (execute) {
+      submitSubscriptionS3();
     }
-  );
+  }
 };
