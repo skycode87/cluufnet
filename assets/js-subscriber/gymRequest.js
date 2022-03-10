@@ -724,11 +724,11 @@ const submitSubscriptionS3 = () => {
           $("#redirectTo").val() === "whatsappRedirect" &&
           String($("#whatsappRedirect").val()).length > 5
         ) {
-          let userInfo = `😃 Hola, estoy interesado en ${$(
+          let userInfo = `Hola, estoy interesado en ${$(
             "#quantity"
           ).val()} cupos(s) para *${localStorage.getItem("cluufpackname")}  ${$(
             "#date"
-          ).val()}  [ ⏰ ${$("#time").val()}]*. Datos personales: (${$(
+          ).val()}  [${$("#time").val()}]*. Datos personales: (${$(
             "#email"
           ).val()} & ${$("#phone").val()})`;
 
