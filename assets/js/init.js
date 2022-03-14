@@ -228,18 +228,18 @@ getConnection({
                   let days = "";
                   if (pack.availableDays) {
                     if (pack.availableDays.length > 6) {
-                      days = "Todos los dias";
+                      days = "Every day";
                     } else {
                       if (pack.availableDays) {
                         pack.availableDays.forEach((element) => {
                           days = `${days}  ${availablesDayFormat(element)}`;
                         });
                       } else {
-                        days = "All Days";
+                        days = "Every day";
                       }
                     }
                   } else {
-                    days = "All Days";
+                    days = "Every day";
                   }
 
                   $(".cluuf-pack-availableDays").html(days);

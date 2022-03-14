@@ -946,6 +946,7 @@ const submitValidarDisponibilidad = (execute = false) => {
       }
     );
   } else {
+    $("#paymentMode").val("cash");
     if (execute) {
       submitSubscriptionS3();
     }
