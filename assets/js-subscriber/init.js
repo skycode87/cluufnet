@@ -970,7 +970,7 @@ getConnection({
                   $.each(result2.packs, function (i, n) {
                     pnd__ = "end=134";
                     filePack = "app_s.html";
-                    if (n.isTemporal) filePack = "app_s3.html";
+                    if (n.isTemporal) filePack = "app_s5.html";
                     if (n.isFree) filePack = "app_s5.html";
 
                     if (getParameterByName_pack("pnd"))

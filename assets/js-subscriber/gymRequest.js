@@ -9,7 +9,7 @@ const globals_gym = Object.freeze({
 
   CLUUFWEB_SERVER_FORM_TOUR: `${localStorage.getItem(
     "backend_url"
-  )}/subscriber_new_tour_app`,
+  )}/createAppfromWebsite`,
   CLUUFWEB_SERVER_VALIDATE_TOUR: `${localStorage.getItem(
     "backend_url"
   )}/subscriber_available_tour`,

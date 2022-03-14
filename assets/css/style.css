@@ -351,6 +351,8 @@ display: none;
     padding: 1px 10px;
     float: right;
     margin: -20px;
+    position: relative;
+    top: 130px;
 }
 
 .google{
