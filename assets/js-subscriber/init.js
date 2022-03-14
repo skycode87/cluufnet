@@ -484,6 +484,11 @@ getConnection({
 
                   $("#isExternal").val(pack.isExternal);
 
+                  if ($("#isExternal").val() === "true") {
+                    $(".cluuf-payment-method").hide();
+                    $("#paymentMode").val("cash");
+                  }
+
                   $("#redirectTo").val(pack.redirectTo);
                   $("#whatsappRedirect").val(pack.whatsappRedirect);
                   $("#urlRedirect").val(pack.urlRedirect);
