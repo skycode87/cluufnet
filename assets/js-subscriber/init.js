@@ -202,7 +202,7 @@ getConnection({
               instanceId: result._id,
               tracking: false,
               editing: true,
-              backend: "https://cluufweb-backend.herokuapp.com",
+              backend: "https://my-app-3ocg5.ondigitalocean.app",
               trackBackend: "https://cluuftracks.herokuapp.com",
               frontend: "https://cluuf-web.herokuapp.com",
               //trackBackend: "http://localhost:2000",
