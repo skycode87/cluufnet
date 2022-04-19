@@ -1,5 +1,5 @@
 // const backend_url_ = "https://cluufweb-backend.herokuapp.com";
-let backend_url_ = "https://cluufweb-backend.herokuapp.com";
+let backend_url_ = "https://my-app-3ocg5.ondigitalocean.app";
 let frontend_url_ = "https://cluuf-web.herokuapp.com";
 
 localStorage.setItem("backend_url", backend_url_);
