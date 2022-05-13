@@ -752,7 +752,8 @@ const submitSubscriptionS3 = () => {
           $("#observation").val("");
           $("#document").val("");
           $("#documentType").val("");
-          setTimeout(() => location.reload(), 1000);
+          Swal.fire(`Los datos han sido enviados con exito`, "", "success");
+          setTimeout(() => location.reload(), 3000);
         }
       },
       onError: () => console.log("Error enviando el formulario"),
