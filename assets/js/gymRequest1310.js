@@ -178,13 +178,13 @@ const connectToCluuf_SUBSCRIPTION_Pack = (
 
   sendRequestGYMCluuf(params2, {
     onSuccess: (res) => {
+      onSuccess(res);
       if (res.ok) {
         Swal.fire(`Los datos han sido enviados con exito`, "", "success");
       }
 
       $("form .li-submit").show();
       $("form .li-loading").hide();
-      onSuccess(res);
     },
     onError: () => {
       onError();
