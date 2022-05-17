@@ -483,6 +483,7 @@ getConnection({
                   sessionStorage.setItem("packname", pack.tag);
 
                   $("#isExternal").val(pack.isExternal);
+                  $("#isDocumentRequired").val(pack.isDocumentRequired);
 
                   if ($("#isExternal").val() === "true") {
                     $(".cluuf-payment-method").hide();

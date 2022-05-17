@@ -608,6 +608,17 @@ const submitSubscriptionS3 = () => {
     }
   }
 
+  if ($("#isDocumentRequired").val() === "true") {
+    if (!$("#document").val() === "") {
+      Swal.fire({
+        title: "Document is mandatory",
+        timer: 3000,
+        icon: "warning",
+      });
+      return false;
+    }
+  }
+
   if (String($("#plan").val()).length > 10) {
     $("#date").val(
       String(
