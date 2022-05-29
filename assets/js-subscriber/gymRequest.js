@@ -609,7 +609,7 @@ const submitSubscriptionS3 = () => {
   }
 
   if ($("#isDocumentRequired").val() === "true") {
-    if ($("#document").val() === "") {
+    if (String($("#document").val()).length < 4) {
       Swal.fire({
         title: "Document is mandatory",
         timer: 3000,
